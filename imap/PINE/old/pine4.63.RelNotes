@@ -1,0 +1,466 @@
+
+                              Pine Release Notes
+                                       
+                                Version 4.63
+                          University of Washington
+                                      
+   Pine(R) is the University of Washington's "Program for Internet News
+   and Email". It is intended to be an easy-to-use program for sending,
+   receiving, and filing Internet electronic mail messages and bulletin
+   board (Netnews) messages. There are versions that will run on many
+   different flavors of the Unix(R) operating system, as well as a
+   version with GUI amenities for 32-bit flavors of Microsoft Windows
+   (95, 98, NT, 2000, Me, and XP).
+   
+New in Pine 4.63
+
+   Version 4.63 addresses bugs found in previous releases and has a few
+   additions as well.
+   
+   Additions include:
+   
+     * When cancelling a message being composed the commands are now "^C"
+       followed by "_C_onfirm" instead of "^C" followed by "_Y_es". "^C"
+       "Yes" was close to "^X" "Yes", the command used to send a message.
+       The change is there to prevent inadvertent cancellations. The old
+       behavior may be restored by setting the feature
+       Compose-Cancel-Confirm-Uses-Yes.
+     * Command-line option "-url" can now be used with "-attach" and
+       similar options
+     * Quell-User-Id-Prompt no longer falls back on prompting for user-id
+       if a connection to the INBOX can't be established
+     * New token _CURNEWS_ which is equal to the current newsgroup if
+       there is one, mostly for use with the Reply-Leadin option
+     * New token ARROW for use in the Index-Format option for the MESSAGE
+       INDEX screen. This causes the current message to be indicated by
+       an arrow instead of being shown in reverse video. It may also be
+       colored if desired.
+     * New feature Force-Arrow-Cursor turns on an "arrow" cursor in the
+       MESSAGE INDEX just like you get with the Assume-Slow-Link feature
+       turned on, except the coloring of the index line will still take
+       place.
+     * Address book entries can be exported to a file in tab-separated
+       columns for more convenient import to some other clients
+     * New variable Quote-Replace-String and feature
+       Quote-Replace-Nonflowed allow for replacing quotes with the string
+       of the user's choice when viewing a message
+     * Character Set matching can now be done conveniently in Rules
+     * Field for comments added to Rules. Warning: Don't use this field
+       until all of the Pines that you run are version 4.63 or higher,
+       since it will cause the Rule to be ignored in previous versions.
+     * There is a new filterNow command located under Setup/Rules which
+       causes your filters to be re-run immediately. This is _not_ useful
+       for most users since filters are run immediately as new mail
+       arrives, but it may be useful if you want to re-run filters after
+       changing the status (New, Important, Deleted, and so on) of
+       messages and you don't want to wait until exiting the folder or
+       expunging.
+       
+   Bugs that have been addressed in this release include:
+   
+     * Crash when an IMAP server dies while browsing the server's
+       collection of folders
+     * Crash with message "Lock when already locked" when saving multiple
+       messages where some of those messages have had attachments deleted
+     * Possible crash when viewing an attachment with an encoded name
+     * Crash when saving from a local folder which has been closed due to
+       external modification
+     * TABbing for new mail in a news maildrop with multiple newsrcs was
+       broken
+     * Role inheritance only worked one level deep
+     * When viewing messages with the Quote-Suppression-Threshold turned
+       on, non-flowed messages with long lines that wrapped caused
+       confusion with the quoted line counting
+     * Malformed addresses were not always handled cleanly when replying.
+       Now the original address should be presented to the user who must
+       sort it out.
+     * In PC-Pine, Postponed tab was needlessly grayed out when editing
+       headers.
+     * It wasn't possible to add a collection that was a sub-collection
+       of the open Inbox on a cyrus server because Pine tried to create
+       the directory Inbox and that Folder/Directory already existed
+     * Handles (for example, for URLs) would sometimes be selectable even
+       though they had been scrolled off the screen one line, causing
+       confusion
+     * Failed to notice expunges in local folders which were in mbx
+       format
+     * In composer: ^R to reveal Attachment line, attach a file without
+       leaving the line (e.g. with ^T), then ^R while still in the
+       Attachment line, and the attachment was not sent
+     * When viewing format=flowed messages with the DelSp=yes parameter
+       urls were not recognized if they were split in the middle. It is
+       recommended that messages not be sent with this format but it is
+       known that some clients (Apple Mail is one) do send such mail.
+     * Avoid unnecessary re-sort of the folder when re-filtering in
+       preparation for an expunge
+     * In PC-Pine, crash when fonts with unknown character sets are
+       loaded
+     * Bug in composer when cleaning up a flowed message with
+       indentations inside of quotes.
+     * Preserve Literal-Signature leading spaces in config file
+     * Strip trailing spaces from signatures so that they won't be
+       recognized as flowed text
+     * Fix race condition in rpdump that could cause overwriting of
+       arbitrary local files owned by the user running rpdump if a
+       malicious user has write permission in the same directory as the
+       local file specified on the command line.
+     * When running Pine in function key mode, make it possible to
+       Reverse the sort
+       
+   Version 4.62 addressed bugs found in previous releases and had a few
+   additions as well.
+   
+   Additions included:
+   
+     * Enable-Newmail-in-Xterm-Icon now also sets the title bar text to
+       indicate new mail
+     * New feature Enable-Newmail-Short-Text-in-Icon
+     * New UNIX Pine feature NewMail-FIFO-Path
+     * New feature NewMail-Window-Width
+     * Select command may use the pattern from an existing Rule (for
+       example, an Indexcolor Rule) for its selection criteria
+     * Beginning of Month and Beginning of Year options in Rules
+     * Some additional tokens having to do with the current date may be
+       used in the folder name that is used as a target in a Filter Rule.
+       For example, you may filter messages to a folder named for the
+       current month by using the _CURYEAR_ and _CURMONTH_ tokens in the
+       folder name. The (long) list of all such tokens is here.
+     * Three additional tokens for use with Keywords may be used in the
+       Index-Format. They are SUBJKEYINIT, KEY, and KEYINIT (in addition
+       to the old SUBJKEY).
+     * Keywords may be displayed in color using Keyword Colors, available
+       from the Setup/Kolor screen
+     * The Keyword-Surrounding-Chars option may be used to slightly
+       modify the display of SUBJKEYINIT and SUBJKEY tokens.
+     * The Enable-Flag-Screen-Keyword-Shortcut option adds a shortcut
+       method of setting keywords
+     * When performing an aggregate reply (or forward), if the Role that
+       would be selected when replying (or forwarding) to each individual
+       message in the set is the same for all the messages, then that
+       role is used just like it would be when replying (or forwarding)
+       to any one of those messages.
+     * Delete/No Delete prompt added to Save command so that the source
+       message may be deleted or not on a Save-by-Save basis
+     * Status-Message-Delay option now allows reducing the status message
+       delays Pine sometimes adds
+     * New feature Save-Partial-Msg-Without-Confirm
+     * New feature Disable-Take-Fullname-in-Addresses
+     * New feature Sort-Default-FCC-Alpha
+     * New feature Sort-Default-Save-Alpha
+     * For selecting messages by Status, add the possibility of selecting
+       based on Recent or Unseen status
+     * Allow Take command to take addresses from html and enriched text
+       subtypes, as well as from plain text
+       
+   Bugs addressed in the 4.62 release included:
+   
+     * Crash when sending a message with a Role that sets the To header
+       if the Empty-Header-Message is set to <Empty Value>
+     * Pine hangs in composer after alternate editor or speller is run
+       and new mail arrives that causes an External Categorizer command
+       to be executed
+     * Crash in MESSAGE INDEX when using a threaded sort. The crash is
+       most common when the sort is Reversed.
+     * Pine could crash or hang when the window was resized down to 3
+       lines or fewer while in the composer
+     * In the Role editor the "To Folders" command for the "Set Fcc"
+       action did not work
+     * After running Pine for a long time, it would slow down until
+       restarted
+     * Export command in FOLDER LIST did not work with dual-use folders
+     * When the Send-Without-Confirm option was turned on, flowed text
+       was not produced and the Fcc-Without-Attachments feature did not
+       work
+     * Display bug, folder was not un-highlighted
+     * When viewing a message from the separate thread index, new mail
+       arrival could cause Pine to leave the MESSAGE TEXT screen and drop
+       back to the MESSAGE INDEX screen on its own
+     * When the UnDelete command was typed in the composer with the
+       cursor in the middle of a header line, the text was inserted at
+       the beginning of the line instead of at the location of the cursor
+     * When some messages from a thread were selected (not including the
+       top of the thread), the view was Zoomed, and the feature
+       Slash-Collapses-Entire-Thread was turned on; the collapse command
+       caused messages to disappear from the view entirely
+     * Incorrect character conversions were possible when going from
+       ISO-8859-X to ISO-8859-1
+     * Quell-Charset-Warning will now also quell the short comment
+       included in header lines about the charset being different from
+       yours in addition to quelling the editorial comment at the top of
+       a message. This is the stuff that looks like "[ISO-8859-2]" in a
+       header line.
+     * If the Down Arrow key was held down it caused Pine to do a new
+       mail check for each repeated character, which caused a delay when
+       the key was held down by mistake. Changed that so that it does at
+       most one check per second.
+     * An unnecessary sort of the folder (causing a delay) was happening
+       when closing if a filter rule depended on message state
+     * Mouse in xterm failed when clicking in the folder screen
+     * Enable-Dot-Folders feature did not allow adding folders with names
+       beginning with dot
+     * When replying to a TEXT/ENRICHED message Pine was failing to
+       filter out the ENRICHED markup
+     * Crash caused by malformed ISO-2022-JP in header
+     * Crash when changing Inbox-Path if INBOX was not the current folder
+     * Adding a collection on a Cyrus server did not work if the folder
+       already existed (Pine tried to create it and failed)
+     * Pine gave incorrect messages when deleting dual-use
+       folders/directories
+     * Saving an attached message to INBOX from another collection did
+       not work correctly (it tried to create INBOX in the collection
+       instead)
+     * In some circumstances, Pine could announce "No messages expunged
+       from folder <x>" after an expunge command that actually worked
+       correctly
+     * Allow alternate editor to use quoted arguments
+     * News drop folders weren't using the correct newsrc with
+       Enable-Multiple-Newsrcs enabled
+     * Error decoding some 8-bit headers, typically showing up as a
+       garbage character at the end of a name
+       
+   Version 4.61 addressed bugs found in previous releases and had a few
+   additions as well.
+   
+   Additions included:
+   
+     * The "^T" "To Files" command from within the composer on the
+       Attchmnt header line or from within the composer in the "^J"
+       "Attach" command is now capable of attaching multiple files at
+       once
+     * When Exporting a message with attachments you now have the option
+       of saving all of the attachments in a new directory (Export
+       Message File Selection) by typing "^P" while exporting
+     * Feature to modify behavior of TAB command,
+       Tab-Uses-Unseen-For-Next-Folder
+     * When sending, flowed text (RFC 3676) is sent by default. Now it is
+       possible to turn off this behavior on a message by message basis
+       with the ^V command at the Send prompt. You may still turn if off
+       for all cases with the feature Quell-Flowed-Text.
+     * Viewer-Margin-Left and Viewer-Margin-Right made a little more
+       flexible
+     * Suppress quoted text when viewing messages with
+       Quote-Suppression-Threshold
+     * The behavior of the HdrMode Command has changed slightly. It now
+       reverts back to normal mode when you switch to a new message. It
+       also has an additional state if Quote-Suppression-Threshold is
+       turned on.
+     * The old behavior of the HdrMode Command can be restored by not
+       setting the Quote-Suppression-Threshold and setting the new
+       feature Quell-Full-Header-Auto-Reset
+     * Feature to rename sent-mail folder to sent-mail-yyyy-mm instead of
+       sent-mail-mon-year (Prune-Uses-YYYY-MM)
+     * With Alternate-Role-Menu option turned on you could Reply or
+       Forward using a Role. Now you can also Bounce using a role.
+     * Relaxed conditions which caused a filter to not be reevaluated
+       before expunging if the user changed flags manually. Now only a
+       manual Undelete may cause the filter to not be reevaluated before
+       expunging.
+       
+   Bugs addressed in the 4.61 release included:
+   
+     * Crash when resizing screen in empty collection
+     * Crash with alternate-role-menu in empty folder
+     * Crash when you enter the name of a server incorrectly
+     * Crash when using aggregate Save and some attachments have been
+       deleted
+     * Exit folder collection with "<" command was broken
+     * Export command in FOLDER LIST did not always work
+     * Filtering on subject with non-ascii value did not work correctly
+     * Index display sometimes incorrect when threading
+     * Incorrect conversion from one 8-bit character set to another
+     * Saved-Msg-Name-Rule of "last-folder-used" broken in 4.60
+     * The threading-indicator-character would disappear when Expunging
+       in some cases
+     * Stay-Open-Folders did not work with local folders
+     * Strip-From-Sigdashes-On-Reply was failing when replying to a
+       non-flowed message with flowed-text enabled
+     * Sigdashes were incorrectly flowed for some flowed messages
+     * When building pine, compiling filter.c was broken or slow on some
+       systems
+     * Features hide-nntp-path and disable-shared-namespaces weren't
+       being correctly initialized
+     * Rule Patterns could only have a single category of Extra Headers
+     * The command to Replicate a rule did not copy the "not" parts of
+       the rule correctly
+       
+   Version 4.60 was an evolutionary release which introduced some new
+   functionality.
+   
+   Additions included:
+   
+     * In PC-Pine, add ability to do piping, Sending-Filters,
+       Display-Filters, and other operations where external command
+       execution is possible.
+     * Control margins in Message Viewing screen with Viewer-Margin-Left
+       and Viewer-Margin-Right
+     * Display flowed text well
+     * Send flowed text when possible, with the ability to turn this
+       behavior off through the new feature Quell-Flowed-Text
+     * Add keywords to folders using the Keywords option to set them up
+       and the Flag Command to set or clear them for particular messages.
+       Filters may also set or clear keywords. Keywords may be used for
+       Selecting messages, for matching messages in Rule Patterns, and
+       may be displayed in the index using the SUBJKEY token in the
+       Index-Format option.
+     * In Mac OS X, view and send attachments and URLs according to how
+       the system defines handling them, without relying on the existence
+       of a mailcap or mime.types file
+     * For PC-Pine, add a separate window that contains new mail
+       notifications for all folders currently opened (in PC-Pine Config
+       menu).
+     * Reply or Forward using a Role by turning on the
+       Alternate-Role-Menu option
+     * More IMAP connection caching: control it with options
+       Stay-Open-Folders, Preopen-Stayopen-Folders,
+       Max-Remote-Connections, and Offer-Expunge-On-Stayopen-Folders
+     * New feature Offer-Expunge-On-Inbox
+     * An attempt is made to convert incoming UTF-8 messages to the
+       user's character set
+     * Added support for HOME and END keys in message view and message
+       index
+     * Prevent canonicalization of news server names by setting
+       Mult-Newsrc-Hostnames-as-Typed
+     * Remove hostname from NNTP Path header with Hide-NNTP-Path option
+     * Support for External Categorizer Commands in Rules
+     * Improved interface when editing rules with many comma-separated
+       values
+     * More control over mail checking frequency with
+       Quell-Mailchecks-Composing-Except-Inbox,
+       Quell-Mailchecks-Composing-Inbox, and
+       Mail-Check-Interval-Noncurrent
+     * More control over filtering of control characters to screen with
+       Pass-C1-Control-Characters-as-is option
+     * New Export and Import commands in FOLDER LIST screen
+     * Now possible to use message size in Rule Patterns
+     * As a convenience, a shortcut for the command line argument
+       "-feature-list=feature" is "-feature", for example,
+       "-signature-at-bottom" or "-no-signature-at-bottom"
+     * Add PC-Pine command-line argument "-registry noset"
+     * Add command-line argument "-nowrite_passfile"
+     * Add feature Quell-Attachment-Extension-Warn
+     * Add features Quell-Filtering-Messages and
+       Quell-Filtering-Done-Message
+     * Add feature Quell-Charset-Warning
+     * Add feature Maildrops-Preserve-State
+     * Don't remove whitespace from the end of lines, a behavior which
+       can be turned off through the new feature
+       Strip-Whitespace-Before-Send
+     * Double dollar sign escapes special meaning of dollar sign in both
+       Unix Pine and PC-Pine (Using Environment Variables)
+     * RedHat and Debian ports more closely obey the Linux Hierarchy
+       Standard
+     * Improve performance of Select command when using Narrow or Broaden
+       and talking to an IMAP server
+     * Add feature Disable-Terminal-Reset-For-Display-Filters (you might
+       want to look into this if you have noticed that the coloring of
+       quoted text is broken when viewing messages)
+     * When displaying a message with QP encoding errors, instead of just
+       reporting "Non-hexadecimal character in QP encoding" and then
+       giving up, attempt to do the best possible
+     * Add feature Show-Sort
+     * Add feature Downgrade-Multipart-To-Text
+     * Add feature Dead-Letter-Files
+     * Port named "soc" is an attempt to use native Solaris compiler
+     * Add ability to justify the full message from the composer by doing
+       Control-W Control-J
+       
+   Bugs addressed in the 4.60 release included:
+   
+     * Crash when forwarding an attached message as an attachment
+     * Crash because of DebugJournal code on some systems, related to the
+       way they handle variable length arguments in C
+     * Crash when indexline colors are enabled and the last message of a
+       mailbox is expunged out from under us
+     * In FOLDER LIST screen using Select, Narrowing was not working
+       correctly
+     * When viewing a message with colored quotes, sometimes lines would
+       be erased from the screen when using the Up Arrow key
+     * Bug where normal text remained the same color as links after
+       viewing certain types of HTML-formatted messages
+     * More thoroughly use partial fetching for Quell-SSL-Largeblocks
+       when working around the Microsoft SSL crash that they continuously
+       forget to fix
+     * Crash when entering numerous attachments in the composer Attchmnt:
+       line
+     * Crash when composing to command line argument when address
+       requires an LDAP lookup
+     * Forwarding an address book distribution list did not work
+       correctly in PC-Pine
+     * GoTo a POP folder was broken in 4.58
+     * Non-terminating Filter Rules that only set message state, when
+       followed by a regular terminating rule that moved or deleted a
+       message, would cause messages matching the non-terminating rule to
+       be incorrectly deleted
+     * Near-infinite loop trying to open a temp file if disk quota is
+       exceeded
+     * Crash when trying to view attachment with a RFC-2047-encoded
+       filename
+     * Crash or data corruption when editing a HEADER COLOR's Pattern to
+       match
+     * HEADER COLOR's Pattern to match truncated to 100 characters
+     * In C locales where the decimal point character used by the printf
+       function is comma, some files could not be attached because their
+       size was listed as 7,3 KB, causing a parsing problem
+     * Bug where including a file from the composer would sometimes fail
+       unnecessarily
+     * Warn before attempting to view a file:// URL
+     * Pine on Mac OS X appears to hang when saving an attachment by
+       overwriting a file
+     * Pine hangs when given bad input for a rule interval
+     * Couldn't use Filters anymore if an empty file was included. The
+       same was true for other types of Rules, as well.
+     * Pine loses track of its selected messages and only saves one
+       message when new mail arrives during an aggregate save.
+       
+   Details on changes in previous versions of Pine may be found at the
+   following URL:
+   
+                http://www.washington.edu/pine/changes.html
+            ____________________________________________________
+   
+Getting Help
+
+   Online Help
+          Every Pine screen and command has associated help text
+          accessible via the "?" key (or Ctrl-G in text-input contexts).
+          
+   Web Help
+          The most current source of information about Pine, including
+          new version availability, is the web page at
+          
+                      http://www.washington.edu/pine/
+                                      
+   Frequently Asked Questions (and answers) may be found at the following
+   URL:
+   
+                    http://www.washington.edu/pine/faq/
+                                      
+   Some topics of current interest include:
+     * Mail Drops
+     * Information on Folder Locking
+     * Information on Missing mail and the mbox driver
+     * Information on Folder Namespaces
+            ____________________________________________________
+   
+Additional Information
+
+   General Pine configuration information can be found here.
+   
+   Pine is also available for Windows 32-bit environments. More
+   information on PC-Pine can be found here.
+   
+   Pine was developed by the Office of Computing & Communications at the
+   University of Washington in Seattle. A more complete list of principal
+   players and key contributors can be found on the credits Web page at
+   
+                   http://www.washington.edu/pine/credits
+                                      
+   Pine and Pico are trademarks of the University of Washington.
+   
+   Pine, Pico and Pilot Copyright 1989-2005 University of Washington
+   
+   Additional legal notices can be found here or at the web URL:
+   
+                    http://www.washington.edu/pine/legal
+                                      
+   <End of Release Notes>

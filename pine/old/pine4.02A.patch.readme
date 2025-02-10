@@ -1,0 +1,35 @@
+
+                              Pine 4.02 PATCH "A"
+                                07 August 1998
+
+
+The patch file "pine4.02A.patch" is a small set of patches to be
+applied to the Pine Mail System version 4.02 (released 21 July 1998).
+These patches address only problems associated with receiving a mail
+message that contains inordinately long MIME header values.
+
+Such extremely uncommon messages will typically cause Pine to crash,
+but it is speculated that the problems could be exploited such that
+they allow the message sender to execute an arbitrary command on
+behalf of the receiving user (note, though, with no more privilege
+than the receiving user).  To our knowledge, this has yet to be
+demonstrated in practice.
+
+That said, if you are experiencing problems or are concerned about
+this problem, the Pine Team has provided this patch as a means of
+greatly reducing your exposure to this specific problem.
+
+The patch file itself is in context-diff format, and should be
+understood by the "patch" utility.  To update Pine 4.02 source,
+simply copy the patch file into the same directory as the pine4.02
+source tree and type:
+
+        patch -p < pine4.02A.patch
+
+After patch completes, verify that there were no problems and rebuild.
+
+As always, thanks for your interest and support.
+
+Sincerely,
+
+The Pine Development Team

@@ -1,0 +1,164 @@
+
+                             Pine Project History
+                                       
+   Pine was originally conceived in 1989 as a simple, easy-to-use mailer
+   for administrative staff at the University of Washington in Seattle.
+   This constituency had previously been using a very nice mail system
+   derived from UCLA's "Ben" mailer for the MVS operating system, but
+   when the cost of maintaining our MVS system became prohibitive, we
+   needed to find a Unix-based mailer that preserved the user-interface
+   strengths of "Ben". Our goal was to provide a mailer that naive users
+   could use without fear of making mistakes. We wanted to cater to users
+   who were less interested in learning the mechanics of using electronic
+   mail than in doing their jobs; users who perhaps had some computer
+   anxiety. We felt the way to do this was to have a system that didn't
+   do surprising things and provided immediate feedback on each
+   operation; a mailer that had a limited set of carefully-selected
+   functions.
+   
+   At that time, we could not find any Unix mailer (commercial or freely
+   available) that met our requirements. Consequently, we reluctantly
+   concluded that we would need to develop our own. The Elm mailer seemed
+   like a reasonable starting point since its source code was freely
+   available, so we started modifying it. Today there is virtually no Elm
+   code left, and Pine has evolved so that many "power-user" features may
+   be (optionally) enabled. We have tried to remain true to our original
+   simplicity and ease-of-use goals by providing optional features for
+   sophisticated users. In fact, if none of Pine's options are enabled,
+   the latest version has almost the same look-and-feel as the very first
+   version.
+   
+   One of the greatest problems with most mailers on Unix systems is the
+   editor. One can normally choose between emacs and vi. We experimented
+   with some versions of emacs and settled on a hacked version of micro
+   emacs. Eventually it became heavily modified and tightly integrated
+   with the rest of Pine. One of the main features of having a tightly
+   coupled editor is that it can guide the user through editing the
+   header of the message, and Pine takes great care to do this. A very
+   simple and efficient interface to the Unix spell command was also
+   added. The emacsstyle key bindings were retained, though most of the
+   other wild and wonderful emacs functions were not. The Pine
+   composition editor is also available as a very simple stand alone
+   editor named pico.
+   
+   Also working at the University of Washington is the original author of
+   the Internet Message Access Protocol (IMAP). IMAP is a functional
+   superset of POP, and provides a way to manipulate mailboxes on remote
+   servers as if they were local. Specific advantages of IMAP over POP
+   include: support for inbox access from multiple computers, access to
+   more than one remote folder, selective access to MIME message parts,
+   and support for disconnected operation.
+   
+   Not long after the Pine project began, The IMAP author had finished
+   writing the "c-client" library as an interface to IMAP and as a switch
+   between drivers for IMAP mailboxes, Berkeley mail files and Tenex mail
+   files. In time, "c-client" became a full messaging API with support
+   for RFC-822 parsing, MIME parsing and decoding, SMTP and NNTP drivers,
+   and so forth. Great care was taken to make the code writing the mail
+   files robust against disks filling up, and inter-process locking in
+   order to guarantee mail file consistency. It was clear that Pine would
+   benefit greatly from using the c-client to access mail storage so the
+   original low-level Elm code was replaced by calls to c-client library
+   routines. Consequently Pine can write and access a variety of
+   different mail file formats and new ones can be added by creating a
+   simple driver. In addition the c-client does a very careful job of
+   doing all the RFC 822 header parsing and achieves the highest
+   compliance with the RFC.
+   
+   Most of the work done on Pine from 6/92 to 6/93 focused on changes
+   needed to support a truly distributed electronic messaging environment
+   (e.g. remote folder manipulation), and getting Pine to run on DOS
+   (which was a lot of work). The first version of PC-Pine (3.84) was
+   released in July 1993, and included first steps toward integrating
+   news and email access in Pine. Doing the DOS port was very difficult
+   for a variety of reasons, but especially because of DOS memory
+   management (or lack thereof). However, simply porting Pine 3.07 to DOS
+   was not sufficient. For a desktop mailer such as PC-Pine to be useful
+   at UW, it was necessary to fully support access to existing remote
+   saved-message folders, as well as local (desktop) folders -- and of
+   course, the remote INBOX. Accomplishing this required extensions to
+   IMAP, a new version of the IMAPd server code, and extensive work in
+   Pine to support multiple collections of folders.
+   
+   The principal reason for porting Unix Pine to DOS was to obviate the
+   need for PC users to transfer files between their PC and the Unix
+   system running Pine. Now it is possible to save messages directly to
+   the PC's filesystem, and to directly include PC files in outgoing
+   messages. And with Pine's MIME capability, binary files (e.g. word
+   processing documents, spreadsheets, image files, executables) may be
+   directly attached to your messages.
+   
+   With Pine 3.90, significant new functionality has been added, notably
+   aggregate operations for manipulating groups of messages at once, the
+   first (alpha) release of PC-Pine for the Winsock network interface
+   standard, and greatly improved Usenet (News) support. One of the early
+   interpretations of the name "Pine" was "Pine Is No-longer Elm"; today
+   a "Program for Internet News and Email" seems more apropos.
+   
+   
+     _________________________________________________________________
+                                      
+   
+                                 Pine Credits
+                                       
+   The University of Washington Pine development team (part of the UW
+   Office of Computing & Communications) includes:
+
+
+ Project Leader:           Mike Seibel
+ Principal authors:        Mike Seibel, Steve Hubert, Laurence Lundblade*
+ C-Client library & IMAPd: Mark Crispin
+ Pico, the PIne COmposer:  Mike Seibel
+ Bug triage, user support: David Miller*
+ Pine Web Pages:           Lynne Bivona, Jaime Prosser
+ Documentation:            Many people!
+ PC-Pine:                  Tom Unger, Mike Seibel
+ Project oversight:        Terry Gray, Lori Stevens
+ Principal Patrons:        Ron Johnson, Mike Bryant
+ Additional support:       NorthWestNet
+ Initial Pine code base:   Elm, by Dave Taylor & USENET Community Trust
+ Initial Pico code base:   MicroEmacs 3.6, by Dave G. Conroy
+ User Interface design:    Inspired by UCLA's "Ben" mailer for MVS
+
+   * Emeritus
+
+We'd also like to acknowledge the following contributions and contributors:
+ Pine for VMS:  Portia Shao and Yehavi Bourvine
+ Pine for OS/2: David Nugent
+ Special mention:   David Wall
+ Bug reports, bug fixes, ports, suggestions & encouragement:
+
+The world-wide Pine community, including...
+
+   Shoa Aminpour        Richard Gering    Richard Murphy
+   J.J. Baily           Gordon Good       Il Oh
+   Billy Barron         Bob Gregory       Mike Ramey
+   Chris Beecher        Ed Greshko        Phil Rand
+   John Benjamins       Dmitri L. GringauzJochiam Richter
+   Birko Bergt          David Halliwell   Thomas Riemer
+   Ken Bobey            Peter Hausken     Tim Rice
+   Andy Brager          Jeff Hayward      Alexis Rosen
+   D.K. Brownlee        Ron Johnson       Michael Ross
+   Brian Burriston      William Kreuter   Bob Sandstrom
+   Bill Campbell        Pekka Kytolaakso  Michael F. Santangelo
+   Russel Campbell      Barry Landy       Shin-ya Satoh
+   Donn Cave            Chris Latham      Corey Satten
+   Richard Cheever      Jon Lebo          Michael Shepard
+   Mike Coghlan         Allen Leonard     Vladimir Solnicky
+   Justine Comer        Robert L. Lewis   Alan Thew
+   Chuck Cooper         Bruce Lilly       Jason R. Thorpe
+   Barry Cornelius      Matthew Lyle      Rick Troxel
+   Michael A. Crowley   John Mackin       Marc Unangst
+   Judith M. Dixon      James Matheson    Edward Vielmetti
+   Jeff D. Doran        Nancy McGough     Ross Wakelin
+   Tony Flemming        Mark McNair       Rich Wales
+   Matthew Freedman     Pete Mellor       David Wall
+   Richard Fritz        Dave Miller       Bob Williams
+   Marcelo A. Gallardo  Don Miller        Steve Woodyatt
+   Adam Garrett         Robert Morris
+
+
+   And many others... Our thanks to all!
+   
+    Pine® Information Center
+    Modified: July 8, 1998

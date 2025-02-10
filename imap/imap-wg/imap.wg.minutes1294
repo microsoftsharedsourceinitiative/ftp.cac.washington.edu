@@ -1,0 +1,121 @@
+From gray@cac.washington.edu Sat Jan 14 21:18:47 1995
+Date: Wed, 7 Dec 1994 22:00:46 -0800 (PST)
+From: Terry Gray <gray@cac.washington.edu>
+To: John C Klensin <klensin@mci.net>, Erik Huizer <Erik.Huizer@SURFnet.nl>
+Cc: minutes@cnri.reston.va.us, imap@cac.washington.edu
+Subject: IMAP Working Group Meeting: Summary and Minutes
+
+
+             IMAP Working Group  --31st IETF (San Jose)
+                    Tues 6 Dec 1994, 1600-1800
+
+SUMMARY
+
+Meta-summary: we have declared victory and are ready to move on.
+
+Last week the IESG approved the latest IMAP4 draft as a Proposed Standard.
+Accordingly, the original charter objectives of the working group have 
+been accomplished and no further IMAP working group meetings are planned.
+
+Several pending extension proposals and informational documents will continue
+to be worked-on informally, and in due course will be advanced as
+appropriate.  Likewise for the companion support protocol (IMSP).  The
+imap@cac.washington.edu email list will remain available to facilitate these
+activities. 
+
+MINUTES
+
+Status of the latest (version 7) draft of the IMAP4 spec:
+
+ o IESG has approved draft 7 as a Proposed Standard
+ o It is not known how soon the RFC based on draft 7 will be published,
+   due to backlog in the RFC Editor's queue.
+
+Discussion of IMAP4 implementation experience:
+
+ o Both IMAP server implementors mentioned that their first 
+   implementations of the extended searching in IMAP4 were wrong.
+ o Sun has a disconnected IMAP client (ROAM) that does not yet
+   use IMAP4 UIDs for resynchronization (they started before the
+   spec was stable).  They will upgrade when the IMAP4 c-client
+   library becomes available.
+
+Discussion of disconnected use implementation experience and Rob 
+Austein's draft on message cache resynchronization using IMAP4:
+
+ o The Sun folks indicated that IMAP has served them very well for their 
+   nomadic/disconnected mail client.
+ o Rob's document needs some additional review, and could benefit by some 
+   additional implementation wisdom.  (Bill Yeager to review by 
+   end-of-year.)
+ o This document is informational, not standards-track.
+
+Discussion of previously proposed extensions:
+
+(These would all use the IMAP4 CAPABILITY mechanism for negotiating 
+extensions, and would be standardized independently of the base protocol.)
+
+ o STATUS
+   -Universally accepted as a Good Idea.
+   -Already implemented in the CMU Cyrus server.
+   -Additional practical experience desired before advancing the doc.
+
+ o ANNOTATE
+   -Document needs to include the "silent" form of STORE.
+   -Document needs to state that annotations don't change
+    RFC822 content.
+   -Additional feedback solicited.
+
+ o Protocol timeout negotiation for dialup clients.
+   -Proponents (Austein/Klensin) need to write proposal.
+
+ o Binary
+   -The Wollongong Group will be doing this.
+   -Draft extension and implementation to follow.
+
+ o Non-ascii mailbox names
+   -John Myers (CMU) presented a proposal that is a compromise between 
+    the two that have been discussed on the mailing list.  There seemed to be
+    broad support for John's approach, which he will write-up and submit 
+    to the list shortly. 
+
+Interrupt handling. Bill Yeager (Sun) argued that the ability to interrupt a
+long server response (e.g. via TCP Urgent) is invaluable when using low-speed
+lines. This facility requires an extension to the protocol.  Yeager and
+Crispin to discuss further. 
+
+Latest PEM/MIME draft.  The question was raised as to whether the latest 
+PEM/MIME draft had any impact on IMAP.  The answer was: everything should 
+work OK as is, but there might be an opportunity for performance 
+optimization via a future extension to IMAP.
+
+Namespace draft.  The IMAP4 spec leaves a "hook" for multiple namespace
+identifiers (The "#" symbol at the beginning of a mailbox name.) A document
+needs to be published on how this might/should be used.  It is not yet clear
+whether this would take the form of an informational "conventions" document,
+or whether it might even lead to a protocol extension proposal. 
+
+IMSP.  The companion support protocol to IMAP (providing such services 
+as user-to-server binding in a large site) is evolving, but not yet ready 
+for standardization.  
+
+Procedure for extensions becoming standards.  As any of the above
+extension proposals reach maturity, they will be brought to the attention
+of the area director(s), and a decision will be made then as to whether a
+(hopefully short-lived) working group should be chartered, or whether an
+"extended last call" might be sufficient to obtain feedback/consensus.
+This decision will be made on a case-by-case basis. 
+
+Working group wind down.  The original WG charter objectives were achieved
+with the approval of IMAP4 draft7 as a Proposed Standard (and *only* a year
+behind the original schedule!).  Further, the WG does not need to persist in
+order for extensions to be brought forward.  Accordingly, it was agreed that
+this should be the last IMAP Working Group meeting, and that the IESG should
+decommission the IMAP Working Group. 
+
+-teg
+
+
+
+
+

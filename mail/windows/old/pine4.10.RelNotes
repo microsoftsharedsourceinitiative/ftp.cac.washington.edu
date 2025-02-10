@@ -1,0 +1,94 @@
+
+                               Pine Release Notes
+
+                                  Version 4.10
+                            University of Washington
+
+Pine® is the University of Washington's "Program for Internet News and
+Email". It is intended to be an easy-to-use program for sending,
+receiving, and filing Internet electronic mail messages and bulletin
+board (Netnews) messages. There are versions that will run on many
+different flavors of the Unix® operating system, as well as a version
+with GUI amenities for 32-bit flavors of Microsoft Windows (95, 98, and
+NT).
+
+New in Pine 4.10
+
+Version 4.10 is an evolutionary release that introduces both new
+functionality as well as addresses several bugs found in earlier
+releases. Changes include:
+
+ *  New "Roles" concept
+ *  New features to enable "combined" list of folders and address books
+    similar to the screens found in Pine versions prior to 4.00.
+ *  Restoration of expanded-view-of-folders and addressbooks when
+    "combined list" features enabled
+ *  New send feature to fcc-without-attachments
+ *  Setup/Config: features now grouped by topic
+ *  New option to pass headers to sending filters
+ *  Configurable Reply-Leadin to included message text
+ *  New feature to use internal pager for text attachments
+ *  New feature to allow selection/mailto of embedded email addresses
+ *  Expanded signature file options: a filename followed by "|" means use
+    named program's output
+ *  Expanded token support permitted in signature and role template files
+    as well as the new Reply-Leadin definition
+ *  Compile-time option to permit saving passwords for Unix Pine
+ *  Help Text improvements
+ *  Numerous bug fixes
+
+Additional details on changes in this (and previous) versions of Pine may
+be found at the following URL:
+
+                  http://www.washington.edu/pine/changes.html
+
+          ____________________________________________________________
+
+Getting Help
+
+  Online Help
+      Every Pine screen and command has associated help text accesseible
+      via the "?" key (or Control-G in text-input contexts).
+
+  Web Help
+      The most current source of information about Pine, including new
+      version availability, is the web page at
+
+                        http://www.washington.edu/pine/
+
+Frequently Asked Questions (and answers) may be found at the following
+URL:
+
+                      http://www.washington.edu/pine/faq/
+
+Some topics of current interest include:
+
+ *  Information on Folder Locking
+
+ *  Information on Missing mail and the mbox driver
+
+ *  Information on Folder Namespaces
+
+          ____________________________________________________________
+
+Additional Information
+
+General Pine configuration information can be found here.
+
+Pine is also avilable for Windows 32-bit environments. More information
+on PC-Pine can be found here.
+
+Pine was developed by the Office of Computing & Communications at the
+University of Washington in Seattle. A more complete list of principal
+players and key contributors can be found on the credits Web page at
+
+                     http://www.washington.edu/pine/credits
+
+Pine and Pico are trademarks of the University of Washington.
+
+Pine, Pico and Pilot Copyright 1989-1999 University of Washington
+
+Additional legal notices can be found here or at the web URL:
+
+                      http://www.washington.edu/pine/legal
+

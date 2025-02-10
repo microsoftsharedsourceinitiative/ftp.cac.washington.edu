@@ -1,0 +1,145 @@
+From mikes@cac.washington.edu Sun Oct 10 23:49:41 1993
+Date: Fri, 8 Oct 1993 18:31:25 -0700 (PDT)
+From: Michael Seibel <mikes@cac.washington.edu>
+To: Pine Announcement Distribution <pine-announce@cac.washington.edu>
+Subject: Pine and PC-Pine 3.87 now available
+
+This version fixes several particularly unpleasant bugs found in Pine
+versions 3.86 and earlier.  The bug fix list is fairly short, but should
+make Pine quite a bit more stable and a little easier to use.  The list
+includes the following reported bugs: 
+
+ -crash in bezerk_open caused by out-of-context FCC (Leland Woodbury)
+ -crash on Solaris with missing feature list (Keith Christopher)
+ -crash with [No Message Text Available] message (Grant Weber)
+ -crash on folder Rename (Dan Larsen)
+ -crash with "Bad msgno in mail_fetchstructure" (Les Pennington)
+ -need one more NL before included text if NO sig file (Jeannine Senechal)
+ -makefile.sgi repairs (Mike Brudenell)
+
+Thanks to all (including those not listed above!) who helped by reporting
+and tracking down these bugs.  Apologies for any problems or inconvenience
+they may have caused! 
+
+The Pine Team
+
+
+From mikes@cac.washington.edu Sun Oct 10 23:49:53 1993
+Date: Thu, 7 Oct 1993 19:15:42 -0700 (PDT)
+From: Michael Seibel <mikes@cac.washington.edu>
+To: Pine Announcement Distribution <pine-announce@cac.washington.edu>
+Subject: Pine 3.86 released
+
+Version 3.86 of Pine and PC-Pine is now available.  The release also
+includes new versions of Pico and IMAPd. 
+
+
+STATUS...
+
+This is primarily a maintenance release, although there are actually a
+couple of new features (and therefore a chance of a few new bugs).  In a
+few cases, we changed Pine's behavior back to the way it was before 3.85,
+based on feedback from you. 
+
+There are some important bug fixes, so we encourage everyone to upgrade to
+3.86 as soon as possible.  You should update your IMAPd as well. Pine's
+method of discovering remote folders has been changed (to avoid an
+unfortunate conflict with other IMAP clients that make use of a hidden
+.mailboxlist file) but will be somewhat slower *unless* using the new
+IMAPd.  There are other IMAPd fixes as well. 
+
+The list of changes/fixes is appended... and is quite long, considering 
+that 3.85 is only two weeks old!
+
+
+HOW TO GET IT...
+
+--> Via anonymous FTP
+
+  ftp pine.cac.washington.edu
+  user: anonymous
+  passwd: your email address
+  binary
+  cd mail
+  get pine.tar.Z    <-- full distribution, including Pico and IMAPd
+  get pcpine_f.zip  <-- version for FTP PC/TCP
+  get pcpine_n.zip  <-- version for Novell LWP
+  get pcpine_s.zip  <-- version for Sun PC/NFS
+  get pcpine_p.zip  <-- version for Packet Driver
+  quit
+
+There will also be precompiled binaries available for certain
+platforms.  These will have names like pine-bin.ultrix.
+
+--> Via PC-Pine
+
+PC-Pine users can also obtain new versions via the "Update" option under 
+the Main Menu "Setup" command.  From the Folder Index of the Update 
+Server, just select and View the msg containing the version you need, 
+then View/Save the attached Zip file.
+
+Note: it is still true that, because attachment encoding/decoding has not
+*yet* been performance-tuned, using Update and Save will be slower than
+FTP, but it may be more convenient. 
+
+
+RELEASE NOTES (Changes since 3.85)...
+
+ -Revert to having GOTO enabled by default.
+ -Revert to allowing open folders to be deleted.
+ -Revert to former meaning of -i command line flag.
+ -Add command line flag -I for initial keystroke list (replaces -i overload).
+ -Make personal feature list add to global feature list instead of replace.
+ -Allow negation of previously-enabled features by prefixing "no-".
+ -Add "by-from" name rule; change "by-sender" to use Sender: field
+ -Add "expunge-without-confirm" feature.
+ -Add "auto-move-read-msgs" feature.
+
+ -Change "save-by-X" rules to strip routing data from offered foldername.
+ -Change Pine to use FIND ALL, to avoid conflict with .mailboxlist.
+ -Change IMAPd's FIND ALL behavior to not check file type. 
+ -Change Tenex-format mailbox extensions from .txt to .TxT.
+ -Change composer to only put one blank between .sig and included text.
+ -Change pine to expand tabs on fixed, 8-char boundaries.
+ -Change address book nickname display length to match input limit.
+ -Change inline-text encoding rule to use quoted-printable more often.
+ -Change NewVersion message to indicate it only shows once, etc.
+ -Change wording of monthly pruning message.
+ -Change Ctl-K message to appear less frequently.
+
+ -Fix: Delete in/after spell-check may trash msg or crash Pine.
+ -Fix: crash resulting from M->S->? key sequence. 
+ -Fix: crash resulting from null To: field. 
+ -Fix: crash resulting from "::" in From: header.
+ -Fix: crash resulting from replying to above.
+ -Fix: for long headers (address lists longer than a screen). 
+ -Fix: [Mark Set] message should vanish after ^K. 
+ -Fix: "No attachments" msg in Postpone is too long to fit. 
+ -Fix: Ext. help inclusion confusion (insert page breaks as file is read). 
+ -Fix: Low-speed fixes that broke in Pico 2.0.
+ -Fix: Select/Goto should return to previous folder when open fails.
+ -Fix: Spaces at beginning of filenames are now ignored in Save/Export.
+ -Fix: put domain literal brackets around X-Sender when necessary.
+ -Fix: Can't save to INBOX if "inbox" is implicit in inbox-path.
+ -Fix Pico so lines w/tabs display correctly when characters deleted. 
+ -Fix negative network number in bracketed host numbers for DOS SMTP clients.
+ -Fix Tenex driver to never cause a kiss-of-death to be sent or received.
+ -Fix: Some global config options not transferred/displayed correctly?
+ -Fix: Use "default state" when returning to INBOX, instead of wrong msg #.
+
+ -Make PC-Pine more graceful when out of memory during a Send.
+ -Suppress From: (Sender Unknown) in included headers for -nr mode
+ -Improve performance of TAB and Del-skips-del on large folders.
+ -Improve failure case when .addressbook or .pinerc can't be re-written.
+ -IMAPd ignores kiss-of-death if current mailbox is not bezerk, mmdf, or mbox
+ -Use XHDR in NNTP client drivers to work around a missing LISTGROUP command.
+ -Internal FIND/FIND ALL redesign (no user or Pine-visible changes)
+ -Create separate VAX ULtrix (VUL) port.
+ -Rsh program name and pathname now set in c-client makefile for each port.
+ -Modify some ports to be only makefiles (and perhaps os_???.h files).
+ -Suppress Tenex driver new-mail snarf if it can't get RW access to spool.
+
+As always, thanks for your interest in pine!
+
+The Pine Team
+

@@ -1,0 +1,7 @@
+     If you are building a TOPS-20 server, you should install MAPSER.EXE on
+SYSTEM: and have IMAPSV.EXE invoked as a SYSJOB or PTYCON subjob (NOT a
+SYSJOB subfork) at system startup.  The TOPS-20 server only runs in
+extended addressing, so if you are using a 2020 you're out of luck.
+
+     The official version of this software is on:
+	ftp://lingling.panda.com/mm:

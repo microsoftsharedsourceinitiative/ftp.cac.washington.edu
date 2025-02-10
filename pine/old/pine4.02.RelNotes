@@ -1,0 +1,685 @@
+
+        RELEASE NOTES for Pine -- A Program for Internet News and Email
+
+                                 Version 4.02
+                            University of Washington
+
+Contents of this page:
+ *  Summary of Recent Changes
+     +  Changes in Pine 4.02
+     +  Changes in Pine 4.01
+     +  Things not fixed in Pine 4.02
+     +  Improvements made in Pine 4.00
+ *  PC-Pine Notes
+ *  Configuration
+ *  Credits
+ *  Legal Notices
+
+Finding more information and requesting help
+
+          ____________________________________________________________
+
+Summary of Recent Changes
+
+We have been very gratified by the response to Pine 4.00, both because it
+is clear that many people still care about Pine, and also because,
+notwithstanding some rough edges, folks seem to be generally pleased with
+the new functionality. Thank you for your continuing interest and
+support!
+
+Version 4.02 is a maintenance release of 4.01 which is mainly intended to
+fix a bug introduced in Pico version 3.1. The lone affect of this bug on
+Pine proper was in the composer's periodic check point file output which,
+under normal circumstances, is removed once a message being composed is
+sent.
+
+The version 4.01 release was driven by the discovery of a security
+vulnerability in the imapd program packaged with Pine 4.00. (The problem
+exists in all previous versions of the University of Washington's IMAP4.1
+server, too.) In the few days available, there was no time to correct
+very many of the 4.00 bugs that have been reported, but a few of them
+have been corrected ...
+
+  Changes in Pine 4.02
+
+ *  fixed Pico over-quota protection code that under some conditions
+    caused a changed file to end up with one or more occurrences of the
+    letter 'U' appended to the old data followed by the new contents
+ *  restored behavior of "enable-fast-recent-test" feature to be fast
+    when possible
+
+  Changes in Pine 4.01
+
+ *  Included updated imapd with fix for security vulnerabilty.
+ *  Added feature to "quell-folder-internal-msg"
+     +  Beginning with version 4.00, Pine supports enhanced functionality for
+        sites using the standard Unix mailbox format or the MMDF mailbox
+        format. It does this by creating a "pseudo-message" at the
+        beginning of the folder which holds the following values:
+         o  unique identifier validity stamp
+         o  last assigned unique identifer
+         o  any keyword flags assigned to the mailbox
+        These values are essential for the correct operation of modern
+        IMAP and POP servers (which use persistent unique identifiers, or
+        UIDs), but Pine also needs them to support capabilities such as
+        being able to mark messages as Answered when the Reply has been
+        postponed, and (on systems where Unix or MMDF folder formats are
+        not standard), the ability to create a folder in one of these
+        formats. (Without the pseudo message to identify the mailbox
+        format type, the folder would be empty and Pine would not know
+        the desired format type for subsequent use.)
+
+        One disadvantage of this scheme is that mailers that are not
+        built on top of the University of Washington's message access
+        subroutine libraries will not "hide" the pseudo message from
+        users. Another disadvantage of having these pseudo messages is
+        that, when found in folders used to receive new messages, some
+        mail notification tools may be confused and behave incorrectly.
+        There are several solutions to this problem. For example, some
+        sites have modified the notification tools to ignore mailboxes
+        whose length corresponds to the pseudo message. However, these
+        pseudo messages may be deemed undesirable at sites where IMAP or
+        POP are not used, and where it is more important to support other
+        unmodified mail tools than to permit Pine to be able to mark
+        messages as Answered when the Reply is postponed. Accordingly,
+        Pine 4.01 offers a new feature to "quell-folder-internal-msg".
+
+        Note that this feature only relates to mailboxes in standard Unix
+        or MMDF format. See the help text for this feature (which is set
+        via the SETUP CONFIGURATION screen) for more details on its
+        effect.
+
+ *  Removed extra newlines in some Reply cases
+ *  Fixed incorrect header wrapping
+ *  Fixed Pico temporary file permissions
+ *  Fixed "Error preparing to close file: invalid argument"
+ *  Fixed "Select fails: [NOTIMAP4] Can't do peeking fetch]"
+ *  Fixed "Search Failed: Unknown Search Criteria 1:524"
+ *  Fixed "SEARCH ALL: IMAP COMMAND LINE TOO LONG"
+ *  Fixed bug in determining "first-unread" message
+ *  Fixed some build problems for SGI and SCO platforms
+ *  Fixed some sorting problems with address books
+ *  Fixed inability to specify "no fcc" in address book entries
+     +  You may enter "" (two double quotation marks) in the Fcc field of the
+        addressbook entry editor (not the message composer) to specify
+        that the message should not be saved to a folder when using this
+        entry. (It no longer works to specify "/dev/null").
+ *  Added notification related to "mbox" driver
+ *  Revised "new user" message and prompt (and docserver behavior)
+ *  Reorganized Pine ports document to group them by vendor
+ *  Added explanation of "Mailbox vulnerable" warning in Release Notes
+ *  Added ability to specify user name on nntp-server via "/user=" syntax
+
+  Things not fixed in Pine 4.02
+
+ *  The < command doesn't always take you to the next level up
+ *  The "expanded-view-of-folders" feature is still gone
+     +  Many of you noticed that this feature was retired in Pine 4.00 ...
+        and were not pleased. Accordingly, we will be investigating the
+        feasibility of restoring this feature while still offering the
+        new hierarchical folder support.
+ *  Several News handling problems
+ *  Several URL handling problems
+ *  Several build problems
+
+  Regarding mail disappearing from the system spool directory:
+
+      Beginning with Pine 4.00 (but also with earlier versions of the
+      University of Washington's imapd server), a new INBOX access method
+      is available as part of the standard configuration. It is called
+      the "mbox" driver and it works like this:
+
+      If the file "mbox" exists in the user's home directory, and is in
+      Unix mailbox format, then when INBOX is opened this file will be
+      selected as INBOX instead of the mail spool file. Messages will be
+      automatically transferred from the mail spool file into the mbox
+      file. Beginning with Pine 4.01, a message is displayed whenever
+      Pine copies messages from the system mail spool directory to the
+      mbox file.
+
+      The advantage of this method is that, after new mail has been
+      copied from the system mail spool, all subsequent access is
+      confined to the user's home directory, which is desirable on some
+      systems. However, a possible disadvantage is that mail tools other
+      than those from the University of Washington will not know to look
+      for mail in the user's mbox file. For example, POP or IMAP servers
+      other than those from the University of Washington, and many "new
+      mail notification" programs may not work as expected with this
+      driver enabled.
+
+      To disable this behavior, either remove/rename the "mbox" file or
+      find the "disable-these-drivers=" variable in your Pine
+      configuration file and add "mbox" to it. You must manually edit the
+      config file so that you see the following:
+
+      disable-these-drivers=mbox
+
+          ____________________________________________________________
+
+  Improvements made in Pine 4.00
+
+ *  New screen navigation commands:
+    < (the "less than" symbol) for "level up"
+    > (the "greater than" symbol) for "level down"
+     +  No need to Shift for < and > keys (just use , and . keys)
+     +  Optional use of left and right arrow keys for same functions as < and
+        > keys (by setting "enable-arrow-navigation" feature)
+
+ *  Hierarchical folder collections
+     +  If multiple folder collections are defined, they are now presented in
+        a COLLECTION LIST screen. Choosing a folder collection from this
+        screen displays its FOLDER LIST screen. (Previous versions of
+        Pine showed all folder collections in one FOLDER LIST screen.)
+     +  When a folder is added to a collection in the FOLDER LIST screen, it
+        can now also be defined to be a subdirectory (rather than a
+        mailfolder-file containing messages), using the new command "^X
+        Create Directory" at the "Folder name to add :" prompt. Each such
+        subdirectory can contain mail folders and/or other
+        subdirectories, thus allowing for the creation of a hierarchical
+        structure within each folder collection.
+
+ *  URL recognition and viewer dispatch
+     +  With Pine now capable of recognizing URLs and dispatching your
+        favorite web browser to view them, it is now straightforward to
+        access additional web-based information about Pine. Accordingly,
+        the Update command on Pine's SETUP menu has been retired.
+
+ *  Basic rendering of message bodies in HTML format
+
+ *  Help screens with hyperlinks to other help screens and dynamic
+    content (for example, showing current working directory)
+
+ *  Addressbooks improvements
+     +  Revised screens and commands
+     +  Can now store addressbook on IMAP server. This permits access to the
+        same addressbook from different computers running Unix or PC Pine
+        4.02. (These remote addressbooks cannot be used by other email
+        clients.)
+     +  Aggregate operations
+     +  LDAP support
+
+ *  Various MIME improvements
+
+ *  IMAP4.1 protocol revisions (but no disconnected or offline mode yet)
+     +  The UNIX format support now maintains unique identifiers (UIDs) and
+        keyword flags for each message, and keeps a message at the start
+        of the file which contains the UID base information and a list of
+        assigned keywords. There is no way to disable this behavior,
+        since it would disable IMAP4rev1 support. This message may show
+        up if you access the mailbox as a file using older mail software
+        (e.g. Pine 3.9x). It is invisible with IMAP or POP access, or
+        with access as a file using Pine 4.02. Also see Pine 4.01's new
+        feature quell-folder-internal-msg.
+
+ *  Support for LDAP directory access and Kerberos V authentication if
+    suitable libraries (U. of Michigan LDAP, MIT GSSAPI) are provided at
+    compile time (see Pine's Technical Notes for details). More
+    information on LDAP and on Kerberos can be found on the World Wide
+    Web at the following URLs (as of 29 June 1998), respectively:
+                      http://www.umich.edu/~dirsvcs/ldap/
+
+                        http://web.mit.edu/kerberos/www/
+
+ *  Enhanced functions
+     +  GoTo and Save commands:
+         o  Use TAB to complete, TAB TAB to list matches beginning with entered
+            string (when "enable-tab-completion" feature is set)
+         o  ^X lists folder names matching substring (when
+            "enable-partial-match-lists" feature is set)
+     +  GoTo command has more default options, e.g. always stay in primary
+        collection
+     +  Folder List:
+         o  Select/Zoom based on text match or folder properties
+         o  Select can search multiple folders
+     +  SETUP:
+         o  Can edit incoming folder collection, (e.g. delete entry, not folder)
+         o  New setup screens (folder collections, address books, directories)
+
+ *  Composer improvements
+     +  "Answered" flag now set when postponed replies are sent
+     +  Search and replace feature
+     +  Cut-from-cursor feature now works in header
+     +  Configurable reply-indent-string
+     +  Can request various Delivery Service Notification options
+
+ *  Preferences improvements
+     +  New selections on the SETUP menu (accessed from the MAIN MENU
+        screen):
+         o  collectionList - for defining folder collections (moved here from
+            being a single option - "folder-collections" - in SETUP
+            CONFIGURATION)
+         o  AddressBooks - for defining address books
+         o  Directory - for defining LDAP directory servers - this selection is
+            only available on the SETUP menu if your version of Pine was
+            compiled with LDAP (Lightweight Directory Access Protocol)
+            access support. For information on LDAP, visit the University
+            of Michigan's WWW site at the URL (as of 29 June 1998):
+                      http://www.umich.edu/~dirsvcs/ldap/
+
+     +  New features in SETUP CONFIGURATION:
+         o  disable-take-last-comma-first
+         o  enable-arrow-navigation
+         o  enable-delivery-status-notification
+         o  enable-exit-via-lessthan-command
+         o  enable-fast-recent-test
+         o  enable-lame-list-mode
+         o  enable-msg-view-attachments
+         o  enable-msg-view-urls
+         o  enable-msg-view-web-hostnames
+         o  enable-msg-view-forced-arrows
+         o  enable-print-via-y-command
+         o  enable-reply-indent-string-editing
+         o  enable-search-and-replace
+         o  enable-sigdashes
+         o  enable-partial-match-lists
+         o  expunge-without-confirm-everywhere
+         o  ldap-result-to-addrbook-add
+         o  news-deletes-across-groups
+     +  New, "hidden" features - must be manually added to .pinerc file,
+        cannot be set in SETUP CONFIGURATION screen:
+         o  allow-changing-from
+         o  quell-partial-fetching
+         o  termdef-takes-precedence
+        For details, see Pine 4.02's Technical Notes.
+     +  New variables in configuration (.pinerc) file:
+         o  incoming-startup-rule:
+            Sets message which cursor begins on.
+         o  url-viewers:
+            List of programs to open Internet URLs (e.g. http or ftp
+            references).
+         o  ldap-servers:
+            LDAP servers for looking up addresses (set using SETUP
+            DIRECTORY SERVERS screen).
+         o  folder-sort-rule:
+            Defines method used to sort FOLDER LIST screen
+         o  form-letter-folder:
+            Defines folder to hold oft-sent, semi-static messages
+     +  Superceded features in configuration (.pinerc) file:
+         o  expanded-view-of-addressbooks
+         o  expanded-view-of-folders
+         o  disable-update-cmd
+
+ *  Miscellaneous improvements
+     +  Bug report screen and Report Bug command replaced by help screen
+        covering "Places to Look for More Answers" and "Requesting help"
+        with hyperlinks to it from many other help screens
+     +  Performance:
+         o  Server-based sorting
+         o  Fast ordered-subject threading including IMAP server based threading
+         o  Quicker display of index entries and message text
+         o  Reduced memory use for default Unix mailbox format
+             o  No longer keeps entire mailbox in memory
+     +  Revised debug options to allow more flexibility
+     +  New local file formats mbx and mx
+     +  New "Mailbox vulnerable" warning message
+         o  This message indicates that Pine was not able to create the lockfile
+            needed on most systems to coordinate access between Pine and
+            the system's mail delivery program. The failure is typically
+            a result of unduly restrictive protections on the system mail
+            spool directory. The recommended solution is to set the
+            permissions on that directory to 1777. Warning: some sites
+            have installed Pine as a privileged setgid program in order
+            to avoid having to make the spool directory world-writable.
+            We strongly recommend against doing this, as Pine was never
+            designed to run with privileges and represents a significant
+            security risk if operated in that mode. For more information
+            on this topic, including why setting one's mail spool
+            directory to 1777 is not a security risk, please see "What
+            Systems Managers Need to Know about Pine File Locking".
+     +  Support for news access via IMAP by proxying through the University
+        of Washington-developed IMAP server; syntax:
+        {IMAPservername}{newsservername/nntp}#news.newsgroupname
+     +  E - Exit key used more consistently as way out of SETUP or SELECT
+        screens
+     +  Screen showing list of messages in a folder renamed from FOLDER INDEX
+        to MESSAGE INDEX
+     +  pico -h option to display current command line options & current
+        version
+     +  Multilingual searching of the following character sets supported:
+        US-ASCII, UTF-8, ISO-8859-1, ISO-8859-2, ISO-8859-3, ISO-8859-4,
+        ISO-8859-5, ISO-8859-6, ISO-8859-7, ISO-8859-8, ISO-8859-9,
+        ISO-8859-10, ISO-8859-13, ISO-8859-15, ISO-2022-JP, ISO-2022-KR,
+        ISO-2022-CN, ISO-2022-JP-1, ISO-2022-JP-2, GB2312 (alias CN-GB),
+        CN-GB-12345, BIG5 (alias CN-BIG5), EUC-JP, EUC-KR, Shift_JIS,
+        KOI8-R, KOI8-U (alias KOI8-RU), TIS-620, VISCII.
+        All ISO-2022-?? charsets are treated identically, and support
+        ASCII, JIS Roman, hankaku katakana, ISO-8859-[1 - 10], TIS, GB
+        2312, JIS X 0208, JIS X 0212, KSC 5601, and planes 1 and 2 of CNS
+        11643. EUC-JP includes support for JIS X 0212 and hankaku
+        katakana.
+     +  Pico 255 character line length limit: wrap instead of truncate
+     +  Numerous bug fixes
+
+ *  Not yet done in 4.02
+    The following features have been deferred for inclusion in a future
+    version of Pine:
+     +  "Kill" files
+     +  Offline operation
+     +  Disconnected operation
+
+          ____________________________________________________________
+
+  New and improved in previous releases
+
+For changes to Pine versions in previous releases, please consult the
+section "Pine Release Chronology & Version Changes" in the Pine
+Information Center at:
+
+                  http://www.washington.edu/pine/changes.html
+
+          ____________________________________________________________
+
+PC-Pine Notes
+
+PC-Pine 4.02 is available for 32 bit Windows only. And while it is not a
+full GUI Windows application, it supports numerous GUI amenities,
+including: tool bar, scroll bar, pull-down menus, expanded mouse support,
+etc.
+
+New in PC-Pine 4.00:
+
+ *  Built-in LDAP directory service support.
+
+ *  Remote addressbook support. The addressbook can be stored on an IMAP
+    server, so it can be accessed from different computers running Unix
+    Pine or PC-Pine 4.02. See Setup/AddressBooks screen for more details.
+
+ *  POP support (though not in traditional offline mode).
+
+ *  Built-in spell checking.
+
+ *  Full READ-WRITE access to local Unix-style folders.
+
+Additional notes:
+
+ *  While message folders may be either local or remote, Pine's support
+    files must, generally speaking, be located on your PC's local disk.
+    These files include Pine's configuration file (PINERC), signature
+    file (PINE.SIG), postponed and interrupted message folders, debug
+    files and newsgroup configuration file (NEWSRC). There are, however,
+    two exceptions.
+
+    The postponed messages folder can be defined in the Setup/Config to
+    be on an IMAP server. This allows it to be accessible from both Unix
+    Pine and PC-Pine thus allowing you to, for example, begin composing a
+    message in Unix Pine, postpone it, and resume its composition later
+    with PC-Pine, provided that both Pine configurations specify the same
+    postponed messages folder location. For example:
+
+                 {myIMAPhost.myschool.k12.wa.us}mail/postponed
+
+    It's also possible, depending on your local system configuration, to
+    arrange remote access to your NEWSRC as well. The advantage, as with
+    the postponed message folder, is that both Unix Pine and PC-Pine can
+    refer to the same information. See the Main Menu's help text section
+    on "Reading News" for more information.
+
+ *  The PC-Pine message folder format is based on byte-counts for maximum
+    efficiency, so they must not be edited. The format is non-standard,
+    but conversion utilities would not be difficult. This format is
+    supported in Unix Pine as well.
+
+          ____________________________________________________________
+
+Configuration
+
+  Configuration precedence
+
+There are several levels of Pine configuration. Configuration values at a
+given level override corresponding values at lower levels. In order of
+increasing precedence:
+
+ *  built-in defaults
+ *  system-wide pine.conf file
+ *  personal .pinerc file (may be set via built-in Setup/Config menu.)
+ *  command-line options
+ *  system-wide pine.conf.fixed file
+
+There is one exception to the rule that configuration values are replaced
+by the value of the same option in a higher-precedence file: the
+feature-list variable has values that are additive, but can be negated by
+prepending "no-" in front of an individual feature name. Note, this is
+done automatically for you when you change these values via the
+Setup/Config command.
+
+  File name defaults
+
+Notes:
+
+
+<exe dir> = directory where pine.exe found.
+<pinerc dir> = directory where pinerc found.
+* = default file name is overridable in pinerc.
+$HOME, if not explicitly set, defaults to root of the current drive.
+$MAILCAPS, if set, is used in lieu of the default mailcap search paths.
++ between the mailcap paths implies that the two files are combined.
+; between other default paths implies that the first one found is used.
+
+Pine looks for most support files in the same directory it finds its
+personal configuration file (pinerc). The -p command-line flag may be
+used to specify a particular path name for the pinerc file. If a pinerc
+file does not exist, it will be created (if directory permissions allow).
+In PC-Pine, if -p or $PINERC are not defined, Pine will look in
+$HOME\PINE and the directory containing the PINE.EXE. If a PINERC file
+does not exist in either one, it will create one in the first of those
+two directories that is writable. In detail:
+
+ 
+PC-Pine:
+ 
+ executable     <DOS search path>\pine.exe
+ help index     <exe dir>\pine.ndx
+ help text      <exe dir>\pine.hlp
+ 
+ pers config    $PINERC  ;  $HOME\pine\pinerc  ;  <exe dir>\pinerc
+ global cfg     $PINECONF
+ 
+ password       <pinerc dir>\pine.pwd
+ debug          <pinerc dir>\pinedebg.txt
+ crash          <pinerc dir>\pinecrsh.txt
+ signature*     <pinerc dir>\pine.sig
+ addressbook*   <pinerc dir>\addrbook
+ addrbook lu    <pinerc dir>\addrbook.lu    (appends .lu to addrbk name.)
+ mailcap*       <pinerc dir>\mailcap  +  <exe dir>\mailcap
+ mimetypes*     <pinerc dir>\mimetype +  <exe dir>\mimetype
+ newsrc*        $HOME\newsrc (if exists, else) <pinerc dir>\newsrc
+ sentmail*      $HOME\mail\sentmail.mtx
+ postponed*     $HOME\mail\postpond.mtx
+ interrupted    $HOME\mail\intruptd
+ 
+Unix Pine:
+ 
+ executable     <Unix search path>/pine
+ persnl cfg     ~/.pinerc
+ global cfg     /usr/local/lib/pine.conf
+ fixed cfg      /usr/local/lib/pine.conf.fixed
+ local help     /usr/local/lib/pine.info
+ 
+ interrupted    ~/.pine-interrupted-mail
+ debug          ~/.pine-debugN
+ crash		~/.pine-crash
+ newsrc*        ~/.newsrc
+ signature*     <pinerc dir>/.signature
+ addressbook*   <pinerc dir>/.addressbook
+ addrbook lu    <pinerc dir>/.addressbook.lu  (appends .lu to addrbk name.)
+ postponed*     ~/mail/postponed-msgs
+ sentmail*      ~/mail/sent-mail
+ mailcap*       ~/.mailcap + /etc/mailcap
+                           + /usr/etc/mailcap + /usr/local/etc/mailcap
+ mimetypes*     ~/.mime.types + /etc/mime.types + /usr/local/lib/mime.types
+ 
+ news-spool	varies across Unix flavors, e.g. /usr/spool/news or /var/news
+ active-news	varies across Unix flavors, e.g. /usr/lib/news/active
+ lock files     /tmp/.\usr\spool\mail\xxxx
+ inbox          /usr/spool/mail/xxxx
+ password       /etc/passwd
+
+
+  Mailcap files
+
+Pine honors the mailcap configuration system for specifying external
+programs for handling attachments. The mailcap file maps MIME attachment
+types to the external programs loaded on your system which can display
+and/or print the file. A sample mailcap file comes bundled with the Pine
+distribution. It includes comments which explain the syntax you need to
+use for mailcap. With the mailcap file, any program (mail readers,
+newsreaders, WWW clients) can use the same configuration for handling
+MIME-encoded data.
+
+  MIME-Types files
+
+Pine uses mime-types files (.mime.types or MIMETYPE) to determine what
+Content-Type to use for labeling an attached file, based on the file
+extension. That is, this file provides a mapping between filename
+extensions and MIME content-types.
+
+  Environment variables
+
+PC-Pine uses the following environment variables:
+
+  PINERC      (Optional path to pinerc file.)
+  PINECONF    (Optional path to global pine config file.)
+  HOME
+  TMP or TEMP
+  COMSPEC
+  MAILCAPS    (A semicolon delimited list of path names to mailcap files.)
+
+Unix Pine uses the following environment variables:
+
+  TERM        (Tells Pine what kind of terminal is being used.)
+  DISPLAY     (Determines if Pine will try to display IMAGE attachments.)
+  SHELL       (If not set, default is /bin/sh )
+  MAILCAPS    (A colon delimited list of path names to mailcap files)
+
+
+          ____________________________________________________________
+
+Credits
+
+The University of Washington Pine development team (part of the
+University of Washington Office of Computing& Communications) includes:
+
+ 
+ Project Leader:           Mike Seibel
+ Principal authors:        Mike Seibel, Steve Hubert, Laurence Lundblade*
+ C-Client library & IMAPd: Mark Crispin
+ Pico, the PIne COmposer:  Mike Seibel
+ Bug triage, user support: David Miller*
+ Pine Web Pages:           Stefan Kramer, David Miller*
+ Documentation:            Many people!
+ PC-Pine:                  Tom Unger, Mike Seibel
+ Project oversight:        Terry Gray, Lori Stevens
+ Principal Patrons:        Ron Johnson, Mike Bryant
+ Additional support:       NorthWestNet
+ Initial Pine code base:   Elm, by Dave Taylor & USENET Community Trust
+ Initial Pico code base:   MicroEmacs 3.6, by Dave G. Conroy
+ User Interface design:    Inspired by UCLA's "Ben" mailer for MVS
+ 
+   * Emeritus  
+ 
+We'd also like to acknowledge the following contributions and contributors:
+ Pine for VMS:  Portia Shao and Yehavi Bourvine
+ Pine for OS/2: David Nugent
+ Special mention:   David Wall
+ Bug reports, bug fixes, ports, suggestions & encouragement:
+ 
+The world-wide Pine community, including...
+ 
+   Shoa Aminpour        Richard Gering     Richard Murphy        
+   J.J. Baily           Gordon Good        Il Oh                 
+   Billy Barron         Bob Gregory        Mike Ramey            
+   Chris Beecher        Ed Greshko         Phil Rand             
+   John Benjamins       Dmitri L. Gringauz Jochiam Richter       
+   Birko Bergt          David Halliwell    Thomas Riemer         
+   Ken Bobey            Peter Hausken      Tim Rice              
+   Andy Brager          Jeff Hayward       Alexis Rosen          
+   D.K. Brownlee        Ron Johnson        Michael Ross          
+   Brian Burriston      William Kreuter    Bob Sandstrom         
+   Bill Campbell        Pekka Kytolaakso   Michael F. Santangelo 
+   Russel Campbell      Barry Landy        Shin-ya Satoh         
+   Donn Cave            Chris Latham       Corey Satten          
+   Richard Cheever      Jon Lebo           Michael Shepard       
+   Mike Coghlan         Allen Leonard      Vladimir Solnicky     
+   Justine Comer        Robert L. Lewis    Alan Thew             
+   Chuck Cooper         Bruce Lilly        Jason R. Thorpe       
+   Barry Cornelius      Matthew Lyle       Rick Troxel           
+   Michael A. Crowley   John Mackin        Marc Unangst           
+   Judith M. Dixon      James Matheson     Edward Vielmetti      
+   Jeff D. Doran        Nancy McGough      Ross Wakelin          
+   Tony Flemming        Mark McNair        Rich Wales            
+   Matthew Freedman     Pete Mellor        David Wall            
+   Richard Fritz        Dave Miller        Bob Williams          
+   Marcelo A. Gallardo  Don Miller         Steve Woodyatt        
+   Adam Garrett         Robert Morris     
+ 
+And many others... Our thanks to all!
+
+          ____________________________________________________________
+
+The most recent Pine version is available in source form via anonymous
+FTP from Internet host ftp.cac.washington.edu in the file
+/pine/pine.tar.Z.
+
+More Pine files and information (e.g., pre-built binaries, FAQs,
+technical documentation and history) are available via FTP or WWW:
+
+  ftp://ftp.cac.washington.edu/pine/
+  http://www.washington.edu/pine/
+
+
+Legal Notices
+
+Pine and Pico are registered trademarks of the University of Washington.
+No commercial use of these trademarks may be made without prior written
+permission of the University of Washington.
+
+Pine, Pico, and Pilot software and its included text are Copyright
+1989-1998 by the University of Washington.
+
+Use of Pine/Pico/Pilot: You may compile and execute these programs for
+any purpose, including commercial, without paying anything to the
+University of Washington, provided that the legal notices are maintained
+intact and honored.
+
+Local modification of this release is permitted as follows, or by mutual
+agreement: In order to reduce confusion and facilitate debugging, we
+request that locally modified versions be denoted by appending the letter
+"L" to the current version number, and that the local changes be
+enumerated in the integral release notes and associated documentation.
+
+Redistribution of this release is permitted as follows, or by mutual
+agreement:
+(a) In free-of-charge or at-cost distributions by non-profit concerns;
+(b) In free-of-charge distributions by for-profit concerns;
+(c) Inclusion in a CD-ROM collection of free-of-charge, shareware, or
+non-proprietary software for which a fee may be charged for the packaged
+distribution.
+
+The University of Washington encourages unrestricted distribution of
+individual patches to the Pine system. By "patches" we mean "difference"
+files that can be applied to the University of Washington Pine source
+distribution in order to accomplish bug fixes, minor enhancements, or
+adaptation to new operating systems. Submission of these patches to
+University of Washington for possible inclusion in future Pine versions
+is also encouraged.
+
+The above permissions are hereby granted, provided that the Pine and Pico
+copyright and trademark notices appear in all copies and that both the
+above copyright notice and this permission notice appear in supporting
+documentation, and that the name of the University of Washington not be
+used in advertising or publicity pertaining to distribution of the
+software without specific, prior written permission. This software is
+made available "as is", and
+
+THE UNIVERSITY OF WASHINGTON DISCLAIMS ALL WARRANTIES, EXPRESS OR
+IMPLIED, WITH REGARD TO THIS SOFTWARE, INCLUDING WITHOUT LIMITATION ALL
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE, AND IN NO EVENT SHALL THE UNIVERSITY OF WASHINGTON BE LIABLE FOR
+ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER
+RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF
+CONTRACT, TORT (INCLUDING NEGLIGENCE) OR STRICT LIABILITY, ARISING OUT OF
+OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+          ____________________________________________________________
+
+<End of Release Notes>

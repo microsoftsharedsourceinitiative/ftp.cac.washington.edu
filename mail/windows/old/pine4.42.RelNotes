@@ -1,0 +1,159 @@
+
+                            Pine Release Notes
+                                       
+                              Version 4.42
+                          University of Washington
+                                      
+   Pine(R) is the University of Washington's "Program for Internet News and
+   Email". It is intended to be an easy-to-use program for sending,
+   receiving, and filing Internet electronic mail messages and bulletin
+   board (Netnews) messages. There are versions that will run on many
+   different flavors of the Unix(R) operating system, as well as a version
+   with GUI amenities for 32-bit flavors of Microsoft Windows (95, 98,
+   NT, 2000, and Millennium).
+   
+NEW IN PINE 4.42
+
+   Version is a bug-fix release that addresses bugs found in the previous
+   release. Bugs that have been addressed in this release include:
+   
+     * Replying to a message may close the folder containing the message
+     * Pine fails to compile in non-DEBUG mode.
+     * PC-Pine crashes in some dialogs when run in Dialog Box mode.
+       
+   Version 4.41 was mostly a bug-fix release.
+   
+   Functional changes included:
+   
+     * Setup/Signature prefers literal-signature by default
+     * Composer justify command handles nested quoting better
+     * Increased efficiency for remote configurations (no temporary
+       files)
+     * New tokens SIZECOMMA (similar to 4.33 SIZE) and SIZENARROW for
+       index-format
+     * Select by size (thanks to Martin Gallwey)
+     * New feature quell-content-id for working around Outlook XP problem
+     * New PC-Pine feature quell-ssl-largeblocks for working around OS
+       SSL-problems
+     * Better color interoperability between PC-Pine and Unix Pine with
+       16-color xterm
+     * New PC-Pine dialog to aid in locating configuration file if none
+       found
+       
+   Bugs that were addressed in this release included:
+   
+     * Save from local folder to simple name in remote collection fails
+     * Crash when selecting folders by Properties (Unseen...) in local
+       collection
+     * Crash when talking to POP3 servers which have the EXPIRE
+       capability
+     * Crash when talking to SMTP server which offers STARTTLS
+     * Crash when accessing remote config if there is a TLS failure
+     * Crash when index-format includes SCORE token, a score rule
+       includes an AllText pattern, and the folder being scored is remote
+     * Delivery Status Notification (DSN) broken
+     * Editing reply-indent-string was broken when using Windows dialog
+       boxes
+     * Entire folder is re-filtered when Save is typed and
+       save-will-advance is set
+       
+   Version 4.40 was an evolutionary release that introduced new
+   functionality.
+   
+   Additions included:
+   
+     * TLS and SSL support
+          + TLS is fully supported in sources
+          + SSL is fully integrated in the source, due to changes in US
+            export regulations
+          + For Unix and Windows 2000 Pine, server certificates must be
+            signed by a trusted certificate authority (more)
+          + Does this Pine support TLS and SSL?
+     * Help for managing remote config and address books
+          + Command line method to convert sigs from files to literal
+            (-convert_sigs)
+          + Standalone commands rpload and rpdump to load and dump files
+            to and from remote config or address book folders
+     * New rules-based methods for setting up per-folder startup rules,
+       sorting, and index format
+     * Rules-based filtering can now set message state (Important,
+       Deleted, ...)
+     * Expunge now causes filter rules to be re-examined
+     * New printer type "attached-to-wyse"
+     * New feature enable-take-export
+     * New Setup/Kolor option Current Indexline Style
+     * New hidden feature disable-password-caching
+     * New hidden feature disable-shared-namespaces
+     * Some new tokens available, including KSIZE, SMARTTIME,
+       SMARTDATETIME, SCORE, and INIT
+     * New by-realname "saved-msg-name-rules"
+     * New command line argument -supported
+       
+   Bugs addressed in the 4.40 release included:
+   
+     * PC-Pine splash screen remains visible if started minimized
+     * Allow longer folder names
+     * Crash when posting news and no nntp-server defined
+     * Config changes not flushed to remote config folder when exiting
+       without quitting Pine
+     * Temp files not removed when exiting without quitting Pine
+     * TakeAddr crash on encoded addresses
+     * TakeAddr removed old entry when nickname matched, even if user
+       said "no"
+     * Newmail added to folder by a filter was not sorted correctly
+     * From header not always popping up in composer after postpone
+     * Select by Date in newsgroups broken
+     * Multi-line subject breaks new mail message
+     * Extra F (FFrom) written to mailbox in some situations
+       
+   Additional details on changes in this (and previous) versions of Pine
+   may be found at the following URL:
+   
+                http://www.washington.edu/pine/changes.html
+            ____________________________________________________
+   
+Getting Help
+
+   Online Help
+          Every Pine screen and command has associated help text
+          accessible via the "?" key (or Ctrl-G in text-input contexts).
+          
+   Web Help
+          The most current source of information about Pine, including
+          new version availability, is the web page at
+          
+                      http://www.washington.edu/pine/
+                                      
+   Frequently Asked Questions (and answers) may be found at the following
+   URL:
+   
+                    http://www.washington.edu/pine/faq/
+                                      
+   Some topics of current interest include:
+     * Information on Folder Locking
+     * Information on Missing mail and the mbox driver
+     * Information on Folder Namespaces
+            ____________________________________________________
+   
+Additional Information
+
+   General Pine configuration information can be found here.
+   
+   Pine is also available for Windows 32-bit environments. More
+   information on PC-Pine can be found here.
+   
+   Pine was developed by the Office of Computing & Communications at the
+   University of Washington in Seattle. A more complete list of principal
+   players and key contributors can be found on the credits Web page at
+   
+                   http://www.washington.edu/pine/credits
+                                      
+   Pine and Pico are trademarks of the University of Washington.
+   
+   Pine, Pico and Pilot Copyright 1989-2001 University of Washington
+   
+   Additional legal notices can be found here or at the web URL:
+   
+                    http://www.washington.edu/pine/legal
+                                      
+   <End of Release Notes>

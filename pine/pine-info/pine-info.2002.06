@@ -1,0 +1,3642 @@
+From pinedev@shivax2.cac.washington.edu Sat Jun  1 14:23:25 2002 -0700
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Sat, 1 Jun 2002 14:23:25 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan1.cac.washington.edu (mailscan1.cac.washington.edu [140.142.32.16])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g51LNOo1023701
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Sat, 1 Jun 2002 14:23:24 -0700
+Received: FROM mx1.cac.washington.edu BY mailscan1.cac.washington.edu ; Sat Jun 01 14:23:24 2002 -0700
+Received: from list1.u.washington.edu (list1.u.washington.edu [140.142.8.99])
+	by mx1.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g51LNNBi012980
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sat, 1 Jun 2002 14:23:23 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list1.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g51LMGR8101794;
+	Sat, 1 Jun 2002 14:22:17 -0700
+Received: from mailscan3.cac.washington.edu (mailscan3.cac.washington.edu [140.142.32.15])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g51LH7w3080382
+	for <pine-info@reallists.u.washington.edu>; Sat, 1 Jun 2002 14:17:07 -0700
+Received: FROM mxu3.u.washington.edu BY mailscan3.cac.washington.edu ; Sat Jun 01 14:17:06 2002 -0700
+Received: from svr-ganmtc-appserv-mgmt.ncf.coxexpress.com (svr-ganmtc-appserv-mgmt.ncf.coxexpress.com [24.136.46.5])
+	by mxu3.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g51LH6g4032033
+	for <pine-info@u.washington.edu>; Sat, 1 Jun 2002 14:17:06 -0700
+Received: from localhost (cpe-gan-68-101-77-110-cmcpe.ncf.coxexpress.com [68.101.77.110])
+	by svr-ganmtc-appserv-mgmt.ncf.coxexpress.com (8.11.4/8.11.4) with ESMTP id g51LGvQ25495;
+	Sat, 1 Jun 2002 17:16:57 -0400
+Message-Id: <Pine.WNT.4.44.0206011714240.1428-100000@Tim>
+Date: Sat, 1 Jun 2002 17:16:50 -0400 (Eastern Daylight Time)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: "Timothy J. Luoma" <luomat@peak.org>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: Re: Roles & Sender header
+In-Reply-To: <Pine.LNX.4.33.0206010254010.2678-100000@falcon.etf.bg.ac.yu>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-To: Bosko Radivojevic <bole@falcon.etf.bg.ac.yu>
+X-Cc: Pine Discussion Forum <pine-info@u.washington.edu>
+X-X-Sender: luomat@mail.peak.org
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+On Sat, 1 Jun 2002, Bosko Radivojevic wrote:
+
+> I'm trying to set-up Roles. Everything is ok, except I'm not able to
+> remove Sender line from headers. I know, I can patch the source, but I
+> hope there is some 'legal' way to do this. Some hints?
+
+If there was a legal way to do it, I wouldn't have bothered to make a
+patch :-)
+
+PINE is pretty aggressive about making sure the Sender: line is present
+whenever it even *thinks* that it should be.
+
+TjL
+
+
+
+
+
+From pinedev@shivax2.cac.washington.edu Sat Jun  1 20:50:01 2002 -0700
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Sat, 1 Jun 2002 20:50:01 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan4.cac.washington.edu (mailscan4.cac.washington.edu [140.142.33.15])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g523o1o1030406
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Sat, 1 Jun 2002 20:50:01 -0700
+Received: FROM mx1.cac.washington.edu BY mailscan4.cac.washington.edu ; Sat Jun 01 20:50:00 2002 -0700
+Received: from list1.u.washington.edu (list1.u.washington.edu [140.142.8.99])
+	by mx1.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g523o0Bi019531
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Sat, 1 Jun 2002 20:50:00 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list1.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g523mqR8022994;
+	Sat, 1 Jun 2002 20:48:52 -0700
+Received: from mailscan4.cac.washington.edu (mailscan4.cac.washington.edu [140.142.33.15])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g523lAw3026416
+	for <pine-info@reallists.u.washington.edu>; Sat, 1 Jun 2002 20:47:10 -0700
+Received: FROM mxu1.u.washington.edu BY mailscan4.cac.washington.edu ; Sat Jun 01 20:47:09 2002 -0700
+Received: from cosmos.lod.com (cosmos.lod.com [199.120.223.4])
+	by mxu1.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g523l8Kj008975
+	for <pine-info@u.washington.edu>; Sat, 1 Jun 2002 20:47:09 -0700
+Received: from localhost by cosmos.lod.com (8.9.3/8.9.1) with ESMTP id WAA14078
+	for <pine-info@u.washington.edu>; Sat, 1 Jun 2002 22:47:07 -0500 (CDT)
+Message-Id: <Pine.GSO.4.21.0206012241410.13976-100000@cosmos.lod.com>
+Date: Sat, 1 Jun 2002 22:47:07 -0500 (CDT)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: "S. Berch" <sberch@cosmos.lod.com>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: Compile problems Pine4.33
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+
+When trying to compile Pine4.33 I see the following errors. 
+
+env_unix.c:296: warning: initialization makes pointer from integer without
+a cast
+
+make: *** [pico] Error 1
+
+make: *** No rule to make target `../c-client/c-client.a', needed by
+`pine'.  Stop.
+
+Links to executables are in bin directory:
+size: bin/pine: No such file or directory
+size: bin/mtest: No such file or directory
+size: bin/imapd: No such file or directory
+size: bin/pico: No such file or directory
+size: bin/pilot: No such file or directory
+Done
+
+I am using Mandrake 8.1 and have used the "build sl5" command.
+
+Thanks for any help.
+
+-sb
+
+-- 
+-----------------------------------------------------------------
+ For information about this mailing list, and its archives, see: 
+ http://www.washington.edu/pine/pine-info/
+-----------------------------------------------------------------
+
+From pinedev@shivax2.cac.washington.edu Mon Jun  3 06:18:08 2002 -0700
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Mon, 3 Jun 2002 06:18:08 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan1.cac.washington.edu (mailscan1.cac.washington.edu [140.142.32.16])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g53DI8o1001718
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Mon, 3 Jun 2002 06:18:08 -0700
+Received: FROM mx1.cac.washington.edu BY mailscan1.cac.washington.edu ; Mon Jun 03 06:18:07 2002 -0700
+Received: from list4.u.washington.edu (list4.u.washington.edu [140.142.14.167])
+	by mx1.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g53DI7Bi031052
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 3 Jun 2002 06:18:07 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list4.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g53DGFeo092556;
+	Mon, 3 Jun 2002 06:16:15 -0700
+Received: from mailscan5.cac.washington.edu (mailscan5.cac.washington.edu [140.142.32.14])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g53DDww3031146
+	for <pine-info@reallists.u.washington.edu>; Mon, 3 Jun 2002 06:13:59 -0700
+Received: FROM mxu2.u.washington.edu BY mailscan5.cac.washington.edu ; Mon Jun 03 06:13:57 2002 -0700
+Received: from ns2.tudelft.nl (ns2.tudelft.nl [130.161.180.65])
+	by mxu2.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g53DDuhR027949
+	for <pine-info@u.washington.edu>; Mon, 3 Jun 2002 06:13:57 -0700
+Received: from CONVERSION-DAEMON.mailhost1.tudelft.nl by mailhost1.tudelft.nl
+ (PMDF V6.1-1 #40924) id <0GX400L01SR71O@mailhost1.tudelft.nl> for
+ pine-info@u.washington.edu; Mon, 03 Jun 2002 15:13:56 +0200 (MEST)
+Received: from student.tnw.tudelft.nl
+ (tnw-student-mail.tn.tudelft.nl [130.161.185.4])
+ by mailhost1.tudelft.nl (PMDF V6.1-1 #40924)
+ with ESMTP id <0GX400DP1SR7C3@mailhost1.tudelft.nl> for
+ pine-info@u.washington.edu; Mon, 03 Jun 2002 15:13:55 +0200 (MEST)
+Received: from Fuut [130.161.89.179] by student.tnw.tudelft.nl	with Novonyx
+ SMTP Server $Revision:   2.74  $; Mon, 03 Jun 2002 15:13:54 +0200 (MEST)
+Message-Id: <20020603151643.A18752@Fuut>
+Date: Mon, 03 Jun 2002 15:16:43 +0200
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: Peter Grond <p.j.grond@student.tnw.tudelft.nl>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: opening inbox very slow
+Content-return: allowed
+MIME-version: 1.0
+Content-type: text/plain; format=flowed; charset=ISO-8859-1
+Content-transfer-encoding: 8BIT
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+Hi,
+I have a problem with opening the inbox. When pine is started it takes 
+ages to open my local inbox. Also when teh inbox is empty. Can anybody 
+help me?
+
+Peter
+-- 
+-----------------------------------------------------------------
+ For information about this mailing list, and its archives, see: 
+ http://www.washington.edu/pine/pine-info/
+-----------------------------------------------------------------
+
+From pinedev@shivax2.cac.washington.edu Mon Jun  3 07:20:40 2002 -0700
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Mon, 3 Jun 2002 07:20:40 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan4.cac.washington.edu (mailscan4.cac.washington.edu [140.142.33.15])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g53EKeo1003735
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Mon, 3 Jun 2002 07:20:40 -0700
+Received: FROM mx1.cac.washington.edu BY mailscan4.cac.washington.edu ; Mon Jun 03 07:20:30 2002 -0700
+Received: from list4.u.washington.edu (list4.u.washington.edu [140.142.14.167])
+	by mx1.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g53EKTBi032643
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 3 Jun 2002 07:20:29 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list4.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g53EJEeo085944;
+	Mon, 3 Jun 2002 07:19:14 -0700
+Received: from mailscan4.cac.washington.edu (mailscan4.cac.washington.edu [140.142.33.15])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g53EHKw3083794
+	for <pine-info@reallists.u.washington.edu>; Mon, 3 Jun 2002 07:17:21 -0700
+Received: FROM mxu4.u.washington.edu BY mailscan4.cac.washington.edu ; Mon Jun 03 07:17:20 2002 -0700
+Received: from mout1.freenet.de (mout1.freenet.de [194.97.50.132])
+	by mxu4.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g53EHJKQ006651
+	for <pine-info@u.washington.edu>; Mon, 3 Jun 2002 07:17:20 -0700
+Received: from [194.97.50.135] (helo=mx2.freenet.de)
+	by mout1.freenet.de with esmtp (Exim 4.04)
+	id 17Ese6-0001qZ-00; Mon, 03 Jun 2002 16:17:18 +0200
+Received: from b7aa8.pppool.de ([213.7.122.168] helo=[192.168.120.254])
+	by mx2.freenet.de with esmtp (Exim 4.04 #2)
+	id 17Ese5-00057o-00; Mon, 03 Jun 2002 16:17:17 +0200
+Message-Id: <Pine.WNT.4.43.0206031607530.-1921381-100000@haendel>
+Date: Mon, 3 Jun 2002 16:13:16 +0200 ((MEZ) - Mitteleurop. Sommerzeit)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: "Cornelius C. Noack" <noack@physik.uni-bremen.de>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: Re: opening inbox very slow
+In-Reply-To: <20020603151643.A18752@Fuut>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-To: Peter Grond <p.j.grond@student.tnw.tudelft.nl>
+X-Cc: Pine Discussion Forum <pine-info@u.washington.edu>
+X-X-Sender: ccnoack@imap.freenet.de
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+On Mon, 3 Jun 2002, Peter Grond wrote:
+
+> Hi,
+> I have a problem with opening the inbox. When pine is started it takes
+> ages to open my local inbox. Also when teh inbox is empty. Can anybody
+> help me?
+>
+> Peter
+>
+I guess this depends on where your INBOX gets its mail from. I connect
+to an IMAP server via modem, and I also have a long wait; but thats the
+dial-in process that takes its time to open the mailbox at the IMAP
+server. Once I am connected, if I close pine and reopen it later,
+the INBOX is there very quickly.
+
+ccn.
+-- 
+
+.....................................................................
+    _|_
+   / | \
+   \_|_/    Prof.Dr. Cornelius C. Noack    Phones:
+    _|_ __  Inst. f. Theor. Physik FB 1 office   : +49 (421) 218-2427
+|  |   |  \ Universit"at Bremen         secretary: -2422
+|__|   |__/ Kufsteiner Strasse          Fax      : -4869
+|  |   |  \ D - 28334  Bremen           home     : +49 (421) 34 22 36
+|  |   |__/                                   Fax:  346 7872
+   PhyHB                           E-mail: noack@physik.uni-bremen.de
+                    WWW-page: www-theorie.physik.uni-bremen.de/~noack
+.......................................................................
+
+
+From pinedev@shivax2.cac.washington.edu Mon Jun  3 08:36:49 2002 -0700
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Mon, 3 Jun 2002 08:36:48 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan5.cac.washington.edu (mailscan5.cac.washington.edu [140.142.32.14])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g53Famo1007068
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Mon, 3 Jun 2002 08:36:48 -0700
+Received: FROM mx1.cac.washington.edu BY mailscan5.cac.washington.edu ; Mon Jun 03 08:36:47 2002 -0700
+Received: from list2.u.washington.edu (list2.u.washington.edu [140.142.14.165])
+	by mx1.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g53FalBi002891
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 3 Jun 2002 08:36:47 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list2.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g53FZNqt032576;
+	Mon, 3 Jun 2002 08:35:23 -0700
+Received: from mailscan6.cac.washington.edu (mailscan6.cac.washington.edu [140.142.33.14])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g53FUsw3078172
+	for <pine-info@reallists.u.washington.edu>; Mon, 3 Jun 2002 08:30:54 -0700
+Received: FROM mxu4.u.washington.edu BY mailscan6.cac.washington.edu ; Mon Jun 03 08:30:53 2002 -0700
+Received: from euler.math.washington.edu (euler.math.washington.edu [128.95.224.1])
+	by mxu4.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g53FUqKQ021750
+	for <pine-info@u.washington.edu>; Mon, 3 Jun 2002 08:30:53 -0700
+Received: from goedel1.math.washington.edu (goedel1.math.washington.edu [128.95.224.10])
+	by euler.math.washington.edu (8.11.6/8.11.6) with ESMTP id g53FTam276351;
+	Mon, 3 Jun 2002 08:29:36 -0700 (PDT)
+Message-Id: <Pine.OSF.4.44.0206030828350.245606-100000@goedel1.math.washington.edu>
+Date: Mon, 3 Jun 2002 08:29:36 -0700 (PDT)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: Eduardo Chappa <chappa@math.washington.edu>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: Re: opening inbox very slow
+In-Reply-To: <20020603151643.A18752@Fuut>
+References: <20020603151643.A18752@Fuut>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-To: Peter Grond <p.j.grond@student.tnw.tudelft.nl>
+X-Cc: Pine Discussion Forum <pine-info@u.washington.edu>
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+*** Peter Grond (p.j.grond@student.tnw.tudelft.nl) wrote in the pine-info...:
+
+:) I have a problem with opening the inbox. When pine is started it takes
+:) ages to open my local inbox. Also when teh inbox is empty. Can anybody
+:) help me?
+
+Sounds like a you are using rsh to connect to your server. Edit your
+.pinerc and make sure that you set
+
+rsh-open-timeout=0
+
+-- 
+Eduardo
+http://www.math.washington.edu/~chappa/pine/
+
+
+From pinedev@shivax2.cac.washington.edu Wed Jun  5 01:58:44 2002 -0700
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Wed, 5 Jun 2002 01:58:44 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan6.cac.washington.edu (mailscan6.cac.washington.edu [140.142.33.14])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g558wio1032253
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Wed, 5 Jun 2002 01:58:44 -0700
+Received: FROM mx1.cac.washington.edu BY mailscan6.cac.washington.edu ; Wed Jun 05 01:58:43 2002 -0700
+Received: from list4.u.washington.edu (list4.u.washington.edu [140.142.14.167])
+	by mx1.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g558wgBi002422
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 5 Jun 2002 01:58:42 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list4.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g558uueo079714;
+	Wed, 5 Jun 2002 01:56:56 -0700
+Received: from mailscan3.cac.washington.edu (mailscan3.cac.washington.edu [140.142.32.15])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g558smw3020324
+	for <pine-info@reallists.u.washington.edu>; Wed, 5 Jun 2002 01:54:48 -0700
+Received: FROM mxu1.u.washington.edu BY mailscan3.cac.washington.edu ; Wed Jun 05 01:54:48 2002 -0700
+Received: from mail.sonytel.be (mail.sonytel.be [193.74.243.200])
+	by mxu1.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g558skKj003900
+	for <pine-info@u.washington.edu>; Wed, 5 Jun 2002 01:54:47 -0700
+Received: from caladium.sonytel.be (mail.sonytel.be [10.17.0.26])
+	by mail.sonytel.be (8.9.0/8.8.6) with ESMTP id KAA04363
+	for <pine-info@u.washington.edu>; Wed, 5 Jun 2002 10:54:44 +0200 (MET DST)
+Message-Id: <Pine.GSO.4.44.0206051053570.21289-100000@caladium.sonytel.be>
+Date: Wed, 5 Jun 2002 10:54:43 +0200 (MEST)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: Murphy <murphy@pulstar.albedo.art.pl>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: The COLLECTION LIST again
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=iso-8859-2
+Content-Transfer-Encoding: 8BIT
+X-To: NEWS - Pine Discussion Forum <pine-info@u.washington.edu>
+X-X-Sender: piotr@caladium.sonytel.be
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+Hi,
+
+I defined the different collection list, each one for the different news groups:
+
+1)  Nickname:NEWS-SONY
+    Server:news.sonytel.be/nntp
+    Path:#news.
+    View:
+
+2)  Nickname  : News Wroc³aw
+    Server    : news.ict.pwr.wroc.pl/service=NNTP
+    Path      : #news.
+    View:
+
+On the Collection List it looks like this:
+
+    NEWS - SONY
+        News groups on news.sonytel.be/nntp
+
+    News Wroc³aw
+        News groups on news.ict.pwr.wroc.pl/service=NNTP
+
+The problem is that if go into a 1) and add some news lists like this:
+
+    sony.sysadm
+    sony.utilities
+
+then I add some news lists from 2) like:
+
+    pl.rec.gry.komputerowe.sprzet
+
+I should have the such entries in each Folder List for each collection:
+
+            News groups on news.ict.pwr.wroc.pl/service=NNTP
+------------------------------------------------------------------------
+
+    pl.rec.gry.komputerowe.sprzet
+
+                  News groups on news.sonytel.be/nntp
+------------------------------------------------------------------------
+
+    sony.sysadm
+    sony.utilities
+
+But in fact in each collection I have all entries (all 3 news lists). It causes
+the usage of each news list because from the collection 1) I can't access to
+the "pl.*" news lists, and from collection 2) - to the "sony.*" lists.
+
+I think it should be separated because otherwise it mess up the things which
+should be separated. Is there a way to set it correctly, to have each
+collection consist with only the elements (news-list) which belongs to this
+NNTP server?
+
+Regards,
+Murphy
+
+-- 
+  __   __
+  ||   ||
+ -++- -++- --------------------------------------------------------
+  ||\ /||  e-mail: murphy@pulstar.albedo.art.pl           GG 107745
+  ||   ||  Everything is possible - this is only a question of time
+  \/564\/  --------------------------------------------------------
+
+-- 
+-----------------------------------------------------------------
+ For information about this mailing list, and its archives, see: 
+ http://www.washington.edu/pine/pine-info/
+-----------------------------------------------------------------
+
+From pinedev@shivax2.cac.washington.edu Wed Jun  5 12:29:29 2002 -0700
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Wed, 5 Jun 2002 12:29:29 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan1.cac.washington.edu (mailscan1.cac.washington.edu [140.142.32.16])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g55JTTo1021572
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Wed, 5 Jun 2002 12:29:29 -0700
+Received: FROM mx1.cac.washington.edu BY mailscan1.cac.washington.edu ; Wed Jun 05 12:29:28 2002 -0700
+Received: from list3.u.washington.edu (list3.u.washington.edu [140.142.8.100])
+	by mx1.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g55JTRBi019831
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 5 Jun 2002 12:29:28 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list3.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g55JSKlZ015788;
+	Wed, 5 Jun 2002 12:28:21 -0700
+Received: from mailscan6.cac.washington.edu (mailscan6.cac.washington.edu [140.142.33.14])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g55JQmw3092610
+	for <pine-info@reallists.u.washington.edu>; Wed, 5 Jun 2002 12:26:49 -0700
+Received: FROM mxu3.u.washington.edu BY mailscan6.cac.washington.edu ; Wed Jun 05 12:26:47 2002 -0700
+Received: from web20407.mail.yahoo.com (web20407.mail.yahoo.com [216.136.226.126])
+	by mxu3.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g55JQlg4024195
+	for <pine-info@u.washington.edu>; Wed, 5 Jun 2002 12:26:47 -0700
+Received: from [18.111.0.227] by web20407.mail.yahoo.com via HTTP; Wed, 05 Jun 2002 12:26:47 PDT
+Message-Id: <20020605192647.28626.qmail@web20407.mail.yahoo.com>
+Date: Wed, 5 Jun 2002 12:26:47 -0700 (PDT)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: Ken Barr <kbarr216@yahoo.com>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: new mail notification broken in readonly mode?
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+When I open pine in ReadOnly mode, I receive no
+notification of new messages, and I must exit/restart
+pine to see them (this is the pop3 behavior, iirc)
+
+However, notification works fine when I start pine in
+read/write mode.
+
+I like readonly mode since it preserves flags
+(netscape won't filter mail if I've already read it in
+Pine).  Is there a way to get both readonly AND new
+mail notification?
+
+FYI:
+I ssh to my mail server and read mail there.
+My mail is stored in /var/mail/kbarr.
+My inbox-path is   = <No Value Set: using "inbox">
+
+I have also tried making an IMAP explicit (as the lack
+of notification corresponds to the pop3 FAQ) by
+setting inbox-path to {server.domain.com/imap}INBOX,
+but that doesn't work in readonly either.
+
+__________________________________________________
+Do You Yahoo!?
+Yahoo! - Official partner of 2002 FIFA World Cup
+http://fifaworldcup.yahoo.com
+-- 
+-----------------------------------------------------------------
+ For information about this mailing list, and its archives, see: 
+ http://www.washington.edu/pine/pine-info/
+-----------------------------------------------------------------
+
+From pinedev@shivax2.cac.washington.edu Thu Jun  6 12:59:41 2002 -0700
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Thu, 6 Jun 2002 12:59:41 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan5.cac.washington.edu (mailscan5.cac.washington.edu [140.142.32.14])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g56Jxeo1006883
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Thu, 6 Jun 2002 12:59:40 -0700
+Received: FROM mx1.cac.washington.edu BY mailscan5.cac.washington.edu ; Thu Jun 06 12:59:39 2002 -0700
+Received: from list4.u.washington.edu (list4.u.washington.edu [140.142.14.167])
+	by mx1.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g56JxdBi028559
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Thu, 6 Jun 2002 12:59:39 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list4.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g56JwZeo017388;
+	Thu, 6 Jun 2002 12:58:35 -0700
+Received: from mailscan4.cac.washington.edu (mailscan4.cac.washington.edu [140.142.33.15])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g56Judw3097522
+	for <pine-info@reallists.u.washington.edu>; Thu, 6 Jun 2002 12:56:39 -0700
+Received: FROM mxu4.u.washington.edu BY mailscan4.cac.washington.edu ; Thu Jun 06 12:56:38 2002 -0700
+Received: from svr-ganmtc-appserv-mgmt.ncf.coxexpress.com (svr-ganmtc-appserv-mgmt.ncf.coxexpress.com [24.136.46.5])
+	by mxu4.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g56JuaKQ030238
+	for <pine-info@u.washington.edu>; Thu, 6 Jun 2002 12:56:37 -0700
+Received: from localhost (cpe-gan-68-101-77-110-cmcpe.ncf.coxexpress.com [68.101.77.110])
+	by svr-ganmtc-appserv-mgmt.ncf.coxexpress.com (8.11.4/8.11.4) with ESMTP id g56JuaQ23564
+	for <pine-info@u.washington.edu>; Thu, 6 Jun 2002 15:56:36 -0400
+Message-Id: <Pine.WNT.4.44.0206061555090.2364-100000@Tim>
+Date: Thu, 6 Jun 2002 15:56:25 -0400 (Eastern Daylight Time)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: "Timothy J. Luoma" <luomat@peak.org>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: reply to options
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-To: PINE Mailing List <pine-info@u.washington.edu>
+X-X-Sender: luomat@mail.peak.org
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+
+Is there a plan to implement a better/more robust reply system?
+
+For example, I am on some mailing lists where the reply-to points to the
+list, and sometimes want to reply to the poster, and vice versa.
+
+I know mutt/emacs have this capability, but I like PINE
+
+TjL
+
+
+
+
+
+
+-- 
+-----------------------------------------------------------------
+ For information about this mailing list, and its archives, see: 
+ http://www.washington.edu/pine/pine-info/
+-----------------------------------------------------------------
+
+From pinedev@shivax2.cac.washington.edu Thu Jun  6 14:44:48 2002 -0700
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Thu, 6 Jun 2002 14:44:48 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan6.cac.washington.edu (mailscan6.cac.washington.edu [140.142.33.14])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g56Lilo1010491
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Thu, 6 Jun 2002 14:44:47 -0700
+Received: FROM mx1.cac.washington.edu BY mailscan6.cac.washington.edu ; Thu Jun 06 14:44:47 2002 -0700
+Received: from list3.u.washington.edu (list3.u.washington.edu [140.142.8.100])
+	by mx1.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g56LikBi032389
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Thu, 6 Jun 2002 14:44:46 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list3.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g56LhklZ012556;
+	Thu, 6 Jun 2002 14:43:47 -0700
+Received: from mailscan2.cac.washington.edu (mailscan2.cac.washington.edu [140.142.33.16])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g56Lgdw3075832
+	for <pine-info@reallists.u.washington.edu>; Thu, 6 Jun 2002 14:42:39 -0700
+Received: FROM mxu4.u.washington.edu BY mailscan2.cac.washington.edu ; Thu Jun 06 14:42:39 2002 -0700
+Received: from mxout3.cac.washington.edu (mxout3.cac.washington.edu [140.142.32.19])
+	by mxu4.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g56LgdKR026358
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO)
+	for <pine-info@lists.u.washington.edu>; Thu, 6 Jun 2002 14:42:39 -0700
+Received: from mailscan-out2.cac.washington.edu (mailscan-out2.cac.washington.edu [140.142.33.17])
+	by mxout3.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g56Lgc9L031267
+	for <pine-info@u.washington.edu>; Thu, 6 Jun 2002 14:42:38 -0700
+Received: FROM smtp.washington.edu BY mailscan-out2.cac.washington.edu ; Thu Jun 06 14:42:35 2002 -0700
+Received: from swift (D-128-95-222-218.dhcp.washington.edu [128.95.222.218])
+	(authenticated bits=0)
+	by smtp.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g56LgYdf021398
+	(version=TLSv1/SSLv3 cipher=RC4-MD5 bits=128 verify=NOT);
+	Thu, 6 Jun 2002 14:42:35 -0700
+Message-Id: <Pine.WNT.4.50.0206061440410.464-100000@swift>
+Date: Thu, 6 Jun 2002 14:42:31 -0700 (Pacific Daylight Time)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: Terry Gray <gray@cac.washington.edu>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: Re: reply to options
+In-Reply-To: <Pine.WNT.4.44.0206061555090.2364-100000@Tim>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-To: "Timothy J. Luoma" <luomat@peak.org>
+X-Cc: Pine Discussion Forum <pine-info@u.washington.edu>
+X-X-Sender: gray@mailer23.u.washington.edu
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+Is it possible that you (or your site) have the
+
+  reply-always-uses-reply-to
+
+option set?
+
+-teg
+
+On Thu, 6 Jun 2002, Timothy J. Luoma wrote:
+
+>
+> Is there a plan to implement a better/more robust reply system?
+>
+> For example, I am on some mailing lists where the reply-to points to the
+> list, and sometimes want to reply to the poster, and vice versa.
+>
+> I know mutt/emacs have this capability, but I like PINE
+>
+> TjL
+>
+>
+>
+>
+>
+>
+>
+
+
+From pinedev@shivax2.cac.washington.edu Thu Jun  6 16:09:48 2002 -0700
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Thu, 6 Jun 2002 16:09:48 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan2.cac.washington.edu (mailscan2.cac.washington.edu [140.142.33.16])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g56N9lo1014350
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Thu, 6 Jun 2002 16:09:47 -0700
+Received: FROM mx2.cac.washington.edu BY mailscan2.cac.washington.edu ; Thu Jun 06 16:09:42 2002 -0700
+Received: from list3.u.washington.edu (list3.u.washington.edu [140.142.8.100])
+	by mx2.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g56N9fsb001326
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Thu, 6 Jun 2002 16:09:42 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list3.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g56N8vlZ030998;
+	Thu, 6 Jun 2002 16:08:57 -0700
+Received: from mailscan6.cac.washington.edu (mailscan6.cac.washington.edu [140.142.33.14])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g56N7cw3099262
+	for <pine-info@reallists.u.washington.edu>; Thu, 6 Jun 2002 16:07:38 -0700
+Received: FROM mxu2.u.washington.edu BY mailscan6.cac.washington.edu ; Thu Jun 06 16:07:38 2002 -0700
+Received: from satan.tallship.net (satan.tallship.net [204.107.129.3])
+	by mxu2.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g56N7bhR009085
+	for <pine-info@u.washington.edu>; Thu, 6 Jun 2002 16:07:37 -0700
+Received: from Todd ([204.107.129.102])
+	by satan.tallship.net (8.9.3/8.9.3) with SMTP id QAA02220
+	for <pine-info@u.washington.edu>; Thu, 6 Jun 2002 16:12:16 -0700
+Message-Id: <000a01c20dae$f03a0500$66816bcc@jointtech.com>
+Date: Thu, 6 Jun 2002 16:07:32 -0700
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: "Todd Miller" <tmiller@jointtech.com>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: Moving lot's of mail
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0007_01C20D74.43C2C300"
+X-To: <pine-info@u.washington.edu>
+X-Priority: 3
+X-MSMail-Priority: Normal
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2600.0000
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0007_01C20D74.43C2C300
+Content-Type: text/plain;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+Hello,
+
+I have an inbox with 29,000  message how can I move this to a new
+folder with out to much work? Thanks for any help!
+
+Todd
+
+------=_NextPart_000_0007_01C20D74.43C2C300
+Content-Type: text/html;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD>
+<META http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Diso-8859-1">
+<META content=3D"MSHTML 6.00.2716.2200" name=3DGENERATOR>
+<STYLE></STYLE>
+</HEAD>
+<BODY bgColor=3D#ffffff>
+<DIV><FONT face=3DArial size=3D2>Hello,</FONT></DIV>
+<DIV><FONT face=3DArial size=3D2></FONT>&nbsp;</DIV>
+<DIV><FONT face=3DArial size=3D2>I have an inbox with 29,000&nbsp; =
+message how can I=20
+move this to a new</FONT></DIV>
+<DIV><FONT face=3DArial size=3D2>folder with out to much work? Thanks =
+for any=20
+help!</FONT></DIV>
+<DIV><FONT face=3DArial size=3D2></FONT>&nbsp;</DIV>
+<DIV><FONT face=3DArial size=3D2>Todd</FONT></DIV></BODY></HTML>
+
+------=_NextPart_000_0007_01C20D74.43C2C300--
+
+-- 
+-----------------------------------------------------------------
+ For information about this mailing list, and its archives, see: 
+ http://www.washington.edu/pine/pine-info/
+-----------------------------------------------------------------
+
+From pinedev@shivax2.cac.washington.edu Thu Jun  6 16:18:00 2002 -0700
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Thu, 6 Jun 2002 16:18:00 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan3.cac.washington.edu (mailscan3.cac.washington.edu [140.142.32.15])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g56NI0o1014651
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Thu, 6 Jun 2002 16:18:00 -0700
+Received: FROM mx1.cac.washington.edu BY mailscan3.cac.washington.edu ; Thu Jun 06 16:17:59 2002 -0700
+Received: from list3.u.washington.edu (list3.u.washington.edu [140.142.8.100])
+	by mx1.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g56NHwBi003448
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Thu, 6 Jun 2002 16:17:59 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list3.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g56NHHlZ011384;
+	Thu, 6 Jun 2002 16:17:18 -0700
+Received: from mailscan1.cac.washington.edu (mailscan1.cac.washington.edu [140.142.32.16])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g56NGIw3017830
+	for <pine-info@reallists.u.washington.edu>; Thu, 6 Jun 2002 16:16:18 -0700
+Received: FROM mxu1.u.washington.edu BY mailscan1.cac.washington.edu ; Thu Jun 06 16:16:17 2002 -0700
+Received: from mail2.panix.com (mail2.panix.com [166.84.1.73])
+	by mxu1.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g56NGGKj019659
+	for <pine-info@u.washington.edu>; Thu, 6 Jun 2002 16:16:17 -0700
+Received: from eng-23.pacificdigital.com (localhost.panix.com [127.0.0.1])
+	by mail2.panix.com (Postfix) with ESMTP id DA16F9007
+	for <pine-info@u.washington.edu>; Thu,  6 Jun 2002 19:16:15 -0400 (EDT)
+Message-Id: <Pine.LNX.4.44.0206061613460.1414-100000@eng-23.pacificdigital.com>
+Date: Thu, 6 Jun 2002 16:16:08 -0700 (PDT)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: Kenneth Crudup <kenny@panix.com>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: Re: Moving lot's of mail
+In-Reply-To: <000a01c20dae$f03a0500$66816bcc@jointtech.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Cc: Pine Discussion Forum <pine-info@u.washington.edu>
+X-X-Sender: kenny@eng-23.pacificdigital.com
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+On Thu, 6 Jun 2002, Todd Miller wrote:
+
+> I have an inbox with 29,000  message how can I move this to a new
+> folder with out to much work? Thanks for any help!
+
+I converted my old, 14MB mailx-style "mbox" to an imap folder in pine by
+
+ - getting the "current view" to be that large folder
+ - ; a (select all)
+ - a s (apply/save)
+ - type the name of the destination folder
+ - be prepared to wait
+
+also, if want to, you can do an
+
+ - a d (apply/delete)
+
+To delete the source messages.
+
+	-Kenny
+
+-- 
+Kenneth R. Crudup    Sr. SW Engineer, Scott County Consulting   (510) 745-0101
+Home:	4105 E. Willow St. #246, Long Beach, CA 90815-1740
+Work:	2052 Alton Parkway, Irvine, CA 92606-4905	   (949) 252-1111 X240
+
+
+From pinedev@shivax2.cac.washington.edu Thu Jun  6 17:12:41 2002 -0700
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Thu, 6 Jun 2002 17:12:41 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan1.cac.washington.edu (mailscan1.cac.washington.edu [140.142.32.16])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g570Cfo1016418
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Thu, 6 Jun 2002 17:12:41 -0700
+Received: FROM mx1.cac.washington.edu BY mailscan1.cac.washington.edu ; Thu Jun 06 17:12:40 2002 -0700
+Received: from list1.u.washington.edu (list1.u.washington.edu [140.142.8.99])
+	by mx1.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g570CdBi005003
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Thu, 6 Jun 2002 17:12:40 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list1.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g570BhR8013264;
+	Thu, 6 Jun 2002 17:11:43 -0700
+Received: from mailscan5.cac.washington.edu (mailscan5.cac.washington.edu [140.142.32.14])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g570Abw3057568
+	for <pine-info@reallists.u.washington.edu>; Thu, 6 Jun 2002 17:10:37 -0700
+Received: FROM mxu4.u.washington.edu BY mailscan5.cac.washington.edu ; Thu Jun 06 17:10:37 2002 -0700
+Received: from svr-ganmtc-appserv-mgmt.ncf.coxexpress.com (svr-ganmtc-appserv-mgmt.ncf.coxexpress.com [24.136.46.5])
+	by mxu4.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g570AaKQ001226
+	for <pine-info@u.washington.edu>; Thu, 6 Jun 2002 17:10:36 -0700
+Received: from localhost (cpe-gan-68-101-77-110-cmcpe.ncf.coxexpress.com [68.101.77.110])
+	by svr-ganmtc-appserv-mgmt.ncf.coxexpress.com (8.11.4/8.11.4) with ESMTP id g570AYQ26536;
+	Thu, 6 Jun 2002 20:10:34 -0400
+Message-Id: <Pine.WNT.4.44.0206062008430.2364-100000@Tim>
+Date: Thu, 6 Jun 2002 20:10:23 -0400 (Eastern Daylight Time)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: "Timothy J. Luoma" <luomat@peak.org>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: Re: reply to options
+In-Reply-To: <Pine.WNT.4.50.0206061440410.464-100000@swift>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-To: Terry Gray <gray@cac.washington.edu>
+X-Cc: Pine Discussion Forum <pine-info@u.washington.edu>
+X-X-Sender: luomat@mail.peak.org
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+On Thu, 6 Jun 2002, Terry Gray wrote:
+
+> Is it possible that you (or your site) have the
+>
+>   reply-always-uses-reply-to
+>
+> option set?
+
+Well yes, because otherwise it's pretty annoying to always have to confirm
+it.
+
+I want to be able to do something like
+
+r 	= reply
+alt+r 	= reply to sender
+cntl+r	= reply to list
+shift+r	= reply to both
+
+TjL
+
+
+
+
+
+From pinedev@shivax2.cac.washington.edu Thu Jun  6 20:22:55 2002 -0700
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Thu, 6 Jun 2002 20:22:55 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan2.cac.washington.edu (mailscan2.cac.washington.edu [140.142.33.16])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g573Mto1020772
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Thu, 6 Jun 2002 20:22:55 -0700
+Received: FROM mx1.cac.washington.edu BY mailscan2.cac.washington.edu ; Thu Jun 06 20:22:54 2002 -0700
+Received: from list2.u.washington.edu (list2.u.washington.edu [140.142.14.165])
+	by mx1.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g573MrBi009294
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Thu, 6 Jun 2002 20:22:54 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list2.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g573M2qt015402;
+	Thu, 6 Jun 2002 20:22:02 -0700
+Received: from mailscan4.cac.washington.edu (mailscan4.cac.washington.edu [140.142.33.15])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g573JYw3023652
+	for <pine-info@reallists.u.washington.edu>; Thu, 6 Jun 2002 20:19:34 -0700
+Received: FROM mxu2.u.washington.edu BY mailscan4.cac.washington.edu ; Thu Jun 06 20:19:34 2002 -0700
+Received: from aaoepp2.aao.GOV.AU (aaoepp2.aao.GOV.AU [192.231.167.64])
+	by mxu2.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g573JXhR023213
+	for <pine-info@u.washington.edu>; Thu, 6 Jun 2002 20:19:33 -0700
+Received: from odin.aao.gov.au (odin.aao.GOV.AU [192.231.167.164])
+	by aaoepp2.aao.GOV.AU (8.11.0/8.9.1/AAO-1.1a) with ESMTP id g573JSK25776
+	for <pine-info@u.washington.edu>; Fri, 7 Jun 2002 13:19:28 +1000 (EST)
+Received: from localhost (tjb@localhost)
+	by odin.aao.gov.au (8.11.6/linuxconf) with ESMTP id g573JRe05225
+	for <pine-info@u.washington.edu>; Fri, 7 Jun 2002 13:19:27 +1000
+Message-Id: <Pine.LNX.4.33.0206071318390.4386-100000@odin.aao.gov.au>
+Date: Fri, 7 Jun 2002 13:19:27 +1000 (EST)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: Terry Bridges <tjb@aaoepp.aao.GOV.AU>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: PC/Pine problem
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-To: <pine-info@u.washington.edu>
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+Hi there:  I have recently migrated my Pine from SUN/Solaris to a PC 
+running Redhat7.2.  It's gone pretty well, but I have two little things 
+which are bugging the hell out of me.  I've looked through all the 
+documentation I can find, but with no success.  I would appreciate very 
+much any advice anyone might have.  Both problems are to do with 
+"replying".
+
+1) When I reply and include the text of the message, I would like it to 
+leave a couple of lines blank for my reply; currently it doesn't give me 
+any space at all.
+
+2) When I "reply to all recipients", it includes me in the list of 
+recipients, which I don't want.
+
+
+These are probably pretty simple things but very annoying ... many thanks
+
+Terry Bridges
+AAO Sydney
+
+ps. I really should say that I think Pine is a marvellous email tool ... 
+and I had no idea it had so many features until I started poking around!
+
+
+
+-- 
+-----------------------------------------------------------------
+ For information about this mailing list, and its archives, see: 
+ http://www.washington.edu/pine/pine-info/
+-----------------------------------------------------------------
+
+From pinedev@shivax2.cac.washington.edu Thu Jun  6 23:29:23 2002 -0700
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Thu, 6 Jun 2002 23:29:23 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan6.cac.washington.edu (mailscan6.cac.washington.edu [140.142.33.14])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g576TNo1025173
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Thu, 6 Jun 2002 23:29:23 -0700
+Received: FROM mx2.cac.washington.edu BY mailscan6.cac.washington.edu ; Thu Jun 06 23:29:22 2002 -0700
+Received: from list3.u.washington.edu (list3.u.washington.edu [140.142.8.100])
+	by mx2.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g576TLsb010998
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Thu, 6 Jun 2002 23:29:21 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list3.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g576RmlZ018788;
+	Thu, 6 Jun 2002 23:27:49 -0700
+Received: from mailscan4.cac.washington.edu (mailscan4.cac.washington.edu [140.142.33.15])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g576O1w3031010
+	for <pine-info@reallists.u.washington.edu>; Thu, 6 Jun 2002 23:24:01 -0700
+Received: FROM mxu4.u.washington.edu BY mailscan4.cac.washington.edu ; Thu Jun 06 23:24:01 2002 -0700
+Received: from penguin.wise.edt.ericsson.se (penguin-ext.wise.edt.ericsson.se [193.180.251.47])
+	by mxu4.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g576NvKQ026548
+	for <pine-info@u.washington.edu>; Thu, 6 Jun 2002 23:23:58 -0700
+Received: from mbb5.ericsson.se (mbb5.ericsson.se [136.225.151.210])
+	by penguin.wise.edt.ericsson.se (8.12.1/8.12.1/WIREfire-1.4) with ESMTP id g576Nu6n025255
+	for <pine-info@u.washington.edu>; Fri, 7 Jun 2002 08:23:56 +0200 (MEST)
+Received: from pc188-104.hf.etx.ericsson.se
+ (pc188-104.hf.etx.ericsson.se [130.100.188.104])
+ by mbb1.ericsson.se (PMDF V5.2-29 #39352)
+ with ESMTP id <0GXB00KHUOFWJ0@mbb1.ericsson.se> for
+ pine-info@u.washington.edu; Fri,  7 Jun 2002 08:23:56 +0200 (MET DST)
+Message-Id: 
+ <Pine.WNT.4.44.0206070823020.-356945@E00C04FFB5466.es.eu.ericsson.se>
+Date: Fri, 07 Jun 2002 08:24:39 +0200 (Romance Daylight Time)
+Reply-To: bertrand.perez@ree.ericsson.se
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: "Bertrand PEREZ (REE)" <bertrand.perez@ericsson.com>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: Re: Moving lot's of mail
+In-Reply-To: <000a01c20dae$f03a0500$66816bcc@jointtech.com>
+MIME-version: 1.0
+Content-type: TEXT/PLAIN; charset=US-ASCII
+X-To: Todd Miller <tmiller@jointtech.com>
+X-Cc: Pine Discussion Forum <pine-info@u.washington.edu>
+X-X-Sender: reebepe@eestqnt104.es.eu.ericsson.se
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+On (2002-06-06 16:07) Todd Miller wrote:
+
+:)Hello,
+
+	Hello,
+
+:)
+:)I have an inbox with 29,000  message how can I move this to a new
+:)folder with out to much work? Thanks for any help!
+
+	select them all (press ; then A) and then type A S and select the
+destination folder to which you want to move them
+then press X to expunge them from your inbox
+
+regards/Bertrand
+
+:)
+:)Todd
+:)
+
+
+
+From pinedev@shivax2.cac.washington.edu Fri Jun  7 01:06:41 2002 -0700
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Fri, 7 Jun 2002 01:06:41 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan5.cac.washington.edu (mailscan5.cac.washington.edu [140.142.32.14])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5786fo1027655
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Fri, 7 Jun 2002 01:06:41 -0700
+Received: FROM mx2.cac.washington.edu BY mailscan5.cac.washington.edu ; Fri Jun 07 01:06:40 2002 -0700
+Received: from list4.u.washington.edu (list4.u.washington.edu [140.142.14.167])
+	by mx2.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5786dsb013178
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Fri, 7 Jun 2002 01:06:40 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list4.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5784geo079902;
+	Fri, 7 Jun 2002 01:04:43 -0700
+Received: from mailscan1.cac.washington.edu (mailscan1.cac.washington.edu [140.142.32.16])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5774kw3081732
+	for <pine-info@reallists.u.washington.edu>; Fri, 7 Jun 2002 00:04:46 -0700
+Received: FROM mxu2.u.washington.edu BY mailscan1.cac.washington.edu ; Fri Jun 07 00:04:46 2002 -0700
+Received: from bp02.u.washington.edu (bp02.u.washington.edu [140.142.15.12])
+	by mxu2.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5774jhS022630
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO)
+	for <pine-info@lists.u.washington.edu>; Fri, 7 Jun 2002 00:04:46 -0700
+Received: from goedel1.math.washington.edu (goedel1.math.washington.edu [128.95.224.10])
+	by bp02.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5774gZh341618;
+	Fri, 7 Jun 2002 00:04:42 -0700
+Message-Id: <Pine.OSF.4.44.0206062357190.351426-100000@goedel1.math.washington.edu>
+Date: Fri, 7 Jun 2002 00:04:42 -0700 (PDT)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: Eduardo Chappa <chappa@math.washington.edu>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: Re: PC/Pine problem
+In-Reply-To: <Pine.LNX.4.33.0206071318390.4386-100000@odin.aao.gov.au>
+References: <Pine.LNX.4.33.0206071318390.4386-100000@odin.aao.gov.au>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-To: Terry Bridges <tjb@aaoepp.aao.GOV.AU>
+X-Cc: Pine Discussion Forum <pine-info@u.washington.edu>
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+*** Terry Bridges (tjb@aaoepp.aao.GOV.AU) wrote in the pine-info list today:
+
+:) 1) When I reply and include the text of the message, I would like it to
+:) leave a couple of lines blank for my reply; currently it doesn't give me
+:) any space at all.
+
+I guess you are a top poster. Always use a role and define a template file
+in that role.
+
+:) 2) When I "reply to all recipients", it includes me in the list of
+:) recipients, which I don't want.
+
+Add the e-mail address that is being included in the reply that you are
+composing to the alt-addresses configuration option.
+
+-- 
+Eduardo
+http://www.math.washington.edu/~chappa/pine/
+
+
+
+From pinedev@shivax2.cac.washington.edu Fri Jun  7 05:19:07 2002 -0700
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Fri, 7 Jun 2002 05:19:07 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan1.cac.washington.edu (mailscan1.cac.washington.edu [140.142.32.16])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g57CJ7o1003142
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Fri, 7 Jun 2002 05:19:07 -0700
+Received: FROM mx1.cac.washington.edu BY mailscan1.cac.washington.edu ; Fri Jun 07 05:19:02 2002 -0700
+Received: from list4.u.washington.edu (list4.u.washington.edu [140.142.14.167])
+	by mx1.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g57CJ1Bi020450
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Fri, 7 Jun 2002 05:19:01 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list4.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g57CDVeo081870;
+	Fri, 7 Jun 2002 05:13:31 -0700
+Received: from mailscan5.cac.washington.edu (mailscan5.cac.washington.edu [140.142.32.14])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g57CB0w3056414
+	for <pine-info@reallists.u.washington.edu>; Fri, 7 Jun 2002 05:11:00 -0700
+Received: FROM mxu4.u.washington.edu BY mailscan5.cac.washington.edu ; Fri Jun 07 05:11:00 2002 -0700
+Received: from mail.bellhow.com (fw.bellhow.com [63.121.54.5])
+	by mxu4.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g57CAxKQ001433
+	for <pine-info@u.washington.edu>; Fri, 7 Jun 2002 05:10:59 -0700
+Received: from wgs.apps1.bellhow.com (wgs.apps1.bellhow.com [192.168.70.70])
+	by mail.bellhow.com (8.9.3/8.9.3) with ESMTP id IAA01321;
+	Fri, 7 Jun 2002 08:10:58 -0400 (EDT)
+Received: from localhost (herrick@localhost) by wgs.apps1.bellhow.com (8.8.4/8.8.3) with ESMTP id IAA18222; Fri, 7 Jun 2002 08:10:53 -0400 (EDT)
+Message-Id: <Pine.GSO.4.21.0206070808580.16418-100000@wgs.apps1.bellhow.com>
+Date: Fri, 7 Jun 2002 08:10:51 -0400 (EDT)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: daniel lance herrick <dan.herrick@pbs.proquest.com>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: Re: Moving lot's of mail
+In-Reply-To: <000a01c20dae$f03a0500$66816bcc@jointtech.com>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-To: Todd Miller <tmiller@jointtech.com>
+X-Cc: Pine Discussion Forum <pine-info@u.washington.edu>
+X-Authentication-Warning: wgs.apps1.bellhow.com: herrick owned process doing -bs
+X-Sender: herrick@wgs.apps1.bellhow.com
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+You can even sort it some while you are at it:
+
+Create Rules that recognize pieces of mail in the
+INBOX and move them to different mailboxes.
+
+dan
+
+
+On Thu, 6 Jun 2002, Todd Miller wrote:
+
+> Hello,
+>  
+> I have an inbox with 29,000  message how can I move this to a new
+> folder with out to much work? Thanks for any help!
+>  
+> Todd
+> 
+
+
+From pinedev@shivax2.cac.washington.edu Fri Jun  7 07:58:48 2002 -0700
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Fri, 7 Jun 2002 07:58:48 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan5.cac.washington.edu (mailscan5.cac.washington.edu [140.142.32.14])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g57Ewlo1006824
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Fri, 7 Jun 2002 07:58:47 -0700
+Received: FROM mx1.cac.washington.edu BY mailscan5.cac.washington.edu ; Fri Jun 07 07:58:46 2002 -0700
+Received: from list4.u.washington.edu (list4.u.washington.edu [140.142.14.167])
+	by mx1.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g57EwkBi024059
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Fri, 7 Jun 2002 07:58:46 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list4.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g57EvNeo079912;
+	Fri, 7 Jun 2002 07:57:24 -0700
+Received: from mailscan4.cac.washington.edu (mailscan4.cac.washington.edu [140.142.33.15])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g57Et7w3080906
+	for <pine-info@reallists.u.washington.edu>; Fri, 7 Jun 2002 07:55:08 -0700
+Received: FROM mxu4.u.washington.edu BY mailscan4.cac.washington.edu ; Fri Jun 07 07:55:05 2002 -0700
+Received: from mail.vo.com ([208.45.6.99])
+	by mxu4.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g57Et3KR027964
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=FAIL)
+	for <pine-info@u.washington.edu>; Fri, 7 Jun 2002 07:55:04 -0700
+Received: from fanatic (66-108-201-235.nyc.rr.com [66.108.201.235])
+	by mail.vo.com (8.12.1/8.12.1) with ESMTP id g57Et1MB021921
+	(version=TLSv1/SSLv3 cipher=EXP1024-RC4-SHA bits=56 verify=NO)
+	for <pine-info@u.washington.edu>; Fri, 7 Jun 2002 10:55:02 -0400
+Message-Id: <Pine.WNT.4.43.0206071100310.1232-100000@fanatic>
+Date: Fri, 7 Jun 2002 11:01:33 -0400 (Eastern Daylight Time)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: "S. Alexander Jacobson" <alex@shop.com>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: IMAP addressbooks and mbx format
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-To: Pine Discussion Forum <pine-info@u.washington.edu>
+X-X-Sender: alex@mail.vo.com
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+I frequently access my mail from multiple
+computers simultaneously.  I use mbx format to
+make sure that I don't have locking problems.
+
+However, Pine doesn't appear to want to deal with
+mbx addressbooks.  Any solutions?
+
+-Alex-
+
+___________________________________________________________________
+S. Alexander Jacobson                   i2x Media
+1-212-787-1914 voice                    1-603-288-1280 fax
+
+
+-- 
+-----------------------------------------------------------------
+ For information about this mailing list, and its archives, see: 
+ http://www.washington.edu/pine/pine-info/
+-----------------------------------------------------------------
+
+From pinedev@shivax2.cac.washington.edu Fri Jun  7 12:15:25 2002 -0700
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Fri, 7 Jun 2002 12:15:24 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan1.cac.washington.edu (mailscan1.cac.washington.edu [140.142.32.16])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g57JFOo1019737
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Fri, 7 Jun 2002 12:15:24 -0700
+Received: FROM mx1.cac.washington.edu BY mailscan1.cac.washington.edu ; Fri Jun 07 12:15:23 2002 -0700
+Received: from list1.u.washington.edu (list1.u.washington.edu [140.142.8.99])
+	by mx1.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g57JFNBi001443
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Fri, 7 Jun 2002 12:15:23 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list1.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g57JEVR8040642;
+	Fri, 7 Jun 2002 12:14:31 -0700
+Received: from mailscan6.cac.washington.edu (mailscan6.cac.washington.edu [140.142.33.14])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g57JD5w3047808
+	for <pine-info@reallists.u.washington.edu>; Fri, 7 Jun 2002 12:13:05 -0700
+Received: FROM mxu4.u.washington.edu BY mailscan6.cac.washington.edu ; Fri Jun 07 12:13:04 2002 -0700
+Received: from mail.vo.com ([208.45.6.99])
+	by mxu4.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g57JD2KR007100
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=FAIL)
+	for <pine-info@u.washington.edu>; Fri, 7 Jun 2002 12:13:04 -0700
+Received: from fanatic (66-108-201-235.nyc.rr.com [66.108.201.235])
+	by mail.vo.com (8.12.1/8.12.1) with ESMTP id g57JCwMB026802
+	(version=TLSv1/SSLv3 cipher=EXP1024-RC4-SHA bits=56 verify=NO)
+	for <pine-info@u.washington.edu>; Fri, 7 Jun 2002 15:13:01 -0400
+Message-Id: <Pine.WNT.4.43.0206071518350.1068-100000@fanatic>
+Date: Fri, 7 Jun 2002 15:19:30 -0400 (Eastern Daylight Time)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: "S. Alexander Jacobson" <alex@shop.com>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: customized date
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-To: Pine Discussion Forum <pine-info@u.washington.edu>
+X-X-Sender: alex@mail.vo.com
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+If I want to specify the date: header explicitly
+how do I do that?
+Adding "date:" to custom headers does not appear
+to work.
+
+-Alex-
+
+___________________________________________________________________
+S. Alexander Jacobson                   i2x Media
+1-212-787-1914 voice                    1-603-288-1280 fax
+
+
+-- 
+-----------------------------------------------------------------
+ For information about this mailing list, and its archives, see: 
+ http://www.washington.edu/pine/pine-info/
+-----------------------------------------------------------------
+
+From pinedev@shivax2.cac.washington.edu Fri Jun  7 12:58:40 2002 -0700
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Fri, 7 Jun 2002 12:58:39 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan5.cac.washington.edu (mailscan5.cac.washington.edu [140.142.32.14])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g57Jwdo1021362
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Fri, 7 Jun 2002 12:58:39 -0700
+Received: FROM mx2.cac.washington.edu BY mailscan5.cac.washington.edu ; Fri Jun 07 12:58:38 2002 -0700
+Received: from list3.u.washington.edu (list3.u.washington.edu [140.142.8.100])
+	by mx2.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g57Jwbsb000748
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Fri, 7 Jun 2002 12:58:38 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list3.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g57JvplZ016660;
+	Fri, 7 Jun 2002 12:57:51 -0700
+Received: from mailscan6.cac.washington.edu (mailscan6.cac.washington.edu [140.142.33.14])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g57JuYw3102012
+	for <pine-info@reallists.u.washington.edu>; Fri, 7 Jun 2002 12:56:34 -0700
+Received: FROM mxu2.u.washington.edu BY mailscan6.cac.washington.edu ; Fri Jun 07 12:56:34 2002 -0700
+Received: from berlin.atlantic.net (berlin.atlantic.net [209.208.0.20])
+	by mxu2.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g57JuXhR013441
+	for <pine-info@u.washington.edu>; Fri, 7 Jun 2002 12:56:34 -0700
+Received: from localhost (orldfl-agg-1-ip-20.atlantic.net [209.208.86.83])
+	by berlin.atlantic.net (8.11.6/8.11.0) with ESMTP id g57K15a28887;
+	Fri, 7 Jun 2002 16:01:05 -0400
+Message-Id: <Pine.WNT.4.44.0206071553570.908-100000@Tim>
+Date: Fri, 7 Jun 2002 15:56:24 -0400 (Eastern Daylight Time)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: "Timothy J. Luoma" <luomat@peak.org>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: Re: customized date
+In-Reply-To: <Pine.WNT.4.43.0206071518350.1068-100000@fanatic>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-To: "S. Alexander Jacobson" <alex@shop.com>
+X-Cc: Pine Discussion Forum <pine-info@u.washington.edu>
+X-X-Sender: luomat@mail.peak.org
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+On Fri, 7 Jun 2002, S. Alexander Jacobson wrote:
+
+> If I want to specify the date: header explicitly
+> how do I do that?
+
+No way other than patching the source code
+
+
+> Adding "date:" to custom headers does not appear
+> to work.
+
+Nope, because Pine will re-write it regardless, and I think 'Date' is on
+the 'banned headers' list anyway.
+
+I'd suggest adding an X-Date: header if you really want to add the date,
+but of course I'm guessing that won't do what you want to do... then again
+I don't know why you want to do what you want to do.
+
+Perhaps a more helpful approach would be to ask why you want to add the
+date manually, and then I might be able to offer a better suggestion.
+
+TjL
+
+
+
+
+
+From pinedev@shivax2.cac.washington.edu Fri Jun  7 13:13:58 2002 -0700
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Fri, 7 Jun 2002 13:13:58 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan2.cac.washington.edu (mailscan2.cac.washington.edu [140.142.33.16])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g57KDwo1021851
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Fri, 7 Jun 2002 13:13:58 -0700
+Received: FROM mx2.cac.washington.edu BY mailscan2.cac.washington.edu ; Fri Jun 07 13:13:57 2002 -0700
+Received: from list4.u.washington.edu (list4.u.washington.edu [140.142.14.167])
+	by mx2.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g57KDusb001199
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Fri, 7 Jun 2002 13:13:56 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list4.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g57KD5eo093750;
+	Fri, 7 Jun 2002 13:13:06 -0700
+Received: from mailscan1.cac.washington.edu (mailscan1.cac.washington.edu [140.142.32.16])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g57KBPw3040232
+	for <pine-info@reallists.u.washington.edu>; Fri, 7 Jun 2002 13:11:25 -0700
+Received: FROM mxu2.u.washington.edu BY mailscan1.cac.washington.edu ; Fri Jun 07 13:11:24 2002 -0700
+Received: from mail.vo.com ([208.45.6.99])
+	by mxu2.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g57KBMhS017442
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=FAIL)
+	for <pine-info@u.washington.edu>; Fri, 7 Jun 2002 13:11:24 -0700
+Received: from fanatic (66-108-201-235.nyc.rr.com [66.108.201.235])
+	by mail.vo.com (8.12.1/8.12.1) with ESMTP id g57KB4MB010344
+	(version=TLSv1/SSLv3 cipher=EXP1024-RC4-SHA bits=56 verify=NO);
+	Fri, 7 Jun 2002 16:11:05 -0400
+Message-Id: <Pine.WNT.4.43.0206071615230.1068-100000@fanatic>
+Date: Fri, 7 Jun 2002 16:17:37 -0400 (Eastern Daylight Time)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: "S. Alexander Jacobson" <alex@shop.com>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: Re: customized date
+In-Reply-To: <Pine.WNT.4.44.0206071553570.908-100000@Tim>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-To: "Timothy J. Luoma" <luomat@peak.org>
+X-Cc: Pine Discussion Forum <pine-info@u.washington.edu>
+X-X-Sender: alex@mail.vo.com
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+I like to sort my mail by date.
+Dates in the future are effectively appointment
+reminders.
+I can write a script to mail me stuff with an
+arbitrary date header.  I don't see why I
+shouldn't be able to override Pine's date with my
+own.
+
+-Alex-
+
+On Fri, 7 Jun 2002, Timothy J. Luoma wrote:
+
+> On Fri, 7 Jun 2002, S. Alexander Jacobson wrote:
+>
+> > If I want to specify the date: header explicitly
+> > how do I do that?
+>
+> No way other than patching the source code
+>
+>
+> > Adding "date:" to custom headers does not appear
+> > to work.
+>
+> Nope, because Pine will re-write it regardless, and I think 'Date' is on
+> the 'banned headers' list anyway.
+>
+> I'd suggest adding an X-Date: header if you really want to add the date,
+> but of course I'm guessing that won't do what you want to do... then again
+> I don't know why you want to do what you want to do.
+>
+> Perhaps a more helpful approach would be to ask why you want to add the
+> date manually, and then I might be able to offer a better suggestion.
+>
+> TjL
+>
+>
+>
+>
+
+___________________________________________________________________
+S. Alexander Jacobson                   i2x Media
+1-212-787-1914 voice                    1-603-288-1280 fax
+
+
+
+From pinedev@shivax2.cac.washington.edu Sun ???  0 00:00:00 1970 +0000
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Mon, 10 Jun 2002 06:56:12 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan4.cac.washington.edu (mailscan4.cac.washington.edu [140.142.33.15])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5ADuCo1001526
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Mon, 10 Jun 2002 06:56:12 -0700
+Received: FROM mx2.cac.washington.edu BY mailscan4.cac.washington.edu ; Mon Jun 10 06:56:11 2002 -0700
+Received: from list1.u.washington.edu (list1.u.washington.edu [140.142.8.99])
+	by mx2.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5ADuAsb022702
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 10 Jun 2002 06:56:11 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list1.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5ADsjR8008276;
+	Mon, 10 Jun 2002 06:54:45 -0700
+Received: from mailscan1.cac.washington.edu (mailscan1.cac.washington.edu [140.142.32.16])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5ADq8w3082842
+	for <pine-info@reallists.u.washington.edu>; Mon, 10 Jun 2002 06:52:08 -0700
+Received: FROM mxu2.u.washington.edu BY mailscan1.cac.washington.edu ; Mon Jun 10 06:52:07 2002 -0700
+Received: from smtp6.andrew.cmu.edu (SMTP6.andrew.cmu.edu [128.2.10.86])
+	by mxu2.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5ADq7hS012160
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO)
+	for <pine-info@u.washington.edu>; Mon, 10 Jun 2002 06:52:07 -0700
+Received: from UNIX47.andrew.cmu.edu (UNIX47.andrew.cmu.edu [128.2.11.247])
+	(user=jdavin mech=KERBEROS_V4 (0 bits))
+	by smtp6.andrew.cmu.edu (8.12.3.Beta2/8.12.3.Beta2) with ESMTP id g5ADq5TF004415
+	for <pine-info@u.washington.edu>; Mon, 10 Jun 2002 09:52:05 -0400
+Message-Id: <Pine.LNX.4.43L-024.0206100945520.1334-100000@unix47.andrew.cmu.edu>
+Date: Mon, 10 Jun 2002 09:52:06 -0400 (EDT)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: jdavin@cmu.edu
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: pico bug? 
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-X-Sender: jdavin@unix47.andrew.cmu.edu
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+Sorry if this isn't the correct place to send this, but pico is packaged
+with pine, and I couldn't find any mailing list specifically for pico.
+
+This has been bothering me for about 2 years now.  When you press
+Control-s in pico, the terminal freezes up.  You can't kill it with
+control-c, control-d, control-z, or anything else that I could find.  You
+have to switch to a new terminal and kill the job (and sometimes that
+doesn't even restore the terminal).
+This is particularly bad because in emacs, control-s is the command key
+for searching.  So I often hit it accidently in pico, when I meant to do
+control-w.
+I hope that someone can fix this bug, and I'd be happy if someone could
+tell me if there's a fix I could use to stop this from happening.
+
+-John
+
+-- 
+-----------------------------------------------------------------
+ For information about this mailing list, and its archives, see: 
+ http://www.washington.edu/pine/pine-info/
+-----------------------------------------------------------------
+
+From pinedev@shivax2.cac.washington.edu Sun ???  0 00:00:00 1970 +0000
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Mon, 10 Jun 2002 06:59:56 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan3.cac.washington.edu (mailscan3.cac.washington.edu [140.142.32.15])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5ADxto1001673
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Mon, 10 Jun 2002 06:59:55 -0700
+Received: FROM mx2.cac.washington.edu BY mailscan3.cac.washington.edu ; Mon Jun 10 06:59:54 2002 -0700
+Received: from list3.u.washington.edu (list3.u.washington.edu [140.142.8.100])
+	by mx2.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5ADxrsb022773
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 10 Jun 2002 06:59:54 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list3.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5ADw2lZ032028;
+	Mon, 10 Jun 2002 06:58:02 -0700
+Received: from mailscan6.cac.washington.edu (mailscan6.cac.washington.edu [140.142.33.14])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5ADvKw3082794
+	for <pine-info@reallists.u.washington.edu>; Mon, 10 Jun 2002 06:57:20 -0700
+Received: FROM mxu1.u.washington.edu BY mailscan6.cac.washington.edu ; Mon Jun 10 06:57:19 2002 -0700
+Received: from albatross.wise.edt.ericsson.se (albatross-ext.wise.edt.ericsson.se [193.180.251.49])
+	by mxu1.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5ADvIKj000856
+	for <pine-info@u.washington.edu>; Mon, 10 Jun 2002 06:57:18 -0700
+Received: from mbb5.ericsson.se (mbb5.ericsson.se [136.225.151.210])
+	by albatross.wise.edt.ericsson.se (8.12.1/8.12.1/WIREfire-1.4) with ESMTP id g5ADvHmG019192
+	for <pine-info@u.washington.edu>; Mon, 10 Jun 2002 15:57:17 +0200 (MEST)
+Received: from E00C04FFB5466 ([159.107.52.135])
+ by mbb1.ericsson.se (PMDF V5.2-29 #39352)
+ with ESMTP id <0GXH00POYTFF7J@mbb1.ericsson.se> for
+ pine-info@u.washington.edu; Mon, 10 Jun 2002 15:57:16 +0200 (MET DST)
+Message-Id: 
+ <Pine.WNT.4.44.0206101556090.-328233@E00C04FFB5466.es.eu.ericsson.se>
+Date: Mon, 10 Jun 2002 15:57:12 +0200 (Romance Daylight Time)
+Reply-To: bertrand.perez@ree.ericsson.se
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: "Bertrand PEREZ (REE)" <bertrand.perez@ericsson.com>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: Re: pico bug?
+In-Reply-To: 
+ <Pine.LNX.4.43L-024.0206100945520.1334-100000@unix47.andrew.cmu.edu>
+MIME-version: 1.0
+Content-type: TEXT/PLAIN; charset=US-ASCII
+X-To: jdavin@cmu.edu
+X-Cc: Pine Discussion Forum <pine-info@u.washington.edu>
+X-X-Sender: reebepe@eestqnt104.es.eu.ericsson.se
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+On (2002-06-10 09:52) jdavin@cmu.edu wrote:
+
+:)Sorry if this isn't the correct place to send this, but pico is packaged
+:)with pine, and I couldn't find any mailing list specifically for pico.
+:)
+:)This has been bothering me for about 2 years now.  When you press
+:)Control-s in pico, the terminal freezes up.  You can't kill it with
+:)control-c, control-d, control-z, or anything else that I could find.  You
+:)have to switch to a new terminal and kill the job (and sometimes that
+:)doesn't even restore the terminal).
+:)This is particularly bad because in emacs, control-s is the command key
+:)for searching.  So I often hit it accidently in pico, when I meant to do
+:)control-w.
+:)I hope that someone can fix this bug, and I'd be happy if someone could
+:)tell me if there's a fix I could use to stop this from happening.
+
+
+	hello,
+
+I think that this is not a PICO problem, if you are using pine
+within a UNIX/Linux terminal, CTRL S means to freeze the terminal,
+so PICO has nothing to do here. To unlock it you just need to press
+CTRL Q.
+
+hope this will help you
+
+regards/Bertrand
+
+:)
+:)-John
+:)
+:)--
+:)-----------------------------------------------------------------
+:) For information about this mailing list, and its archives, see:
+:) http://www.washington.edu/pine/pine-info/
+:)-----------------------------------------------------------------
+:)
+
+
+From pinedev@shivax2.cac.washington.edu Sun ???  0 00:00:00 1970 +0000
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Mon, 10 Jun 2002 07:02:14 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan4.cac.washington.edu (mailscan4.cac.washington.edu [140.142.33.15])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5AE2Eo1001767
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Mon, 10 Jun 2002 07:02:14 -0700
+Received: FROM mx2.cac.washington.edu BY mailscan4.cac.washington.edu ; Mon Jun 10 07:02:13 2002 -0700
+Received: from list3.u.washington.edu (list3.u.washington.edu [140.142.8.100])
+	by mx2.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5AE2Dsb022870
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 10 Jun 2002 07:02:13 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list3.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5AE1VlZ020004;
+	Mon, 10 Jun 2002 07:01:31 -0700
+Received: from mailscan2.cac.washington.edu (mailscan2.cac.washington.edu [140.142.33.16])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5AE0xw3088792
+	for <pine-info@reallists.u.washington.edu>; Mon, 10 Jun 2002 07:01:00 -0700
+Received: FROM mxu4.u.washington.edu BY mailscan2.cac.washington.edu ; Mon Jun 10 07:00:58 2002 -0700
+Received: from mail.sonytel.be (mail2.sonytel.be [195.0.45.172])
+	by mxu4.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5AE0rKQ009381
+	for <pine-info@u.washington.edu>; Mon, 10 Jun 2002 07:00:56 -0700
+Received: from caladium.sonytel.be (mail.sonytel.be [10.17.0.26])
+	by mail.sonytel.be (8.9.0/8.8.6) with ESMTP id QAA18669
+	for <pine-info@u.washington.edu>; Mon, 10 Jun 2002 16:00:46 +0200 (MET DST)
+Message-Id: <Pine.GSO.4.44.0206101600050.76-100000@caladium.sonytel.be>
+Date: Mon, 10 Jun 2002 16:00:45 +0200 (MEST)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: Murphy <murphy@pulstar.albedo.art.pl>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: Re: pico bug? 
+In-Reply-To: <Pine.LNX.4.43L-024.0206100945520.1334-100000@unix47.andrew.cmu.edu>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-To: NEWS - Pine Discussion Forum <pine-info@u.washington.edu>
+X-X-Sender: piotr@caladium.sonytel.be
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+On Mon, 10 Jun 2002, jdavin@cmu.edu wrote:
+>This has been bothering me for about 2 years now.  When you press
+>Control-s in pico, the terminal freezes up.
+
+You can unfreeze it using CTRL+Q
+
+Regards,
+Murphy
+
+-- 
+  __   __
+  ||   ||
+ -++- -++- --------------------------------------------------------
+  ||\ /||  e-mail: murphy@pulstar.albedo.art.pl           GG 107745
+  ||   ||  Everything is possible - this is only a question of time
+  \/564\/  --------------------------------------------------------
+
+
+From pinedev@shivax2.cac.washington.edu Sun ???  0 00:00:00 1970 +0000
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Mon, 10 Jun 2002 07:05:42 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan6.cac.washington.edu (mailscan6.cac.washington.edu [140.142.33.14])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5AE5fo1001964
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Mon, 10 Jun 2002 07:05:41 -0700
+Received: FROM mx1.cac.washington.edu BY mailscan6.cac.washington.edu ; Mon Jun 10 07:05:40 2002 -0700
+Received: from list4.u.washington.edu (list4.u.washington.edu [140.142.14.167])
+	by mx1.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5AE5dBi025019
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 10 Jun 2002 07:05:40 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list4.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5AE4aeo077732;
+	Mon, 10 Jun 2002 07:04:37 -0700
+Received: from mailscan6.cac.washington.edu (mailscan6.cac.washington.edu [140.142.33.14])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5AE3lw3064720
+	for <pine-info@reallists.u.washington.edu>; Mon, 10 Jun 2002 07:03:47 -0700
+Received: FROM mxu1.u.washington.edu BY mailscan6.cac.washington.edu ; Mon Jun 10 07:03:46 2002 -0700
+Received: from smtp6.andrew.cmu.edu (SMTP6.andrew.cmu.edu [128.2.10.86])
+	by mxu1.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5AE3kKk001999
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO)
+	for <pine-info@u.washington.edu>; Mon, 10 Jun 2002 07:03:46 -0700
+Received: from UNIX47.andrew.cmu.edu (UNIX47.andrew.cmu.edu [128.2.11.247])
+	(user=jdavin mech=KERBEROS_V4 (0 bits))
+	by smtp6.andrew.cmu.edu (8.12.3.Beta2/8.12.3.Beta2) with ESMTP id g5AE3gTF005012;
+	Mon, 10 Jun 2002 10:03:42 -0400
+Message-Id: <Pine.LNX.4.43L-024.0206101002030.1334-100000@unix47.andrew.cmu.edu>
+Date: Mon, 10 Jun 2002 10:03:43 -0400 (EDT)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: jdavin@cmu.edu
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: Re: pico bug?
+In-Reply-To: <Pine.WNT.4.44.0206101556090.-328233@E00C04FFB5466.es.eu.ericsson.se>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-To: bertrand.perez@ree.ericsson.se
+X-Cc: Pine Discussion Forum <pine-info@u.washington.edu>
+X-X-Sender: jdavin@unix47.andrew.cmu.edu
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+Oh, you're right.  I hadn't known about control-q.
+
+thanks!
+
+On Mon, 10 Jun 2002, Bertrand PEREZ (REE) wrote:
+
+> On (2002-06-10 09:52) jdavin@cmu.edu wrote:
+>
+> :)Sorry if this isn't the correct place to send this, but pico is packaged
+> :)with pine, and I couldn't find any mailing list specifically for pico.
+> :)
+> :)This has been bothering me for about 2 years now.  When you press
+> :)Control-s in pico, the terminal freezes up.  You can't kill it with
+> :)control-c, control-d, control-z, or anything else that I could find.  You
+> :)have to switch to a new terminal and kill the job (and sometimes that
+> :)doesn't even restore the terminal).
+> :)This is particularly bad because in emacs, control-s is the command key
+> :)for searching.  So I often hit it accidently in pico, when I meant to do
+> :)control-w.
+> :)I hope that someone can fix this bug, and I'd be happy if someone could
+> :)tell me if there's a fix I could use to stop this from happening.
+>
+>
+> 	hello,
+>
+> I think that this is not a PICO problem, if you are using pine
+> within a UNIX/Linux terminal, CTRL S means to freeze the terminal,
+> so PICO has nothing to do here. To unlock it you just need to press
+> CTRL Q.
+>
+> hope this will help you
+>
+> regards/Bertrand
+>
+> :)
+> :)-John
+> :)
+> :)--
+> :)-----------------------------------------------------------------
+> :) For information about this mailing list, and its archives, see:
+> :) http://www.washington.edu/pine/pine-info/
+> :)-----------------------------------------------------------------
+> :)
+>
+>
+>
+
+
+From pinedev@shivax2.cac.washington.edu Sun ???  0 00:00:00 1970 +0000
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Mon, 10 Jun 2002 18:45:07 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan3.cac.washington.edu (mailscan3.cac.washington.edu [140.142.32.15])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5B1j6o1000888
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Mon, 10 Jun 2002 18:45:06 -0700
+Received: FROM mx1.cac.washington.edu BY mailscan3.cac.washington.edu ; Mon Jun 10 18:45:06 2002 -0700
+Received: from list4.u.washington.edu (list4.u.washington.edu [140.142.14.167])
+	by mx1.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5B1j5Bi017718
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 10 Jun 2002 18:45:05 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list4.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5B1iCeo096684;
+	Mon, 10 Jun 2002 18:44:13 -0700
+Received: from mailscan4.cac.washington.edu (mailscan4.cac.washington.edu [140.142.33.15])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5B1gqw3074504
+	for <pine-info@reallists.u.washington.edu>; Mon, 10 Jun 2002 18:42:52 -0700
+Received: FROM mxu1.u.washington.edu BY mailscan4.cac.washington.edu ; Mon Jun 10 18:42:51 2002 -0700
+Received: from vax.hanford.org (vax.hanford.org [216.218.218.27])
+	by mxu1.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5B1gpKj024007
+	for <pine-info@u.washington.edu>; Mon, 10 Jun 2002 18:42:51 -0700
+Received: (qmail 5901 invoked by uid 1828); 11 Jun 2002 01:42:50 -0000
+Message-Id: <Pine.GSO.4.33.0206101841230.20476-100000@vax.hanford.org>
+Date: Mon, 10 Jun 2002 18:42:50 -0700 (PDT)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: Matt Ackeret <mattack@area.com>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: Re: PINE-INFO digest 1378
+In-Reply-To: <200206080756.g587u0qt013826@list2.u.washington.edu>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-To: Pine Discussion Forum <pine-info@u.washington.edu>
+X-X-Sender:  <mattack@vax.hanford.org>
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+>Date: Fri, 7 Jun 2002 11:01:33 -0400 (Eastern Daylight Time)
+>From: "S. Alexander Jacobson" <alex@shop.com>
+>I frequently access my mail from multiple
+>computers simultaneously.  I use mbx format to
+>make sure that I don't have locking problems.
+
+What am I missing?  IMAP inherently supports accessing mail from
+multiple sites simultaneously.
+
+
+>However, Pine doesn't appear to want to deal with
+>mbx addressbooks.  Any solutions?
+
+I don't know this part, about a shared addressbook.
+
+
+From pinedev@shivax2.cac.washington.edu Sun ???  0 00:00:00 1970 +0000
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Tue, 11 Jun 2002 03:36:47 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan4.cac.washington.edu (mailscan4.cac.washington.edu [140.142.33.15])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5BAalo1017252
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Tue, 11 Jun 2002 03:36:47 -0700
+Received: FROM mx2.cac.washington.edu BY mailscan4.cac.washington.edu ; Tue Jun 11 03:36:45 2002 -0700
+Received: from list4.u.washington.edu (list4.u.washington.edu [140.142.14.167])
+	by mx2.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5BAaisb027901
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 11 Jun 2002 03:36:44 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list4.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5BAZbeo094144;
+	Tue, 11 Jun 2002 03:35:37 -0700
+Received: from mailscan6.cac.washington.edu (mailscan6.cac.washington.edu [140.142.33.14])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5BAXRw3065776
+	for <pine-info@reallists.u.washington.edu>; Tue, 11 Jun 2002 03:33:27 -0700
+Received: FROM mxu2.u.washington.edu BY mailscan6.cac.washington.edu ; Tue Jun 11 03:33:27 2002 -0700
+Received: from www.fastmail.fm (fastmail.fm [209.61.183.86])
+	by mxu2.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5BAXQhR008302
+	for <pine-info@u.washington.edu>; Tue, 11 Jun 2002 03:33:27 -0700
+Received: from www.fastmail.fm (localhost [127.0.0.1])
+	by localhost.localdomain (Postfix) with ESMTP
+	id F42096DA85; Tue, 11 Jun 2002 05:33:23 -0500 (CDT)
+Received: from DG840K01 (20-205.075.popsite.net [64.24.214.205])
+	by www.fastmail.fm (Postfix) with ESMTP
+	id 9921B6DA8F; Tue, 11 Jun 2002 05:33:20 -0500 (CDT)
+Message-Id: <Pine.WNT.4.44.0206110325500.1332-100000@DG840K01>
+Date: Tue, 11 Jun 2002 03:34:57 -0700 (Pacific Daylight Time)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: Nancy McGough <nm-this-address-is-valid@no.sp.am>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: Re: IMAP addressbooks and mbx format
+In-Reply-To: <Pine.WNT.4.43.0206071100310.1232-100000@fanatic>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-To: Pine Technical Discussion Forum <pine-info@u.washington.edu>
+X-Epoch: 1023791604
+X-Sasl-enc: CH+6iC83ejEIOFvOgwWDTQ
+X-Message-Flag: Worried about Outlook viruses? Switch to Mac/Unix/PC Pine! Info @ www.ii.com
+X-X-Sender: nancy@imap.iecc.com
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+On 7 Jun 2002 S. Alexander Jacobson (alex@shop.com) wrote:
+> However, Pine doesn't appear to want to deal with
+> mbx addressbooks.  Any solutions?
+
+A while ago (maybe over a year ago), I experimented with using
+c-client MBX format for my remote address books and also could
+not get it to work. I posted about my problem either here or in
+comp.mail.pine and got a reply from the UW team saying that it
+worked for them. I didn't pursue the problem and I don't have
+time to do some experiments now. Here are some things that might
+affect the situation.
+
+* What is the default mailbox format on you IMAP server? If it is
+Unix spool (mbox), then maybe that is part of the problem
+(although it seems like it shouldn't be but that might be a
+difference between our setups and the UW setup)
+
+* How did you create the abook.cMBX (remote abook in cMBX
+format)?
+
+* How did you try to populate it with an address book?
+
+* How did you set up Pine to access this abook? I recommend
+directly editing the pinerc rather than using Pine's config
+screens because I've had false error messages when using Pine's
+config screens to set up a remote address book that already
+exists on the server.
+
+HTH,
+Let us know if you figure anything out,
+Nancy
+
+-- 
+       PROCMAIL  <http://www.ii.com/internet/robots/procmail/qs/>
+           IMAP  <http://www.ii.com/internet/messaging/imap/isps/>
+           PINE  <http://www.ii.com/internet/messaging/pine/>
+
+--  I N F I N I T E  I N K    www.ii.com    N A N C Y  M c G O U G H  --
+
+
+From pinedev@shivax2.cac.washington.edu Sun ???  0 00:00:00 1970 +0000
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Tue, 11 Jun 2002 04:10:47 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan3.cac.washington.edu (mailscan3.cac.washington.edu [140.142.32.15])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5BBAlo1019061
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Tue, 11 Jun 2002 04:10:47 -0700
+Received: FROM mx1.cac.washington.edu BY mailscan3.cac.washington.edu ; Tue Jun 11 04:10:46 2002 -0700
+Received: from list2.u.washington.edu (list2.u.washington.edu [140.142.14.165])
+	by mx1.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5BBAjBi030705
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 11 Jun 2002 04:10:46 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list2.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5BB9mqt005172;
+	Tue, 11 Jun 2002 04:09:48 -0700
+Received: from mailscan1.cac.washington.edu (mailscan1.cac.washington.edu [140.142.32.16])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5BB86w3065732
+	for <pine-info@reallists.u.washington.edu>; Tue, 11 Jun 2002 04:08:06 -0700
+Received: FROM mxu4.u.washington.edu BY mailscan1.cac.washington.edu ; Tue Jun 11 04:08:06 2002 -0700
+Received: from www.fastmail.fm (fastmail.fm [209.61.183.86])
+	by mxu4.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5BB85KQ011893
+	for <pine-info@u.washington.edu>; Tue, 11 Jun 2002 04:08:06 -0700
+Received: from www.fastmail.fm (localhost [127.0.0.1])
+	by localhost.localdomain (Postfix) with ESMTP
+	id B1BB56D9EA; Tue, 11 Jun 2002 06:08:02 -0500 (CDT)
+Received: from DG840K01 (20-205.075.popsite.net [64.24.214.205])
+	by www.fastmail.fm (Postfix) with ESMTP
+	id 99A5C6D9D0; Tue, 11 Jun 2002 06:08:00 -0500 (CDT)
+Message-Id: <Pine.WNT.4.44.0206110359210.1228-100000@DG840K01>
+Date: Tue, 11 Jun 2002 04:09:38 -0700 (Pacific Daylight Time)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: Nancy McGough <nm-this-address-is-valid@no.sp.am>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: PC-PINE dialog box bug
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-To: Pine Technical Discussion Forum <pine-info@u.washington.edu>
+X-Epoch: 1023793682
+X-Sasl-enc: p4E71BUSu4D0p33DHI+LfQ
+X-Message-Flag: Worried about Outlook viruses? Switch to Mac/Unix/PC Pine! Info @ www.ii.com
+X-X-Sender: nancy@imap.iecc.com
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+In PC-Pine 4.44, if I use dialog boxes and type $ to sort, the
+dialog box looks like this
+
+( ) Arrival             ( ) From
+( ) Subject             ( ) To
+( ) Ordered Subject     ( ) Cc
+( ) Size                ( ) Date
+           [ ] Reverse Sort
+
+
+Note that there is no option to sort by thread.
+
+Also, it would be really great if there were a way to select the
+radio buttons and check box using the keyboard, e.g., type Z to
+select the siZe radio button.
+
+Thanks,
+Nancy
+
+-- 
+       PROCMAIL  <http://www.ii.com/internet/robots/procmail/qs/>
+           IMAP  <http://www.ii.com/internet/messaging/imap/isps/>
+           PINE  <http://www.ii.com/internet/messaging/pine/>
+
+--  I N F I N I T E  I N K    www.ii.com    N A N C Y  M c G O U G H  --
+
+-- 
+-----------------------------------------------------------------
+ For information about this mailing list, and its archives, see: 
+ http://www.washington.edu/pine/pine-info/
+-----------------------------------------------------------------
+
+From pinedev@shivax2.cac.washington.edu Sun ???  0 00:00:00 1970 +0000
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Tue, 11 Jun 2002 08:40:50 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan4.cac.washington.edu (mailscan4.cac.washington.edu [140.142.33.15])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5BFeno1026569
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Tue, 11 Jun 2002 08:40:49 -0700
+Received: FROM mx1.cac.washington.edu BY mailscan4.cac.washington.edu ; Tue Jun 11 08:40:49 2002 -0700
+Received: from list3.u.washington.edu (list3.u.washington.edu [140.142.8.100])
+	by mx1.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5BFemBi004507
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 11 Jun 2002 08:40:48 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list3.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5BFdflZ030472;
+	Tue, 11 Jun 2002 08:39:41 -0700
+Received: from mailscan3.cac.washington.edu (mailscan3.cac.washington.edu [140.142.32.15])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5BFbjw3065620
+	for <pine-info@reallists.u.washington.edu>; Tue, 11 Jun 2002 08:37:45 -0700
+Received: FROM mxu2.u.washington.edu BY mailscan3.cac.washington.edu ; Tue Jun 11 08:37:44 2002 -0700
+Received: from mxout1.cac.washington.edu (mxout1.cac.washington.edu [140.142.32.5])
+	by mxu2.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5BFbehS021974
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO)
+	for <pine-info@lists.u.washington.edu>; Tue, 11 Jun 2002 08:37:40 -0700
+Received: from mailscan-out3.cac.washington.edu (mailscan-out3.cac.washington.edu [140.142.32.18])
+	by mxout1.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5BFbeSJ016849
+	for <pine-info@u.washington.edu>; Tue, 11 Jun 2002 08:37:40 -0700
+Received: FROM smtp.washington.edu BY mailscan-out3.cac.washington.edu ; Tue Jun 11 08:35:28 2002 -0700
+Received: from [128.95.135.210] (D-128-95-135-210.dhcp.washington.edu [128.95.135.210])
+	(authenticated bits=0)
+	by smtp.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5BFZAdf008932
+	(version=TLSv1/SSLv3 cipher=RC4-MD5 bits=128 verify=NOT);
+	Tue, 11 Jun 2002 08:35:28 -0700
+Message-Id: <Pine.WNT.4.50.0206110832310.664-100000@jpf_ndc.nebula.washington.edu>
+Date: Tue, 11 Jun 2002 08:35:10 -0700 (Pacific Daylight Time)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: Jeff Franklin <jpf@cac.washington.edu>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: Re: PC-PINE dialog box bug
+In-Reply-To: <Pine.WNT.4.44.0206110359210.1228-100000@DG840K01>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-To: Nancy McGough <nm-this-address-is-valid@no.sp.am>
+X-Cc: Pine Discussion Forum <pine-info@u.washington.edu>
+X-X-Sender: jpf@shivams.cac.washington.edu
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+On Tue, 11 Jun 2002, Nancy McGough wrote:
+
+> In PC-Pine 4.44, if I use dialog boxes and type $ to sort, the
+> dialog box looks like this
+>
+> ( ) Arrival             ( ) From
+> ( ) Subject             ( ) To
+> ( ) Ordered Subject     ( ) Cc
+> ( ) Size                ( ) Date
+>            [ ] Reverse Sort
+>
+>
+> Note that there is no option to sort by thread.
+
+Hi Nancy,
+
+This has been fixed in the next version (and sort by Score has been added
+too).
+
+Jeff
+
+-- 
+Jeff Franklin <jpf@cac.washington.edu>
+Networks and Distributed Computing    University of Washington
+
+
+From pinedev@shivax2.cac.washington.edu Sun ???  0 00:00:00 1970 +0000
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Tue, 11 Jun 2002 10:48:20 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan6.cac.washington.edu (mailscan6.cac.washington.edu [140.142.33.14])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5BHmKo1000876
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Tue, 11 Jun 2002 10:48:20 -0700
+Received: FROM mx2.cac.washington.edu BY mailscan6.cac.washington.edu ; Tue Jun 11 10:48:19 2002 -0700
+Received: from list4.u.washington.edu (list4.u.washington.edu [140.142.14.167])
+	by mx2.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5BHmIsb007820
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 11 Jun 2002 10:48:19 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list4.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5BHkdeo096604;
+	Tue, 11 Jun 2002 10:46:39 -0700
+Received: from mailscan1.cac.washington.edu (mailscan1.cac.washington.edu [140.142.32.16])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5BHj7w3068894
+	for <pine-info@reallists.u.washington.edu>; Tue, 11 Jun 2002 10:45:07 -0700
+Received: FROM mxu1.u.washington.edu BY mailscan1.cac.washington.edu ; Tue Jun 11 10:45:06 2002 -0700
+Received: from hotmail.com (f107.pav1.hotmail.com [64.4.31.107])
+	by mxu1.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5BHj6Kj030542
+	for <pine-info@u.washington.edu>; Tue, 11 Jun 2002 10:45:06 -0700
+Received: from mail pickup service by hotmail.com with Microsoft SMTPSVC;
+	 Tue, 11 Jun 2002 10:45:06 -0700
+Received: from 12.228.100.101 by pv1fd.pav1.hotmail.msn.com with HTTP;
+	Tue, 11 Jun 2002 17:45:05 GMT
+Message-Id: <F107kqCVM79KcsEab1500020e2a@hotmail.com>
+Date: Tue, 11 Jun 2002 13:45:05 -0400
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: "Sanding Bukit" <sandingbukit@hotmail.com>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: For Sale Mailing List, need help
+Mime-Version: 1.0
+Content-Type: text/plain; format=flowed
+X-Originating-IP: [12.228.100.101]
+X-OriginalArrivalTime: 11 Jun 2002 17:45:06.0132 (UTC) FILETIME=[B8EC2140:01C2116F]
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+Hi, does anybody know how can I subscribe to the "for sale" mailing list?
+I did not know the formal list name, if anybody could help, it will be 
+great.
+
+thanks
+sanding
+
+_________________________________________________________________
+MSN Photos is the easiest way to share and print your photos: 
+http://photos.msn.com/support/worldwide.aspx
+
+-- 
+-----------------------------------------------------------------
+ For information about this mailing list, and its archives, see: 
+ http://www.washington.edu/pine/pine-info/
+-----------------------------------------------------------------
+
+From pinedev@shivax2.cac.washington.edu Sun ???  0 00:00:00 1970 +0000
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Tue, 11 Jun 2002 11:11:35 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan4.cac.washington.edu (mailscan4.cac.washington.edu [140.142.33.15])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5BIBZo1002132
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Tue, 11 Jun 2002 11:11:35 -0700
+Received: FROM mx1.cac.washington.edu BY mailscan4.cac.washington.edu ; Tue Jun 11 11:11:35 2002 -0700
+Received: from list4.u.washington.edu (list4.u.washington.edu [140.142.14.167])
+	by mx1.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5BIBXBi011303
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 11 Jun 2002 11:11:34 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list4.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5BIAjeo090142;
+	Tue, 11 Jun 2002 11:10:45 -0700
+Received: from mailscan6.cac.washington.edu (mailscan6.cac.washington.edu [140.142.33.14])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5BI8xw3064390
+	for <pine-info@reallists.u.washington.edu>; Tue, 11 Jun 2002 11:08:59 -0700
+Received: FROM mxu4.u.washington.edu BY mailscan6.cac.washington.edu ; Tue Jun 11 11:08:58 2002 -0700
+Received: from lager.engin.umich.edu (lager.engin.umich.edu [141.213.40.233])
+	by mxu4.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5BI8wKQ004993
+	for <pine-info@u.washington.edu>; Tue, 11 Jun 2002 11:08:58 -0700
+Received: from localhost (ckozak@localhost [127.0.0.1])
+	by lager.engin.umich.edu (8.9.3/8.9.1) with ESMTP id OAA13412
+	for <pine-info@u.washington.edu>; Tue, 11 Jun 2002 14:08:57 -0400 (EDT)
+Message-Id: <Pine.SOL.4.33.0206111407380.13057-100000@lager.engin.umich.edu>
+Date: Tue, 11 Jun 2002 14:08:57 -0400 (EDT)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: Chris Kozak <ckozak@engin.umich.edu>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: Pine Segmentation Fault
+In-Reply-To: <Pine.SOL.4.33.0206061744500.26474-100000@lager.engin.umich.edu>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-To: Pine Discussion Forum <pine-info@u.washington.edu>
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+
+ I am running Pine v4.33 on Solaris 8.  While attempting to open certain
+ messages with (as of yet unopened) attachments, pine segmentation faults.
+ (Under csh this will leave the user with a frozen prompt, while under
+ tcsh the prompt is still usable.)
+
+ The messages have the following in common:
+   Most have been sent by the klez virus
+   Most have html attachments (all have attachments)
+   All appear to have come from a Windows machine
+
+ After sifting through the pine newsgroup I've found mention of html
+ attachments causing Pine v4.02 to seg fault.  Somebody also mentioned that
+ Microsoft doesn't always follow the Mime standard.
+
+ Knowing that Klez propagates through Mime encoded html attachments by
+ exploiting Microsoft Outlook, I'd like to know if Pine is still (as of
+ v4.33) vulnerable to html attachments.  Also, if Outlook is malforming
+ the Mime headers, could this cause v4.33 to crash?
+
+Any help would be greatly appreciated,
+
+Chris
+
+-- 
+-----------------------------------------------------------------
+ For information about this mailing list, and its archives, see: 
+ http://www.washington.edu/pine/pine-info/
+-----------------------------------------------------------------
+
+From pinedev@shivax2.cac.washington.edu Sun ???  0 00:00:00 1970 +0000
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Tue, 11 Jun 2002 12:56:41 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan6.cac.washington.edu (mailscan6.cac.washington.edu [140.142.33.14])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5BJufo1006678
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Tue, 11 Jun 2002 12:56:41 -0700
+Received: FROM mx2.cac.washington.edu BY mailscan6.cac.washington.edu ; Tue Jun 11 12:56:40 2002 -0700
+Received: from list2.u.washington.edu (list2.u.washington.edu [140.142.14.165])
+	by mx2.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5BJud2Z013270
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 11 Jun 2002 12:56:40 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list2.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5BJs3qt017970;
+	Tue, 11 Jun 2002 12:54:03 -0700
+Received: from mailscan1.cac.washington.edu (mailscan1.cac.washington.edu [140.142.32.16])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5BJniw3035972
+	for <pine-info@reallists.u.washington.edu>; Tue, 11 Jun 2002 12:49:44 -0700
+Received: FROM mxu1.u.washington.edu BY mailscan1.cac.washington.edu ; Tue Jun 11 12:49:43 2002 -0700
+Received: from mxout3.cac.washington.edu (mxout3.cac.washington.edu [140.142.32.19])
+	by mxu1.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5BJnhKk005857
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO)
+	for <pine-info@lists.u.washington.edu>; Tue, 11 Jun 2002 12:49:43 -0700
+Received: from [10.95.135.3] ([128.95.135.3])
+	by mxout3.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5BJnh9M023480
+	for <pine-info@u.washington.edu>; Tue, 11 Jun 2002 12:49:43 -0700
+Message-Id: <Pine.WNT.4.50.0206111247270.100-100000@hubertw2k2_ndc.nebula.washington.edu>
+Date: Tue, 11 Jun 2002 12:49:43 -0700 (Pacific Daylight Time)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: Steve Hubert <hubert@washington.edu>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: Re: IMAP addressbooks and mbx format
+In-Reply-To: <Pine.WNT.4.44.0206110325500.1332-100000@DG840K01>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-To: Pine Discussion Forum <pine-info@u.washington.edu>
+X-X-Sender: hubert@shivams.cac.washington.edu
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+Yes, like Nancy said, it does work for us. I'm wondering if you are able
+to read the folder as a regular mail folder using pine. For example, you
+do something like
+
+ Goto        {imap.server}remote_addressbook
+
+and then look at the messages. Since a remote addressbook is a regular
+mail folder that ought to work. Thanks.
+
+-- 
+Steve Hubert <hubert@washington.edu>
+Networks and Distributed Computing, Univ. of Washington, Seattle
+
+
+
+From pinedev@shivax2.cac.washington.edu Sun ???  0 00:00:00 1970 +0000
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Tue, 11 Jun 2002 14:51:24 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan5.cac.washington.edu (mailscan5.cac.washington.edu [140.142.32.14])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5BLpNo1012062
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Tue, 11 Jun 2002 14:51:23 -0700
+Received: FROM mx1.cac.washington.edu BY mailscan5.cac.washington.edu ; Tue Jun 11 14:51:23 2002 -0700
+Received: from list4.u.washington.edu (list4.u.washington.edu [140.142.14.167])
+	by mx1.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5BLpLB7020905
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 11 Jun 2002 14:51:22 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list4.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5BLnNeo075376;
+	Tue, 11 Jun 2002 14:49:28 -0700
+Received: from mailscan3.cac.washington.edu (mailscan3.cac.washington.edu [140.142.32.15])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5BLkIw3100774
+	for <pine-info@reallists.u.washington.edu>; Tue, 11 Jun 2002 14:46:18 -0700
+Received: FROM mxu4.u.washington.edu BY mailscan3.cac.washington.edu ; Tue Jun 11 14:46:18 2002 -0700
+Received: from mxout4.cac.washington.edu (mxout4.cac.washington.edu [140.142.33.19])
+	by mxu4.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5BLkIKR007267
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO)
+	for <pine-info@lists.u.washington.edu>; Tue, 11 Jun 2002 14:46:18 -0700
+Received: from mailscan-out1.cac.washington.edu (mailscan-out1.cac.washington.edu [140.142.32.17])
+	by mxout4.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5BLkGgt009014
+	for <pine-info@u.washington.edu>; Tue, 11 Jun 2002 14:46:17 -0700
+Received: FROM smtp.washington.edu BY mailscan-out1.cac.washington.edu ; Tue Jun 11 14:46:13 2002 -0700
+Received: from Tomobiki-Cho.CAC.Washington.EDU (tomobiki-cho.cac.washington.edu [128.95.135.58])
+	(authenticated bits=0)
+	by smtp.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5BLkDdf014748
+	(version=TLSv1/SSLv3 cipher=RC4-MD5 bits=128 verify=NOT);
+	Tue, 11 Jun 2002 14:46:13 -0700
+Message-Id: <Pine.WNT.4.50.0206111442420.2348-100000@Tomobiki-Cho.CAC.Washington.EDU>
+Date: Tue, 11 Jun 2002 14:46:15 -0700 (Pacific Daylight Time)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: Mark Crispin <MRC@cac.washington.edu>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: Re: new mail notification broken in readonly mode?
+In-Reply-To: <Pine.WNT.4.50.0206111431550.100-100000@hubertw2k2_ndc.nebula.washington.edu>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Sender: mrc@CAC.Washington.EDU
+X-To: Ken Barr <kbarr216@yahoo.com>
+X-Cc: Pine Discussion Forum <pine-info@u.washington.edu>
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+> When I open pine in ReadOnly mode, I receive no
+> notification of new messages, and I must exit/restart
+> pine to see them (this is the pop3 behavior, iirc)
+
+This is the expected behavior with the traditional UNIX mailbox format
+(and also MMDF format).  Pine does not lock the mailbox when it is
+readonly (to allow some other process to open it readwrite), and as a
+result Pine can't handle any changes to the mailbox.
+
+You'll probably notice that if a readwrite process changes the mailbox a
+readonly Pine session dies a horrid death.
+
+> I like readonly mode since it preserves flags
+> (netscape won't filter mail if I've already read it in
+> Pine).  Is there a way to get both readonly AND new
+> mail notification?
+
+Not in traditional UNIX mailbox format.
+
+The alternative mbx format has a more advanced form of locking which
+allows multiple sessions to interoperate, including readonly sessions.
+
+-- Mark --
+
+http://staff.washington.edu/mrc
+Science does not emerge from voting, party politics, or public debate.
+
+
+From pinedev@shivax2.cac.washington.edu Sun ???  0 00:00:00 1970 +0000
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Wed, 12 Jun 2002 04:21:36 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan2.cac.washington.edu (mailscan2.cac.washington.edu [140.142.33.16])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5CBLao1006205
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Wed, 12 Jun 2002 04:21:36 -0700
+Received: FROM mx1.cac.washington.edu BY mailscan2.cac.washington.edu ; Wed Jun 12 04:21:35 2002 -0700
+Received: from list4.u.washington.edu (list4.u.washington.edu [140.142.14.167])
+	by mx1.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5CBLTtn010543
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 12 Jun 2002 04:21:29 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list4.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5CBIReo090206;
+	Wed, 12 Jun 2002 04:18:28 -0700
+Received: from mailscan5.cac.washington.edu (mailscan5.cac.washington.edu [140.142.32.14])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5CBFnw3040538
+	for <pine-info@reallists.u.washington.edu>; Wed, 12 Jun 2002 04:15:50 -0700
+Received: FROM mxu1.u.washington.edu BY mailscan5.cac.washington.edu ; Wed Jun 12 04:15:49 2002 -0700
+Received: from carlos.kenyaweb.com (ndovu.kenyaweb.com [194.201.253.18])
+	by mxu1.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5CBFjKj020565
+	for <pine-info@u.washington.edu>; Wed, 12 Jun 2002 04:15:48 -0700
+Received: from linux.form-net.com ([194.201.253.105])
+	by carlos.kenyaweb.com with esmtp (Exim 4.04)
+	id 17I63J-00024k-00
+	for pine-info@u.washington.edu; Wed, 12 Jun 2002 14:12:37 +0300
+Received: from frank (localhost.localdomain [127.0.0.1])
+	by linux.form-net.com (8.11.6/8.11.6) with SMTP id g5CBI5608263
+	for <pine-info@u.washington.edu>; Wed, 12 Jun 2002 14:18:06 +0300
+Message-Id: <003101c21201$8cebb500$3164a8c0@frank>
+Date: Wed, 12 Jun 2002 14:08:57 +0300
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: "Kenneth Ndirangu" <kendirangu@kenyaweb.com>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: Pico & Slackware
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_002E_01C2121A.B1B89970"
+X-To: <pine-info@u.washington.edu>
+X-Priority: 3
+X-MSMail-Priority: Normal
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2600.0000
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_002E_01C2121A.B1B89970
+Content-Type: text/plain;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+Hello all,
+I am a Slackware Linux 8.0 user, When I first installed Pico was ok
+Now I get command not found what could be wrong
+
+HELP
+
+------=_NextPart_000_002E_01C2121A.B1B89970
+Content-Type: text/html;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD>
+<META http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Diso-8859-1">
+<META content=3D"MSHTML 6.00.2716.2200" name=3DGENERATOR>
+<STYLE></STYLE>
+</HEAD>
+<BODY bgColor=3D#ffffff>
+<DIV><FONT face=3DArial size=3D2>Hello all,</FONT></DIV>
+<DIV><FONT face=3DArial size=3D2>I am a Slackware Linux 8.0 user, When I =
+first=20
+installed Pico was ok</FONT></DIV>
+<DIV><FONT face=3DArial size=3D2>Now I get command not found what could =
+be=20
+wrong</FONT></DIV>
+<DIV><FONT face=3DArial size=3D2></FONT>&nbsp;</DIV>
+<DIV><FONT face=3DArial size=3D2>HELP</FONT></DIV></BODY></HTML>
+
+------=_NextPart_000_002E_01C2121A.B1B89970--
+
+
+-- 
+-----------------------------------------------------------------
+ For information about this mailing list, and its archives, see: 
+ http://www.washington.edu/pine/pine-info/
+-----------------------------------------------------------------
+
+From pinedev@shivax2.cac.washington.edu Sun ???  0 00:00:00 1970 +0000
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Wed, 12 Jun 2002 04:54:56 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan3.cac.washington.edu (mailscan3.cac.washington.edu [140.142.32.15])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5CBsto1006876
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Wed, 12 Jun 2002 04:54:56 -0700
+Received: FROM mx1.cac.washington.edu BY mailscan3.cac.washington.edu ; Wed Jun 12 04:54:55 2002 -0700
+Received: from list4.u.washington.edu (list4.u.washington.edu [140.142.14.167])
+	by mx1.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5CBsstn011118
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 12 Jun 2002 04:54:55 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list4.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5CBsBeo080020;
+	Wed, 12 Jun 2002 04:54:11 -0700
+Received: from mailscan6.cac.washington.edu (mailscan6.cac.washington.edu [140.142.33.14])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5CBquw3034824
+	for <pine-info@reallists.u.washington.edu>; Wed, 12 Jun 2002 04:52:56 -0700
+Received: FROM mxu2.u.washington.edu BY mailscan6.cac.washington.edu ; Wed Jun 12 04:52:56 2002 -0700
+Received: from carlos.kenyaweb.com (ndovu.kenyaweb.com [194.201.253.18])
+	by mxu2.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5CBqrhR012823
+	for <pine-info@u.washington.edu>; Wed, 12 Jun 2002 04:52:55 -0700
+Received: from linux.form-net.com ([194.201.253.105])
+	by carlos.kenyaweb.com with esmtp (Exim 4.04)
+	id 17I6dG-00032g-00
+	for pine-info@u.washington.edu; Wed, 12 Jun 2002 14:49:46 +0300
+Received: from frank (localhost.localdomain [127.0.0.1])
+	by linux.form-net.com (8.11.6/8.11.6) with SMTP id g5CBtGc14287
+	for <pine-info@u.washington.edu>; Wed, 12 Jun 2002 14:55:16 +0300
+Message-Id: <005101c21206$bda47290$3164a8c0@frank>
+Date: Wed, 12 Jun 2002 14:46:07 +0300
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: "Kenneth Ndirangu" <kendirangu@kenyaweb.com>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: Pico & Slackware
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_004E_01C2121F.E28CCE40"
+X-To: <pine-info@u.washington.edu>
+X-Priority: 3
+X-MSMail-Priority: Normal
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2600.0000
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_004E_01C2121F.E28CCE40
+Content-Type: text/plain;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+Actually Pico stopped working when I rebooted the system
+
+( I am using Slackware Linux 8.0 my Pico suddenly failed=20
+I get error command not found )
+
+Ken
+
+------=_NextPart_000_004E_01C2121F.E28CCE40
+Content-Type: text/html;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD>
+<META http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Diso-8859-1">
+<META content=3D"MSHTML 6.00.2716.2200" name=3DGENERATOR>
+<STYLE></STYLE>
+</HEAD>
+<BODY bgColor=3D#ffffff>
+<DIV><FONT face=3DArial size=3D2>Actually Pico stopped working when I =
+rebooted the=20
+system</FONT></DIV>
+<DIV><FONT face=3DArial size=3D2></FONT>&nbsp;</DIV>
+<DIV><FONT face=3DArial size=3D2>( I am using Slackware Linux 8.0 my =
+Pico suddenly=20
+failed </FONT></DIV>
+<DIV><FONT face=3DArial size=3D2>I get error command not found =
+)</FONT></DIV>
+<DIV><FONT face=3DArial size=3D2></FONT>&nbsp;</DIV>
+<DIV><FONT face=3DArial size=3D2>Ken</FONT></DIV></BODY></HTML>
+
+------=_NextPart_000_004E_01C2121F.E28CCE40--
+
+
+-- 
+-----------------------------------------------------------------
+ For information about this mailing list, and its archives, see: 
+ http://www.washington.edu/pine/pine-info/
+-----------------------------------------------------------------
+
+From pinedev@shivax2.cac.washington.edu Sun ???  0 00:00:00 1970 +0000
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Wed, 12 Jun 2002 10:58:04 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan1.cac.washington.edu (mailscan1.cac.washington.edu [140.142.32.16])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5CHw4o1019479
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Wed, 12 Jun 2002 10:58:04 -0700
+Received: FROM mx1.cac.washington.edu BY mailscan1.cac.washington.edu ; Wed Jun 12 10:58:03 2002 -0700
+Received: from list4.u.washington.edu (list4.u.washington.edu [140.142.14.167])
+	by mx1.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5CHw2tn024924
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 12 Jun 2002 10:58:02 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list4.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5CHupeo017312;
+	Wed, 12 Jun 2002 10:56:51 -0700
+Received: from mailscan3.cac.washington.edu (mailscan3.cac.washington.edu [140.142.32.15])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5CHpWw3031324
+	for <pine-info@reallists.u.washington.edu>; Wed, 12 Jun 2002 10:51:32 -0700
+Received: FROM mxu2.u.washington.edu BY mailscan3.cac.washington.edu ; Wed Jun 12 10:51:31 2002 -0700
+Received: from svr-ganmtc-appserv-mgmt.ncf.coxexpress.com (svr-ganmtc-appserv-mgmt.ncf.coxexpress.com [24.136.46.5])
+	by mxu2.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5CHpVhR028937
+	for <pine-info@u.washington.edu>; Wed, 12 Jun 2002 10:51:31 -0700
+Received: from localhost (cpe-gan-68-101-77-110-cmcpe.ncf.coxexpress.com [68.101.77.110])
+	by svr-ganmtc-appserv-mgmt.ncf.coxexpress.com (8.11.4/8.11.4) with ESMTP id g5CHpUQ06637
+	for <pine-info@u.washington.edu>; Wed, 12 Jun 2002 13:51:30 -0400
+Message-Id: <Pine.WNT.4.44.0206121347360.3004-100000@Tim>
+Date: Wed, 12 Jun 2002 13:51:15 -0400 (Eastern Daylight Time)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: "Timothy J. Luoma" <luomat@peak.org>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: PC-Pine, IMAP, and unread messages
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-To: PINE Mailing List <pine-info@u.washington.edu>
+X-X-Sender: luomat@mail.peak.org
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+
+I have messages sorted into a number of mailboxes (like, 30) on my server,
+and I access them via IMAP.
+
+PC-Pine handles this like a champ.  The only problem is telling which
+mailboxes have unread messages in them.
+
+Usually I log into my webmail program to see what mailboxes have unread
+mail, but then I end up having to switch back and forth.
+
+I thought about setting up a number of incoming mailboxes, but I'd hate to
+have to poll all of them one at a time.
+
+What do other people in this situation do?
+
+Thanks
+TjL
+
+
+
+-- 
+-----------------------------------------------------------------
+ For information about this mailing list, and its archives, see: 
+ http://www.washington.edu/pine/pine-info/
+-----------------------------------------------------------------
+
+From pinedev@shivax2.cac.washington.edu Sun ???  0 00:00:00 1970 +0000
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Wed, 12 Jun 2002 20:51:34 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan1.cac.washington.edu (mailscan1.cac.washington.edu [140.142.32.16])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5D3pYo1009240
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Wed, 12 Jun 2002 20:51:34 -0700
+Received: FROM mx1.cac.washington.edu BY mailscan1.cac.washington.edu ; Wed Jun 12 20:51:33 2002 -0700
+Received: from list2.u.washington.edu (list2.u.washington.edu [140.142.14.165])
+	by mx1.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5D3pSUw012256
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Wed, 12 Jun 2002 20:51:28 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list2.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5D3oKqt005326;
+	Wed, 12 Jun 2002 20:50:20 -0700
+Received: from mailscan3.cac.washington.edu (mailscan3.cac.washington.edu [140.142.32.15])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5D3lsw3082240
+	for <pine-info@reallists.u.washington.edu>; Wed, 12 Jun 2002 20:47:54 -0700
+Received: FROM mxu4.u.washington.edu BY mailscan3.cac.washington.edu ; Wed Jun 12 20:47:53 2002 -0700
+Received: from pooh.ASARian.org (pooh.ASARian.org [216.21.171.83])
+	by mxu4.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5D3lpKR017881
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO)
+	for <pine-info@u.washington.edu>; Wed, 12 Jun 2002 20:47:52 -0700
+Received: from localhost (fuzzy@localhost.ASARian.org [127.0.0.1])
+	by pooh.ASARian.org (8.11.6/8.11.6) with ESMTP id g5D3mqw30468
+	for <pine-info@u.washington.edu>; Wed, 12 Jun 2002 23:48:52 -0400 (EDT)
+	(envelope-from fuzzy@pooh.ASARian.org)
+Message-Id: <Pine.BSF.4.44.0206122340170.30115-100000@pooh.ASARian.org>
+Date: Wed, 12 Jun 2002 23:48:52 -0400 (EDT)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: Fuzzy <fuzzy@pooh.ASARian.org>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: pico static compile 
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-To: Pine Discussion Forum <pine-info@u.washington.edu>
+X-No-Archive: Yes
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+
+I'd like to compile a copy of pico staticly to use
+in a recovery environment. how would I go about
+doing that?
+
+Fuz
+
+
+-- 
+-----------------------------------------------------------------
+ For information about this mailing list, and its archives, see: 
+ http://www.washington.edu/pine/pine-info/
+-----------------------------------------------------------------
+
+From pinedev@shivax2.cac.washington.edu Sun ???  0 00:00:00 1970 +0000
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Thu, 13 Jun 2002 01:56:35 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan1.cac.washington.edu (mailscan1.cac.washington.edu [140.142.32.16])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5D8uZo1020793
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Thu, 13 Jun 2002 01:56:35 -0700
+Received: FROM mx1.cac.washington.edu BY mailscan1.cac.washington.edu ; Thu Jun 13 01:56:34 2002 -0700
+Received: from list2.u.washington.edu (list2.u.washington.edu [140.142.14.165])
+	by mx1.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5D8uOUw019976
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Thu, 13 Jun 2002 01:56:25 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list2.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5D8tJqt006804;
+	Thu, 13 Jun 2002 01:55:19 -0700
+Received: from mailscan1.cac.washington.edu (mailscan1.cac.washington.edu [140.142.32.16])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5D8qkw3092782
+	for <pine-info@reallists.u.washington.edu>; Thu, 13 Jun 2002 01:52:46 -0700
+Received: FROM mxu4.u.washington.edu BY mailscan1.cac.washington.edu ; Thu Jun 13 01:52:45 2002 -0700
+Received: from ux-2s02.inf.fh-rhein-sieg.de (ux-2s02.inf.fh-bonn-rhein-sieg.de [194.95.66.3])
+	by mxu4.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5D8qiKQ032066
+	for <pine-info@u.washington.edu>; Thu, 13 Jun 2002 01:52:44 -0700
+Received: from ux-2s03.inf.fh-bonn-rhein-sieg.de (ux-2s03c [192.168.3.1])
+	by ux-2s02.inf.fh-rhein-sieg.de (8.12.2/8.12.2) with ESMTP id g5D8qWBQ016524
+	for <pine-info@u.washington.edu>; Thu, 13 Jun 2002 10:52:33 +0200 (MEST)
+Received: from [10.110.1.10] (helo=pc-2m10.inf.fh-bonn-rhein-sieg.de)
+	by ux-2s03.inf.fh-bonn-rhein-sieg.de with esmtp (Exim 3.35 #1 (Debian))
+	id 17IQLI-0001FK-00
+	for <pine-info@u.washington.edu>; Thu, 13 Jun 2002 10:52:32 +0200
+Message-Id: <Pine.WNT.4.44.0206131032290.-16621613-100000@pc-2m10.inf.fh-bonn-rhein-sieg.de>
+Date: Thu, 13 Jun 2002 10:52:32 +0200 (CET)
+Reply-To: Steffen.Kaiser@fh-rhein-sieg.de
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: Steffen Kaiser <skaise2a@smail.inf.fh-bonn-rhein-sieg.de>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: Pine v4.44 accessing msdnaa.general
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-To: Pine Discussion Forum <pine-info@u.washington.edu>
+X-X-Sender: skaise2a@ux-2s03b.inf.fh-rhein-sieg.de
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+Hi,
+
+I've setup a caching NNTP proxy (Delegate) to access various newsgroups,
+e.g. msdnaa.general. This newsgroup contains more than 2000 articles,
+which are never deleted, so I've read.
+
+When I access the newsgroup with either Free Agent (Win95) or KNode
+(Linux), there is some longer delay (about 15 seconds), but all article
+headers are displayed.
+Accessing the _same_ proxy (even simultaneously, thus, the active list is
+not regenerated, but re-used by the proxy) both PC-Pine v4.44 (Win95) and
+Pine v4.44 (Solaris 8) stall for over 300 seconds; eventually GPF
+(PC-Pine) or telling me that the mail box has been closed due to access
+error (Pine/Solaris), in which case all >2000 messages displayed with
+empty header, zero size and marked deleted.
+
+Also, switching between newsgroups via the TAB key is slow, very slow
+compared to manually hopping to the next group using '<' <cursor_right>
+<enter>.
+
+Bye,
+
+-- 
+
+Steffen Kaiser
+
+-- 
+-----------------------------------------------------------------
+ For information about this mailing list, and its archives, see: 
+ http://www.washington.edu/pine/pine-info/
+-----------------------------------------------------------------
+
+From pinedev@shivax2.cac.washington.edu Sun ???  0 00:00:00 1970 +0000
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Tue, 18 Jun 2002 03:38:30 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan4.cac.washington.edu (mailscan4.cac.washington.edu [140.142.33.15])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5IAcUo1017966
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Tue, 18 Jun 2002 03:38:30 -0700
+Received: FROM mx1.cac.washington.edu BY mailscan4.cac.washington.edu ; Tue Jun 18 03:38:29 2002 -0700
+Received: from list2.u.washington.edu (list2.u.washington.edu [140.142.14.165])
+	by mx1.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5IAcSMs032153
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 18 Jun 2002 03:38:29 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list2.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5IAaGqt024586;
+	Tue, 18 Jun 2002 03:36:16 -0700
+Received: from mailscan4.cac.washington.edu (mailscan4.cac.washington.edu [140.142.33.15])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5IAWSw3068814
+	for <pine-info@reallists.u.washington.edu>; Tue, 18 Jun 2002 03:32:28 -0700
+Received: FROM mxu2.u.washington.edu BY mailscan4.cac.washington.edu ; Tue Jun 18 03:32:27 2002 -0700
+Received: from pooh.ASARian.org (pooh.ASARian.org [216.21.171.83])
+	by mxu2.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5IAWOhS028036
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO)
+	for <pine-info@u.washington.edu>; Tue, 18 Jun 2002 03:32:26 -0700
+Received: from localhost (fuzzy@localhost.ASARian.org [127.0.0.1])
+	by pooh.ASARian.org (8.11.6/8.11.6) with ESMTP id g5IAVJP01132
+	for <pine-info@u.washington.edu>; Tue, 18 Jun 2002 06:31:21 -0400 (EDT)
+	(envelope-from fuzzy@pooh.ASARian.org)
+Message-Id: <Pine.BSF.4.44.0206180212150.97677-100000@pooh.ASARian.org>
+Date: Tue, 18 Jun 2002 06:31:19 -0400 (EDT)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: Fuzzy <fuzzy@pooh.ASARian.org>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: can someone tell me how to compile pico statically
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-To: Pine Discussion Forum <pine-info@u.washington.edu>
+X-No-Archive: Yes
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+
+FreeBSD 4.4-release
+pine 4.44
+
+I need an editor in single user, so I'd like to
+compile a copy of pico linked staticly.
+
+what do I need to do?
+
+Thanks
+
+Fuz
+
+-- 
+-----------------------------------------------------------------
+ For information about this mailing list, and its archives, see: 
+ http://www.washington.edu/pine/pine-info/
+-----------------------------------------------------------------
+
+From pinedev@shivax2.cac.washington.edu Sun ???  0 00:00:00 1970 +0000
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Tue, 18 Jun 2002 11:27:14 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan4.cac.washington.edu (mailscan4.cac.washington.edu [140.142.33.15])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5IIREo1000604
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Tue, 18 Jun 2002 11:27:14 -0700
+Received: FROM mx2.cac.washington.edu BY mailscan4.cac.washington.edu ; Tue Jun 18 11:27:13 2002 -0700
+Received: from list4.u.washington.edu (list4.u.washington.edu [140.142.14.167])
+	by mx2.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5IIRDYx003661
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 18 Jun 2002 11:27:13 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list4.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5IIPieo075328;
+	Tue, 18 Jun 2002 11:25:45 -0700
+Received: from mailscan3.cac.washington.edu (mailscan3.cac.washington.edu [140.142.32.15])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5IIOAw3065910
+	for <pine-info@reallists.u.washington.edu>; Tue, 18 Jun 2002 11:24:10 -0700
+Received: FROM mxu1.u.washington.edu BY mailscan3.cac.washington.edu ; Tue Jun 18 11:24:10 2002 -0700
+Received: from front2.chartermi.net (24.213.60.124.up.mi.chartermi.net [24.213.60.124])
+	by mxu1.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5IIO9Kj023058
+	for <pine-info@u.washington.edu>; Tue, 18 Jun 2002 11:24:09 -0700
+Received: from [24.196.69.180] (HELO maranatha.chartermi.net)
+  by front2.chartermi.net (CommuniGate Pro SMTP 3.5.3)
+  with ESMTP id 14195517 for pine-info@u.washington.edu; Tue, 18 Jun 2002 14:24:08 -0400
+Received: from chomiak (helo=localhost)
+	by maranatha.chartermi.net with local-esmtp (Exim 3.35 #1 (Debian))
+	id 17KNeH-0000Vu-00
+	for <pine-info@u.washington.edu>; Tue, 18 Jun 2002 13:24:13 -0500
+Message-Id: <Pine.LNX.4.44.0206181322310.1965-100000@maranatha.chartermi.net>
+Date: Tue, 18 Jun 2002 13:24:13 -0500 (CDT)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: Cheryl Homiak <chomiak@chartermi.net>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: Re: resending
+In-Reply-To: <Pine.LNX.4.44.0206181140001.1675-100000@maranatha.chartermi.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-To: Pine Discussion Forum <pine-info@u.washington.edu>
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+Is there any way to re-send a message that is already in sent-mail other than:
+a. exporting it, editing it and then inserting it in a new message; or
+B. using forward; or
+c. using reply and including the text of the message.
+I'd like to just be able to re-send something that didn't get a reply before.
+C isn't too bad; you just have to do a little editing but wondered if
+there was an easier way.
+thanks.
+
+ Cheryl
+>
+
+
+
+From pinedev@shivax2.cac.washington.edu Sun ???  0 00:00:00 1970 +0000
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Tue, 18 Jun 2002 11:32:45 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan3.cac.washington.edu (mailscan3.cac.washington.edu [140.142.32.15])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5IIWjo1000894
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Tue, 18 Jun 2002 11:32:45 -0700
+Received: FROM mx1.cac.washington.edu BY mailscan3.cac.washington.edu ; Tue Jun 18 11:32:44 2002 -0700
+Received: from list1.u.washington.edu (list1.u.washington.edu [140.142.8.99])
+	by mx1.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5IIWcMs012084
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 18 Jun 2002 11:32:38 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list1.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5IIVYR8003862;
+	Tue, 18 Jun 2002 11:31:34 -0700
+Received: from mailscan3.cac.washington.edu (mailscan3.cac.washington.edu [140.142.32.15])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5IIUow3065982
+	for <pine-info@reallists.u.washington.edu>; Tue, 18 Jun 2002 11:30:50 -0700
+Received: FROM mxu4.u.washington.edu BY mailscan3.cac.washington.edu ; Tue Jun 18 11:30:50 2002 -0700
+Received: from law.usc.edu (law.usc.edu [128.125.42.6])
+	by mxu4.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5IIUoKQ025250
+	for <pine-info@u.washington.edu>; Tue, 18 Jun 2002 11:30:50 -0700
+Received: from L2122.usc.edu (l2122 [128.125.42.67])
+	by law.usc.edu (Pro-8.9.3/8.9.3) with ESMTP id LAA20204;
+	Tue, 18 Jun 2002 11:30:47 -0700 (PDT)
+Message-Id: <Pine.WNT.4.44.0206181129330.1668-100000@L2122>
+Date: Tue, 18 Jun 2002 11:30:53 -0700 (Pacific Daylight Time)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: Robert Larmon <rlarmon@law.usc.edu>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: Re: resending
+In-Reply-To: <Pine.LNX.4.44.0206181322310.1965-100000@maranatha.chartermi.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-To: Cheryl Homiak <chomiak@chartermi.net>
+X-Cc: Pine Discussion Forum <pine-info@u.washington.edu>
+X-X-Sender: rlarmon@faculty-law.usc.edu
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+
+You could always Bounce/Redirect the message.  Type B, then the address to
+which you want to send it.
+
+Robert
+
+On Tue, 18 Jun 2002, Cheryl Homiak wrote:
+
+> Is there any way to re-send a message that is already in sent-mail other than:
+> a. exporting it, editing it and then inserting it in a new message; or
+> B. using forward; or
+> c. using reply and including the text of the message.
+> I'd like to just be able to re-send something that didn't get a reply before.
+> C isn't too bad; you just have to do a little editing but wondered if
+> there was an easier way.
+> thanks.
+>
+>  Cheryl
+> >
+>
+>
+>
+
+
+
+```````````````````````````````````````````````````````````````````````
+`			Robert Larmon				      `
+`			PC Systems Analyst			      `
+`			USC Law School Computing Services	      `
+`			rlarmon@law.usc.edu			      `
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+
+
+From pinedev@shivax2.cac.washington.edu Sun ???  0 00:00:00 1970 +0000
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Tue, 18 Jun 2002 13:24:26 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan5.cac.washington.edu (mailscan5.cac.washington.edu [140.142.32.14])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5IKOPo1004936
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Tue, 18 Jun 2002 13:24:26 -0700
+Received: FROM mx2.cac.washington.edu BY mailscan5.cac.washington.edu ; Tue Jun 18 13:24:25 2002 -0700
+Received: from list3.u.washington.edu (list3.u.washington.edu [140.142.8.100])
+	by mx2.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5IKOOYx007539
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 18 Jun 2002 13:24:24 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list3.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5IKNWlZ028174;
+	Tue, 18 Jun 2002 13:23:33 -0700
+Received: from mailscan4.cac.washington.edu (mailscan4.cac.washington.edu [140.142.33.15])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5IKLHw3059490
+	for <pine-info@reallists.u.washington.edu>; Tue, 18 Jun 2002 13:21:17 -0700
+Received: FROM mxu3.u.washington.edu BY mailscan4.cac.washington.edu ; Tue Jun 18 13:21:17 2002 -0700
+Received: from mta05-svc.ntlworld.com (mta05-svc.ntlworld.com [62.253.162.45])
+	by mxu3.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5IKLG8p013166
+	for <pine-info@u.washington.edu>; Tue, 18 Jun 2002 13:21:17 -0700
+Received: from cam.ac.uk ([80.4.4.119]) by mta05-svc.ntlworld.com
+          (InterMail vM.4.01.03.27 201-229-121-127-20010626) with ESMTP
+          id <20020618202115.ODOW2755.mta05-svc.ntlworld.com@cam.ac.uk>;
+          Tue, 18 Jun 2002 21:21:15 +0100
+Message-Id: <Pine.OS2.4.44.0206182120180.58-100000@barry>
+Date: Tue, 18 Jun 2002 21:20:43 +0100 (BST)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: Barry Landy <bl10@cam.ac.uk>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: Re: resending
+In-Reply-To: <Pine.LNX.4.44.0206181322310.1965-100000@maranatha.chartermi.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-To: Cheryl Homiak <chomiak@chartermi.net>
+X-Cc: Pine Discussion Forum <pine-info@u.washington.edu>
+X-X-Sender: bl10@imap.hermes.cam.ac.uk
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+Save to the postponed folder, then go Compose.
+
+On Tue, 18 Jun 2002, Cheryl Homiak wrote:
+
+:>Is there any way to re-send a message that is already in sent-mail other than:
+:>a. exporting it, editing it and then inserting it in a new message; or
+:>B. using forward; or
+:>c. using reply and including the text of the message.
+:>I'd like to just be able to re-send something that didn't get a reply before.
+:>C isn't too bad; you just have to do a little editing but wondered if
+:>there was an easier way.
+:>thanks.
+:>
+:> Cheryl
+:>>
+:>
+:>
+:>
+
+-- 
+Barry Landy                        Computing  Service :+44 1223 334600
+192, Gilbert Road                  Direct line:        +44 1223 334713
+Cambridge CB4 3PB                  Home:               +44-1223-570417
+                                   Email:Barry.Landy@ucs.cam.ac.uk
+
+
+From pinedev@shivax2.cac.washington.edu Sun ???  0 00:00:00 1970 +0000
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Tue, 18 Jun 2002 14:28:31 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan2.cac.washington.edu (mailscan2.cac.washington.edu [140.142.33.16])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5ILSVo1007328
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Tue, 18 Jun 2002 14:28:31 -0700
+Received: FROM mx1.cac.washington.edu BY mailscan2.cac.washington.edu ; Tue Jun 18 14:28:30 2002 -0700
+Received: from list1.u.washington.edu (list1.u.washington.edu [140.142.8.99])
+	by mx1.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5ILSTMs017677
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 18 Jun 2002 14:28:30 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list1.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5ILR7R8038852;
+	Tue, 18 Jun 2002 14:27:07 -0700
+Received: from mailscan3.cac.washington.edu (mailscan3.cac.washington.edu [140.142.32.15])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5ILPTw3043330
+	for <pine-info@reallists.u.washington.edu>; Tue, 18 Jun 2002 14:25:29 -0700
+Received: FROM mxu3.u.washington.edu BY mailscan3.cac.washington.edu ; Tue Jun 18 14:25:28 2002 -0700
+Received: from numenor.qualcomm.com (numenor.qualcomm.com [129.46.51.58])
+	by mxu3.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5ILPM8q029871
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=FAIL)
+	for <pine-info@u.washington.edu>; Tue, 18 Jun 2002 14:25:26 -0700
+Received: from magus.qualcomm.com (magus.qualcomm.com [129.46.61.148])
+	by numenor.qualcomm.com (8.12.3/8.12.1/1.0) with ESMTP id g5ILPEMU028652
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO)
+	for <pine-info@u.washington.edu>; Tue, 18 Jun 2002 14:25:15 -0700 (PDT)
+Received: from wtsice02.san.rr.com (wtsice02.qualcomm.com [129.46.27.239])
+	by magus.qualcomm.com (8.12.3/8.12.1/1.0) with ESMTP id g5ILPCfq001271
+	for <pine-info@u.washington.edu>; Tue, 18 Jun 2002 14:25:13 -0700 (PDT)
+Message-Id: <5.1.0.14.2.20020618140622.00f789b0@frostbite.qualcomm.com>
+Date: Tue, 18 Jun 2002 14:16:41 -0700
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: Ben Williams <bcw@san.rr.com>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: LDAP and user-domain ...
+Mime-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"; format=flowed
+X-Sender: bcw@pop-server.san.rr.com
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+I recently configured my pine to use ldap queries implicitly ...
+
+My ldap servers do not return the mail-host/domain with an email query,
+
+so I get "john doe" <jdoe@missing-hostname>
+
+Is there a way to get pine to use the 'user-domain' as it does with
+queries out of the password file?
+
+thanks!
+-- ben..
+
+-- 
+-----------------------------------------------------------------
+ For information about this mailing list, and its archives, see: 
+ http://www.washington.edu/pine/pine-info/
+-----------------------------------------------------------------
+
+From pinedev@shivax2.cac.washington.edu Sun ???  0 00:00:00 1970 +0000
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Tue, 18 Jun 2002 17:01:26 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan4.cac.washington.edu (mailscan4.cac.washington.edu [140.142.33.15])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5J01Po1012689
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Tue, 18 Jun 2002 17:01:26 -0700
+Received: FROM mx2.cac.washington.edu BY mailscan4.cac.washington.edu ; Tue Jun 18 17:01:25 2002 -0700
+Received: from list2.u.washington.edu (list2.u.washington.edu [140.142.14.165])
+	by mx2.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with ESMTP id g5J01IYx014465
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 18 Jun 2002 17:01:19 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list2.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5J00Jqt019134;
+	Tue, 18 Jun 2002 17:00:19 -0700
+Received: from mailscan3.cac.washington.edu (mailscan3.cac.washington.edu [140.142.32.15])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5INwdw3043382
+	for <pine-info@reallists.u.washington.edu>; Tue, 18 Jun 2002 16:58:39 -0700
+Received: FROM mxu1.u.washington.edu BY mailscan3.cac.washington.edu ; Tue Jun 18 16:58:38 2002 -0700
+Received: from web11907.mail.yahoo.com (web11907.mail.yahoo.com [216.136.172.191])
+	by mxu1.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5INwcKj018663
+	for <pine-info@u.washington.edu>; Tue, 18 Jun 2002 16:58:38 -0700
+Received: from [148.167.126.205] by web11907.mail.yahoo.com via HTTP; Tue, 18 Jun 2002 16:58:38 PDT
+Message-Id: <20020618235838.60307.qmail@web11907.mail.yahoo.com>
+Date: Tue, 18 Jun 2002 16:58:38 -0700 (PDT)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: Neil Hauser <slaptwins@yahoo.com>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: I hope I am on topic!!
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+Posted and copied on Yahoo INTC board by
+slaptwins Neil.
+First Time Poster
+by: slaptwins (50/M/Phoenix Arizona) 
+Long-Term Sentiment: Strong Buy 06/18/02 03:52 pm
+Msg: 313236 of 313259 
+
+There is a price for reading some of my messages.
+I have posted on the Primedia board but this
+board INTC is different. This is serious. This is
+historic.
+The following link pertains to the stock.
+http://www.intel.com/ebusiness/news/sia.htm
+Tomorrow.
+The price is my opinion about the internet.
+The computer industry should have bought up the
+television and radio broadcasters. 
+-The radio stations have been packaged into
+several companies but I am not familiar with the
+companies.-
+Instead the internet situation now is one of
+legal limbo.
+For posting purposes I think my opinion would be
+against the internet, against Windows upgrades
+and against open source software programming. But
+that is just an off the record comment.
+Maybe internet computers should have
+indentification software!!
+I once had an amateur radio license WB2VBQ. It
+expired.
+END 
+
+-I sent one here too.-
+Date: Tue, 18 Jun 2002 16:48:14 -0700 (PDT) 
+ 
+From: "Neil Hauser" <slaptwins@yahoo.com> 
+Address  
+ 
+Subject: Hope I am on topic! 
+ 
+To: mozilla-mathml@mozilla.org 
+ 
+END
+ 
+
+
+
+
+
+__________________________________________________
+Do You Yahoo!?
+Yahoo! - Official partner of 2002 FIFA World Cup
+http://fifaworldcup.yahoo.com
+
+From pinedev@shivax2.cac.washington.edu Sun ???  0 00:00:00 1970 +0000
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Thu, 20 Jun 2002 07:04:30 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan6.cac.washington.edu (mailscan6.cac.washington.edu [140.142.33.14])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.06) with SMTP id g5KE4U2P011882
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Thu, 20 Jun 2002 07:04:30 -0700
+Received: FROM mx2.cac.washington.edu BY mailscan6.cac.washington.edu ; Thu Jun 20 07:04:30 2002 -0700
+Received: from list1.u.washington.edu (list1.u.washington.edu [140.142.8.99])
+	by mx2.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.06) with ESMTP id g5KE4Mvm002415
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Thu, 20 Jun 2002 07:04:22 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list1.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5KE2OR8015338;
+	Thu, 20 Jun 2002 07:02:24 -0700
+Received: from mailscan2.cac.washington.edu (mailscan2.cac.washington.edu [140.142.33.16])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5KDvhw3086730
+	for <pine-info@reallists.u.washington.edu>; Thu, 20 Jun 2002 06:57:43 -0700
+Received: FROM mxu1.u.washington.edu BY mailscan2.cac.washington.edu ; Thu Jun 20 06:57:42 2002 -0700
+Received: from svr-ganmtc-appserv-mgmt.ncf.coxexpress.com (svr-ganmtc-appserv-mgmt.ncf.coxexpress.com [24.136.46.5])
+	by mxu1.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.06) with ESMTP id g5KDvfR8025180
+	for <pine-info@u.washington.edu>; Thu, 20 Jun 2002 06:57:42 -0700
+Received: from localhost (cpe-gan-68-101-77-110-cmcpe.ncf.coxexpress.com [68.101.77.110])
+	by svr-ganmtc-appserv-mgmt.ncf.coxexpress.com (8.11.4/8.11.4) with ESMTP id g5KDvfQ10225
+	for <pine-info@u.washington.edu>; Thu, 20 Jun 2002 09:57:41 -0400
+Message-Id: <Pine.WNT.4.44.0206200952380.2800-100000@Tim>
+Date: Thu, 20 Jun 2002 09:57:34 -0400 (Eastern Daylight Time)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: "Timothy J. Luoma" <luomat@peak.org>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: PC-Pine and voice recognition programs
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-To: PINE Mailing List <pine-info@u.washington.edu>
+X-X-Sender: luomat@mail.peak.org
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+
+1) Are there *any* voice recognition programs that work well with PC-Pine?
+
+and if so
+
+2) What voice recognition programs have people had success with?
+
+Thanks
+TjL
+
+
+
+-- 
+-----------------------------------------------------------------
+ For information about this mailing list, and its archives, see: 
+ http://www.washington.edu/pine/pine-info/
+-----------------------------------------------------------------
+
+From pinedev@shivax2.cac.washington.edu Sun ???  0 00:00:00 1970 +0000
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Fri, 21 Jun 2002 11:46:00 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan3.cac.washington.edu (mailscan3.cac.washington.edu [140.142.32.15])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.06) with SMTP id g5LIjx2P032067
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Fri, 21 Jun 2002 11:45:59 -0700
+Received: FROM mx2.cac.washington.edu BY mailscan3.cac.washington.edu ; Fri Jun 21 11:45:59 2002 -0700
+Received: from list4.u.washington.edu (list4.u.washington.edu [140.142.14.167])
+	by mx2.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.06) with ESMTP id g5LIjwvm013856
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Fri, 21 Jun 2002 11:45:58 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list4.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5LIi6eo087494;
+	Fri, 21 Jun 2002 11:44:06 -0700
+Received: from mailscan4.cac.washington.edu (mailscan4.cac.washington.edu [140.142.33.15])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5LIg2w3071968
+	for <pine-info@reallists.u.washington.edu>; Fri, 21 Jun 2002 11:42:02 -0700
+Received: FROM mxu3.u.washington.edu BY mailscan4.cac.washington.edu ; Fri Jun 21 11:42:01 2002 -0700
+Received: from server1.shellworld.net (server1.shellworld.net [64.39.15.178])
+	by mxu3.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.06) with ESMTP id g5LIg0br016827
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO)
+	for <pine-info@u.washington.edu>; Fri, 21 Jun 2002 11:42:01 -0700
+Received: from localhost (fairall@localhost)
+	by server1.shellworld.net (8.11.1/8.11.1) with ESMTP id g5LIfxL16407;
+	Fri, 21 Jun 2002 13:41:59 -0500 (CDT)
+	(envelope-from fairall@ns.shellworld.net)
+Message-Id: <Pine.BSF.4.44.0206211440290.14919-100000@server1.shellworld.net>
+Date: Fri, 21 Jun 2002 14:41:59 -0400 (EDT)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: Leslie Fairall <fairall@ns.shellworld.net>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: Re: resending
+In-Reply-To: <Pine.LNX.4.44.0206181322310.1965-100000@maranatha.chartermi.net>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-To: Cheryl Homiak <chomiak@chartermi.net>
+X-Cc: Pine Discussion Forum <pine-info@u.washington.edu>
+X-X-Sender: fairall@server1.shellworld.net
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+Cheryl:
+
+You might already knw this, but be sure to go into your setup menu and
+enable the bounce commandbefore you try to bunce a message. Hope this
+helps.
+
+
+
+
+
+
+
+
+From pinedev@shivax2.cac.washington.edu Sun ???  0 00:00:00 1970 +0000
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Mon, 24 Jun 2002 07:37:24 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan6.cac.washington.edu (mailscan6.cac.washington.edu [140.142.33.14])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.06) with SMTP id g5OEbN2P024181
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Mon, 24 Jun 2002 07:37:24 -0700
+Received: FROM mx2.cac.washington.edu BY mailscan6.cac.washington.edu ; Mon Jun 24 07:37:23 2002 -0700
+Received: from list4.u.washington.edu (list4.u.washington.edu [140.142.14.167])
+	by mx2.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.06) with ESMTP id g5OEbHvm022214
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Mon, 24 Jun 2002 07:37:17 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list4.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5OEZSeo087502;
+	Mon, 24 Jun 2002 07:35:29 -0700
+Received: from mailscan4.cac.washington.edu (mailscan4.cac.washington.edu [140.142.33.15])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5OEVqw3088940
+	for <pine-info@reallists.u.washington.edu>; Mon, 24 Jun 2002 07:31:53 -0700
+Received: FROM mxu3.u.washington.edu BY mailscan4.cac.washington.edu ; Mon Jun 24 07:31:52 2002 -0700
+Received: from smtp.gospelcom.net (joppa.gospelcom.net [204.253.132.6])
+	by mxu3.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.06) with SMTP id g5OEVpbq003048
+	for <pine-info@u.washington.edu>; Mon, 24 Jun 2002 07:31:52 -0700
+Received: (qmail 16878 invoked from network); 24 Jun 2002 14:31:51 -0000
+Received: from jabbok.gospelcom.net (HELO amos.gf.gospelcom.net) (204.253.132.4)
+  by smtp.gospelcom.net with SMTP; 24 Jun 2002 14:31:51 -0000
+Message-Id: <Pine.LNX.4.44.0206241024330.970-100000@amos.gf.gospelcom.net>
+Date: Mon, 24 Jun 2002 10:31:48 -0400 (EDT)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: Joel Boonstra <jboonstra@gospelcom.net>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: automatically encrypt replies?
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-To: Pine Discussion Forum <pine-info@u.washington.edu>
+X-X-Sender: joel@amos.gf.gospelcom.net
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+Hey pine-ers,
+
+In general, it's good practice to encrypt replies to encrypted messages
+you receive.  With pine, however, the only way that I know of to do that
+is to remember that the message you're replying to is encrypted, and
+then manually cycle your sending-filter to the appropriate one just
+before sending.
+
+Is there a better option, to ensure that I don't accidentally send out
+an unencrypted reply (potentially containing sensitive quoted stuff) to
+an email that was originally encrypted?  My instinct says "no", since
+pine doesn't really know anything about encryption -- it just knows when
+to invoke display filters and sending filters.
+
+One option might be to have procmail add some headers to encrypted
+messages, and then have pine notice those headers when replying and
+automatically apply a sending filter.  I don't know of a way to convince
+pine to do this, though.
+
+Anything I've overlooked?  Have other people run against this problem at
+all?  If so, how have you solved it (besides just training yourself to
+be smarter ;)?
+
+Thanks!
+
+-- 
+[ joel boonstra | jboonstra@gospelcom.net ]
+
+-- 
+-----------------------------------------------------------------
+ For information about this mailing list, and its archives, see: 
+ http://www.washington.edu/pine/pine-info/
+-----------------------------------------------------------------
+
+From pinedev@shivax2.cac.washington.edu Sun ???  0 00:00:00 1970 +0000
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Tue, 25 Jun 2002 11:09:38 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan5.cac.washington.edu (mailscan5.cac.washington.edu [140.142.32.14])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.06) with SMTP id g5PI9c2P013690
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Tue, 25 Jun 2002 11:09:38 -0700
+Received: FROM mx1.cac.washington.edu BY mailscan5.cac.washington.edu ; Tue Jun 25 11:09:37 2002 -0700
+Received: from list4.u.washington.edu (list4.u.washington.edu [140.142.14.167])
+	by mx1.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.06) with ESMTP id g5PI9VGL012126
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 25 Jun 2002 11:09:32 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list4.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5PI8Seo095944;
+	Tue, 25 Jun 2002 11:08:28 -0700
+Received: from mailscan1.cac.washington.edu (mailscan1.cac.washington.edu [140.142.32.16])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5PI65w3094022
+	for <pine-info@reallists.u.washington.edu>; Tue, 25 Jun 2002 11:06:05 -0700
+Received: FROM mxu3.u.washington.edu BY mailscan1.cac.washington.edu ; Tue Jun 25 11:06:05 2002 -0700
+Received: from adsl.walsrode-net.de (port-212-202-183-132.reverse.qdsl-home.de [212.202.183.132])
+	by mxu3.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.06) with ESMTP id g5PI64bq029223
+	for <pine-info@u.washington.edu>; Tue, 25 Jun 2002 11:06:05 -0700
+Received: by adsl.walsrode-net.de (Postfix, from userid 2)
+	id AD76413C; Tue, 25 Jun 2002 20:05:51 +0200 (CEST)
+Received: from adsl (adsl [192.168.0.1])
+	by adsl.walsrode-net.de (Postfix) with ESMTP id 75E3412A47
+	for <pine-info@u.washington.edu>; Tue, 25 Jun 2002 20:05:40 +0200 (CEST)
+Message-Id: <Pine.LNX.4.44.0206251959280.2531-100000@adsl>
+Date: Tue, 25 Jun 2002 20:05:39 +0200 (CEST)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: Steffan Henke <steffan@henke.com>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: pine, pc-pine and smtp-auth
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Virus-Scanned: by AMaViS perl-11
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+I am using both linux pine (RH 7.2 and 7.3) and pc-pine and my ISP is 
+going to change to smtp-auth soon. I searched the archives about my 
+problem, but found only the thread about yahoo!'s implemantation.
+The mailhost offers me the following:
+250-AUTH PLAIN LOGIN
+
+But when trying to send mail, I receive
+[>SECURITY PROBLEM: insecure server advertised AUTH=PLAIN<]
+
+I tried disabling the other authentification modules like
+#disable-these-authenticators=CRAM-MD5
+#disable-these-authenticators=GSSAPI 
+#disable-these-authenticators=LOGIN
+
+but still cannot send using AUTH=PLAIN.
+
+Is there any documentation on that I haven't found yet ?
+
+TIA,
+
+Steffan Henke
+
+
+-- 
+-----------------------------------------------------------------
+ For information about this mailing list, and its archives, see: 
+ http://www.washington.edu/pine/pine-info/
+-----------------------------------------------------------------
+
+From pinedev@shivax2.cac.washington.edu Sun ???  0 00:00:00 1970 +0000
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Tue, 25 Jun 2002 13:23:16 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan6.cac.washington.edu (mailscan6.cac.washington.edu [140.142.33.14])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.06) with SMTP id g5PKNF2P019411
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Tue, 25 Jun 2002 13:23:15 -0700
+Received: FROM mx2.cac.washington.edu BY mailscan6.cac.washington.edu ; Tue Jun 25 13:23:15 2002 -0700
+Received: from list2.u.washington.edu (list2.u.washington.edu [140.142.14.165])
+	by mx2.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.06) with ESMTP id g5PKNEvm004158
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 25 Jun 2002 13:23:14 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list2.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5PKMSqt025954;
+	Tue, 25 Jun 2002 13:22:28 -0700
+Received: from mailscan6.cac.washington.edu (mailscan6.cac.washington.edu [140.142.33.14])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5PKKvw3063916
+	for <pine-info@reallists.u.washington.edu>; Tue, 25 Jun 2002 13:20:57 -0700
+Received: FROM mxu3.u.washington.edu BY mailscan6.cac.washington.edu ; Tue Jun 25 13:20:56 2002 -0700
+Received: from mxout3.cac.washington.edu (mxout3.cac.washington.edu [140.142.32.19])
+	by mxu3.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.06) with ESMTP id g5PKKubr003891
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO)
+	for <pine-info@lists.u.washington.edu>; Tue, 25 Jun 2002 13:20:56 -0700
+Received: from mailscan-out3.cac.washington.edu (mailscan-out3.cac.washington.edu [140.142.32.18])
+	by mxout3.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.06) with SMTP id g5PKKuYu028742
+	for <pine-info@u.washington.edu>; Tue, 25 Jun 2002 13:20:56 -0700
+Received: FROM smtp.washington.edu BY mailscan-out3.cac.washington.edu ; Tue Jun 25 13:20:55 2002 -0700
+Received: from Tomobiki-Cho.CAC.Washington.EDU (tomobiki-cho.cac.washington.edu [128.95.135.58])
+	(authenticated bits=0)
+	by smtp.washington.edu (8.12.1+UW01.12/8.12.1+UW02.06) with ESMTP id g5PKKtTb007833
+	(version=TLSv1/SSLv3 cipher=RC4-MD5 bits=128 verify=NOT);
+	Tue, 25 Jun 2002 13:20:55 -0700
+Message-Id: <Pine.WNT.4.50.0206251312180.2860-100000@Tomobiki-Cho.CAC.Washington.EDU>
+Date: Tue, 25 Jun 2002 13:20:57 -0700 (Pacific Daylight Time)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: Mark Crispin <MRC@cac.washington.edu>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: Re: pine, pc-pine and smtp-auth
+In-Reply-To: <Pine.LNX.4.44.0206251959280.2531-100000@adsl>
+References: <Pine.LNX.4.44.0206251959280.2531-100000@adsl>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-Sender: mrc@CAC.Washington.EDU
+X-To: Steffan Henke <steffan@henke.com>
+X-Cc: Pine Discussion Forum <pine-info@u.washington.edu>
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+On Tue, 25 Jun 2002, Steffan Henke wrote:
+> The mailhost offers me the following:
+> 250-AUTH PLAIN LOGIN
+>
+> But when trying to send mail, I receive
+> [>SECURITY PROBLEM: insecure server advertised AUTH=PLAIN<]
+
+This is just a warning.  The specification for the AUTH=PLAIN SASL
+authentication mechanism indicates that it is only allowed in encrypted
+(SSL or TLS) sessions, because bad guys can snoop on your password.
+
+If you are getting an error message saying "SMTP Authentication
+cancelled", the actual problem has nothing to do with that warning, but is
+instead a bug in that server.
+
+An unsupported patch to qmail which implements SMTP-SASL has a known bug
+that renders it non-compliant with the specification (RFC 2554, RFC 2222).
+
+The qmail developers have asked me to emphasize that this is *not* a bug
+in qmail, but rather in an unsupported patch that they have nothing to do
+with.
+
+The unsupported patch to qmail issues an erroneous response which causes
+the authentication to be cancelled.  This problem will affect AUTH=GSSAPI
+and AUTH=PLAIN, but will not affect AUTH=CRAM-MD5 or AUTH=LOGIN.
+
+Supposedly, the author of the unsupported patch has issued an update which
+will fix this.
+
+> I tried disabling the other authentification modules like
+> #disable-these-authenticators=CRAM-MD5
+> #disable-these-authenticators=GSSAPI
+> #disable-these-authenticators=LOGIN
+> but still cannot send using AUTH=PLAIN.
+
+Don't disable CRAM-MD5 or GSSAPI or LOGIN.
+
+Try disabling PLAIN instead.  That will force it to use LOGIN which should
+work.
+
+-- Mark --
+
+http://staff.washington.edu/mrc
+Science does not emerge from voting, party politics, or public debate.
+
+
+From pinedev@shivax2.cac.washington.edu Sun ???  0 00:00:00 1970 +0000
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: via tmail-2000(13) (invoked by user mailnull) for mailarch+pine-info; Tue, 25 Jun 2002 13:52:00 -0700 (PDT)
+Return-Path: <PINE-INFO-owner@u.washington.edu>
+Received: from mailscan6.cac.washington.edu (mailscan6.cac.washington.edu [140.142.33.14])
+	by groupms.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.06) with SMTP id g5PKpx2P020549
+	for <mailarch+pine-info@groupms.cac.washington.edu>; Tue, 25 Jun 2002 13:51:59 -0700
+Received: FROM mx1.cac.washington.edu BY mailscan6.cac.washington.edu ; Tue Jun 25 13:51:59 2002 -0700
+Received: from list3.u.washington.edu (list3.u.washington.edu [140.142.8.100])
+	by mx1.cac.washington.edu (8.12.1+UW01.12/8.12.1+UW02.06) with ESMTP id g5PKpwGL017618
+	(version=TLSv1/SSLv3 cipher=EDH-RSA-DES-CBC3-SHA bits=168 verify=NO);
+	Tue, 25 Jun 2002 13:51:58 -0700
+Received: from host (lists.u.washington.edu [140.142.56.13])
+	by list3.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5PKkHlZ006712;
+	Tue, 25 Jun 2002 13:46:17 -0700
+Received: from mailscan6.cac.washington.edu (mailscan6.cac.washington.edu [140.142.33.14])
+	by lists.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.01) with SMTP id g5PKixw3017606
+	for <pine-info@reallists.u.washington.edu>; Tue, 25 Jun 2002 13:44:59 -0700
+Received: FROM mxu2.u.washington.edu BY mailscan6.cac.washington.edu ; Tue Jun 25 13:44:59 2002 -0700
+Received: from adsl.walsrode-net.de (port-212-202-183-132.reverse.qdsl-home.de [212.202.183.132])
+	by mxu2.u.washington.edu (8.12.1+UW01.12/8.12.1+UW02.06) with ESMTP id g5PKivJX015826
+	for <pine-info@u.washington.edu>; Tue, 25 Jun 2002 13:44:58 -0700
+Received: by adsl.walsrode-net.de (Postfix, from userid 2)
+	id F26EF13C; Tue, 25 Jun 2002 22:44:45 +0200 (CEST)
+Received: from henker.walsrode-net.de (henker [192.168.0.2])
+	by adsl.walsrode-net.de (Postfix) with ESMTP id 9F5D412A47
+	for <pine-info@u.washington.edu>; Tue, 25 Jun 2002 22:44:31 +0200 (CEST)
+Message-Id: <Pine.WNT.4.44.0206252241540.-3479431-100000@henker-1.walsrode-net.de>
+Date: Tue, 25 Jun 2002 22:44:38 +0200 (DST)
+Sender: PINE-INFO-owner@u.washington.edu
+Precedence: bulk
+List-Help: <http://www.washington.edu/computing/listproc/>
+List-Unsubscribe: <mailto:listproc@u.washington.edu?body=unsubscribe%20pine-info>
+List-Subscribe: <mailto:listproc@u.washington.edu?body=subscribe%20pine-info%20YourName>
+List-Owner: <mailto:pine-info-request@u.washington.edu> (Human contact for the list)
+List-Post: <mailto:pine-info@u.washington.edu>
+From: Steffan Henke <steffan@henke.com>
+To: Pine Discussion Forum <pine-info@u.washington.edu>
+Subject: Re: pine, pc-pine and smtp-auth
+In-Reply-To: <Pine.WNT.4.50.0206251312180.2860-100000@Tomobiki-Cho.CAC.Washington.EDU>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-To: Pine Discussion Forum <pine-info@u.washington.edu>
+X-Virus-Scanned: by AMaViS perl-11
+X-Listprocessor-Version: 8.1 -- ListProcessor(tm) by CREN
+
+On Tue, 25 Jun 2002, Mark Crispin wrote:
+
+> If you are getting an error message saying "SMTP Authentication
+> cancelled", the actual problem has nothing to do with that warning, but is
+> instead a bug in that server.
+
+Mark,
+
+the MTA used is exim.
+
+> Don't disable CRAM-MD5 or GSSAPI or LOGIN.
+> Try disabling PLAIN instead.  That will force it to use LOGIN which should
+> work.
+
+Great - that did the trick ! Thx alot, really appreciate your help.
+
+Regards,
+
+Steffan
+
+

@@ -1,0 +1,754 @@
+*** pine4.02/pico/composer.c.orig	Thu Jul  2 16:00:40 1998
+--- pine4.02/pico/composer.c	Wed Aug  5 10:40:25 1998
+***************
+*** 212,231 ****
+  	    if(mp->attachments != NULL){
+  		char   buf[NLINE];
+                  int    attno = 0;
+  		size_t addrbuflen = 4 * NLINE; /* malloc()ed size of addrbuf */
+                  PATMT *ap = mp->attachments;
+   
+                  addrbuf = (char *)malloc(addrbuflen);
+                  addrbuf[0] = '\0';
+                  buf[0] = '\0';
+                  while(ap){
+                   if(ap->filename){
+!                      sprintf(buf, "%d. %s %s%s%s\"%s\"%s",
+                               ++attno,
+                               ap->filename,
+                               ap->size ? "(" : "",
+                               ap->size ? ap->size : "",
+                               ap->size ? ") " : "",
+                               ap->description ? ap->description : "", 
+                               ap->next ? "," : "");
+  		     if(strlen(addrbuf) + strlen(buf) >= addrbuflen){
+--- 212,245 ----
+  	    if(mp->attachments != NULL){
+  		char   buf[NLINE];
+                  int    attno = 0;
++ 		int    l1, ofp, ofp1, ofp2;  /* OverFlowProtection */
+  		size_t addrbuflen = 4 * NLINE; /* malloc()ed size of addrbuf */
+                  PATMT *ap = mp->attachments;
+   
++ 		ofp = NLINE - 35;
++ 		if((l1=strlen(ap->filename)) <= ofp){
++ 		    ofp1 = l1;
++ 		    ofp2 = ofp - l1;
++ 		}
++ 		else{
++ 		    ofp1 = ofp;
++ 		    ofp2 = 0;
++ 		}
++ 
+                  addrbuf = (char *)malloc(addrbuflen);
+                  addrbuf[0] = '\0';
+                  buf[0] = '\0';
+                  while(ap){
+                   if(ap->filename){
+!                      sprintf(buf, "%d. %.*s%s %s%s%s\"%.*s\"%s",
+                               ++attno,
++ 			     ofp1,
+                               ap->filename,
++ 			     (l1 > ofp) ? "...]" : "",
+                               ap->size ? "(" : "",
+                               ap->size ? ap->size : "",
+                               ap->size ? ") " : "",
++ 			     ofp2,
+                               ap->description ? ap->description : "", 
+                               ap->next ? "," : "");
+  		     if(strlen(addrbuf) + strlen(buf) >= addrbuflen){
+*** pine4.02/pine/mailcap.c.orig	Tue Jun 30 14:46:44 1998
+--- pine4.02/pine/mailcap.c	Wed Aug  5 10:56:52 1998
+***************
+*** 879,885 ****
+  		     * Backslash quote is ignored inside single quotes so
+  		     * have to put those outside of the single quotes.
+  		     */
+! 		    for(p = parm; *p; p++){
+  			if(*p == '\''){
+  			    *to++ = '\'';  /* closing quote */
+  			    *to++ = '\\';
+--- 879,885 ----
+  		     * Backslash quote is ignored inside single quotes so
+  		     * have to put those outside of the single quotes.
+  		     */
+! 		    for(p = parm; *p && p < parm+1000; p++){
+  			if(*p == '\''){
+  			    *to++ = '\'';  /* closing quote */
+  			    *to++ = '\\';
+*** pine4.02/pine/mailpart.c.orig	Mon Jul 20 12:18:49 1998
+--- pine4.02/pine/mailpart.c	Wed Aug  5 10:54:27 1998
+***************
+*** 1230,1236 ****
+  
+      /* warning: overload "err" use */
+      if(err = rfc2231_get_param(param, att_name, NULL, NULL)){
+! 	strcpy(filename, err);
+  	fs_give((void **) &err);
+      }
+  
+--- 1230,1237 ----
+  
+      /* warning: overload "err" use */
+      if(err = rfc2231_get_param(param, att_name, NULL, NULL)){
+! 	strncpy(filename, err, MAXPATH);
+! 	filename[MAXPATH] = '\0';
+  	fs_give((void **) &err);
+      }
+  
+*** pine4.02/pine/mailview.c.orig	Fri Jul 17 00:10:35 1998
+--- pine4.02/pine/mailview.c	Wed Aug  5 16:06:40 1998
+***************
+*** 132,138 ****
+  #define TYPICAL_BIG_MESSAGE_LINES	200
+  
+  #define	CHARSET_DISCLAIMER \
+! 	"The following text is in the \"%s\" character set.\015\012Your display is set for the \"%s\" character set. Some characters may be displayed incorrectly."
+  
+  /*
+   * Keymenu/Command mappings for various scrolltool modes.
+--- 132,138 ----
+  #define TYPICAL_BIG_MESSAGE_LINES	200
+  
+  #define	CHARSET_DISCLAIMER \
+! 	"The following text is in the \"%.80s\" character set.\015\012Your display is set for the \"%s\" character set. Some characters may be displayed incorrectly."
+  
+  /*
+   * Keymenu/Command mappings for various scrolltool modes.
+***************
+*** 715,722 ****
+  	    else
+  	      a->number = cpystr("");
+  
+! 	    sprintf(string, "%s/%s", body_type_names(body->type),
+! 		    body->subtype);
+  	    a->description	   = cpystr(string);
+  	    a->body		   = body;
+  	    a->can_display	   = MCD_EXTERNAL;
+--- 715,722 ----
+  	    else
+  	      a->number = cpystr("");
+  
+! 	    sprintf(string, "%s/%.*s", body_type_names(body->type),
+! 		    sizeof(string) - 50, body->subtype);
+  	    a->description	   = cpystr(string);
+  	    a->body		   = body;
+  	    a->can_display	   = MCD_EXTERNAL;
+***************
+*** 749,759 ****
+  				? "Delivery Status"
+  				: NULL;
+  
+!         sprintf(string, "%s%s%.*s%s",
+!                 type_desc(body->type, body->subtype, body->parameter, 0),
+                  description ? ", \"" : "",
+!                 sizeof(string) - 20, 
+!                 description ? description : "",
+                  description ? "\"": "");
+  
+          a->description = cpystr(string);
+--- 749,762 ----
+  				? "Delivery Status"
+  				: NULL;
+  
+!         sprintf(string, "%s%s%s%s",
+!                 strsquish(tmp_20k_buf+1000,
+! 			  type_desc(body->type,body->subtype,body->parameter,0),
+! 			  sizeof(string)/2 - 10),
+                  description ? ", \"" : "",
+!                 description ? strsquish(tmp_20k_buf+1500, description,
+! 					sizeof(string)/2 - 10)
+! 			    : "",
+                  description ? "\"": "");
+  
+          a->description = cpystr(string);
+***************
+*** 877,888 ****
+  body_type_names(t)
+      int t;
+  {
+!     static char body_type[32];
+      char   *p;
+  
+      strncpy(body_type,				/* copy the given type */
+  	    (t > -1 && t < TYPEMAX && body_types[t])
+! 	      ? body_types[t] : "Other", 31);
+  
+      for(p = body_type + 1; *p; p++)		/* make it presentable */
+        if(isupper((unsigned char)*p))
+--- 880,893 ----
+  body_type_names(t)
+      int t;
+  {
+! #define TLEN 31
+!     static char body_type[TLEN + 1];
+      char   *p;
+  
+      strncpy(body_type,				/* copy the given type */
+  	    (t > -1 && t < TYPEMAX && body_types[t])
+! 	      ? body_types[t] : "Other", TLEN);
+!     body_type[TLEN] = '\0';
+  
+      for(p = body_type + 1; *p; p++)		/* make it presentable */
+        if(isupper((unsigned char)*p))
+***************
+*** 940,946 ****
+      sstrcpy(&p, body_type_names(type));
+      if(full && subtype){
+  	*p++ = '/';
+! 	sstrcpy(&p, subtype);
+      }
+  
+      switch(type) {
+--- 945,951 ----
+      sstrcpy(&p, body_type_names(type));
+      if(full && subtype){
+  	*p++ = '/';
+! 	sstrcpy(&p, strsquish(tmp_20k_buf + 500, subtype, 30));
+      }
+  
+      switch(type) {
+***************
+*** 965,971 ****
+  		if(full){
+  		    sstrcpy(&p, " \"");
+  		    sstrcpy(&p, charset_names[i].humanname
+! 			    ? charset_names[i].humanname : parmval);
+  		    *p++ = '\"';
+  		}
+  
+--- 970,977 ----
+  		if(full){
+  		    sstrcpy(&p, " \"");
+  		    sstrcpy(&p, charset_names[i].humanname
+! 			    ? charset_names[i].humanname
+! 			    : strsquish(tmp_20k_buf + 500, parmval, 40));
+  		    *p++ = '\"';
+  		}
+  
+***************
+*** 1558,1563 ****
+--- 1564,1575 ----
+      }
+  
+      gf_filter_init();
++ 
++     if(F_OFF(F_PASS_CONTROL_CHARS, ps_global)){
++ 	gf_link_filter(gf_escape_filter, NULL);
++ 	gf_link_filter(gf_control_filter, NULL);
++     }
++ 
+      gf_link_filter(gf_wrap, gf_wrap_filter_opt(width, width, 0, 0));
+      gf_link_filter(gf_line_test, gf_line_test_opt(quote_editorial, NULL));
+      return(gf_pipe(gc, pc));
+***************
+*** 6006,6014 ****
+  
+      d = tmp_20k_buf;
+      if(parmlist = rfc2231_newparmlist(params)){
+! 	while(rfc2231_list_params(parmlist)){
+              sprintf(d, "%-*s: %s\n", longest, parmlist->attrib,
+! 		    parmlist->value ? parmlist->value : "");
+              d += strlen(d);
+  	}
+  
+--- 6018,6028 ----
+  
+      d = tmp_20k_buf;
+      if(parmlist = rfc2231_newparmlist(params)){
+! 	while(rfc2231_list_params(parmlist) && d < tmp_20k_buf + 10000){
+              sprintf(d, "%-*s: %s\n", longest, parmlist->attrib,
+! 		    parmlist->value ? strsquish(tmp_20k_buf + 11000,
+! 						parmlist->value, 100)
+! 				    : "");
+              d += strlen(d);
+  	}
+  
+*** pine4.02/pine/pine.h.orig	Tue Jul 21 15:02:49 1998
+--- pine4.02/pine/pine.h	Wed Aug  5 15:53:06 1998
+***************
+*** 63,69 ****
+  #ifndef _PINE_INCLUDED
+  #define _PINE_INCLUDED
+  
+! #define PINE_VERSION		"4.02"
+  #define	PHONE_HOME_VERSION	"-count"
+  #define	PHONE_HOME_HOST		"docserver.cac.washington.edu"
+  
+--- 63,69 ----
+  #ifndef _PINE_INCLUDED
+  #define _PINE_INCLUDED
+  
+! #define PINE_VERSION		"4.02A"
+  #define	PHONE_HOME_VERSION	"-count"
+  #define	PHONE_HOME_HOST		"docserver.cac.washington.edu"
+  
+***************
+*** 3063,3069 ****
+  				  char **, char **, char **));
+  char	   *web_host_scan PROTO((char *, int *));
+  char	   *rfc2231_get_param PROTO((PARAMETER *, char *, char **, char **));
+! void	    rfc2231_output PROTO((char *, char *, char *, char *, char *));
+  PARMLIST_S *rfc2231_newparmlist PROTO((PARAMETER *));
+  void	    rfc2231_free_parmlist PROTO((PARMLIST_S **));
+  int	    rfc2231_list_params PROTO((PARMLIST_S *));
+--- 3063,3069 ----
+  				  char **, char **, char **));
+  char	   *web_host_scan PROTO((char *, int *));
+  char	   *rfc2231_get_param PROTO((PARAMETER *, char *, char **, char **));
+! int	    rfc2231_output PROTO((STORE_S *, char *, char *, char *, char *));
+  PARMLIST_S *rfc2231_newparmlist PROTO((PARAMETER *));
+  void	    rfc2231_free_parmlist PROTO((PARMLIST_S **));
+  int	    rfc2231_list_params PROTO((PARMLIST_S *));
+*** pine4.02/pine/send.c.orig	Mon Jul 20 12:02:18 1998
+--- pine4.02/pine/send.c	Wed Aug  5 16:04:41 1998
+***************
+*** 97,103 ****
+  char	  *send_exit_for_pico PROTO((struct headerentry *, void (*)()));
+  int	   mime_type_for_pico PROTO((char *));
+  void	   update_answered_flags PROTO((REPLY_S *));
+! void       pine_write_body_header PROTO((char **, BODY  *));
+  void       pine_encode_body PROTO((BODY *));
+  int        pine_rfc822_header PROTO((METAENV *, BODY *, soutr_t, TCPSTREAM *));
+  int        pine_header_line PROTO((char *, METAENV *, char *, soutr_t,
+--- 97,104 ----
+  char	  *send_exit_for_pico PROTO((struct headerentry *, void (*)()));
+  int	   mime_type_for_pico PROTO((char *));
+  void	   update_answered_flags PROTO((REPLY_S *));
+! int	   pine_write_body_header PROTO((BODY *, soutr_t, TCPSTREAM *));
+! int	   pwbh_finish PROTO((int, STORE_S *));
+  void       pine_encode_body PROTO((BODY *));
+  int        pine_rfc822_header PROTO((METAENV *, BODY *, soutr_t, TCPSTREAM *));
+  int        pine_header_line PROTO((char *, METAENV *, char *, soutr_t,
+***************
+*** 7098,7104 ****
+      soutr_t    f;
+      TCPSTREAM *s;
+  {
+-     char        tmp[MAX_SINGLE_ADDR], *p;
+      PINEFIELD  *pf;
+      int         j;
+  
+--- 7099,7104 ----
+***************
+*** 7226,7239 ****
+  
+      if(body && !header->env->remail){	/* not if remail or no body */
+  	if((f && !(*f)(s, MIME_VER))
+! 	   || (local_so && !local_written && !so_puts(local_so, MIME_VER)))
+! 	  return(0);
+! 
+! 	*(p = tmp) = '\0';
+! 	pine_write_body_header(&p, body);
+! 
+! 	if((f && !(*f)(s, tmp)) 
+! 	   || (local_so && !local_written && !so_puts(local_so, tmp)))
+  	  return(0);
+      }
+      else{					/* write terminating newline */
+--- 7226,7233 ----
+  
+      if(body && !header->env->remail){	/* not if remail or no body */
+  	if((f && !(*f)(s, MIME_VER))
+! 	   || (local_so && !local_written && !so_puts(local_so, MIME_VER))
+! 	   || !pine_write_body_header(body, f, s))
+  	  return(0);
+      }
+      else{					/* write terminating newline */
+***************
+*** 7430,7436 ****
+  {
+      PART *part;
+      PARAMETER *param;
+!     char *cookie = NIL, *t, *encode_error;
+      char tmp[MAILTMPLEN];
+      gf_io_t            gc;
+  #if defined(DOS) || defined(OS2)
+--- 7424,7430 ----
+  {
+      PART *part;
+      PARAMETER *param;
+!     char *t, *cookie = NIL, *encode_error;
+      char tmp[MAILTMPLEN];
+      gf_io_t            gc;
+  #if defined(DOS) || defined(OS2)
+***************
+*** 7456,7470 ****
+  
+  	do {				/* for each part */
+  					/* build cookie */
+! 	    sprintf (t = tmp,"--%s\015\012",cookie);
+! 					/* append mini-header */
+! 	    pine_write_body_header (&t,&part->body);
+! 				/* output cookie, mini-header, and contents */
+! 	    if(local_so && !local_written)
+! 	      so_puts(local_so, tmp);
+! 
+! 	    if (!((f ? (*f) (s,tmp) : 1)
+! 		  && pine_rfc822_output_body (&part->body,f,s)))
+  	      return(0);
+  	} while (part = part->next);	/* until done */
+  					/* output trailing cookie */
+--- 7450,7461 ----
+  
+  	do {				/* for each part */
+  					/* build cookie */
+! 	    sprintf (tmp, "--%s\015\012", cookie);
+! 					/* append cookie,mini-hdr,contents */
+! 	    if((f && !(*f)(s, tmp))
+! 	       || (local_so && !local_written && !so_puts(local_so, tmp))
+! 	       || !pine_write_body_header(&part->body,f,s)
+! 	       || !pine_rfc822_output_body (&part->body,f,s))
+  	      return(0);
+  	} while (part = part->next);	/* until done */
+  					/* output trailing cookie */
+***************
+*** 7542,7613 ****
+  
+  
+  /*
+!  * pine_write_body_header - another c-client clone.  This time only
+   *                          so the final encoding labels get set 
+!  *                          correctly since it hasn't happened yet.
+   */
+! void
+! pine_write_body_header(dst, body)
+!     char **dst;
+      BODY  *body;
+  {
+!     char *s;
+      STRINGLIST *stl;
+      PARAMETER *param = body->parameter;
+      extern const char *tspecials;
+  
+!     sprintf (*dst += strlen (*dst),"Content-Type: %s",body_types[body->type]);
+!     s = body->subtype ? body->subtype : rfc822_default_subtype (body->type);
+!     sprintf (*dst += strlen (*dst),"/%s",s);
+!     if (param)
+!       do {
+! 	strcpy(*dst += strlen (*dst), "; ");
+! 	rfc2231_output(*dst += strlen (*dst),
+! 		       param->attribute, param->value,
+! 		       (char *) tspecials, ps_global->VAR_CHAR_SET);
+!       }
+!       while (param = param->next);
+!     else
+!       if (body->type == TYPETEXT) strcat (*dst,"; CHARSET=US-ASCII");
+  
+!     strcpy (*dst += strlen (*dst),"\015\012");
+!     if (body->encoding)		/* note: encoding 7BIT never output! */
+!       sprintf (*dst += strlen (*dst),"Content-Transfer-Encoding: %s\015\012",
+! 	       body_encodings[(body->encoding == ENCBINARY)
+! 				? ENCBASE64
+! 				: (body->encoding == ENC8BIT)
+! 				    ? ENCQUOTEDPRINTABLE
+! 				    : (body->encoding <= ENCMAX)
+! 					? body->encoding : ENCOTHER]);
+!     if (body->id) sprintf (*dst += strlen (*dst),"Content-ID: %s\015\012",
+! 			   body->id);
+!     if (body->description)
+!       sprintf (*dst += strlen (*dst),"Content-Description: %s\015\012",
+! 	       rfc1522_encode(tmp_20k_buf, (unsigned char *) body->description,
+! 			      ps_global->VAR_CHAR_SET));
+!     if (body->md5)
+!       sprintf (*dst += strlen (*dst),"Content-MD5: %s\015\012",body->md5);
+!     if (stl = body->language) {
+! 	strcpy (*dst += strlen (*dst),"Content-Language: ");
+! 	do {
+! 	    rfc822_cat (*dst,(char *)stl->text.data,tspecials);
+! 	    if (stl = stl->next) strcat (*dst += strlen (*dst),", ");
+! 	}
+! 	while (stl);
+!     }
+!     if (body->disposition.type) {
+! 	sprintf (*dst += strlen (*dst),
+! 		 "Content-Disposition: %s", body->disposition.type);
+! 	if (param = body->disposition.parameter)
+! 	  do {
+! 	    strcpy(*dst += strlen (*dst), "; ");
+! 	    rfc2231_output(*dst += strlen (*dst),
+! 			   param->attribute, param->value,
+! 			   (char *) tspecials, ps_global->VAR_CHAR_SET);
+! 	} while (param = param->next);
+! 	strcpy (*dst += strlen (*dst),"\015\012");
+      }
+!     strcpy (*dst += strlen (*dst),"\015\012");
+  }
+  
+  
+--- 7533,7681 ----
+  
+  
+  /*
+!  * pine_write_body_header - another c-client clone.  This time
+   *                          so the final encoding labels get set 
+!  *                          correctly since it hasn't happened yet,
+!  *			    and to be paranoid about line lengths.
+!  *
+!  * Returns: TRUE/nonzero on success, zero on error
+   */
+! int
+! pine_write_body_header(body, f, s)
+      BODY  *body;
++     soutr_t    f;
++     TCPSTREAM *s;
+  {
+!     char tmp[MAILTMPLEN];
+!     int  i;
+!     unsigned char c;
+      STRINGLIST *stl;
+      PARAMETER *param = body->parameter;
++     STORE_S   *so;
+      extern const char *tspecials;
+  
+!     if(so = so_get(CharStar, NULL, WRITE_ACCESS)){
+! 	if(!(so_puts(so, "Content-Type: ")
+! 	     && so_puts(so, body_types[body->type])
+! 	     && so_puts(so, "/")
+! 	     && so_puts(so, body->subtype
+! 			      ? body->subtype
+! 			      : rfc822_default_subtype (body->type))))
+! 	  return(pwbh_finish(0, so));
+! 	    
+! 	if (param){
+! 	    do
+! 	      if(!(so_puts(so, "; ")
+! 		   && rfc2231_output(so, param->attribute, param->value,
+! 				     (char *) tspecials,
+! 				     ps_global->VAR_CHAR_SET)))
+! 		return(pwbh_finish(0, so));
+! 	    while (param = param->next);
+! 	}
+! 	else if(!so_puts(so, "; CHARSET=US-ASCII"))
+! 	  return(pwbh_finish(0, so));
+! 	    
+! 	if(!so_puts(so, "\015\012"))
+! 	  return(pwbh_finish(0, so));
+! 
+! 	if ((body->encoding		/* note: encoding 7BIT never output! */
+! 	     && !(so_puts(so, "Content-Transfer-Encoding: ")
+! 		  && so_puts(so, body_encodings[(body->encoding==ENCBINARY)
+! 						? ENCBASE64
+! 						: (body->encoding == ENC8BIT)
+! 						  ? ENCQUOTEDPRINTABLE
+! 						  : (body->encoding <= ENCMAX)
+! 						    ? body->encoding
+! 						    : ENCOTHER])
+! 		  && so_puts(so, "\015\012")))
+! 	    || (body->id
+! 		&& !(so_puts(so, "Content-ID: ") && so_puts(so, body->id)
+! 		     && so_puts(so, "\015\012")))
+! 	    || (body->description
+! 		&& strlen(body->description) < 5000	/* arbitrary! */
+! 		&& !(so_puts(so, "Content-Description: ")
+! 		     && so_puts(so, rfc1522_encode(tmp_20k_buf,
+! 					   (unsigned char *) body->description,
+! 					   ps_global->VAR_CHAR_SET))
+! 		     && so_puts(so, "\015\012")))
+! 	    || (body->md5
+! 		&& !(so_puts(so, "Content-MD5: ")
+! 		     && so_puts(so, body->md5)
+! 		     && so_puts(so, "\015\012"))))
+! 	  return(pwbh_finish(0, so));
+! 
+! 	if (stl = body->language) {
+! 	    if(!so_puts(so, "Content-Language: "))
+! 	      return(pwbh_finish(0, so));
+! 
+! 	    do {
+! 		if(strlen((char *)stl->text.data) > 500) /* arbitrary! */
+! 		  return(pwbh_finish(0, so));
+! 
+! 		tmp[0] = '\0';
+! 		rfc822_cat (tmp,(char *)stl->text.data, tspecials);
+! 		if(!so_puts(so, tmp)
+! 		   || ((stl = stl->next) && !so_puts(so, ", ")))
+! 		  return(pwbh_finish(0, so));
+! 	    }
+! 	    while (stl);
+! 
+! 	    if(!so_puts(so, "\015\012"))
+! 	      return(pwbh_finish(0, so));
+! 	}
+! 
+! 	if (body->disposition.type) {
+! 	    if(!(so_puts(so, "Content-Disposition: ")
+! 		 && so_puts(so, body->disposition.type)))
+! 	      return(pwbh_finish(0, so));
+! 
+! 	    if (param = body->disposition.parameter)
+! 	      do
+! 		if(!(so_puts(so, "; ")
+! 		     && rfc2231_output(so, param->attribute,
+! 				       param->value, (char *) tspecials,
+! 				       ps_global->VAR_CHAR_SET)))
+! 		  return(pwbh_finish(0, so));
+! 	      while (param = param->next);
+! 
+! 	    if(!so_puts(so, "\015\012"))
+! 	      return(pwbh_finish(0, so));
+! 	}
+! 
+! 	if(!so_puts(so, "\015\012"))
+! 	  return(pwbh_finish(0, so));
+  
+! 	/* copy out of so, a line at a time (or less than a K)
+! 	 * and send it down the pike
+! 	 */
+! 	so_seek(so, 0L, 0);
+! 	i = 0;
+! 	while(so_readc(&c, so))
+! 	  if((tmp[i++] = c) == '\012' || i > MAILTMPLEN - 3){
+! 	      tmp[i] = '\0';
+! 	      if((f && !(*f)(s, tmp))
+! 		 || (local_so && !local_written
+! 		     && !so_puts(local_so, tmp)))
+! 		return(pwbh_finish(0, so));
+! 	      i = 0;
+! 	  }
+! 
+! 	return(pwbh_finish(i == 0, so)); /* better of ended on LF */
+      }
+! 
+!     return(0);
+! }
+! 
+! 
+! int
+! pwbh_finish(rv, so)
+!     int	     rv;
+!     STORE_S *so;
+! {
+!     if(so)
+!       so_give(&so);
+! 
+!     return(rv);
+  }
+  
+  
+*** pine4.02/pine/strings.c.orig	Tue Jul 21 12:37:29 1998
+--- pine4.02/pine/strings.c	Wed Aug  5 15:51:51 1998
+***************
+*** 2844,2854 ****
+  }
+  
+  
+! void
+! rfc2231_output(dest, attrib, value, specials, charset)
+!     char *dest, *attrib, *value, *specials, *charset;
+  {
+-     char tmp[MAILTMPLEN], *p;
+      int  i, line = 0, encode = 0, quote = 0;
+  
+      /*
+--- 2844,2854 ----
+  }
+  
+  
+! int
+! rfc2231_output(so, attrib, value, specials, charset)
+!     STORE_S *so;
+!     char    *attrib, *value, *specials, *charset;
+  {
+      int  i, line = 0, encode = 0, quote = 0;
+  
+      /*
+***************
+*** 2863,2912 ****
+  
+      for(i = 0; ; i++){
+  	if(!(value && value[i]) || i > 80){	/* flush! */
+! 	    if(line++)
+! 	      sstrcpy(&dest, ";\015\012        ");
+! 		
+! 	    sstrcpy(&dest, attrib);
+  
+  	    if(value){
+! 		if(value[i] || line > 1){ /* more lines or already lines */
+! 		    *dest++ = '*';
+! 		    sstrcpy(&dest, int2string(line - 1));
+! 		}
+! 
+! 		if(encode)
+! 		  *dest++ = '*';
+! 
+! 		*dest++ = '=';
+! 
+! 		if(quote)
+! 		  *dest++ = '\"';
+  
+! 		if(line == 1 && encode){
+! 		    sprintf(dest, "%s''",
+! 			    (ps_global->VAR_CHAR_SET
+! 			     && strucmp(ps_global->VAR_CHAR_SET, "us-ascii"))
+! 			       ? ps_global->VAR_CHAR_SET : UNKNOWN_CHARSET);
+! 		    dest += strlen(dest);
+  		}
+  
+! 		while(i--)
+! 		  if(*value & 0x80){
+! 		      *dest++ = '%';
+! 		      C2XPAIR(*value, dest);
+! 		      value++;
+! 		  }
+! 		  else{
+! 		      if(*value == '\\' || *value == '\"')
+! 			*dest++ = '\\';
+! 
+! 		      *dest++ = *value++;
+! 		  }
+! 
+! 		if(quote)
+! 		  *dest++ = '\"';
+! 
+! 		*dest = '\0';
+  
+  		if(*value)			/* more? */
+  		  i = quote = 0;		/* reset! */
+--- 2863,2908 ----
+  
+      for(i = 0; ; i++){
+  	if(!(value && value[i]) || i > 80){	/* flush! */
+! 	    if((line++ && !so_puts(so, ";\015\012        "))
+! 	       || !so_puts(so, attrib))
+! 		return(0);
+  
+  	    if(value){
+! 		if(((value[i] || line > 1) /* more lines or already lines */
+! 		    && !(so_writec('*', so)
+! 			 && so_puts(so, int2string(line - 1))))
+! 		   || (encode && !so_writec('*', so))
+! 		   || !so_writec('=', so)
+! 		   || (quote && !so_writec('\"', so))
+! 		   || ((line == 1 && encode)
+! 		       && !(so_puts(so, ((ps_global->VAR_CHAR_SET
+! 					  && strucmp(ps_global->VAR_CHAR_SET,
+! 						     "us-ascii"))
+! 					    ? ps_global->VAR_CHAR_SET
+! 					    : UNKNOWN_CHARSET))
+! 			     && so_puts(so, "''"))))
+! 		  return(0);
+! 
+! 		while(i--){
+! 		    if(*value & 0x80){
+! 			char tmp[3], *p;
+! 
+! 			p = tmp;
+! 			C2XPAIR(*value, p);
+! 			*p = '\0';
+! 			if(!(so_writec('%', so) && so_puts(so, tmp)))
+! 			  return(0);
+! 		    }
+! 		    else if(((*value == '\\' || *value == '\"')
+! 			     && !so_writec('\\', so))
+! 			    || !so_writec(*value, so))
+! 		      return(0);
+  
+! 		    value++;
+  		}
+  
+! 		if(quote && !so_writec('\"', so))
+! 		  return(0);
+  
+  		if(*value)			/* more? */
+  		  i = quote = 0;		/* reset! */

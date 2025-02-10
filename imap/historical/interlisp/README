@@ -1,0 +1,2 @@
+     To run MM-D on Xerox Interlisp machines, you must have the TCP/IP
+libraries including the TCPDOMAIN library, loaded in your environment.

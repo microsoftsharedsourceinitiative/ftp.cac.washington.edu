@@ -1,0 +1,18 @@
+                        How to obtain Pine software
+
+
+Pine® - a Program for Internet News & Email - is a tool for reading, 
+sending, and managing electronic messages. Pine was developed by Computing 
+& Communications at the University of Washington. Though originally 
+designed for inexperienced email users, Pine has evolved to support many 
+advanced features, and an ever-growing number of configuration and 
+personal-preference options. Pine is available for Unix as well as for 
+personal computers running a Microsoft operating system (PC-Pine).
+
+The Pine Information Center includes links to the software and 
+documentation:
+http://www.washington.edu/pine/
+
+or go to the following ftp site:
+ftp://ftp.cac.washington.edu/
+

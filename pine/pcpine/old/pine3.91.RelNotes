@@ -1,0 +1,570 @@
+                 RELEASE NOTES FOR THE PINE MESSAGE SYSTEM
+                               Version 3.91
+                         University of Washington
+                               October, 1994
+
+
+TABLE OF CONTENTS
+        (1) Summary of Recent Changes
+        (2) PC-Pine Notes
+        (3) Configuration
+        (4) Coming Attractions
+        (5) History
+        (6) Credits
+        (7) Legal Notices
+
+---------------------------------
+| (1) Summary of Recent Changes |                                               
+---------------------------------
+
+Changes since pine 3.90.
+
+Pine 3.91 is primarily a bug-fix release, to correct many (but not all)
+of the problems reported with version 3.90.  
+
+IMPORTANT NOTE: if you are plagued by messages saying ^X or ^Q not
+defined, or printers losing parts of messages sent from Pine, then set the
+new feature:  "preserve-start-stop-characters" .  This is needed
+whenever your printer, modem, or async communications program is
+configured to use software flow control.  Note that setting this feature
+will result in Pine appearing to "hang" if you accidentally type a ^S. 
+The remedy for this situation is to type a ^Q.
+
+Some of the more important bug fixes in 3.91:
+
+ o Several address book bugs, including one that could destroy data.
+ o Several problems in handling mailcap files.
+ o Found bug that caused pine-debug files to grow forever.
+ o Custom-header entries may now contain colons.
+ o If read-msg-folder is set, Pine no longer crashes.
+ o Several other bugs resulting in program crashes.
+ o Environment variables may be used in Config entries.
+ o Improvements in signal handling to prevent some loops.
+ o Improvements in user-domain processing.
+ o Inability of PC-Pine for Winsock to send mail if timezone set.
+
+In addition to these and more than one hundred other bug fixes, there are 
+four new features included:
+
+ preserve-start-stop-characters
+    -> Needed when modems or printers use software (XON/XOFF) flow control
+ news-approximates-new-status
+    -> Marks more-or-less-recent news messages as "New"
+ compose-rejects-unqualified-addrs
+    -> Used to minimize address errors by rejecting unqualified addresses.
+ quell-user-lookup-in-passwd-file
+    -> Used to avoid incorrect Full Name address info in certain situations.
+
+This last one supersedes a feature that was just introduced in 3.90:
+
+  user-lookup-even-if-domain-mismatch
+
+which is now obsolete.  These new features are all set via the Setup/Config 
+menu.  For additional information, highlight the feature name in the Config 
+screen and enter "?" for Help.
+
+Finally, two new features for PC-Pine for Winsock (only):
+
+ o Improved Windows-style cut/paste (but no drag scrolling).
+ o Ability to use an alternate editor.
+
+Changes since Pine 3.89.
+
+ o Finished all the "Not implemented yet" commands:
+        -Bounce             (Remail)
+        -Flag               (Set message status)
+        -Pipe               (Pipe msg to external cmd; Unix only)
+        -Select,Apply,Zoom  (Aggregate operations)
+        -Setup/Config       (Pinerc configuration screen)
+ o News posting.
+ o News subscription/unsubscription.
+ o Multiple address books.
+ o Postpone multiple messages.
+ o Customizable headers for Composer.
+ o Mailcap support.
+ o Improved support for multiple incoming message folders.
+ o enable-alternate-editor-implicitly feature (except for editing headers).
+ o All .pinerc features now settable from command line.
+ o Way to control which options are user-configurable (Unix only).
+ o Way to have Save *not* implicitly delete.
+ o Way to use current-working-directory for Export, Read File, etc.
+ o A *preliminary* version of PC-Pine for Windows/Winsock.
+   (Alas, it doesn't work on OS/2 yet.)
+
+Beginning with Pine 3.90 there will also be an additional file created for
+each address book the first time you use it.  It has the same name as the
+address book but with the suffix ".lu" added.  It helps speed up lookups
+while you are composing messages.  Do not edit or remove any of these
+".lu" files.  If the .lu index file cannot be created in the directory 
+containing the address book, Pine will attempt to create it in a 
+temporary directory.
+
+NOTE: Comments in your .pinerc file are now very much out of date. With
+the advent of the builtin SETUP CONFIGURATION screen, we hope you won't need to
+look at those comments any more, but we nevertheless encourage you to
+run the following command to update those comments: pine -pinerc .pinerc
+
+Changes Since Pine 3.07. 
+
+For some of you, Pine 3.90 may be the first version of Pine you have used since 
+Pine 3.07, which is now quite ancient.  There have been literally hundreds of 
+changes since then, but a few that may surprise you are listed below.  These 
+user-interface changes were needed to allow for new features:
+ o Print is now "Y" instead of "L"
+ o The Folder List is now uniformly accessible via "L"
+ o Viewing/saving attachments is now done via "V" instead of "A"
+ o SortIndex is now "$" instead of "Z"
+ o pinerc features may now be set via the Setup/Config screen
+
+---------------------
+| (2) PC-PINE NOTES |
+---------------------
+
+PC-Pine is now available for Windows/Winsock as well as the following DOS 
+versions: packet driver, Novell LWP, FTP PC-TCP, Sun PC-NFS.
+There are several characteristics of PC-Pine that should be noted:
+   o There is no spelling checker.
+   o The unix-pipe-cmd function is not available.
+   o Sorting the Index (by other than Arrival) is slow.
+   o Performance optimization still needs to be done.
+
+Some specific limitations of the DOS version (these do not apply to
+the Windows/Winsock version of PC-Pine):
+   o Alternate editor function is not available.
+   o Memory: the DOS version needs about 500K out of 640K.
+   o The DOS version can't run image viewer from within Pine, due to memory.
+   o Messages (excluding attachments) must fit in DOS memory;
+        However, attachments may be any size.
+
+Additional notes:
+
+-The Windows/Winsock version of PC-Pine is NOT a full GUI Windows 
+ application.  It has the same character-oriented user interface as
+ Unix Pine and PC-Pine for DOS, but with a few Windows-specific features
+ such as a resizable window.  However, as with PC-Pine for DOS, you 
+ can use the mouse to select commands or messages in the Index, or to
+ move the cursor in the composer.  The big advantage is that PC-Pine 
+ for Winsock runs as a true Windows application, so it doesn't have the 
+ DOS memory limitations, and of course it uses the Winsock network 
+ interface. 
+
+-Performance optimization has still not been done.  This will be most
+ noticeable when using NNTP to access newsgroups, or when Index screens are
+ redrawn while using PC-Pine over low-speed lines (via SLIP or PPP).
+ Encoding a decoding attachments is also very slow in this version.
+
+-While message folders may be either local or remote, several support
+ files must be available on the local disk.  In particular your
+ PINERC config file, ADDRBOOK, NEWSRC, and PINE.SIG your signature file.
+ Other files (postponed and interrupted messages, debug files) are also
+ stored locally.  Some users of both PC-Pine and Unix Pine must worry 
+ about keeping their pinerc, address book, and newsrc files in sync.   
+ This may be done using remote file system protocols or manual copying.  
+ (Remote access to these support files is planned for the future.)
+
+-The PC-PINE message folder format is based on byte-counts for maximum
+ efficiency, so they must not be edited. The format is non-standard, but
+ conversion utilities would not be difficult. This format is supported in
+ Unix Pine as well.  PC-Pine can also open Unix-style folders for 
+ READ-ONLY access.
+
+-PC-Pine mouse support is not yet available on some screens
+
+-Don't expect to display a picture without exiting PC-Pine for DOS, due
+ to DOS memory limitations.  In some configurations, there *may* be enough
+ memory for the viewer and a small image, but don't count on it.  With
+ PC-Pine for Windows/Winsock, the memory constraints are greatly
+ diminished, and viewing image attachments seems to work quite well.  We
+ have been testing with the "lview" package by Leonardo Loureiro, which
+ can be obtained from oak.oakland.edu or any other SimTel mirror site. 
+
+---------------------
+| (3) Configuration |
+---------------------
+
+Configuration precedence.
+
+There are several levels of Pine configuration.  Configuration values at
+a given level over-ride corresponding values at lower levels.  In order of
+increasing precedence:
+
+ o built-in defaults.
+ o system-wide pine.conf file.
+ o personal .pinerc file (may be set via built-in Setup/Config menu.)
+ o command-line options.
+ o system-wide pine.conf.fixed file.
+
+There is one exception to the rule that configuration values are replaced
+by the value of the same option in a higher-precedence file:
+the feature-list variable has values that are additive, but can be
+negated by prepending "no-" in front of an individual feature name.
+
+File name defaults.
+
+Notes:
+
+  <exe dir> = directory where pine.exe found.
+  <pinerc dir> = directory where pinerc found.
+  * = default file name is overridable in pinerc.
+  $HOME, if not explicitly set, defaults to root of the current drive.
+  $MAILCAPS, if set, is used in lieu of the default mailcap search paths.
+  + between the mailcap paths implies that the two files are combined.
+  ; between other default paths implies that the first one found is used.
+
+PC-Pine:
+ executable     <DOS search path>\pine.exe
+ help index     <exe dir>\pine.ndx
+ help text      <exe dir>\pine.hlp
+
+ pers config    $PINERC  ;  $HOME\\pine\\pinerc  ;  <exe dir>\\pinerc
+ global cfg     $PINECONF
+ 
+ password       <pinerc dir>\pine.pwd
+ debug          <pinerc dir>\pinedebg.txt
+ signature*     <pinerc dir>\pine.sig
+ addressbook*   <pinerc dir>\addrbook
+ addrbook lu    <pinerc dir>\addrbook.lu       (appends .lu to addrbk name.)
+ sentmail*      $HOME\mail\sentmail.mtx
+ postponed*     $HOME\mail\postpond.mtx
+ interrupted    $HOME\mail\intruptd
+ newsrc*        $HOME\newsrc  ;  <pinerc dir>\newsrc
+ mailcap        <pinerc dir>\mailcap  +  <exe dir>\mailcap  
+
+Unix Pine:
+
+ executable     <Unix search path>/pine
+ persnl cfg     ~/.pinerc
+ global cfg     /usr/local/lib/pine.conf
+ fixed cfg      /usr/local/lib/pine.conf.fixed
+ local help     /usr/local/lib/pine.info
+
+ debug          ~/.pine-debug[n]
+ signature*     ~/.signature
+ addressbook*   ~/.addressbook
+ addrbook lu    ~/.addressbook.lu    (appends .lu to actual addrbk name.)
+ sentmail*      ~/mail/sent-mail
+ postponed*     ~/mail/postponed-msgs
+ interrupted    ~/.pine-interrupted-mail
+ newsrc*        ~/.newsrc
+ mailcap        ~/.mailcap  +  /etc/mailcap
+
+ lock files     /tmp/.\usr\spool\mail\xxxx
+ inbox          /usr/spool/mail/xxxx
+ password       /etc/passwd
+
+Mailcap files.
+
+Pine now honors the mailcap configuration system for specifying external
+programs for handling attachments.  The mailcap file maps MIME attachment
+types to the external programs loaded on your system which can display
+and/or print the file.  A sample mailcap file comes bundled with the Pine
+distribution.  It includes comments which explain the syntax you need to
+use for mailcap.  With the mailcap file, any program (mail readers,
+newsreaders, WWW clients) can use the same configuration for handling
+MIME-encoded data.  
+
+Environment variables.
+
+PC-Pine uses the following environment variables:
+
+  PINERC      (Optional path to pinerc file.)
+  PINECONF    (Optional path to global pine config file.)
+  HOME
+  TMP or TEMP
+  COMSPEC
+  MAILCAPS    (semicolon delimited list of path names to mailcap files)
+
+Unix Pine uses the following environment variables:
+
+  TERM        (Tells Pine what kind of terminal is being used.)
+  DISPLAY     (Determines if Pine will try to display IMAGE attachments.)
+  SHELL       (If not set, default is /bin/sh )
+  MAILCAPS    (A semicolon delimited list of path names to mailcap files)
+
+--------------------------
+| (4) Coming Attractions |
+--------------------------
+
+NOT DONE, BUT WE WANT THEM AS MUCH AS YOU DO...
+
+ o Additional MIME support, esp. controlling file TYPING
+ o PEM and/or PGP support
+ o External directory services access
+ o Kerberos support
+ o RFC 1522 header encoding for 8bit character sets
+ o Location independence of support files 
+ o Offline support
+ o Hierarchy support (awaits IMAP4)
+ o Answered flag not set if Reply is postponed  (awaits IMAP4)
+ o Faster detection of folders with Recent messages (awaits IMAP4)
+ o Faster fetching of headers (awaits IMAP4)
+ o Determination of which flags are permanent (awaits IMAP4)
+
+---------------
+| (5) HISTORY |
+---------------
+
+Pine was originally conceived in 1989 as a simple, easy-to-use mailer for
+administrative staff at the University of Washington in Seattle.  This
+constituency had previously been using a very nice mail system derived
+from UCLA's "Ben" mailer for the MVS operating system, but when the cost
+of maintaining our MVS system became prohibitive, we needed to find a
+Unix-based mailer that preserved the user-interface strengths of "Ben".
+Our goal was to provide a mailer that naive users could use without fear
+of making mistakes.  We wanted to cater to users who were less interested
+in learning the mechanics of using electronic mail than in doing their
+jobs; users who perhaps had some computer anxiety.  We felt the way to do
+this was to have a system that didn't do surprising things and provided
+immediate feedback on each operation; a mailer that had a limited set of
+carefully-selected functions. 
+
+At that time, we could not find any Unix mailer (commercial or freely
+available) that met our requirements.  Consequently, we reluctantly
+concluded that we would need to develop our own.  The Elm mailer seemed
+like a reasonable starting point since its source code was freely
+available, so we started modifying it.  Today there is virtually no Elm
+code left, and Pine has evolved so that many "power-user" features may
+be (optionally) enabled.  We have tried to remain true to our original
+simplicity and ease-of-use goals by providing *optional* features for
+sophisticated users.  In fact, if none of Pine's options are enabled, the
+latest version has almost the same look-and-feel as the very first
+version. 
+
+One of the greatest problems with most mailers on Unix systems is the
+editor.  One can normally choose between emacs and vi.  We experimented
+with some versions of emacs and settled on a hacked version of micro
+emacs. Eventually it became heavily modified and tightly integrated with
+the rest of Pine.  One of the main features of having a tightly coupled
+editor is that it can guide the user through editing the header of the
+message, and Pine takes great care to do this.  A very simple and
+efficient interface to the Unix spell command was also added.  The emacs-
+style key bindings were retained, though most of the other wild and
+wonderful emacs functions were not.  The Pine composition editor is also
+available as a very simple stand alone editor named "pico". 
+
+Also working at the University of Washington is the original author of the
+Internet Message Access Protocol (IMAP).  IMAP is a functional superset of
+POP, and provides a way to manipulate mailboxes on remote servers as if
+they were local.  Specific advantages of IMAP over POP include: support
+for inbox access from multiple computers, access to more than one remote
+folder, selective access to MIME message parts, and support for
+disconnected operation. 
+
+Not long after the Pine project began, The IMAP author had finished
+writing the "c-client" library as an interface to IMAP and as a switch
+between drivers for IMAP mailboxes, Berkeley mail files and Tenex mail
+files.  In time, "c-client" became a full messaging API with support for
+RFC-822 parsing, MIME parsing and decoding, SMTP and NNTP drivers, and so
+forth.  Great care was taken to make the code writing the mail files
+robust against disks filling up, and inter-process locking in order to
+guarantee mail file consistency.  It was clear that Pine would benefit
+greatly from using the c-client to access mail storage so the original
+low-level Elm code was replaced by calls to c-client library routines. 
+Consequently Pine can write and access a variety of different mail file
+formats and new ones can be added by creating a simple driver.  In
+addition the c-client does a very careful job of doing all the RFC 822
+header parsing and achieves the highest compliance with the RFC. 
+
+Most of the work done on Pine from 6/92 to 6/93 focused on changes needed
+to support a truly distributed electronic messaging environment (e.g.
+remote folder manipulation), and getting Pine to run on DOS (which was a
+*lot* of work).  The first version of PC-Pine (3.84) was released in July
+1993, and included first steps toward integrating news and email access in
+Pine. Doing the DOS port was very difficult for a variety of reasons, but
+especially because of DOS memory management (or lack thereof).  However,
+simply porting Pine 3.07 to DOS was not sufficient.  For a desktop mailer
+such as PC-Pine to be useful at UW, it was necessary to fully support
+access to existing *remote* saved-message folders, as well as local
+(desktop) folders -- and of course, the remote INBOX.  Accomplishing this
+required extensions to IMAP, a new version of the IMAPd server code, and
+extensive work in Pine to support multiple collections of folders. 
+
+The principal reason for porting Unix Pine to DOS was to obviate the need
+for PC users to transfer files between their PC and the Unix system
+running Pine.  Now it is possible to save messages directly to the PC's
+filesystem, and to directly include PC files in outgoing messages.  And
+with Pine's MIME capability, binary files (e.g. word processing documents,
+spreadsheets, image files, executables) may be directly attached to your
+messages. 
+
+With Pine 3.90, significant new functionality has been added, notably
+aggregate operations for manipulating groups of messages at once, the
+first (alpha) release of PC-Pine for the Winsock network interface
+standard, and greatly improved Usenet (News) support.  One of the early
+interpretations of the name "Pine" was "Pine Is No-longer Elm"; today
+a "Program for Internet News and Email" seems more apropos. 
+
+Chronology of Pine versions:
+  * denotes a version with major new features
+  + denotes a version that proved to be long-lived/stable 
+
+  Pine   3.91         Oct 10, 1994
+* Pine   3.90         Aug 24, 1994   Major release: Winsock, News, AggrOps
++ Pine   3.89         Dec  7, 1993   Final bug-fix release of 3.8x series
+  Pine   3.88         Nov 22, 1993
+  Pine   3.87         Oct  8, 1993
+  Pine   3.86         Oct  5, 1993
+  Pine   3.85         Sep 21, 1993
+  Pine   3.84         Jul 12, 1993
+* Pine   3.83         Jun 17, 1993   Major release: includes DOS support
+  Pine   3.81         Oct 16, 1992
+  Pine   3.80         Oct  4, 1992   Merge of changes in 3.05, 3.73, 3.52
+
+  Pine   3.73         Sep 17, 1992   Last BWC version, based on 3.5x
+  Pine   3.52         Sep 17  1992
+  Pine   3.51         Aug 31  1992   
+  Pine   3.51-haifa   Aug 08, 1992 
+  Pine   3.50         Jul 23  1992   BWC/Haifa branch, based on 3.03
+
++ Pine   3.07         Mar 30, 1993   Final bug-fix release of 3.0x series
+  Pine   3.06         Sep 30, 1992
+  Pine   3.05         Sep 11, 1992
+  Pine   3.04         Sep  8, 1992
+  Pine   3.03         Jul 20, 1992                       
+  Pine   3.02         Jul 15, 1992
+  Pine   3.01         Jul 13, 1992
+* Pine   3.00         Jul  6, 1992   Second source release; MIME support
+ 
+  Pine   2.33         Jul  4, 1992
+  Pine   2.32         Jul  2, 1992           
+  Pine   2.31         Jun 30, 1992
+  Pine   2.30         Jun 29, 1992
+  Pine   2.29         Jun 12, 1992
+  Pine   2.28         Jun  2, 1992
+  Pine   2.27         May 22, 1992
+  Pine   2.26         May 15, 1992
+  Pine   2.25         May 12, 1992
+  Pine   2.24         May  1, 1992                          
+  Pine   2.21         Mar 25, 1992                          
+  Pine   2.20         Mar 25, 1992   First internal release with MIME
+  Pine   2.15         Mar 17, 1992
+  Pine   2.10         Feb 25, 1992      
+  Pine   2.4          Feb 28, 1992        
+  Pine   2.3          Feb 18, 1992
+  Pine   2.2          Jan 31, 1992
+  Pine   2.1          Jan 21, 1992
+* Pine   2.0          Jan 15, 1992   First public source release; IMAP support
+
+  Pine   1.0.26       Jan 13, 1992
+  Pine   1.0.25       Jan 10, 1992
+  Pine   1.0.24.1     Jan     1992
+  Pine   1.0.23.1     Dec 31, 1991
+  Pine   1.0.22.1     Nov 20, 1991
+  Pine   1.0.21.1     Nov 14, 1991
+  Pine   1.0.20.1     Nov 12, 1991
+  Pine   1.0.19.1     Oct 26, 1991   Experimental newsreading via IMAP
+  Pine   1.0.17.1     Sep 25, 1991 
+  Pine   1.0.16.100   Sep 23, 1991
+  Pine   1.0.16.1     Sep 21, 1991
+  Pine   1.0.15.150   Sep 20, 1991
+  Pine   1.0.14.100   Sep  6, 1991
+  Pine   1.0.3,       Apr 17, 1991   1.0 pre-release; has all 1.0 functions
+
+  Pine   0.9.650      Mar 17, 1991
+  Pine   0.9.650      Feb 25, 1991
+  Pine   0.9.600      Feb 13, 1991
+  Pine   0.9.500      Sep 25, 1990
+  Pine   0.9.439      Aug 27, 1990
+  Pine   0.9.42x      Jul 30, 1990
+  Pine   0.9.40x      Jun 25, 1990
+  Pine   0.9.31x      May 30, 1990   Design evaluation version
+  Pine   0.6.273      Jan 05, 1990
+
+---------------
+| (6) CREDITS |
+---------------
+
+The University of Washington Pine development team (part of the UW Office
+of Computing & Communications) includes:
+
+ Project Leader:           Mike Seibel.
+ Principal authors:        Mike Seibel, Steve Hubert, Laurence Lundblade*.
+ C-Client library & IMAPd: Mark Crispin.
+ Pico, the PIne COmposer:  Mike Seibel.
+ Bug triage, user support: David Miller.
+ Port integration:         David Miller.
+ Documentation:            Sheryl Erez, Kathryn Sharpe.
+ PC-Pine for DOS:          Mike Seibel.
+ PC-Pine for Windows:      Tom Unger.
+ Project oversight:        Terry Gray.
+ Principal Patrons:        Ron Johnson, Mike Bryant.
+ Additional support:       NorthWestNet.
+ Initial Pine code base:   Elm, by Dave Taylor & USENET Community Trust.
+ Initial Pico code base:   MicroEmacs 3.6, by Dave G. Conroy.
+ User Interface design:    Inspired by UCLA's "Ben" mailer for MVS.
+
+   * Emeritus  (Laurence is now at Virginia Tech.)
+
+We'd also like to acknowledge the following contributions and contributors:
+ Pine for VMS:  Portia Shao and Yehavi Bourvine
+ Special mention:   Dave Wall
+ Bug reports, bug fixes, ports, suggestions & encouragement:
+
+The world-wide Pine community, including...
+
+  Shoa Aminpour       Gordon Good        Richard Murphy
+  J.J. Baily          Bob Gregory        Il Oh
+  Billy Barron        Ed Greshko         Mike Ramey
+  Chris Beecher       Dmitri L. Gringauz Phil Rand
+  John Benjamins      David Halliwell    Jochiam Richter
+  Birko Bergt         Peter Hausken      Thomas Riemer
+  Ken Bobey           Jeff Hayward       Alexis Rosen
+  Andy Brager         Ron Johnson        Michael Ross
+  D.K. Brownlee       William Kreuter    Bob Sandstrom
+  Brian Burriston     Pekka Kytolaakso   Michael F. Santangelo
+  Bill Campbell       Barry Landy        Shin-ya Satoh
+  Russel Campbell     Chris Latham       Corey Satten
+  Donn Cave           Jon Lebo           Michael Shepard
+  Richard Cheever     Allen Leonard      Alan Thew
+  Mike Coghlan        Robert L. Lewis    Jason R. Thorpe
+  Justine Comer       Bruce Lilly        Marc Unangst
+  Chuck Cooper        Matthew Lyle       Edward Vielmetti
+  Barry Cornelius     John Mackin        Ross Wakelin
+  Tony Flemming       James Matheson     Rich Wales
+  Matthew Freedman    Mark McNair        David Wall
+  Richard Fritz       Pete Mellor        Bob Williams
+  Marcelo A. Gallardo Dave Miller        Steve Woodyatt
+  Adam Garrett        Robert Morris      Michael A. Crowley
+
+And many others... Our thanks to all! 
+
+Pine files and documentation are available via FTP or WWW: 
+  ftp://ftp.cac.washington.edu/pine
+  http://www.cac.washington.edu/pine
+
+In particular, the latest version of Pine source code is available via
+anonymous FTP from Internet host ftp.cac.washington.edu in the file
+/pine/pine.tar.Z. 
+
+Please send comments and correspondence to: pine@cac.washington.edu
+
+---------------------
+| (7) LEGAL NOTICES |
+---------------------
+
+Pine and Pico are trademarks of the University of Washington. No commercial
+use of these trademarks may be made without prior written permission of the
+University of Washington.
+
+Pine and Pico software and its included text are Copyright 1989-1994 by the
+University of Washington.
+
+Permission to use, copy, modify, and distribute this software and its
+documentation for any purpose and without fee to the University of
+Washington is hereby granted, provided that the above copyright notice
+appears in all copies and that both the above copyright notice and this
+permission notice appear in supporting documentation, and that the name of
+the University of Washington not be used in advertising or publicity
+pertaining to distribution of the software without specific, written prior
+permission.  This software is made available "as is", and
+
+THE UNIVERSITY OF WASHINGTON DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED,
+WITH REGARD TO THIS SOFTWARE, INCLUDING WITHOUT LIMITATION ALL IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, AND IN
+NO EVENT SHALL THE UNIVERSITY OF WASHINGTON BE LIABLE FOR ANY SPECIAL,
+INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, TORT
+(INCLUDING NEGLIGENCE) OR STRICT LIABILITY, ARISING OUT OF OR IN CONNECTION
+WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+<End of Release Notes>

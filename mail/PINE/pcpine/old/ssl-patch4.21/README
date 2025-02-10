@@ -1,0 +1,64 @@
+
+
+                           SSL Patchkit for Pine 4.21
+                            University of Washington
+                                  12 June 2000
+
+
+The patch file contained in the directory:
+
+        ftp://ftp.cac.washington.edu/pine/ssl-patch/
+
+is intended to add SSL link encryption to the standard release of the Pine
+Mail System version 4.21.  This patch requires that OpenSSL be installed
+prior to its being applied. 
+
+The following steps will apply the patchkit to the Pine 4.21 distribution:
+
+   0) Change directories to the root of the Pine 4.21 source tree.
+   1) ./build clean
+   2) tar -xf simap-4.7.tar
+      Which will produce the "simap-4.7" directory.
+      It contains a README file explaining how it works.
+   3) mv imap imap-4.7/imap-4.7c
+   4) ln -s simap-4.7 imap
+   5) ./build my_os
+      Where "my_os" is the platform OS being built
+
+Provided OpenSSL was already installed, the resulting Pine binary will
+be capable of communicating with IMAP servers waiting for connections
+on the "imaps" service port (port 993).
+
+To request secure connection with the IMAP server, append "/ssl" to
+the hostname portion of the inbox-path and/or folder-collections
+pinerc variable (e.g., "{imap.foo.org}inbox" would become
+"{imap.foo.org/ssl}inbox").  Once a secure connection is established,
+Pine will display a plus sign, '+', in the display's top right corner.
+
+If a connection attempt results in an error message along the lines of
+"Invalid remote specification" then Pine is not recognizing the "/ssl"
+switch and the patch, for some reason, failed.  Most likely because
+the build script and Makefiles did not find the SSL libraries where
+they were expected.  If an error similar to "Problem accessing folder
+..." results, then the server's not accepting ssl connections on the
+imaps port.
+
+
+NOTE 1:
+
+We also recommend that the c-client distributed with Pine 4.21 be
+upgraded to the more recent c-client library found in:
+
+        ftp://ftp.cac.washington.edu/mail/imap-4.7c2.tar.Z
+
+To replace the c-client, simply rename the "imap" directory in the
+Pine 4.21 source directory to "imap.old" and unpack the latest 
+c-client there.  Once this is done, simply substitute step 3 above
+with the command "ln -s imap-4.7c imap".
+
+
+NOTE 2:
+
+This patch is being made available, without restriction as to
+destination, due to the recent (January 14, 2000) relaxation of export
+controls.

@@ -1,0 +1,15 @@
+Revised 2008-08-26
+
+What you'll find in this directory:
+
+README                  - This file.
+alpine-2.00.tar.Z       - Alpine/Pico/IMAPd alpha release
+alpine-2.00.tar.gz      - Same as above but compressed with gnu zip
+alpine-2.00.tar.bz2     - Same as above but compressed with bzip2
+alpine-2.00-1.i386.rpm  - RPM built on Fedora Core 7 (i386)
+alpine-2.00-1.src.rpm   - Source RPM built on Fedora Core 7
+alpine_2.00_i386.deb    - Debian package built on 4.0
+setup_alpine_2.00.exe   - Windows Alpine installer built with the above sources
+alpine-2.00-wnt.zip     - Windows Alpine executables built with the above source
+old/		        - Previous releases
+bin/			- Pre-built binaries for various systems

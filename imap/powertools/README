@@ -1,0 +1,27 @@
+The programs in this directory are power tools, and come with no documentation
+nor any support.
+
+babyimapd.tar.Z			authenticate-only version of imapd that
+				forks to standard imapd after authentication
+				and dropping of root privileges
+
+ccmd.tar.Z			Columbia University command parsing library
+				for use with ms
+
+defrag.tar.Z			program to defragment a file on UNIX
+
+icat.tar.Z			program to read an IMAP mailbox and write it
+				to standard output in traditional UNIX mailbox
+				format
+
+ifrom.tar.Z			program to produce a one-line summary of
+				messages in an IMAP mailbox
+
+inetlisn.tar.Z			sample Internet listener for Windows NT/2K/XP
+
+kerberos4-patches.tar.Z		patches for Kerberos V4 (may require hacking
+				to work in modern IMAP toolkit)
+
+ms.tar.Z			text-only MUA, similar to MM on TOPS-20
+
+unexpunge.tar.Z			program to turn off expunge bits in mbx files

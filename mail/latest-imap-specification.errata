@@ -1,0 +1,300 @@
+Somewhere, we need to say that if both TLS and SASL security layers are in
+effect, then TLS is below the SASL security layer.
+
+
+Section 2.3.1.1, page 8:
+	old:
+   A 32-bit value assigned to each message, which when used with the
+   unique identifier validity value (see below) forms a 64-bit value
+   that MUST NOT refer to any other message in the mailbox or any
+   subsequent mailbox with the same name forever.  Unique identifiers
+   [...]
+	new:
+   An unsigned 32-bit value assigned to each message, which when used
+   with the unique identifier validity value (see below) forms a 64-bit
+   value that MUST NOT refer to any other message in the mailbox or any
+   subsequent mailbox with the same name forever.  Unique identifiers
+   [...]
+-----
+
+Section 2.3.1.1, page 9:
+	old:
+   Associated with every mailbox are two values which aid in unique
+   identifier handling: the next unique identifier value and the unique
+   identifier validity value.
+	new:
+   Associated with every mailbox are two 32-bit unsigned values which
+   aid in unique identifier handling: the next unique identifier value
+   (UIDNEXT) and the unique identifier validity value (UIDVALIDITY).
+-----
+
+Section 5.1.3, page 19:
+	old:
+   All other characters (octet values 0x00-0x1f and 0x7f-0xff) are
+   represented in modified BASE64, with a further modification from
+   [UTF-7] that "," is used instead of "/".  Modified BASE64 MUST NOT be
+   used to represent any printing US-ASCII character which can represent
+   itself.
+	new:
+   All other characters (octet values 0x00-0x1f and 0x7f-0xff) are
+   represented in modified BASE64, with a further modification from
+   [UTF-7] that "," is used instead of "/".  Modified BASE64 MUST NOT be
+   used to represent any printing US-ASCII character which can represent
+   itself.  Only characters inside the modified BASE64 alphabet are
+   permitted in modified BASE64 text.
+-----
+
+Section 5.4, page 22:
+	old:
+   If a server has an inactivity autologout timer, the duration of that
+   timer MUST be at least 30 minutes.  The receipt of ANY command from
+   the client during that interval SHOULD suffice to reset the
+   autologout timer.
+	new:
+   If a server has an inactivity autologout timer that applies to
+   sessions after authentication, the duration of that timer MUST be at
+   least 30 minutes.  The receipt of ANY command from the client during
+   that interval SHOULD suffice to reset the autologout timer.
+
+Section 5.5, page 22:
+	  old:
+        Note: UID FETCH, UID STORE, and UID SEARCH are different
+        commands from FETCH, STORE, and SEARCH.  If the client
+        sends a UID command, it must wait for a completion result
+        response before sending a command with message sequence
+        numbers.
+	  new:
+        Note: EXPUNGE responses are permitted while UID FETCH,
+        UID STORE, and UID SEARCH are in progress.  If the client
+        sends a UID command, it must wait for a completion result
+        response before sending a command which uses message
+        sequence numbers (this may include UID SEARCH).  Any
+        message sequence numbers in an argument to UID SEARCH
+        are associated with messages prior to the effect of any
+        untagged EXPUNGE returned by the UID SEARCH.
+-----
+
+Section 6.2.1, page 27:
+	old:
+      Once [TLS] has been started, the client MUST discard cached
+      information about server capabilities and SHOULD re-issue the
+      CAPABILITY command.  This is necessary to protect against man-in-
+      the-middle attacks which alter the capabilities list prior to
+      STARTTLS.  The server MAY advertise different capabilities after
+      STARTTLS.
+	new:
+      Once [TLS] has been started, the client MUST discard cached
+      information about server capabilities and SHOULD re-issue the
+      CAPABILITY command.  This is necessary to protect against man-in-
+      the-middle attacks which alter the capabilities list prior to
+      STARTTLS.  The server MAY advertise different capabilities, and
+      in particular SHOULD NOT advertise the STARTTLS capability, after
+      a successful STARTTLS command.
+-----
+
+Section 6.2.2, page 28:
+	old:
+      The authentication protocol exchange consists of a series of
+      server challenges and client responses that are specific to the
+      authentication mechanism.  A server challenge consists of a
+      command continuation request response with the "+" token followed
+      by a BASE64 encoded string.  The client response consists of a
+      single line consisting of a BASE64 encoded string.  If the client
+      wishes to cancel an authentication exchange, it issues a line
+      consisting of a single "*".  If the server receives such a
+      response, it MUST reject the AUTHENTICATE command by sending a
+      tagged BAD response.
+	new:
+      The authentication protocol exchange consists of a series of
+      server challenges and client responses that are specific to the
+      authentication mechanism.  A server challenge consists of a
+      command continuation request response with the "+" token followed
+      by a BASE64 encoded string.  The client response consists of a
+      single line consisting of a BASE64 encoded string.  If the client
+      wishes to cancel an authentication exchange, it issues a line
+      consisting of a single "*".  If the server receives such a
+      response, or if it receives an invalid BASE64 string (e.g.
+      characters outside the BASE64 alphabet, or non-terminal "="), it
+      MUST reject the AUTHENTICATE command by sending a tagged BAD
+      response.
+
+Section 6.3.4, page 36:
+	old:
+      It is permitted to delete a name that has inferior hierarchical
+      names and does not have the \Noselect mailbox name attribute.  In
+      this case, all messages in that mailbox are removed, and the name
+      will acquire the \Noselect mailbox name attribute.
+	new:
+      It is permitted to delete a name that has inferior hierarchical
+      names and does not have the \Noselect mailbox name attribute.  If
+      the server implementation does not permit deleting the name while
+      inferior hierarchical names exists the \Noselect mailbox name
+      attribute is set for that name.  In any case, all messages in
+      that mailbox are removed by the DELETE command.
+-----     
+
+Section 6.3.10, page 44:
+	old:
+   Responses:  untagged responses: STATUS
+	new:
+   Responses:  REQUIRED untagged response: STATUS
+-----
+
+Section 6.4.3, page 49:
+	old:
+      The EXPUNGE command permanently removes all messages that have the
+      \Deleted flag set from the currently selected mailbox.  Before
+      returning an OK to the client, an untagged EXPUNGE response is
+      sent for each message that is removed.
+	new:
+      The EXPUNGE command permanently removes all messages that have the
+      \Deleted flag set from the currently selected mailbox.  Before
+      returning an OK to the client, an untagged EXPUNGE response is
+      sent for each message that is removed.  Note that if any messages
+      with the \Recent flag set are expunged, an untagged RECENT response
+      is sent after the untagged EXPUNGE(s) to update the client's count
+      of RECENT messages.
+-----
+
+Section 6.4.4, page 50:
+	old:
+      [MIME-IMB] content transfer encodings, and [MIME-HDRS] strings in
+      [RFC-2822]/[MIME-IMB] headers, MUST be decoded before comparing
+      text in a [CHARSET] other than US-ASCII.  US-ASCII MUST be
+      supported; other [CHARSET]s MAY be supported.
+	new:
+      [MIME-IMB] content transfer encodings, and [MIME-HDRS] strings in
+      [RFC-2822]/[MIME-IMB] headers, MUST be decoded before comparing
+      text.  US-ASCII MUST be supported; other [CHARSET]s MAY be supported.
+-----
+
+Section 6.4.4, page 50:
+	old:
+      In all search keys that use strings, a message matches the key if
+      the string is a substring of the field.  The matching is
+      case-insensitive.
+	new:
+      In all search keys that use strings, a message matches the key if
+      the string is a substring of the associated text.  The matching is
+      case-insensitive.  Note that the empty string is a substring; this
+      is useful when doing a HEADER search.
+-----
+
+Section 6.4.4, page 54:
+	old:
+               C: A284 SEARCH CHARSET UTF-8 TEXT {6}
+               C: XXXXXX
+               S: * SEARCH 43
+               S: A284 OK SEARCH completed
+	new:
+               C: A284 SEARCH CHARSET UTF-8 TEXT {6}
+               S: + Ready for literal text
+               C: XXXXXX
+               S: * SEARCH 43
+               S: A284 OK SEARCH completed
+-----
+
+Section 7.2.2, page 70:
+	old:
+      If it is not feasible for the server to determine whether or not
+      the mailbox is "interesting", or if the name is a \Noselect name,
+      the server SHOULD NOT send either \Marked or \Unmarked.
+	new:
+      If it is not feasible for the server to determine whether or not
+      the mailbox is "interesting", the server SHOULD NOT send either
+      \Marked or \Unmarked.  The server MUST NOT send more than one of
+      \Marked, \Unmarked, and \Noselect for a single mailbox, and MAY
+      send none of these.
+-----
+
+Section 7.4.2, page 75:
+	old:
+         body location
+            A string list giving the body content URI as defined in
+            [LOCATION].
+	new:
+         body location
+            A string giving the body content URI as defined in
+            [LOCATION].
+
+Section 7.4.2, page 77:
+	old:
+         body location
+            A string list giving the body content URI as defined in
+            [LOCATION].
+	new:
+         body location
+            A string giving the body content URI as defined in
+            [LOCATION].
+
+
+Formal Syntax, Page 84:
+	old:
+CHAR8           = %x01-ff
+                    ; any OCTET except NUL, %x00
+	new:
+CHAR8           = %x01-ff
+                    ; any OCTET except NUL, %x00
+
+charset         = atom / quoted
+-----
+
+Formal Syntax, Page 89:
+	old:
+resp-text-code  = "ALERT" /
+                  "BADCHARSET" [SP "(" astring *(SP astring) ")" ] /
+	new:
+resp-text-code  = "ALERT" /
+                  "BADCHARSET" [SP "(" charset *(SP charset) ")" ] /
+-----
+
+Formal Syntax, Page 89:
+	old:
+search          = "SEARCH" [SP "CHARSET" SP astring] 1*(SP search-key)
+	new:
+search          = "SEARCH" [SP "CHARSET" SP charset] 1*(SP search-key)
+-----
+
+Formal Syntax, Page 90:
+	old:
+sequence-set    = (seq-number / seq-range) *("," sequence-set)
+	new:
+sequence-set    = (seq-number / seq-range) ["," sequence-set]
+-----
+
+Formal Syntax, Page 90:
+	old:
+status-att-list =  status-att SP number *(SP status-att SP number)
+	new:
+status-att-val  = ("MESSAGES" SP number) / ("RECENT" SP number) /
+                  ("UIDNEXT" SP nz-number) / ("UIDVALIDITY" SP nz-number) /
+                  ("UNSEEN" SP number)
+
+status-att-list =  status-att-val *(SP status-att-val)
+-----
+
+IANA Considerations, Page 94:
+	new:
+    GSSAPI/Kerberos/SASL service names are registered by publishing a
+    standards track or IESG approved experimental RFC.  The registry
+    is currently located at:
+
+         http://www.iana.org/assignments/gssapi-service-names
+
+    As this specification defines the "imap" service name previously
+    defined in RFC 1731, the registry will be updated accordingly.
+-----
+
+
+Normative References, Page 95:
+	old:
+   [LANGUAGE-TAGS]       Alvestrand, H., "Tags for the Identification of
+                         Languages", BCP 47, RFC 3066, January 2001.
+	new:
+   [LANGUAGE-TAGS]       Alvestrand, H., "Content Language Headers",
+                         RFC 3282, May 2002.
+
+
+Appendix B, Page 103:
+	new:
+   115) Add support for Content-Location to BODYSTRUCTURE.

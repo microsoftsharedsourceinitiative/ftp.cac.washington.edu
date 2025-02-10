@@ -1,0 +1,50 @@
+
+				Pine 3.95 PATCH #1
+				 14 January 1997
+
+The patch file "pine3.95.patch-1" is a set of patches to be applied to
+the Pine Mail System version 3.95 (released 15 July 1996).  These
+patches address a small handful of particularly annoying problems that
+have been identified since the release.
+
+A few of the problems are cross-platform, and all required only small
+source changes to fix, so it is hoped that the patches will not
+introduce any new problems.  That said, if you are not experiencing
+any of the problems mentioned below, it is probably not worth your
+while to apply these patches.
+
+Pine 3.95 patch #1 addresses the following problems:
+
+     1) Sun Solaris 2.5 crash -- A bug in the Solaris kernel causes a
+        system hang when a zero byte read is attempted on a network socket.
+     2) AIX 4.2 composer "hang" -- A bug in the Pico makefile introduced
+        an incompatibility between Pine and the Pico library causing
+        Pine to appear to "hang" when entering the Pine Composer.
+     3) Sent message dot quoting -- A bug in Pine's posting code can
+        cause periods in message bodies to get doubled.  This is most
+        evident when including uuencoded files in a message body.
+        Note, this problem did not impact message attachments.
+     4) Improved HUP handling vs. poll system call -- Fixes a problem that
+        cause what appeared to be a crash when a HUP was received
+        while waiting for command input.  Affected ports include:
+        generic SVR4, Solaris, and DYNIX/ptx.
+     5) C-client locking vs. symbolic links security patched
+     6) Address book problems when no nickname supplied fixed
+     7) Slightly more forgiving Date sort
+     8) Improved handling of unexpected changes to address book data
+     9) Formfeed output during aggregate printing fixed
+    10) Empty group address phrase bug fixed
+
+The patch file is in context-diff format, and should be understood by
+the "patch" utility.  To update Pine v3.95 source, simply copy the
+patch file into the pine3.95 directory and type:
+
+        patch < pine3.95.patch-1
+
+After patch completes, verify that there were no problems and rebuild.
+
+As always, thanks for your interest and support.
+
+Sincerely,
+
+The Pine Development Team

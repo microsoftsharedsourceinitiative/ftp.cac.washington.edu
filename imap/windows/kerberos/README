@@ -1,0 +1,27 @@
+Revised 2005-09-28
+
+Unless you are using Kerberos on your PC, you should download 
+setup_pine_4.63.exe from the directory above this directory. This 
+directory contains two versions of PC-Pine for use with Kerberos.
+Most people will use setup_pine_4.63.exe instead.
+
+What you'll find in this directory:
+
+README              - This file.
+setup_pine_4.64_w2k - Latest version (4.64) for PC-Pine for Windows 2000
+		      (and XP Professional). Windows 2000 is distributed 
+		      with Kerberos libraries and this version of PC-Pine
+		      uses them.
+setup_pine_4.64_k5  - PC-Pine configured for MIT Kerberos. This version runs
+		      on Win9x, WinMe, NT4, Win2k, and WinXP and will also run
+		      on NT3 and Win3.1x with Win32s. The third party software,
+		      MIT Kerberos, must be installed on the server to take
+		      advantage of the security enhancements in this
+		      PC-Pine version.  More information about MIT Kerberos,
+		      including its distribution, can be found at
+		      <http://web.mit.edu/kerberos/www/>.
+p2k464.zip          - Same as setup_pine_4.64_w2k.exe above, but as zip
+		      distribution.
+pnk464.zip         - Same as setup_pine_4.64_k5.exe above, but as zip
+		      distribution.
+install.txt         - README file for PC-Pine

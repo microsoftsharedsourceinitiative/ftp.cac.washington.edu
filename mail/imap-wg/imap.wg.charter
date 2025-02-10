@@ -1,0 +1,77 @@
+
+Internet Message Access Protocol (imap)
+---------------------------------------
+ 
+ Charter 
+ 
+ Chair(s):
+     Terry Gray  <gray@cac.washington.edu>
+ 
+ Applications Area Director(s) 
+     Brewster Kahle  <Brewster@wais.com>
+     Erik Huizer  <Erik.Huizer@SURFnet.nl>
+ 
+ Mailing lists: 
+     General Discussion:imap@cac.washington.edu
+     To Subscribe:      imap-request@cac.washington.edu
+     Archive:           ftp.cac.washington.edu:~/imap/imap_archive
+ 
+Deecription of Working Group:
+ 
+   The Internet Interactive Mail Access Protocol (IMAP) working group
+   is chartered to refine and extend the current IMAP2 protocol as a
+   candidate standard for a client-server Internet email protocol to
+   manipulate remote mailboxes as if they were local.  An explicit
+   objective is to retain compatibility with the growing installed base
+   of IMAP2-compliant software.  It is expected that the resulting
+   specification will replace both RFC-1176 and the more recent (as yet
+   unplublished) IMAP2bis extensions document.
+
+   The IMAP Working Group will also investigate how to provide for
+   ``disconnected operation'' capabilities similar to the DMSP protocol
+   (RFC-1056, recently relegated to Informational Status) with a goal
+   of making it possible for IMAP to replace DMSP.
+
+   A mail access protocol provides a uniform, OS-independent way of
+   manipulating message data (email or bulletin board) on a remote
+   message store (repository).  Mail user agents implementing such a
+   protocol can provide individuals with a consistent view of the
+   message store, regardless of what type of computer they are using,
+   and regardless of where they are connected in the network.  Multiple
+   concurrent sessions accessing a single remote mailbox, and single
+   sessions accessing multiple remote mailboxes are both possible with
+   this approach.
+
+   This differs from POP3 (RFC-1225) in that POP is a store-and-forward
+   transport protocol that allows an MUA to retrieve pending mail from
+   a mail drop (where it is then usually deleted automatically),
+   whereas IMAP is focused on remote mailbox manipulation rather than
+   transport. IMAP differs from various vendor-specific remote access
+   approaches in that IMAP is an open protocol designed to scale well
+   and accommodate diverse types of client operating systems.
+
+   Security.  Security-related tasks include how to incorporate secure
+   authentication mechanisms when establishing a session, and possible
+   interactions with Privacy Enhanced Mail.
+
+   It is expected that most of the work of this group will be conducted
+   via email.  A goal is to integrate and update RFC-1176 and the
+   existing IMAP2bis draft, then submit the result as an Internet draft
+   well before the November IETF WG meeting, which would then focus on
+   detailed review of the text in preparation for submission as a
+   Proposed Standard before the end of 1993.
+
+ 
+ Goals and Milestones: 
+ 
+   Aug 93 Post an Internet Draft of the revised IMAP 2 protocol.               
+
+   Aug 93 Hold an Interim Working Meeting at UW or CMU.                        
+
+   Nov 93 Hold a Working Group meeting to review the IMAP document.            
+
+   Nov 93 Hold a Working Group meeting at the November IETF meeting.           
+
+   Dec 93 Submit the IMAP protocol to the IESG for consideration as a Proposed 
+          Standard.                                                            
+

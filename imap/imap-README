@@ -1,0 +1,26 @@
+The imap.tar.Z on this directory points to the currently recommended
+version of the UW IMAP toolkit, including the UW IMAP server.
+Usually, this will either be a final or release candidate version; but
+it may point to a development snapshot if it is felt that there is a
+critical known bug in the most recent final version.
+
+IMAP distribution names consist of "imap-", followed by the major
+version (which corresponds to the year of release), a possible letter
+which indicates a minor revision, and a distribution status, which is
+one of the following:
+ FINAL (or no status)	This is the final, permanently frozen
+			 distribution of that verion.  Typically this
+			 is associated with a release of Pine.
+ RCn			This is a distribution that is a candidate to
+			 become a FINAL.  Typically this is associated
+			 with a pre-release of Pine.
+ DEV.SNAP-yymmddhhmm	This is a snapshot of the current development
+			 sources, with the date/time that the the
+			 snapshot was taken.
+
+Development snapshots are believed to be good versions, but they can
+(and will) be updated frequently.
+
+Old permanently-frozen versions of the IMAP toolkit are on the old/
+subdirectory.  Note that all permanently-frozen versions have known
+bugs.

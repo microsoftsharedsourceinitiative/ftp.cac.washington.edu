@@ -1,0 +1,2423 @@
+From owner-pine-info@cac.washington.edu  Tue Jun  1 07:48:00 1993
+Received: from mx2.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA23942; Tue, 1 Jun 93 07:48:00 -0700
+Received: by mx2.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA17688; Tue, 1 Jun 93 07:37:45 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from bart.meiko.com by mx2.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA17682; Tue, 1 Jun 93 07:37:43 -0700
+Received: by bart.meiko.com id AA12712
+  (5.65c/IDA-1.4.4 for pine-info@cac.washington.edu); Tue, 1 Jun 1993 10:37:39 -0400
+Date: Tue, 1 Jun 1993 10:27:31 -0400 (EDT)
+From: Mike Stok <Mike.Stok@meiko.waltham.ma.us>
+Subject: Pine crash & message loss
+To: pine-info@cac.washington.edu
+Message-Id: <Pine.3.07.9306011031.B27828-b100000@bart>
+Mime-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Status: O
+X-Status: 
+
+Hi,
+
+my boss has just had a crash sending some mail with pine 3.07 on a
+Sparcstation running SunOS 4.1.1, IDA sendmail, using DNS to resolve
+addresses.  The tail of the .pine-debug file is below.
+
+His main gripe was that after the crash he couldn't resurrect the message,
+and I had a look around under his home and mail directories and in /tmp
+and couldn't find any temporary files which looked like his mail.  The
+mail hadn't been appended to the sent-mail folder.
+
+I am wondering how easy it would be to make Pine 'safer' in the event of a
+crash, or where I should look for his message's corpse?
+
+This is our first 'major' problem in more than a year of Pine use.
+
+Mike
+
+  -----  MAIL VIEW  -----
+Want_to read: y (121)
+Error reopening /tmp/pine-print-output-313 to get results: Invalid argument
+
+
+ ---- MAIL INDEX ----
+Doing checkpoint
+IMAP 8:4 6/1 mm_log babble: Check completed
+
+
+    ---- COMPOSE SCREEN (not in pico yet) ----
+Want_to read: y (121)
+
+ === send called === 
+Address book opened with 52 items
+Sorting by arrival
+new win size -----<24 80>------
+about to end_tty_driver
+Pine Panic: Received abort signal
+
+
+-- 
+The "usual disclaimers" apply.    | Meiko
+Mike Stok                         | Reservoir Place
+Mike.Stok@meiko.waltham.ma.us     | 1601 Trapelo Road
+Meiko tel: (617) 890 7676         | Waltham, MA 02154
+
+
+
+
+From owner-pine-info@cac.washington.edu  Tue Jun  1 09:50:49 1993
+Received: from mx1.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA27616; Tue, 1 Jun 93 09:50:49 -0700
+Received: by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA19681; Tue, 1 Jun 93 09:37:45 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from uwavm.u.washington.edu by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA19675; Tue, 1 Jun 93 09:37:43 -0700
+Message-Id: <9306011637.AA19675@mx1.cac.washington.edu>
+Received: from UWAVM.U.WASHINGTON.EDU by UWAVM.U.WASHINGTON.EDU
+   (IBM VM SMTP V2R1) with BSMTP id 7866; Tue, 01 Jun 93 09:36:32 PDT
+Received: from RICEVM1.RICE.EDU by UWAVM.U.WASHINGTON.EDU (Mailer R2.08
+ R208004) with BSMTP id 6671; Tue, 01 Jun 93 09:36:31 PDT
+Received: from ricevm1.rice.edu (NJE origin TROTH@RICEVM1) by RICEVM1.RICE.EDU
+ (LMail V1.1d/1.7f) with BSMTP id 1734; Tue, 1 Jun 1993 11:37:31 -0500
+Mime-Version: 1.0
+Content-Type: text/plain
+Date:         Tue, 01 Jun 93 11:35:17 CDT
+From: Rick Troth <TROTH@ricevm1.rice.edu>
+Subject:      Re: Addressbook format
+To: David Wall <davidw@u.washington.edu>, Laurence Lundblade <lgl@nwnet.net>
+Cc: Laurie Cuthbert <L.G.Cuthbert@qmw.ac.uk>, pine-info@cac.washington.edu,
+        remmers@u.washington.edu
+In-Reply-To:  Message of Mon, 24 May 1993 15:08:50 -0700 (PDT) from
+ <davidw@u.washington.edu>
+Status: O
+X-Status: 
+
+>We also have a program to convert between RICE mailer notebooks and the
+>Pine addressbook.  The author is Tom Remmers.  (remmers@u.washington.edu.)
+
+        FYI:   I've got something that will do that too.
+The tool here is Pipelined and reversible.   (found that I needed to
+feed  *some*  notebooks back to RiceMAIL,  much as I love Pine)
+
+--
+Rick Troth <troth@rice.edu>,  Rice University,  Information Systems
+
+
+From owner-pine-info@cac.washington.edu  Wed Jun  2 07:37:36 1993
+Received: from mx2.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA26619; Wed, 2 Jun 93 07:37:36 -0700
+Received: by mx2.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA23792; Wed, 2 Jun 93 07:13:06 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from munnari.OZ.AU by mx2.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA23786; Wed, 2 Jun 93 07:13:02 -0700
+Received: from msl.msl.oz (via sol) by munnari.oz.au with SunIII (5.83--+1.3.1+0.50)
+	id AA16992; Thu, 3 Jun 1993 00:12:53 +1000 (from isb_mtf@msl.msl.oz.au)
+Received: by msl (4.1)
+	id AA27301; Wed, 2 Jun 93 23:58:07 EST
+Date: Wed, 2 Jun 93 23:58:07 EST
+From: isb_mtf@msl.oz.au (Michael Fox)
+Message-Id: <9306021358.AA27301@msl>
+To: pine-info@cac.washington.edu
+Subject: general information request
+Status: O
+X-Status: 
+
+
+Not sure if this is the right place to send this query, but here goes:
+
+We are currently migrating from a home-grown mail system on Primes on
+to a standard unix mail environment, and Pine certainly looks to be the
+ideal replacement.
+
+Part of the exercise involves proving that the new system can do everything the old one could do, and this has meant a few minor patches to the code (3.07).
+We now have to do some more tinkering, and I have seen a reference to version
+4 beta in other correspondence.  Many of the enhancements we are looking for may well be in the new version - so is there such a version available and where 
+can I get it from?
+
+In particular, we are interested in integrating a news reading service, and
+ perhaps replacing our current concept of 'notice boards' with news groups.
+
+One use of our current notice board is as a mini bbs, to place software and
+documents for downloading to a pc - any ideas on how to do this? the biggest
+problem seems to be keeping track of what each user has read from a shared
+folder, which I guess is what news groups would handle well.
+
+The other feature we are looking for is some sort of directory service, to
+enquire what a persons mail address is, or perhaps what are the valid
+addresses in a functional work group.  Is anything being deveoped along these
+lines?
+
+By the way, this is not coming to you from within our version of Pine, because
+we have only indirect access to the internet at the moment, and I have to go
+through another site which only has standard mail.
+
+Thanks,
+Michael Fox
+
+
+
+From owner-pine-info@cac.washington.edu  Wed Jun  2 12:07:45 1993
+Received: from mx1.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA06366; Wed, 2 Jun 93 12:07:45 -0700
+Received: by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA06343; Wed, 2 Jun 93 11:56:36 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from shiva2.cac.washington.edu by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA06337; Wed, 2 Jun 93 11:56:34 -0700
+Received: by shiva2.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA08298; Wed, 2 Jun 93 11:56:15 -0700
+Date: Wed, 2 Jun 1993 11:37:22 -0700 (PDT)
+From: Terry Gray <gray@cac.washington.edu>
+Subject: Re: general information request
+To: Michael Fox <isb_mtf@msl.oz.au>
+Cc: pine-info@cac.washington.edu
+In-Reply-To: <9306021358.AA27301@msl>
+Message-Id: <Pine.3.83.9306021122.A17673-0100000@shiva2.cac.washington.edu>
+Mime-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Status: O
+X-Status: 
+
+
+On Wed, 2 Jun 1993, Michael Fox wrote:
+
+> We are currently migrating from a home-grown mail system on Primes on
+> to a standard unix mail environment, and Pine certainly looks to be the
+> ideal replacement.
+
+Glad to hear it!
+ 
+> I have seen a reference to version 4 beta in other correspondence. 
+> Many of the enhancements we are looking for may well be in the new version
+> - so is there such a version available and where can I get it from? 
+
+We are currently working on 3.83, which will be the first real release of
+PC-Pine (coming R.S.N.).  A matching Unix Pine 3.83 will appear soon after
+that.  You can think of 3.83 as a pre-release of 4.0, but there will be
+more stuff added and fixed by the time 4.0 hits the street.  (Late
+summer/early Fall???)
+
+> In particular, we are interested in integrating a news reading service, and
+>  perhaps replacing our current concept of 'notice boards' with news groups.
+
+News support will improve with each release.  The next version will allow
+specification of one or more news collections, and display subscribed
+newsgroups (according to your .newsrc) using the Folders screen.  Next
+will come posting, subscription management, etc.
+ 
+> One use of our current notice board is as a mini bbs, to place software and
+> documents for downloading to a pc - any ideas on how to do this? the biggest
+> problem seems to be keeping track of what each user has read from a shared
+> folder, which I guess is what news groups would handle well.
+
+Yes, a newsgroup is the easiest way of handling that right now if you 
+want to keep track of which msgs each person has seen.  (Otherwise you
+can arrange access to a read-only folder, where all msgs in the folder
+will continually reappear.)
+
+We've talked about defining the mailbox equivalent of a .newsrc for 
+shared mailboxes, but haven't done anything about it yet.
+ 
+> The other feature we are looking for is some sort of directory service, to
+> enquire what a persons mail address is, or perhaps what are the valid
+> addresses in a functional work group.  Is anything being deveoped along these
+> lines?
+
+Both of these are already on the list, but I can't say exactly when they 
+will become available.
+
+-teg
+
+
+
+From owner-pine-info@cac.washington.edu  Wed Jun  2 12:14:15 1993
+Received: from mx1.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA07582; Wed, 2 Jun 93 12:14:15 -0700
+Received: by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA06459; Wed, 2 Jun 93 12:02:19 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from shiva2.cac.washington.edu by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA06453; Wed, 2 Jun 93 12:02:17 -0700
+Received: by shiva2.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA08410; Wed, 2 Jun 93 12:02:07 -0700
+Date: Wed, 2 Jun 1993 11:55:34 -0700 (PDT)
+From: David L Miller <dlm@cac.washington.edu>
+Subject: Re: general information request
+To: Michael Fox <isb_mtf@msl.oz.au>
+Cc: pine-info@cac.washington.edu
+In-Reply-To: <9306021358.AA27301@msl>
+Message-Id: <Pine.3.83.9306021134.F9887-0100000@shiva2.cac.washington.edu>
+Mime-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Status: O
+X-Status: 
+
+
+
+On Wed, 2 Jun 1993, Michael Fox wrote:
+
+> 
+> Not sure if this is the right place to send this query, but here goes:
+> 
+> We are currently migrating from a home-grown mail system on Primes on
+> to a standard unix mail environment, and Pine certainly looks to be the
+> ideal replacement.
+> 
+> Part of the exercise involves proving that the new system can do everything the old one could do, and this has meant a few minor patches to the code (3.07).
+> We now have to do some more tinkering, and I have seen a reference to version
+> 4 beta in other correspondence.  Many of the enhancements we are looking for may well be in the new version - so is there such a version available and where 
+> can I get it from?
+> 
+> In particular, we are interested in integrating a news reading service, and
+>  perhaps replacing our current concept of 'notice boards' with news groups.
+> 
+There is some support for newsreading in 3.07, it will be expanded in 4, 
+along with remote folder management.
+
+> One use of our current notice board is as a mini bbs, to place software and
+> documents for downloading to a pc - any ideas on how to do this? the biggest
+> problem seems to be keeping track of what each user has read from a shared
+> folder, which I guess is what news groups would handle well.
+> 
+The new version will include PC-Pine (MS-DOS).  It should not be too hard 
+to integrate your notice board functionality...
+
+> The other feature we are looking for is some sort of directory service, to
+> enquire what a persons mail address is, or perhaps what are the valid
+> addresses in a functional work group.  Is anything being deveoped along these
+> lines?
+> 
+Right now, the only method is to use addressbooks.  A more complete 
+directory service is on the to-do list though...
+
+> By the way, this is not coming to you from within our version of Pine, because
+> we have only indirect access to the internet at the moment, and I have to go
+> through another site which only has standard mail.
+> 
+> Thanks,
+> Michael Fox
+> 
+> 
+
+
+
+From owner-pine-info@cac.washington.edu  Thu Jun  3 14:15:47 1993
+Received: from mx1.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA09723; Thu, 3 Jun 93 14:15:47 -0700
+Received: by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA22323; Thu, 3 Jun 93 13:58:20 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from scapa.cs.ualberta.ca by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA22316; Thu, 3 Jun 93 13:58:03 -0700
+Received: from isagate by scapa.cs.ualberta.ca with UUCP id <42270-1>; Thu, 3 Jun 1993 14:57:22 -0600
+Received: by isagate.edm.isac.ca (/\==/\ Smail3.1.20.1 #20.1)
+	id <m0o1MH6-000VJKC@isagate.edm.isac.ca>; Thu, 3 Jun 93 14:52 MDT
+Received: by isasun-1.edm.isac.ca (Smail3.1.26.7 #1)
+	id m0o1MMP-000cw4C; Thu, 3 Jun 93 14:58 MDT
+Date: 	Thu, 3 Jun 1993 13:25:17 -0600
+From: Steve Hole <steve@edm.isac.ca>
+Subject: Interoperability problem with ECSMail and Pine
+To: Pine Info List <pine-info@cac.washington.edu>
+Message-Id: <Pine.3.07.9306031317.A26513-a100000@isasun-1>
+Mime-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Status: O
+X-Status: 
+
+
+We have found a small interoperability problem between ECSMail and
+Pine that we believe to be a bug in Pine.  It appears that Pine is
+sensitive to character case in the Type and Subtype fields of a
+multipart attachment. 
+
+For example, a text file attachment with the type/subtype
+combination of "TEXT/plain" will correctly display, but a
+the type/subtype combinations of "TEXT/PLAIN" and "TEXT/Plain"
+will not.   Editing these fields by hand in a message file 
+will allow you to recreate this error in a consistent way.
+
+By our understanding of the MIME spec, case independent 
+comparisons should be made.   We are going to change ECSMail
+to canonicalize outgoing Type/subtype pairs to Capitalized
+words eg. Text/Plain.   
+
+Cheers.
+
+--
+Steve Hole  		        Director of Research and Communications
+ISA Corporation			mail:  steve@edm.isac.ca
+Suite 835, 10040 - 104 St.      phone: (403) 420-8081
+Edmonton, Alberta, Canada       fax:   (403) 420-8037
+T5J 0Z2
+
+
+
+
+
+From owner-pine-info@cac.washington.edu  Fri Jun  4 06:30:51 1993
+Received: from mx1.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA26538; Fri, 4 Jun 93 06:30:51 -0700
+Received: by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA29468; Fri, 4 Jun 93 06:09:28 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from sussdirt.rdg.ac.uk by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA29462; Fri, 4 Jun 93 06:09:26 -0700
+Received: from reading.ac.uk by susssys1.reading.ac.uk with SMTP (PP) 
+          id <17783-0@susssys1.reading.ac.uk>; Fri, 4 Jun 1993 14:09:12 +0100
+Date: Fri, 4 Jun 1993 14:02:13 +0100 (BST)
+From: Mike Roch <D.M.Roch@reading.ac.uk>
+Subject: Bugs
+To: pine-info@cac.washington.edu
+Message-Id: <Pine.3.05.9306041413.A13634-a100000@suma1>
+Mime-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Status: O
+X-Status: 
+
+I reported a bug a week ago; messages from a PMDF mailer were causing Pine
+to crash in a repeatable way with a 
+                Bug in Pine detected
+                "Received abort signal"
+                Exiting pine
+                Arithmetic exception. 
+
+signoff. I realise that you can't have a post-mortem for every bug
+reported, but crashing (as opposed to grumbling) because of message
+content/format seems serious. This particular bug causes serious problems
+for this user (so serious she has to use UCBmail which is happy with the
+same messages). Any thoughts? Has anyone else had a similar problem? 
+
+Mike
+
+==============================================================================
+Mike Roch, Computer Services Centre,                          Tel: 0734 318430
+The University, Whiteknights, Reading, RG6 2AX.               Fax: 0734 753094
+
+
+
+
+From owner-pine-info@cac.washington.edu  Fri Jun  4 14:37:34 1993
+Received: from mx2.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA11374; Fri, 4 Jun 93 14:37:34 -0700
+Received: by mx2.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA07792; Fri, 4 Jun 93 14:21:57 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from tomobiki-cho.cac.washington.edu by mx2.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA07785; Fri, 4 Jun 93 14:21:55 -0700
+Received: from Ikkoku-Kan.Panda.COM by Tomobiki-Cho.CAC.Washington.EDU
+	(NX5.67c/UW-NDC Revision: 2.27.MRC ) id AA19661; Fri, 4 Jun 93 14:21:45 -0700
+Date: Fri, 4 Jun 1993 14:09:44 -0700 (PDT)
+From: Mark Crispin <mrc@Ikkoku-Kan.Panda.COM>
+Subject: re: Bugs
+To: Mike Roch <D.M.Roch@reading.ac.uk>
+Cc: pine-info@cac.washington.edu
+In-Reply-To: <Pine.3.05.9306041413.A13634-a100000@suma1>
+Message-Id: <MS-C.739228184.1103527590.mrc@Ikkoku-Kan.Panda.COM>
+Mime-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Status: O
+X-Status: 
+
+Hi Mike -
+
+     This sounds like a bug that was already fixed, but without sample data
+that exercises the bug there is no way to know for sure.  I'm sorry that you
+are having problems.  As soon as we know what's wrong, we'll be able to advise
+you on how to fix it.
+
+     We're presently working on a major new release (not a maintenance release
+as 3.07 was), and we do want to make sure that all known bugs are fixed in it.
+We tried to do that for 3.07, but perhaps we missed one.
+
+
+
+From owner-pine-info@cac.washington.edu  Fri Jun  4 15:14:56 1993
+Received: from mx2.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA12452; Fri, 4 Jun 93 15:14:56 -0700
+Received: by mx2.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA08010; Fri, 4 Jun 93 15:01:46 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from laidbak.ucs.indiana.edu by mx2.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA08004; Fri, 4 Jun 93 15:01:43 -0700
+Received: from loris.cisab.indiana.edu by PO3.Indiana.EDU; id AA10666
+	(5.65c+jsm/2.5.1jsm); Fri, 4 Jun 1993 17:01:42 -0500
+Received: by loris.cisab.indiana.edu (AIX 3.2/UCB 5.64/4.03)
+          id AA15519; Fri, 4 Jun 1993 17:00:40 -0500
+Date: Fri, 4 Jun 1993 16:49:17 -500 (EST)
+From: Shan Duncan <duncan@loris.cisab.indiana.edu>
+Subject: bug when using distribution list
+To: pine-info@cac.washington.edu
+Message-Id: <Pine.3.07.9306041617.A15239-b100000@loris.cisab.indiana.edu>
+Mime-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Status: O
+X-Status: 
+
+
+If I use a distribution list and try and move to the top of the list after
+it has been expanded the following happens:
+
+
+   
+Bug in Pine detected: "Received abort signal".
+Exiting pine.
+
+
+
+This happened in Pine 3.05a - the version modified to work on the rs6000
+under aix 3.2.
+
+This also happens under Pine 3.07 also running on the rs6000 under AIX
+3.2.2 
+
+
+
+This happens whenever I have to page back up past the current screen (i.e.
+greater than 24 lines).
+
+
+
+To      : list
+Cc      : 
+Attchmnt: 
+Subject : 
+----- Message Text -----
+
+
+
+
+
+
+
+
+
+
+
+
+         S@ucs.indiana.edu, 
+         T@ucs.indiana.edu, 
+         U@ucs.indiana.edu, 
+         V@ucs.indiana.edu, 
+         W@ucs.indiana.edu, 
+         X@ucs.indiana.edu, 
+         Y@ucs.indiana.edu, 
+         Z@ucs.indiana.edu
+Cc      : 
+Attchmnt: 
+Subject : 
+----- Message Text -----
+
+
+
+
+
+
+
+It then get expanded and I would only see the last few names. When I try
+and move back up to the top of the list or even to find the previous name
+like R@ucs.indiana.edu I get the exit from pine message. 
+
+
+
+
+Excuse the made up names in the examples...
+
+-Shan
+
+
+
+----------------------------------------------------------------------------
+Dr. Shan Duncan                                duncan@loris.cisab.indiana.edu
+CISAB- Indiana University                     sdduncan@indiana.edu
+402 N. Park Ave
+Bloomington,  IN.  47405
+(812) 855-5895         (812) 855-9663 (main office)    (812) 855-0411 (FAX)
+------------------------------------------------------------------------------
+
+
+
+
+From owner-pine-info@cac.washington.edu  Sat Jun  5 11:25:18 1993
+Received: from mx1.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA26769; Sat, 5 Jun 93 11:25:18 -0700
+Received: by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA14053; Sat, 5 Jun 93 11:12:01 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from shiva2.cac.washington.edu by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA14047; Sat, 5 Jun 93 11:11:59 -0700
+Received: by shiva2.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA19661; Sat, 5 Jun 93 11:11:53 -0700
+Date: Sat, 5 Jun 1993 11:09:46 -0700 (PDT)
+From: Terry Gray <gray@cac.washington.edu>
+Subject: re: Bugs
+To: Mike Roch <D.M.Roch@reading.ac.uk>
+Cc: pine-info@cac.washington.edu
+In-Reply-To: <MS-C.739228184.1103527590.mrc@Ikkoku-Kan.Panda.COM>
+Message-Id: <Pine.3.83.9306051146.C17762-0100000@shiva2.cac.washington.edu>
+Mime-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Status: O
+X-Status: 
+
+Mike, 
+To add to what Mark said, you might want to try 3.07, as it looks like 
+you are still using 3.05, and there were definitely some fixes for this 
+class of problem in 3.07.
+
+-teg
+
+
+On Fri, 4 Jun 1993, Mark Crispin wrote:
+
+> Hi Mike -
+> 
+>      This sounds like a bug that was already fixed, but without sample data
+> that exercises the bug there is no way to know for sure.  I'm sorry that you
+> are having problems.  As soon as we know what's wrong, we'll be able to advise
+> you on how to fix it.
+> 
+>      We're presently working on a major new release (not a maintenance release
+> as 3.07 was), and we do want to make sure that all known bugs are fixed in it.
+> We tried to do that for 3.07, but perhaps we missed one.
+> 
+> 
+
+
+
+From owner-pine-info@cac.washington.edu  Mon Jun  7 07:31:43 1993
+Received: from mx1.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA25078; Mon, 7 Jun 93 07:31:43 -0700
+Received: by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA26342; Mon, 7 Jun 93 07:21:33 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from pp.dundee.ac.uk by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA26336; Mon, 7 Jun 93 07:21:27 -0700
+Received: from dux.dundee.ac.uk by pp.dundee.ac.uk with SMTP (PP) 
+          id <28039-0@pp.dundee.ac.uk>; Mon, 7 Jun 1993 15:14:54 +0100
+Received: by dux.dundee.ac.uk (4.1/SMI-4.0-CGM) id AA02731;
+          Mon, 7 Jun 93 15:23:12 BST
+Date: Mon, 7 Jun 1993 15:15:23 +0100 (BST)
+From: "K.M.Lovell Information Technology Services ext 41" <kmlovell@dux.dundee.ac.uk>
+Subject: Is there a version of Pine for Solaris 2.x ?
+To: pine-info@cac.washington.edu
+Message-Id: <Pine.3.05.9306071522.A2538-9100000@dux>
+Mime-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Status: O
+X-Status: 
+
+
+
+--------------------------------------------------------------
+From: K.M.Lovell , Information Technology Services, University of Dundee,
+                   Park Place , Dundee DD1 4HN  ,  UK
+Email: kmlovell@dux.dundee.ac.uk
+Tel  : +44 382 307136   Fax  : +44 382 28649
+
+
+Is there going to be a release of Pine for Solaris 2.x ,
+in particular Solaris 2.2 ? If so what is the timescale ?
+
+Thank you in anticipation of replies.
+
+Kenneth M. Lovell
+
+
+
+
+
+
+From owner-pine-info@cac.washington.edu  Mon Jun  7 07:33:48 1993
+Received: from mx1.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA25174; Mon, 7 Jun 93 07:33:48 -0700
+Received: by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA26304; Mon, 7 Jun 93 07:16:40 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from eros.uknet.ac.uk by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA26298; Mon, 7 Jun 93 07:16:37 -0700
+Received: from march.co.uk by eros.uknet.ac.uk with UUCP 
+          id <g.28642-0@eros.uknet.ac.uk>; Mon, 7 Jun 1993 15:16:20 +0100
+Date: Mon, 7 Jun 1993 15:06:56 +0100 (BST)
+From: Ross Wakelin <rossw@march.co.uk>
+Subject: pine 3.07 port for SVR4.0
+To: pine-info@cac.washington.edu
+Message-Id: <Pine.3.07.9306071556.A11990-b100000@march.march.co.uk>
+Mime-Version: 1.0
+Received: from march.co.uk by march.co.uk; Mon, 7 Jun 1993 15:14 BST
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Content-Length: 1641
+Status: O
+X-Status: 
+
+
+
+After being moaned and griped at long enough, I have finally produced a
+set of patches to port the lastest released version of pine to a System 5
+Release 4.0 platform.  The patches have been produced and tested on
+systems from two different software suppliers, and two different hardware
+platforms (Sparc and Intel iAPX386/486)
+
+The port has shown up the following problems:
+	there is a generic bug is the smtpd in SVR4.  A RSET down the line
+will cause the daemon to go away.   The RSETs sent within the imap code
+have been commented out in this port;
+	there is a bug/feature in the SVR4 mailer, such that local
+messages are not provided with a From: or Date: rfc format line.  This
+prevents pine from displaying this information correctly on the index screen;
+	BUG!! there is a bug in the debugging code in the screen handling
+code.  There is a loop that is supposed to cycle through an array,
+printing the appropriate debugging code in the pine debug files.  The
+length of the array is hard coded.  If the array is not this length, the
+system tends to dump core.  This has been FIXED to cycle through the array
+until the element is NULL.
+
+This set of patches, including the new os .h and .c files, comes to about
+40k compressed.  If the Pine maintainers want this code ftp'ed up to cac,
+I am more than willing to do this, just tell me where.
+
+This has not been validated on SVR4.2, as our system is still not right yet.
+
+Good luck
+
+Ross
+
+Ross Wakelin                                        r.wakelin@march.co.uk
+Open Systems Director                  or ..mcsun!uknet!uknet!march!rossw 
+March Systems Consultancy Ltd 		+44 734 845 399
+
+
+
+
+From owner-pine-info@cac.washington.edu  Mon Jun  7 15:02:47 1993
+Received: from mx1.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA08639; Mon, 7 Jun 93 15:02:47 -0700
+Received: by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA03864; Mon, 7 Jun 93 14:50:53 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from sun2.nsfnet-relay.ac.uk by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA03858; Mon, 7 Jun 93 14:50:52 -0700
+Via: uk.ac.durham; Mon, 7 Jun 1993 22:50:06 +0100
+Received: from vega.dur.ac.uk by durham.ac.uk; Mon, 7 Jun 93 22:50:24 +0100
+Received: from wansbeck.dur.ac.uk by vega.dur.ac.uk; Mon, 7 Jun 93 22:49:57 BST
+Date: Mon, 7 Jun 1993 22:44:21 +0100 (BST)
+From: Barry Cornelius <Barry.Cornelius@durham.ac.uk>
+Subject: Re: Is there a version of Pine for Solaris 2.x ?
+To: "K.M.Lovell Information Technology Services ext 41" <kmlovell@dux.dundee.ac.uk>
+Cc: pine-info@cac.washington.edu
+In-Reply-To: <Pine.3.05.9306071522.A2538-9100000@dux>
+Message-Id: <Pine.3.07:930517.9306072218.A24157-a100000@wansbeck.dur.ac.uk>
+Mime-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+
+> Is there going to be a release of Pine for Solaris 2.x ,
+> in particular Solaris 2.2 ? If so what is the timescale ?
+
+We are also interested in this.  As reported to pine-info earlier, we have
+used a SunOS 4.1.x binary of Pine 3.07 on a SunOS 5.2 system, and that
+seems to work OK. 
+
+--
+Barry Cornelius            Electronic mail: Barry.Cornelius@durham.ac.uk
+Post:  Computing Service, University of Durham, Durham, DH1 3LE, England
+Phone: Durham (091 or +44 91) 374 4717, Secretary:374 2892, Fax:374 3741
+
+
+
+
+From owner-pine-info@cac.washington.edu  Tue Jun  8 14:14:42 1993
+Received: from mx1.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA07797; Tue, 8 Jun 93 14:14:42 -0700
+Received: by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA17801; Tue, 8 Jun 93 14:02:26 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from columbus.bwh.harvard.edu by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA17795; Tue, 8 Jun 93 14:02:24 -0700
+Received: by columbus.bwh.harvard.edu (4.1/SMI-4.1)
+	id AA19639; Tue, 8 Jun 93 17:03:50 EDT
+Date: Tue, 8 Jun 1993 16:47:39 -0400 (EDT)
+From: "Peter W. Karlson" <pk@columbus.bwh.harvard.edu>
+Reply-To: "Peter W. Karlson" <pk@columbus.bwh.harvard.edu>
+Subject: Sending a large address book list problem
+To: pine-info@cac.washington.edu
+Message-Id: <Pine.3.05.9306081621.B19464-b100000@columbus>
+Mime-Version: 1.0
+Content-Type: TEXT/PLAIN; CHARSET=US-ASCII
+
+Pine folk,
+
+Here's the scenario: the root user just sent out a mailing to a large
+number of users (about 120) which was a mailing list entry in the
+addressbook.  When I got the message, (I'm just above the halfway mark),
+the subject line was inserted into the middle of the usernames??
+Apparently everyone after this line didn't receive the mail.  She (the
+root user) broke the list up and sent it again without incident.  Has anybody
+experienced this before, is this a Pine problem or a sendmail problem?   The
+mail was sent from a Sparcstation running SunOS 4.1.2, using Pine 3.05
+
+Thanks in advance.
+
+-pk
+
+Here's what it looked like to me:
+
+    <Names deleted for sake of brevity>
+     :
+     :
+     pkarlson@bih.harvard.edu, pweller@bih.harvard.edu,
+     rchapman@bih.harvard.ed
+Subject: Network Outages Scheduled for this weekend (fwd)
+ 
+u, rdavis@bih.harvard.edu,
+        rhodin@bih.harvard.edu, rmessier@bih.harvard.e
+ 
+du, 
+    robin@bih.harvard.edu, root@bih.harvard.edu, 
+    salper@bih.harvard.edu, 
+    :
+    :
+   <more names>
+
+
+
+
+
+
+
+
+From owner-pine-info@cac.washington.edu  Tue Jun  8 19:00:01 1993
+Received: from mx2.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA14697; Tue, 8 Jun 93 19:00:01 -0700
+Received: by mx2.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA29312; Tue, 8 Jun 93 18:47:14 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from xanth.CS.ORST.EDU by mx2.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA29306; Tue, 8 Jun 93 18:47:13 -0700
+Received: from mundania.CS.ORST.EDU by instruction.CS.ORST.EDU (16.6/1.35)
+	id AA26576; Tue, 8 Jun 93 18:45:27 -0700
+Received: by mundania.CS.ORST.EDU (1.37.109.4/CS-Client)
+	id AA20777; Tue, 8 Jun 93 18:49:32 -0700
+Date: Tue, 8 Jun 1993 18:47:50 -0700 (PDT)
+From: "Jason R. Thorpe" <thorpej@xanth.CS.ORST.EDU>
+Subject: Re: Sending a large address book list problem
+To: "Peter W. Karlson" <pk@columbus.bwh.harvard.edu>
+Cc: pine-info@cac.washington.edu
+In-Reply-To: <Pine.3.05.9306081621.B19464-b100000@columbus>
+Message-Id: <Pine.3.07.9306081848.C20736-a100000@mundania.CS.ORST.EDU>
+Mime-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+
+On Tue, 8 Jun 1993, Peter W. Karlson wrote:
+
+> mail was sent from a Sparcstation running SunOS 4.1.2, using Pine 3.05
+                                                               ^^^^^^^^^
+Upgrade to 3.07.  Get it at ftp.cac.washington.edu by anon FTP.
+
+Later...
+
+/*****************************************************************************
+     Jason R. Thorpe - Weatherford Hall 434 - Corvallis, OR - 97331-1701
+        Bellnet (503) 737-9533     Internet thorpej@prism.cs.orst.edu
+*****************************************************************************/
+
+
+
+
+From owner-pine-info@cac.washington.edu  Wed Jun  9 01:55:59 1993
+Received: from mx1.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA20650; Wed, 9 Jun 93 01:55:59 -0700
+Received: by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA23635; Wed, 9 Jun 93 01:48:03 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from sun2.nsfnet-relay.ac.uk by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA23629; Wed, 9 Jun 93 01:48:00 -0700
+Via: uk.ac.bristol; Wed, 9 Jun 1993 09:46:04 +0100
+Received: from adm1.bris.ac.uk by bristol.ac.uk; Wed, 9 Jun 93 09:41:13 +0100
+Date: Wed, 9 Jun 1993 09:13:20 +0100 (BST)
+From: Dave King <Dave.King@bristol.ac.uk>
+Subject: Re: Sending a large address book list problem
+To: "Peter W. Karlson" <pk@columbus.bwh.harvard.edu>
+Cc: pine-info@cac.washington.edu
+In-Reply-To: <Pine.3.05.9306081621.B19464-b100000@columbus>
+Message-Id: <Pine.3.07.9306090919.A25306-b100000@adm1.bris.ac.uk>
+Mime-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+
+Peter - I have had similar problems in the past (sendmail on Sequent
+Symmetry DYNIX/ptx 1.4), but my problems were not related to any mailer in
+particular. The problem in *my* situation is sendmail: here's a
+description ...
+
+When mailing several users using the following shell script fragment: 
+
+while read user_to_mail
+do
+mailx $user_to_mail < message_to_mail
+done < mailing_list
+
+Sendmail is literally bombarded causing it to get very confused and
+scramble messages in a similar manner to your experience.
+
+My workaround is to get the script to pause for five seconds between
+mailings when several recipients are involved:
+
+while read user_to_mail
+do
+mailx $user_to_mail < message_to_mail
+sleep 5
+done < mailing_list
+
+And background the script because it takes awhile.
+
+Maybe it's worthwhile trying these tests on your system? At least you will
+be able to pinpoint which part of the mailing procedure is not working as
+you expect: sendmail or Pine. 
+
+Finally, I use an adaptation of the above shell script when mailing
+several users to avoid the recipients having to plod through umpteen pages
+of mailnames (which upsets some) before they get to the message. 
+
+Cheers,
+Dave
+
+
+-------------------------------------------------------------------
+Dave King, Admin. Computing Services Manager, University of Bristol
+Email: Dave.King@uk.ac.Bristol       Tel: 0272 303961 (Direct Line) 
+
+
+> Here's the scenario: the root user just sent out a mailing to a large
+> number of users (about 120) which was a mailing list entry in the
+> addressbook.  When I got the message, (I'm just above the halfway mark),
+> the subject line was inserted into the middle of the usernames??
+> Apparently everyone after this line didn't receive the mail.  She (the
+> root user) broke the list up and sent it again without incident.  Has anybody
+> experienced this before, is this a Pine problem or a sendmail problem?   The
+> mail was sent from a Sparcstation running SunOS 4.1.2, using Pine 3.05
+
+
+
+
+From owner-pine-info@cac.washington.edu  Thu Jun 10 09:36:54 1993
+Received: from mx2.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA27411; Thu, 10 Jun 93 09:36:54 -0700
+Received: by mx2.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA08926; Thu, 10 Jun 93 09:21:44 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from csd4.csd.uwm.edu by mx2.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA08920; Thu, 10 Jun 93 09:21:39 -0700
+Received: by csd4.csd.uwm.edu; id AA29451; Thu, 10 Jun 93 11:21:38 -0500
+Date: Thu, 10 Jun 1993 11:20:19 -0500 (CDT)
+From: David A Rasmussen <dave@csd4.csd.uwm.edu>
+Subject: pine3.05 on Dec Alpha/OSF1
+To: pine-info@cac.washington.edu
+Message-Id: <Pine.3.05.9306101119.A29197-9100000@csd4.csd.uwm.edu>
+Mime-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+
+
+Anyone configured pine3.05 for the OSF1 Alpha platform? Any chance I could
+get the respective configuration files? Thx in advance.
+
+
+Dave Rasmussen - SysAdm/Hacker/Consulting Supervisor, UWM Computing Svcs Div.
+Internet:dave@uwm.edu, Uucp:uwm!dave, Bitnet:dave%uwm.edu@INTERBIT
+AT&T:414-229-5133 USmail:Box 413 EMS380,Milwaukee,WI 53201  HAM: N9REJ       
+
+
+
+
+From owner-pine-info@cac.washington.edu  Thu Jun 10 10:29:09 1993
+Received: from mx1.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA28661; Thu, 10 Jun 93 10:29:09 -0700
+Received: by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA12725; Thu, 10 Jun 93 10:14:28 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from icacp6.IC.ORNL.GOV by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA12717; Thu, 10 Jun 93 10:14:25 -0700
+Received: from [128.219.64.202] (icbks.IC.ORNL.GOV) by icacp6.IC.ORNL.GOV (4.1/1.34)
+	id AA23725; Thu, 10 Jun 93 13:14:18 EDT
+Message-Id: <9306101714.AA23725@icacp6.IC.ORNL.GOV>
+Date: Thu, 10 Jun 1993 13:14:25 -0500
+To: pine-info@cac.washington.edu
+From: "Brian K. Swail" <swail@icacp6.IC.ORNL.GOV>
+Subject: WatTCP
+
+
+
+
+
+From owner-pine-info@cac.washington.edu  Fri Jun 11 02:00:05 1993
+Received: from mx1.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA20575; Fri, 11 Jun 93 02:00:05 -0700
+Received: by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA21561; Fri, 11 Jun 93 01:46:34 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from sun2.nsfnet-relay.ac.uk by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA21555; Fri, 11 Jun 93 01:46:31 -0700
+Via: uk.ac.sheffield; Fri, 11 Jun 1993 09:42:05 +0100
+Received: from sunc.sheffield.ac.uk by pp.shef.ac.uk with SMTP (PP) 
+          id <24795-0@pp.shef.ac.uk>; Fri, 11 Jun 1993 09:39:02 +0100
+From: Chris Martin <C.Martin@sheffield.ac.uk>
+Date: Fri, 11 Jun 93 09:43:00 BST
+Message-Id: <2115.9306110843@sunc.sheffield.ac.uk>
+To: pine-info@cac.washington.edu
+Subject: Delete key change wanted
+
+We are recommending pine to our Unix users because of its ease of use.
+We have now got rid of an IBM 3083 and our last remaining Prime
+will join it in the great Computer Room in the sky in two weeks so we
+have an influx of new users with enough new stuff to cope with.
+
+All but a few users will be using PC style keyboards and we would like
+to change the way the delete key works to accomodate
+their expectations.  We would like delete (0x7f) to perform forwdel
+rather than the standard backdel -- I have changed the tables in
+pico/ebind.h but this appears to only affect the actions in the
+message area while the standard action takes place in the header area.
+
+Can somebody give a pointer to what is happening?  I've searched but I
+can't see anywhere where keys are handled without reference to either
+keytab or pkeytab in pico/ebind.c
+
+
+From owner-pine-info@cac.washington.edu  Fri Jun 11 07:31:14 1993
+Received: from mx1.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA25287; Fri, 11 Jun 93 07:31:14 -0700
+Received: by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA23629; Fri, 11 Jun 93 07:22:40 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from tiberius.safb.af.mil by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA23623; Fri, 11 Jun 93 07:22:37 -0700
+Received: by tiberius.safb.af.mil (4.1/SMI-4.1)
+	id AA01917; Fri, 11 Jun 93 09:22:33 CDT
+Date: Fri, 11 Jun 1993 09:06:23 -0500 (CDT)
+From: John Daum at 6-6835 or 618-632-2456 <daumj@tiberius.safb.af.mil>
+Subject: Keyboard and Richer Header Wanted (Return-Receipt-To:)
+To: pine-info@cac.washington.edu
+Message-Id: <Pine.3.07.9306110923.D1746-a100000@tiberius>
+Mime-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+
+Re: the PC keyboard support:
+
+My users care coming in via VT100 and 220 emulation from PCs.  I do not
+want to have everybody remap their keys in their comm programs.  Instead, I
+want to set up their login/pine/pico to accept certain PC keys such as: 
+allow the"Delete" key to work as a "Delete the character I'm on" key;
+allow the "End" key to jump to the end of the line;
+allow the "Home" key to go to the beginning of the line;
+allow "Page Up/Down" to work as expected;
+allow "Ctrl-Arrow-Left/Right" to jump a word at a time in the appropriate
+direction;
+allow "Ctrl-Arrow-Up/Down" to jump back a paragraph or up a paragraph. 
+
+Re: the RICHER HEADER:
+Is there any way I can include the Return-Receipt-To: in the header when
+my users hit ^R???
+
+
+Thanks,
+John E. Daum
+daumj@tiberius.safb.af.mil
+
+
+
+
+From owner-pine-info@cac.washington.edu  Fri Jun 11 10:47:04 1993
+Received: from mx1.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA01864; Fri, 11 Jun 93 10:47:04 -0700
+Received: by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA26702; Fri, 11 Jun 93 10:34:21 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from norman.nwnet.net by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA26696; Fri, 11 Jun 93 10:34:20 -0700
+Received: by norman.nwnet.net
+	(5.65/UW-NDC Revision: 2.27 ) id AA19901; Fri, 11 Jun 93 10:34:14 -0700
+Date: Fri, 11 Jun 1993 10:26:35 -0700 (PDT)
+From: Laurence Lundblade <lgl@nwnet.net>
+Subject: Re: Keyboard and Richer Header Wanted (Return-Receipt-To:)
+To: John Daum at 6-6835 or 618-632-2456 <daumj@tiberius.safb.af.mil>
+Cc: pine-info@cac.washington.edu
+In-Reply-To: <Pine.3.07.9306110923.D1746-a100000@tiberius>
+Message-Id: <Pine.3.90A.9306111035.B22113-0100000@norman.nwnet.net>
+Mime-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+
+Hello,
+
+At present there's no way to remap keys in Pine/Pico short of modifying the
+source code. Worse than that, as far as I know, most comm program handle most
+of the keys you mentioned in a different way if at all. The comm program has
+to send out some escape sequence for those keys since those keys don't have
+an ASCII representation.  As far as I know there's not standard or even any
+common practice for doing this.  If everyone of your clients is using the
+same comm program and does send some escape sequence for these keys, then you
+could hack the source and solve this problem.  Please pardon me if I've
+misunderstood you and stated the obvious. 
+
+LL
+
+
+On Fri, 11 Jun 1993, John Daum at 6-6835 or 618-632-2456 wrote:
+
+> Re: the PC keyboard support:
+> 
+> My users care coming in via VT100 and 220 emulation from PCs.  I do not
+> want to have everybody remap their keys in their comm programs.  Instead, I
+> want to set up their login/pine/pico to accept certain PC keys such as: 
+> allow the"Delete" key to work as a "Delete the character I'm on" key;
+> allow the "End" key to jump to the end of the line;
+> allow the "Home" key to go to the beginning of the line;
+> allow "Page Up/Down" to work as expected;
+> allow "Ctrl-Arrow-Left/Right" to jump a word at a time in the appropriate
+> direction;
+> allow "Ctrl-Arrow-Up/Down" to jump back a paragraph or up a paragraph. 
+> 
+> Re: the RICHER HEADER:
+> Is there any way I can include the Return-Receipt-To: in the header when
+> my users hit ^R???
+> 
+> 
+> Thanks,
+> John E. Daum
+> daumj@tiberius.safb.af.mil
+> 
+> 
+> 
+
+
+
+From owner-pine-info@cac.washington.edu  Sun Jun 13 08:55:15 1993
+Received: from mx1.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA14983; Sun, 13 Jun 93 08:55:15 -0700
+Received: by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA11679; Sun, 13 Jun 93 08:43:05 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from eng.norstan.com by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA11673; Sun, 13 Jun 93 08:43:03 -0700
+Subject: Pine for SCO - anyone?
+To: pine-info@cac.washington.edu
+Date: Sun, 13 Jun 1993 11:42:58 -0400 (EDT)
+From: Steven E Frazier <sfrazier@norstan.com>
+Reply-To: Steven E Frazier <sfrazier@norstan.com>
+X-Mailer: ELM [version 2.4 PL21]
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Content-Length: 62        
+Message-Id:  <9306131143.aa06448@eng.norstan.com>
+
+Has anyone compiled Pine under SCO by chance?
+
+Thanks.
+
+Steve
+
+
+From owner-pine-info@cac.washington.edu  Mon Jun 14 05:43:05 1993
+Received: from mx1.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA29478; Mon, 14 Jun 93 05:43:05 -0700
+Received: by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA17499; Mon, 14 Jun 93 05:33:32 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from ees1a0.engr.ccny.cuny.edu by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA17493; Mon, 14 Jun 93 05:33:26 -0700
+Received: by ees1a0.engr.ccny.cuny.edu (4.1/SMI-4.1)
+	id AA12738; Mon, 14 Jun 93 08:33:18 EDT
+Date: Mon, 14 Jun 1993 08:29:08 -0400 (EDT)
+From: Dan Schlitt <dan@ees1a0.engr.ccny.cuny.edu>
+Subject: SUMMARY: NFS and sendmail problems (fwd)
+To: Pine List <pine-info@cac.washington.edu>
+Message-Id: <Pine.3.05.9306140806.C12587-c110000@ees1a0.engr.ccny.cuny.edu>
+Mime-Version: 1.0
+Content-Type: MULTIPART/MIXED; BOUNDARY="1379973013-732308100-740061162:#12587"
+
+--1379973013-732308100-740061162:#12587
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+
+A while back, as I recall, there was a question about why Pine appended an 
+empty line to the end of a message.  Perhaps the attached message that
+appeared on the sun-managers list might be an answer to why it is a good
+idea. 
+
+/dan
+
+Dan Schlitt                           School of Engineering Computer Systems
+dan@ee-mail.engr.ccny.cuny.edu        City College of New York
+(212)650-6760                         New York, NY 10031
+
+--1379973013-732308100-740061162:#12587
+Content-Type: MESSAGE/RFC822
+Content-ID: <Pine.3.05.9306140808.D12587@ees1a0.engr.ccny.cuny.edu>
+Content-Description: Forwarded message 'SUMMARY: NFS and sendmail problems (fwd)'
+
+Return-Path: <dan@ees1s0.engr.ccny.cuny.edu>
+Received: from ees1s0.engr.ccny.cuny.edu by ees1a0.engr.ccny.cuny.edu (4.1/SMI-4.1)
+	id AA12340; Fri, 28 May 93 09:22:18 EDT
+Received: by ees1s0.engr.ccny.cuny.edu (4.1/SMI-4.1-930513-1)
+	id AA02721; Fri, 28 May 93 09:22:15 EDT
+Date: Fri, 28 May 1993 09:21:41 -0400 (EDT)
+From: Dan Schlitt <dan@ees1s0.engr.ccny.cuny.edu>
+Subject: SUMMARY: NFS and sendmail problems (fwd)
+To: dan@ees1a0.engr.ccny.cuny.edu
+Message-Id: <Pine.3.05.9305280936.A2712-b110000@ees1s0>
+Mime-Version: 1.0
+Content-Type: MULTIPART/MIXED; BOUNDARY="1426078384-1542812855-738595334:#2712"
+
+
+--1426078384-1542812855-738595334:#2712
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+
+Forward to pine list.
+
+Dan Schlitt                           School of Engineering Computer Systems
+dan@ee-mail.engr.ccny.cuny.edu        City College of New York
+(212)650-6760                         New York, NY 10031
+
+--1426078384-1542812855-738595334:#2712
+Content-Type: MESSAGE/RFC822
+Content-ID: <Pine.3.05.9305280941.B2712@ees1s0>
+Content-Description: Forwarded message 'SUMMARY: NFS and sendmail problems'
+
+Return-Path: <sun-managers-relay@ra.mcs.anl.gov>
+Received: from ra.mcs.anl.gov by ees1s0.engr.ccny.cuny.edu (4.1/SMI-4.1-930513-1)
+	id AA16916; Tue, 18 May 93 07:38:12 EDT
+Received: by ra.mcs.anl.gov id AA02600
+  (5.65c/IDA-1.4.4 for sun-managers-outbound); Mon, 17 May 1993 16:06:35 -0500
+Sender: sun-managers-relay@ra.mcs.anl.gov
+Received: from delta.eecs.nwu.edu by ra.mcs.anl.gov with SMTP id AA02588
+  (5.65c/IDA-1.4.4 for <sun-managers@ra.mcs.anl.gov>); Mon, 17 May 1993 16:06:06 -0500
+Precedence: bulk
+Received: from relay2.UU.NET by delta.eecs.nwu.edu with SMTP id AA22915
+  (5.65c/IDA-1.4.4 for <sun-managers@eecs.nwu.edu>); Mon, 17 May 1993 15:52:08 -0500
+Received: from spool.uu.net (via LOCALHOST) by relay2.UU.NET with SMTP 
+	(5.61/UUNET-internet-primary) id AA06882; Mon, 17 May 93 16:52:09 -0400
+Received: from admiral.UUCP by spool.uu.net with UUCP/RMAIL
+	(queueing-rmail) id 165049.25051; Mon, 17 May 1993 16:50:49 EDT
+Received: by etnsed.COM (4.1/SMI-4.1)
+	id AA03200; Mon, 17 May 93 15:37:23 CDT
+From: xhaque@etnsed.COM (Amanul Haque)
+Reply-To: xhaque@etnsed.COM (Amanul Haque)
+Followup-To: junk
+Message-Id: <9305172037.AA03200@etnsed.COM>
+Subject: SUMMARY: NFS and sendmail problems
+To: sun-managers@etnsed.COM
+Date: Mon, 17 May 93 15:37:22 CDT
+X-Mailer: ELM [version 2.3 PL11]
+
+
+In my original posting, I had asked why sendmail on a particular machine
+was timing out. Thanks for all the replies and the helpful suggestions.
+all the answers said the said the same thing -- make sure that
+all the lines in the ".sig" files end with a newline. This seems to have
+worked. Thanks to the following :
+
+ Hal Stern
+ Steve Harris - Eaton Corp
+ Christian Lawrence
+ Richard Threadgill
+ Brett Lymn
+
+My apologies if I have missed any
+
+-- 
+Amanul Haque 
+
+
+--1426078384-1542812855-738595334:#2712--
+
+
+--1379973013-732308100-740061162:#12587--
+
+
+
+From owner-pine-info@cac.washington.edu  Mon Jun 14 12:39:12 1993
+Received: from mx1.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA11902; Mon, 14 Jun 93 12:39:12 -0700
+Received: by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA23120; Mon, 14 Jun 93 12:24:27 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from uwavm.u.washington.edu by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA23114; Mon, 14 Jun 93 12:24:25 -0700
+Message-Id: <9306141924.AA23114@mx1.cac.washington.edu>
+Received: from UWAVM.U.WASHINGTON.EDU by UWAVM.U.WASHINGTON.EDU
+   (IBM VM SMTP V2R1) with BSMTP id 6410; Mon, 14 Jun 93 12:23:10 PDT
+Received: from RICEVM1.RICE.EDU by UWAVM.U.WASHINGTON.EDU (Mailer R2.08
+ R208004) with BSMTP id 4954; Mon, 14 Jun 93 12:23:10 PDT
+Received: from ricevm1.rice.edu (NJE origin TROTH@RICEVM1) by RICEVM1.RICE.EDU
+ (LMail V1.1d/1.7f) with BSMTP id 1811; Mon, 14 Jun 1993 14:24:23 -0500
+Mime-Version: 1.0
+Content-Type: text/plain
+Date:         Mon, 14 Jun 93 14:19:05 CDT
+From: Rick Troth <TROTH@ricevm1.rice.edu>
+Subject:      Re: SUMMARY: NFS and sendmail problems (fwd)
+To: Dan Schlitt <dan@ees1a0.engr.ccny.cuny.edu>
+Cc: pine-info@cac.washington.edu
+In-Reply-To:  Your message of Mon, 14 Jun 1993 08:29:08 -0400 (EDT)
+
+>A while back, as I recall, there was a question about why Pine appended an
+>empty line to the end of a message.  Perhaps the attached message that
+>appeared on the sun-managers list might be an answer to why it is a good
+>idea.
+>
+>/dan
+> ...
+> ...
+>From: xhaque@etnsed.COM (Amanul Haque)
+>Subject: SUMMARY: NFS and sendmail problems
+>To: sun-managers@etnsed.COM
+>Date: Mon, 17 May 93 15:37:22 CDT
+>
+>In my original posting, I had asked why sendmail on a particular machine
+>was timing out. Thanks for all the replies and the helpful suggestions.
+>all the answers said the said the same thing -- make sure that
+>all the lines in the ".sig" files end with a newline. This seems to have
+>worked.        ...
+
+        Sounds like a sendmail bug to me.
+
+        After all the heat I took a couple of weeks ago for trying to see
+Pine coded  *around*  bugs in other software,  ...       ;-)
+
+> ...
+>
+>--
+>Amanul Haque
+
+--
+Rick Troth <troth@rice.edu>,  Rice University,  Information Systems
+
+
+From owner-pine-info@cac.washington.edu  Mon Jun 14 13:09:56 1993
+Received: from mx1.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA12868; Mon, 14 Jun 93 13:09:56 -0700
+Received: by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA23587; Mon, 14 Jun 93 12:53:12 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from uwavm.u.washington.edu by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA23581; Mon, 14 Jun 93 12:53:10 -0700
+Message-Id: <9306141953.AA23581@mx1.cac.washington.edu>
+Received: from UWAVM.U.WASHINGTON.EDU by UWAVM.U.WASHINGTON.EDU
+   (IBM VM SMTP V2R1) with BSMTP id 6568; Mon, 14 Jun 93 12:51:52 PDT
+Received: from RICEVM1.RICE.EDU by UWAVM.U.WASHINGTON.EDU (Mailer R2.08
+ R208004) with BSMTP id 5651; Mon, 14 Jun 93 12:51:47 PDT
+Received: from ricevm1.rice.edu (NJE origin TROTH@RICEVM1) by RICEVM1.RICE.EDU
+ (LMail V1.1d/1.7f) with BSMTP id 2952; Mon, 14 Jun 1993 14:52:47 -0500
+Mime-Version: 1.0
+Content-Type: text/plain
+Date:         Mon, 14 Jun 93 14:50:22 CDT
+From: Rick Troth <TROTH@ricevm1.rice.edu>
+Subject:      Re: SUMMARY: NFS and sendmail problems (fwd)
+To: Dan Schlitt <dan@ees1a0.engr.ccny.cuny.edu>
+Cc: pine-info@cac.washington.edu
+In-Reply-To:  Your message of Mon, 14 Jun 1993 15:32:46 -0400 (EDT)
+
+>Not a sendmail bug if the sendmail eventually times out the connection.  A
+>message is terminated by a <CR>.<CR> and if the imput looks like it hasn't
+>completed the last line then nobody knows to add the termination to the
+>data.  Thus the robust way to make sure the input is completed it to add
+>a line termination to the input that gets handed to sendmail.
+>
+>Incomplete last lines in data are a standard problem and a program needs
+>to handle them in a reasonable way.
+
+        By golly,  you're right again,  Dan.
+
+        So Pine has to cover for user (or editor) brokenness,
+not sendmail brokenness.   Fair enough.
+
+>Dan Schlitt                           School of Engineering Computer Systems
+>dan@ee-mail.engr.ccny.cuny.edu        City College of New York
+>(212)650-6760                         New York, NY 10031
+
+--
+Rick Troth <troth@rice.edu>,  Rice University,  Information Systems
+
+
+From owner-pine-info@cac.washington.edu  Tue Jun 15 01:45:15 1993
+Received: from mx1.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA00389; Tue, 15 Jun 93 01:45:15 -0700
+Received: by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA00390; Tue, 15 Jun 93 01:27:17 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from cheviot.ncl.ac.uk by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA00384; Tue, 15 Jun 93 01:27:13 -0700
+Received: from scawdell.ncl.ac.uk by cheviot.ncl.ac.uk id <AA24154@cheviot.ncl.ac.uk>
+  (5.65cVUW/NCL-CMA.1.35 for <pine-info@cac.washington.edu>) with SMTP; Tue, 15 Jun 1993 09:26:51 +0100
+Date: Tue, 15 Jun 1993 09:23:41 +0100 (BST)
+From: "A. Hilborne" <Andrew.Hilborne@newcastle.ac.uk>
+Subject: Re: SUMMARY: NFS and sendmail problems (fwd)
+To: Rick Troth <TROTH@ricevm1.rice.edu>
+Cc: Dan Schlitt <dan@ees1a0.engr.ccny.cuny.edu>, pine-info@cac.washington.edu
+In-Reply-To: <9306141953.AA23581@mx1.cac.washington.edu>
+Message-Id: <Pine.3.07:930517.9306150939.A21816-b100000@scawdell>
+Mime-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+
+On Mon, 14 Jun 1993, Rick Troth wrote:
+
+> >Not a sendmail bug if the sendmail eventually times out the connection.  A
+> >message is terminated by a <CR>.<CR> and if the imput looks like it hasn't
+> >completed the last line then nobody knows to add the termination to the
+> >data.  Thus the robust way to make sure the input is completed it to add
+> >a line termination to the input that gets handed to sendmail.
+> >
+> >Incomplete last lines in data are a standard problem and a program needs
+> >to handle them in a reasonable way.
+> 
+>         By golly,  you're right again,  Dan.
+> 
+>         So Pine has to cover for user (or editor) brokenness,
+> not sendmail brokenness.   Fair enough.
+
+*But*, Pine can easily do:
+
+	if input ends in a newline/line terminator then
+		do nothing
+	else
+		add terminator
+	fi
+
+Thus guarding itself against bad input and ensuring that users who have
+ensured proper message termination aren't annoyed.  I have just had to write a
+mail script which was signbificantly complicated by Pine's tendency to add
+extra lines.
+
+--
+Andrew M. Hilborne                        Andrew.Hilborne@newcastle.ac.uk
+Computing Service                    Tel: +44 91 222 8226 (direct)
+University of Newcastle upon Tyne, UK.    +44 91 222 8039 (Comp Service office)
+
+
+
+
+
+From owner-pine-info@cac.washington.edu  Wed Jun 16 01:22:04 1993
+Received: from mx1.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA08060; Wed, 16 Jun 93 01:22:04 -0700
+Received: by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA14920; Wed, 16 Jun 93 01:04:35 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from mail.liv.ac.uk by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA14914; Wed, 16 Jun 93 01:04:33 -0700
+Received: from liverpool.ac.uk by mailhub.liverpool.ac.uk via Local channel 
+          id <08333-0@mailhub.liverpool.ac.uk>; Wed, 16 Jun 1993 09:04:45 +0100
+From: C.Wooff@liverpool.ac.uk (Chris Wooff)
+Message-Id: <9306160904.ZM8330@mailhub.liv.ac.uk>
+Date: Wed, 16 Jun 1993 09:04:44 +0100
+In-Reply-To: Your message of Jun 15, 9:23am
+References: <Pine.3.07:930517.9306150939.A21816-b100000@scawdell>
+X-Mailer: Z-Mail (2.1.4 02apr93)
+To: "A. Hilborne" <Andrew.Hilborne@newcastle.ac.uk>
+Subject: Re: SUMMARY: NFS and sendmail problems (fwd)
+Cc: pine-info@cac.washington.edu
+
+At  9:23am on Jun 15,  9:23am "A. Hilborne"(Andrew.Hilborne@newcastle.ac.uk) wrote:
+> *But*, Pine can easily do:
+> 
+> 	if input ends in a newline/line terminator then
+> 		do nothing
+> 	else
+> 		add terminator
+> 	fi
+> 
+> Thus guarding itself against bad input and ensuring that users who have
+> ensured proper message termination aren't annoyed. 
+End of insertion from "A. Hilborne"
+
+I'd also support this request. Some programs which automatically answer
+email requests can get confused by extra "lines". Of course this shouldn't
+happen but this is the real world!
+
+Chris
+
+
+From owner-pine-info@cac.washington.edu  Wed Jun 16 17:26:05 1993
+Received: from mx1.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA05678; Wed, 16 Jun 93 17:26:05 -0700
+Received: by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA26777; Wed, 16 Jun 93 17:17:31 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from eis.CalState.EDU by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA26771; Wed, 16 Jun 93 17:17:29 -0700
+Received: by eis.calstate.edu (4.1/KNMods2.1)
+	id AA24221; Wed, 16 Jun 93 17:17:20 PDT
+Date: Wed, 16 Jun 1993 17:14:46 -0700 (PDT)
+From: Pete Kaplan <pete@eis.calstate.edu>
+Subject: Mail filters
+To: pine-info@cac.washington.edu
+Message-Id: <Pine.3.05.9306161746.B7688-9100000@eis.calstate.edu>
+Mime-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+
+Dear Pine,
+
+One of my users sent the following:
+
+How do I go about the task of not receiving E-MAIL from a selected source?
+On some systems this is possible. Can it be done on PINE? 
+Thanx...
+
+Pete Kaplan     Cal.St. Univ.  Chanc. Office    (310)985-9446
+
+
+
+
+From owner-pine-info@cac.washington.edu  Wed Jun 16 18:46:07 1993
+Received: from mx1.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA07072; Wed, 16 Jun 93 18:46:07 -0700
+Received: by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA27425; Wed, 16 Jun 93 18:39:26 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from shamash.cdc.com by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA27419; Wed, 16 Jun 93 18:39:23 -0700
+Received: by shamash.cdc.com (4.1/SMI-4.0/CDC1.1)
+	id AA17775; Wed, 16 Jun 93 20:39:12 CDT
+Received: by cosmo.twntpe.cdc.com (5.61/1.34) id AA12846; Thu, 17 Jun 93 09:33:53 +0800
+Date: Thu, 17 Jun 1993 09:33:00 +0800 (TST)
+From: Ed Greshko <egreshko@twntpe.cdc.com>
+Subject: Re: Mail filters
+To: Pete Kaplan <pete@eis.calstate.edu>
+Cc: pine-info@cac.washington.edu
+In-Reply-To: <Pine.3.05.9306161746.B7688-9100000@eis.calstate.edu>
+Message-Id: <Pine.3.07.9306170959.B12718-9100000@cosmo.twntpe.cdc.com>
+Mime-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+
+On Wed, 16 Jun 1993, Pete Kaplan wrote:
+
+> How do I go about the task of not receiving E-MAIL from a selected source?
+> On some systems this is possible. Can it be done on PINE? 
+> Thanx...
+
+	I simply use the "filter" program supplied with elm for this purpose
+and then use pine as my UA.
+
+
+
+Edward M. Greshko			Control Data Taiwan
+Voice: +886-2-715-2222 x287		6/F, 131 Nanking East Road, Section 3
+FAX  : +886-2-712-9197			Taipei, Taiwan R.O.C
+
+
+
+From owner-pine-info@cac.washington.edu  Wed Jun 16 18:47:26 1993
+Received: from mx1.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA07126; Wed, 16 Jun 93 18:47:26 -0700
+Received: by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA27225; Wed, 16 Jun 93 18:17:29 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from degsyd.syd.deg.CSIRO.AU by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA27215; Wed, 16 Jun 93 18:17:22 -0700
+Date:    Thu, 17 Jun 1993 11:16:39 EST
+From: IP_BOSS@syd.deg.CSIRO.AU (Jack Churchill)
+Message-Id: <930617111639.f02@syd.deg.CSIRO.AU>
+Subject: distributed address book
+To: pine-info@cac.washington.edu
+X-Vmsmail-To: SMTP%"pine-info@cac.washington.edu"
+
+Why does pine remove (unlink) the address book before writing back the new
+entries?  Can't it just overwrite the existing file?  The reason I ask and
+as mentioned in the doc, the remove destroys any special protection and
+symbolic link.  I like to use the latter to distribute the address books for
+some users across various workstations.
+
+  Jack N. Churchill                         | J.Churchill@syd.deg.csiro.au
+  CSIRO  Division of Exploration Geoscience | churchill@decus.com.au
+  PO Box 136  North Ryde  NSW  2113         | Phone:  +61 2 887 8884
+  Australia                                 | Fax:    +61 2 887 8909
+
+
+From owner-pine-info@cac.washington.edu  Thu Jun 17 01:00:53 1993
+Received: from mx1.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA11844; Thu, 17 Jun 93 01:00:53 -0700
+Received: by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA29260; Thu, 17 Jun 93 00:46:08 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from degsyd.syd.deg.CSIRO.AU by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA29254; Thu, 17 Jun 93 00:46:04 -0700
+Date:    Thu, 17 Jun 1993 17:45:43 EST
+From: IP_BOSS@syd.deg.CSIRO.AU (Jack Churchill)
+Message-Id: <930617174544.f02@syd.deg.CSIRO.AU>
+Subject: Re: distributed address book
+To: pine-info@cac.washington.edu
+X-Vmsmail-To: SMTP%"pine-info@cac.washington.edu"
+
+>Why does pine remove (unlink) the address book before writing back the new
+>entries?  Can't it just overwrite the existing file?  The reason I ask and
+>as mentioned in the doc, the remove destroys any special protection and
+>symbolic link.  I like to use the latter to distribute the address books for
+>some users across various workstations.
+
+I think I've found the solution.  I simply added/modifed the following
+lines marked with a ++ in pine.c
+
+
+    /* Must do this here, so we can get the .pinerc file and debug file */
+++  if(getenv("PINEHOME") != NULL) { 
+++      pine_state->home_dir = cpystr(getenv("PINEHOME"));
+++  } else if(getenv("HOME") != NULL) { 
+        pine_state->home_dir = cpystr(getenv("HOME"));
+    } else if(get_system_homedir() != NULL) {
+        pine_state->home_dir = cpystr(get_system_homedir());
+    } else {
+        pine_state->home_dir = cpystr("");
+    }
+
+and setenv PINEHOME in the user's login file (e.g., setenv PINEHOME
+/mountpoint/$USER).  Is this a bad thing?  That way everything (almost -
+not including the pine.info and pine.conf) is in the one place.  Before,
+I was linking each mail subdirectory to the main server but now I don't
+need to do this.  Yes, I know the possible problems associated with NFS
+sharing the files but I've minimised the risk by using appropriate
+options with the mount command.  Enabling file locking is next on my "to
+do" list but I haven't seen any problems yet.
+
+
+  Jack N. Churchill                         | J.Churchill@syd.deg.csiro.au
+  CSIRO  Division of Exploration Geoscience | churchill@decus.com.au
+  PO Box 136  North Ryde  NSW  2113         | Phone:  +61 2 887 8884
+  Australia                                 | Fax:    +61 2 887 8909
+
+
+From owner-pine-info@cac.washington.edu  Thu Jun 17 09:54:51 1993
+Received: from mx1.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA23161; Thu, 17 Jun 93 09:54:51 -0700
+Received: by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA04780; Thu, 17 Jun 93 09:34:24 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from norman.nwnet.net by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA04774; Thu, 17 Jun 93 09:34:22 -0700
+Received: by norman.nwnet.net
+	(5.65/UW-NDC Revision: 2.27 ) id AA10741; Thu, 17 Jun 93 09:34:22 -0700
+Date: Thu, 17 Jun 1993 09:27:38 -0700 (PDT)
+From: Laurence Lundblade <lgl@nwnet.net>
+Subject: Re: distributed address book
+To: Jack Churchill <IP_BOSS@syd.deg.CSIRO.AU>
+Cc: pine-info@cac.washington.edu
+In-Reply-To: <930617174544.f02@syd.deg.CSIRO.AU>
+Message-Id: <Pine.3.83.9306170938.B10362-0100000@norman.nwnet.net>
+Mime-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+
+Hello Jack,
+
+The reason Pine writes the address book to a temp file, removes the
+original and renames the new one is to be sure the writing of the new
+address book is complete before destroying the old one. 
+
+I think you're scheme will work OK.  The main place to have locking is on
+the inbox where there's contention all the time (new mail arriving). Some
+of the Pine locking won't work across NFS (detecting another Pine has it
+open), but the most basic locking (mail file consistency) will work unless
+conditions are extreme. For example if you network is dropping NFS packets
+the basic locking can fail. 
+
+LL
+
+
+
+On Thu, 17 Jun 1993, Jack Churchill wrote:
+
+> >Why does pine remove (unlink) the address book before writing back the new
+> >entries?  Can't it just overwrite the existing file?  The reason I ask and
+> >as mentioned in the doc, the remove destroys any special protection and
+> >symbolic link.  I like to use the latter to distribute the address books for
+> >some users across various workstations.
+> 
+> I think I've found the solution.  I simply added/modifed the following
+> lines marked with a ++ in pine.c
+> 
+> 
+>     /* Must do this here, so we can get the .pinerc file and debug file */
+> ++  if(getenv("PINEHOME") != NULL) { 
+> ++      pine_state->home_dir = cpystr(getenv("PINEHOME"));
+> ++  } else if(getenv("HOME") != NULL) { 
+>         pine_state->home_dir = cpystr(getenv("HOME"));
+>     } else if(get_system_homedir() != NULL) {
+>         pine_state->home_dir = cpystr(get_system_homedir());
+>     } else {
+>         pine_state->home_dir = cpystr("");
+>     }
+> 
+> and setenv PINEHOME in the user's login file (e.g., setenv PINEHOME
+> /mountpoint/$USER).  Is this a bad thing?  That way everything (almost -
+> not including the pine.info and pine.conf) is in the one place.  Before,
+> I was linking each mail subdirectory to the main server but now I don't
+> need to do this.  Yes, I know the possible problems associated with NFS
+> sharing the files but I've minimised the risk by using appropriate
+> options with the mount command.  Enabling file locking is next on my "to
+> do" list but I haven't seen any problems yet.
+> 
+> 
+>   Jack N. Churchill                         | J.Churchill@syd.deg.csiro.au
+>   CSIRO  Division of Exploration Geoscience | churchill@decus.com.au
+>   PO Box 136  North Ryde  NSW  2113         | Phone:  +61 2 887 8884
+>   Australia                                 | Fax:    +61 2 887 8909
+> 
+
+
+
+From owner-pine-info@cac.washington.edu  Thu Jun 17 11:18:18 1993
+Received: by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA27550; Thu, 17 Jun 93 11:18:18 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from bishop.bishop.Hawaii.Org by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA27544; Thu, 17 Jun 93 11:18:13 -0700
+Received: by bishop.bishop.hawaii.org (AIX 3.2/UCB 5.64/4.03)
+          id AA24308; Thu, 17 Jun 1993 08:16:14 -1000
+Date: Thu, 17 Jun 1993 08:14:17 +22305714 (HST)
+From: edwardy@bishop.bishop.hawaii.org
+Reply-To: edwardy@bishop.bishop.hawaii.org
+Subject: Pine 'hangs' upon startup.
+To: pine-info@cac.washington.edu
+In-Reply-To: <Pine.3.07.9306041617.A15239-b100000@loris.cisab.indiana.edu>
+Message-Id: <Pine.3.05a.9306170832.C34277-b100000@bishop.bishop.hawaii.org>
+Mime-Version: 1.0
+Content-Type: TEXT/PLAIN; CHARSET=US-ASCII
+
+Aloha from Hawaii,
+ I am not sure if this is a local problem, or a pine problem, but
+periodically (alot) users call in and complain that when they start pine,
+it hangs for a couple (3-5) minutes before they are allowed to select anything
+on the main menu. Sometimes the main menu comes up, sometimes it hangs
+even before the menu comes up. I have noticed that it usually happens when
+they first start pine in the morning. But once it 'unhangs' pine runs
+smoothly. During these 'hangs' our other applications/sessions that are on
+our system are fine.
+
+We are running IBM RS6000 AIX version 3.2  Pine version 3.05a
+
+Any help would be appreciated.
+
+							Edward Yagi
+
+ps. Can anybody point me to a spell checker for our setup?
+
+------------------------------------------------------------------------------
+ __ ,o.  edwardy@bishop.bishop.hawaii.org - Bishop Museum Computer Dept  o_o. 
+ _ O7-O  bike! = edwardy@uhunix.bitnet - #847-8238 FAX 842-1329 = judo! /7 /\
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+From owner-pine-info@cac.washington.edu  Thu Jun 17 13:30:34 1993
+Received: from mx2.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA02023; Thu, 17 Jun 93 13:30:34 -0700
+Received: by mx2.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA17975; Thu, 17 Jun 93 13:20:16 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from xanth.CS.ORST.EDU by mx2.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA17969; Thu, 17 Jun 93 13:20:15 -0700
+Received: from prism.CS.ORST.EDU by instruction.CS.ORST.EDU (16.6/1.35)
+	id AA02927; Thu, 17 Jun 93 13:18:27 -0700
+Received: by prism.CS.ORST.EDU (16.6/CS-Client)
+	id AA01985; Thu, 17 Jun 93 13:20:12 -0700
+Date: Thu, 17 Jun 1993 13:16:32 -0700 (PDT)
+From: "Jason R. Thorpe" <thorpej@xanth.CS.ORST.EDU>
+Subject: Re: Pine 'hangs' upon startup.
+To: edwardy@bishop.bishop.hawaii.org
+Cc: pine-info@cac.washington.edu
+In-Reply-To: <Pine.3.05a.9306170832.C34277-b100000@bishop.bishop.hawaii.org>
+Message-Id: <Pine.3.07.9306171321.A1751-b100000@prism.CS.ORST.EDU>
+Mime-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+
+On Thu, 17 Jun 1993 edwardy@bishop.bishop.hawaii.org wrote:
+
+> Aloha from Hawaii,
+>  I am not sure if this is a local problem, or a pine problem, but
+> periodically (alot) users call in and complain that when they start pine,
+> it hangs for a couple (3-5) minutes before they are allowed to select anything
+> on the main menu. Sometimes the main menu comes up, sometimes it hangs
+> even before the menu comes up. I have noticed that it usually happens when
+> they first start pine in the morning. But once it 'unhangs' pine runs
+> smoothly. During these 'hangs' our other applications/sessions that are on
+> our system are fine.
+> 
+> We are running IBM RS6000 AIX version 3.2  Pine version 3.05a
+
+I suggest first upgrading to 3.07.  3.07 runs notable quicker on our HP's
+and Sequent's than 3.05 did.
+
+Hope it helps...
+
+Later...
+
+/*****************************************************************************
+           Jason R. Thorpe - 1440 SE Ana Avenue - Dallas, OR 97338
+        Bellnet (503) 623-8514     Internet thorpej@prism.cs.orst.edu
+*****************************************************************************/
+
+
+
+
+From owner-pine-info@cac.washington.edu  Sat Jun 19 06:51:09 1993
+Received: from mx1.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA19349; Sat, 19 Jun 93 06:51:09 -0700
+Received: by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA29809; Sat, 19 Jun 93 06:42:54 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from relay.pipex.net by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA29803; Sat, 19 Jun 93 06:42:51 -0700
+Received: from tdc.dircon.co.uk by relay.pipex.net with SMTP (PP) 
+          id <12810-0@relay.pipex.net>; Sat, 19 Jun 1993 14:42:46 +0100
+Received: from tdc.dircon.co.uk by tdc.dircon.co.uk id aa00545;
+          19 Jun 93 14:43 BST
+Subject: Junk displayed when going into Pico from Pine
+To: pine-info@cac.washington.edu
+Date: Sat, 19 Jun 1993 14:43:54 +0100 (BST)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Content-Length: 1024
+From: Ben Knox <ben@dircon.co.uk>
+Message-Id: <9306191443.aa00540@tdc.dircon.co.uk>
+
+I'm trying to get PINE up and running under SCO UNIX 3.2.4.1
+
+So far, I've managed to get the Pine menu/message reading part working.
+However when I try to go into sending a message (using the default PICO
+composer), I get a screen full of garbage. It looks like this:
+
+$<2>OOPS$<2>^$<2>$<2>G$<2> Get Help$<2> ...and so on for 15 or 20 lines.
+There are lots of OOPS in this mess. 
+
+This comes up whenever the editor is entered.
+
+It looks as though PICO is starting up ok (you can see some of the PICO
+messages in all this junk), but for some reason the screen is not being
+set to the right mode...?
+
+Does this sound familiar to anyone?
+
+Oh yes, this is PINE verion 3.07.
+
+I have got the standalone version of PICO working fine, so it doesn't seem
+to be a problem inherent to PICO itself.
+
+I also tried putting a different editor in the editor variable of .pinerc,
+however this seems to be ignored...?
+
+All comments and suggestions gratefully received!
+
+Regards, Ben
+
+-- 
+Ben Knox		ben@dircon.co.uk      ...!uknet!dircon!ben
+
+
+From owner-pine-info@cac.washington.edu  Wed Jun 23 18:05:15 1993
+Received: from mx2.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA16568; Wed, 23 Jun 93 18:05:15 -0700
+Received: by mx2.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA20380; Wed, 23 Jun 93 17:50:35 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from redvax1.dgsca.unam.mx by mx2.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA20374; Wed, 23 Jun 93 17:50:20 -0700
+Received: by redvax1.dgsca.unam.mx (5.57/Ultrix3.0-C)
+	id AA15604; Wed, 23 Jun 93 18:48:40 -0500
+Date: Wed, 23 Jun 1993 18:48:25 -0500 (CDT)
+From: "Isaias Callejas Mancilla." <isma@redvax1.dgsca.unam.mx>
+Reply-To: "Isaias Callejas Mancilla." <isma@redvax1.dgsca.unam.mx>
+Subject: 
+To: Lista de PINE <pine-info@cac.washington.edu>
+Message-Id: <Pine.3.07.9306231839.A15520-9100000@redvax1.dgsca.unam.mx>
+Mime-Version: 1.0
+Content-Type: TEXT/PLAIN; CHARSET=US-ASCII
+
+subscribe is-unix-acc
+end
+
+===
+
+Ernesto Isaias Callejas Mancilla.
+
+Miembro del Gupo de Administradores del equipo Microvax 3400.
+Departamento de Soporte a Sistemas IBM-DEC.
+Coordinacion de Servicios de Computo. 
+Direccion General de Servicios de Computo Academico.
+Universidad Nacional Autonoma de Mexico.
+
+Internet  :  isma@redvax1.dgsca.unam.mx
+Bitnet    :  isma@redvax1.bitnet
+
+
+
+
+
+
+
+
+
+From owner-pine-info@cac.washington.edu  Wed Jun 23 20:01:25 1993
+Received: from mx2.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA17977; Wed, 23 Jun 93 20:01:25 -0700
+Received: by mx2.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA20785; Wed, 23 Jun 93 19:52:51 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from wsuaix.csc.wsu.edu by mx2.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA20779; Wed, 23 Jun 93 19:52:50 -0700
+Received: by wsuaix.csc.wsu.edu (5.61-AIX-1.2/1.0)
+	id AA142525 (for pine-info@cac.washington.edu, from coxg/coxg@wsuaix.csc.wsu.edu); Wed, 23 Jun 93 19:52:47 -0700
+Date: Wed, 23 Jun 1993 19:48:07 -0800 (PDT)
+From: "greg cox;WR3058" <coxg@wsuaix.csc.wsu.edu>
+Subject: POP & PINE
+To: The Pine List <pine-info@cac.washington.edu>
+Message-Id: <Pine.3.05.9306231907.D142325-9100000@wsuaix.csc.wsu.edu>
+Mime-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+
+
+Is there any type of Post Office Protocol available for use with PINE?
+
+What about an off-line reader?
+
+I would like to be able to dial into a server running PINE, quickly
+download my new mail, then hangup, read & reply off-line, and upload
+replies the next time I log in to the server.
+
+If PINE can't do this, does anyone have sugestions? 
+
+
+
+
+From owner-pine-info@cac.washington.edu  Wed Jun 23 21:28:29 1993
+Received: from mx1.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA18946; Wed, 23 Jun 93 21:28:29 -0700
+Received: by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA22411; Wed, 23 Jun 93 21:17:34 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from shiva1.cac.washington.edu by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA22405; Wed, 23 Jun 93 21:17:33 -0700
+Received: by shiva1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA10164; Wed, 23 Jun 93 21:17:18 -0700
+Date: Wed, 23 Jun 1993 21:00:21 -0700 (PDT)
+From: Terry Gray <gray@cac.washington.edu>
+Subject: Re: POP & PINE
+To: "greg cox;WR3058" <coxg@wsuaix.csc.wsu.edu>
+Cc: The Pine List <pine-info@cac.washington.edu>
+In-Reply-To: <Pine.3.05.9306231907.D142325-9100000@wsuaix.csc.wsu.edu>
+Message-Id: <Pine.3.83.9306232121.N21317-0100000@shiva1.cac.washington.edu>
+Mime-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+
+
+On Wed, 23 Jun 1993, greg cox;WR3058 wrote:
+
+> Is there any type of Post Office Protocol available for use with PINE?
+
+Greg,
+Pine uses the Interactive Mail Access Protocol (IMAP) rather than POP.
+IMAP is a functional superset of POP, and offers quite a few advantages.
+(For a detailed comparison, see the file "imap.vs.pop" in the /mail
+directory of ftp.cac.washington.edu)
+ 
+> What about an off-line reader?
+
+This is a high priority for PC-Pine.  Three things are required: a way to
+tell Pine to ignore the fact that the network isn't there, a convenient
+way to save all or save new messages from the inbox, and a way to queue
+(and later send) outgoing msgs. These won't make it into the upcoming
+general release of PC-Pine, but I hope we'll have them done by end of
+summer. 
+ 
+> I would like to be able to dial into a server running PINE, quickly
+> download my new mail, then hangup, read & reply off-line, and upload
+> replies the next time I log in to the server.
+
+Close.  Using PC-Pine you would connect to an IMAP server (via SLIP or PPP
+for now; maybe via async later) and download msgs of interest for offline
+processing. 
+ 
+> If PINE can't do this, does anyone have sugestions? 
+
+Most POP clients support this paradigm, although the mail is typically 
+deleted from the server after you've downloaded it, which is not always 
+what you want, and POP is an all-or-nothing protocol; there is no 
+mechanism for selective download.
+
+The best disconnected operation support is currently provided by PC-MAIL,
+which uses the DMSP protocol.  It provides for resynchronization of the
+local message cache with the state of the server.  As part of the IETF
+standardization work on IMAP, this type of functionality will be added to
+IMAP. 
+
+Hope this helps...
+
+-teg
+
+
+
+From owner-pine-info@cac.washington.edu  Mon Jun 28 13:52:57 1993
+Received: from mx1.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA06855; Mon, 28 Jun 93 13:52:57 -0700
+Received: by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA11324; Mon, 28 Jun 93 13:42:36 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from relay.pipex.net by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA11318; Mon, 28 Jun 93 13:42:34 -0700
+Received: from tdc.dircon.co.uk by relay.pipex.net with SMTP (PP) 
+          id <11234-0@relay.pipex.net>; Mon, 28 Jun 1993 21:42:19 +0100
+Received: from tdc.dircon.co.uk by tdc.dircon.co.uk id aa07049;
+          28 Jun 93 21:43 BST
+Date: Mon, 28 Jun 1993 21:41:31 +0100 (BST)
+From: Ben Knox <ben@dircon.co.uk>
+Subject: Next PINE version
+To: pine-info@cac.washington.edu
+Message-Id: <Pine.3.07.9306282131.A7028-8100000@tdc.dircon.co.uk>
+Mime-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+
+Does anyone have any idea when the next PINE version will be coming out?
+Also, will it use the new IMAP-3.0 version of the c-client (and thus
+support MMDF)?
+
+Regards, Ben
+
+
+Ben Knox		ben@dircon.co.uk      ...!pipex!dircon!ben
+
+
+
+From owner-pine-info@cac.washington.edu  Tue Jun 29 20:24:44 1993
+Received: from mx1.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA20161; Tue, 29 Jun 93 20:24:44 -0700
+Received: by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA00288; Tue, 29 Jun 93 20:14:18 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from shiva1.cac.washington.edu by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA00282; Tue, 29 Jun 93 20:14:17 -0700
+Received: by shiva1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA04419; Tue, 29 Jun 93 20:13:55 -0700
+Date: Tue, 29 Jun 1993 20:04:54 -0700 (PDT)
+From: Terry Gray <gray@cac.washington.edu>
+Reply-To: Terry Gray <gray@cac.washington.edu>
+Subject: Re: Interoperability problem with ECSMail and Pine
+To: Steve Hole <steve@edm.isac.ca>
+Cc: Pine Info List <pine-info@cac.washington.edu>
+In-Reply-To: <Pine.3.07.9306031317.A26513-a100000@isasun-1>
+Message-Id: <Pine.3.83.9306291928.A29638-0100000@shiva1.cac.washington.edu>
+Mime-Version: 1.0
+Content-Type: TEXT/PLAIN; CHARSET=US-ASCII
+
+Steve,
+We've been unable to reproduce the case sensitivity to MIME types that 
+you observed; however, we did just find a bug wherein Pine refused to
+display a text attachment if the charset spec was missing.  This will be 
+fixed in the upcoming release.
+
+If you could send as an attachment a msg that demonstrates the
+case-sensitivity bug we can investigate further.  (There must be some
+combination of message characteristics that trigger the bug for you but
+not us.)
+
+-teg
+
+p.s. What's the latest estimate for the next ECS release?
+
+
+On Thu, 3 Jun 1993, Steve Hole wrote:
+
+> 
+> We have found a small interoperability problem between ECSMail and
+> Pine that we believe to be a bug in Pine.  It appears that Pine is
+> sensitive to character case in the Type and Subtype fields of a
+> multipart attachment. 
+> 
+> For example, a text file attachment with the type/subtype
+> combination of "TEXT/plain" will correctly display, but a
+> the type/subtype combinations of "TEXT/PLAIN" and "TEXT/Plain"
+> will not.   Editing these fields by hand in a message file 
+> will allow you to recreate this error in a consistent way.
+> 
+> By our understanding of the MIME spec, case independent 
+> comparisons should be made.   We are going to change ECSMail
+> to canonicalize outgoing Type/subtype pairs to Capitalized
+> words eg. Text/Plain.   
+> 
+> Cheers.
+> 
+> --
+> Steve Hole  		        Director of Research and Communications
+> ISA Corporation			mail:  steve@edm.isac.ca
+> Suite 835, 10040 - 104 St.      phone: (403) 420-8081
+> Edmonton, Alberta, Canada       fax:   (403) 420-8037
+> T5J 0Z2
+> 
+> 
+> 
+> 
+
+
+
+
+
+From owner-pine-info@cac.washington.edu  Tue Jun 29 22:44:12 1993
+Received: from mx2.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA21909; Tue, 29 Jun 93 22:44:12 -0700
+Received: by mx2.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA23569; Tue, 29 Jun 93 21:52:35 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from xanth.CS.ORST.EDU by mx2.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA23563; Tue, 29 Jun 93 21:52:33 -0700
+Received: from prism.CS.ORST.EDU by instruction.CS.ORST.EDU (1.37.109.4/1.35)
+	id AA29115; Tue, 29 Jun 93 21:50:35 -0700
+Received: by prism.CS.ORST.EDU (16.6/CS-Client)
+	id AA25446; Tue, 29 Jun 93 21:51:23 -0700
+Date: Tue, 29 Jun 1993 21:44:33 -0700 (PDT)
+From: "Jason R. Thorpe" <thorpej@xanth.CS.ORST.EDU>
+Subject: Timeline...
+To: PINE <pine-info@cac.washington.edu>
+Cc: Instruction Support <isupport@frisby.cs.orst.edu>
+Message-Id: <Pine.3.07.9306292133.A24530-9100000@prism.CS.ORST.EDU>
+Mime-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+
+PineGurus...
+
+Saw a message regarding a bug fix you're working on...
+
+Just curious as to a timeline for the next release...
+
+Thanks...
+
+/*****************************************************************************
+           Jason R. Thorpe - 1440 SE Ana Avenue - Dallas, OR 97338
+        Bellnet (503) 623-8514     Internet thorpej@prism.cs.orst.edu
+*****************************************************************************/
+
+
+
+
+From owner-pine-info@cac.washington.edu  Wed Jun 30 07:36:07 1993
+Received: by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA02399; Wed, 30 Jun 93 07:36:07 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from ester.dsv.su.se by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA02393; Wed, 30 Jun 93 07:36:06 -0700
+X400-Received: by /PRMD=SUNET/ADMD=_/C=SE/;
+	Relayed; 30 Jun 93 16:31:02+0200
+Date: 30 Jun 93 16:31:02+0200
+From: Jacob Palme DSV <jpalme@DSV.SU.se>
+Message-Id: <343916*jpalme@su-kom.dsv.su.se>
+To: "Pine mailer discussions group (pine-infoEcac.washington.edu)" <pine-info@SU-KOM.SU.se>
+Subject: Must all messages be coded?
+
+When I send messages with Pine, funny codes crop up in the
+messages when they arrive to their recipients.
+
+For example, all "=" are replaced by "=3D" and lines
+with spaces before the end-of-line (which my text editor
+produces very often) get the spaces converted to "=20".
+People complain to me of this, they ask me why I have
+such funny codes in my messages.
+
+I guess that the reason for this is that Pine encodes
+them in a MIME encoding. I am not against MIME, but is
+it necessary to use MIME encodings of all messages.
+Could not ordinary, plain ascii text messages be
+transferred in a body part format which does not
+require such encodings?
+
+
+
+From owner-pine-info@cac.washington.edu  Wed Jun 30 08:36:21 1993
+Received: from mx1.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA04242; Wed, 30 Jun 93 08:36:21 -0700
+Received: by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA04874; Wed, 30 Jun 93 08:22:41 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from runix.runit.sintef.no by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA04868; Wed, 30 Jun 93 08:22:39 -0700
+Received: from runit.sintef.no by runix.runit.sintef.no with SMTP (PP) 
+          id <25582-0@runix.runit.sintef.no>; Wed, 30 Jun 1993 17:22:30 +0200
+Received: by ravn (4.1/Runit-cl-1.0) id AA08743; Wed, 30 Jun 93 17:22:28 +0200
+Date: Wed, 30 Jun 1993 17:19:27 +0200 (MET DST)
+From: Steinar Haug <Steinar.Haug@runit.sintef.no>
+Subject: Re: Must all messages be coded?
+To: Jacob Palme DSV <jpalme@DSV.SU.se>
+Cc: pine-info@cac.washington.edu
+In-Reply-To: <343916*jpalme@su-kom.dsv.su.se>
+Message-Id: <Pine.3.07.9306301726.A8699-a100000@ravn>
+Mime-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+
+> When I send messages with Pine, funny codes crop up in the
+> messages when they arrive to their recipients.
+> 
+> For example, all "=" are replaced by "=3D" and lines
+> with spaces before the end-of-line (which my text editor
+> produces very often) get the spaces converted to "=20".
+> People complain to me of this, they ask me why I have
+> such funny codes in my messages.
+
+I think you have misunderstood slightly here.
+
+These codes only show up if you use characters outside the normal 7 bit
+ASCII (or ISO 646, or IA5, or whatever...) character set. And pine is
+doing precisely what it should, encoding these according to MIME.
+
+As long as you stay with 7 bit ASCII, your characters will not converted
+to "funny codes" as you call them.
+
+Steinar Haug, system/networks administrator
+SINTEF RUNIT, University of Trondheim, NORWAY
+Email: Steinar.Haug@runit.sintef.no, Steinar.Haug@delab.sintef.no
+
+
+
+
+From owner-pine-info@cac.washington.edu  Wed Jun 30 08:57:28 1993
+Received: from mx1.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA04821; Wed, 30 Jun 93 08:57:28 -0700
+Received: by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA05246; Wed, 30 Jun 93 08:41:25 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from leeman.york.ac.uk by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA05237; Wed, 30 Jun 93 08:41:21 -0700
+Received: from tower.york.ac.uk by leeman.york.ac.uk with SMTP (PP) 
+          id <12416-0@leeman.york.ac.uk>; Wed, 30 Jun 1993 16:26:02 +0100
+Received: from pippin.york.ac.uk by tower.york.ac.uk 
+          via SMTP (920330.SGI/920502.SGI) 
+          for @leeman.york.ac.uk:pine-info@cac.washington.edu id AA19144;
+          Wed, 30 Jun 93 16:42:45 +0100
+Date: Wed, 30 Jun 93 16:42:43 +0000
+From: Mike Brudenell <pmb1@tower.york.ac.uk>
+To: pine-info@cac.washington.edu
+Subject: Re: Must all messages be coded?
+Message-Id: <Mailstrom.1.03.29444.7343.pmb1@unix.york.ac.uk>
+In-Reply-To: Your message <343916*jpalme@su-kom.dsv.su.se> of 30 Jun 93 16:31:02+0200
+Content-Type: TEXT/plain; charset=US-ASCII
+
+I had a user (one!) complain of this same problem.
+
+I noticed that an extra line was added to the heading saying something about
+encoding the message (not MIME though).
+
+I looked at the source code and found that Pine looks at the body of the message
+and applies a few tests to the text in it:
+
+*  If all the characters are in the ASCII range 0..127 AND all the lines are <=
+500 characters in length, simply send the message as plain text;
+
+otherwise,
+
+*  If fewer than 10% of the characters are in the ASCII range 128..255 (top bit
+set -- often multinational characters) AND all the lines are <= 500 characters
+in length, encode ALL non-printing characters (top bit sets AND things like Tab)
+as =xx, where xx is its ASCII code expressed in hexadecimal;
+
+otherwise,
+
+*  treat the text as a binary file and encode all of it.
+
+Thus if you include even one top-bit-set character ALL non printing characters
+get encoded into your funny "=xx" triplets.  If the message recipient uses Pine
+to view the message these get automagically converted back to their originals.
+However if another mailer is used this doesn't happen and the encoding is shown
+instead.
+
+It's worth remembering that mail is intended for "plain text", i.e., characters
+which don't have top-bit set (otherwise we wouldn't need ftp as well as mail!)
+
+I'm not saying this IS your particular problem, but it was ours, which sounds at
+first glance (mixing metaphors madly!) very similar.
+
+                                                Mike Brudenell
+                                                University of York, UK
+
+>   When I send messages with Pine, funny codes crop up in
+>   the messages when they arrive to their recipients.
+>   
+>   For example, all "=" are replaced by "=3D" and lines
+>   with spaces before the end-of-line (which my text editor
+>   produces very often) get the spaces converted to "=20".
+>   People complain to me of this, they ask me why I have
+>   such funny codes in my messages.
+>   
+>   I guess that the reason for this is that Pine encodes
+>   them in a MIME encoding. I am not against MIME, but is
+>   it necessary to use MIME encodings of all messages.
+>   Could not ordinary, plain ascii text messages be
+>   transferred in a body part format which does not
+>   require such encodings?
+
+
+
+
+From owner-pine-info@cac.washington.edu  Wed Jun 30 20:40:04 1993
+Received: from mx2.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA27234; Wed, 30 Jun 93 20:40:04 -0700
+Received: by mx2.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA29578; Wed, 30 Jun 93 20:30:04 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from emoryu1.cc.emory.edu by mx2.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA29574; Wed, 30 Jun 93 20:30:02 -0700
+Received: from vader.cc.emory.edu by
+	emoryu1.cc.emory.edu (5.65/Emory_cc.3.4.6) via SMTP
+	id AA17894 ; Wed, 30 Jun 93 23:29:58 -0400
+Return-Path: labsha@vader.cc.emory.edu
+Received: by  vader.cc.emory.edu  (NeXT-1.0 (From Sendmail 5.52)/NeXT-2.0)
+	id AA10710; Wed, 30 Jun 93 23:22:42 EDT
+Date: Wed, 30 Jun 93 23:22:42 EDT
+From: labsha@vader.cc.emory.edu (Shyela Aberman)
+Message-Id: <9307010322.AA10710@ vader.cc.emory.edu >
+To: pine-info@cac.washington.edu
+Subject: saving messages in pine
+
+
+I have no idea if this has been brought up already. When I try to save a
+piece of mail, pine asks me what I want to name the folder but defaults to
+the sender's address. Here's my gripe: if the sender's address is a bang
+path, destroyer!cs.ubc.ca!unixg.ubc.ca!swiss.ucs.ubc.ca!ferch@uunet.uu.net,
+for example, I cannot type the folder I want the mail to be saved in, because
+the long address has pushed the cursor too far to the right, and the terminal
+beeps instead of wrapping. I don't know if this is a problem with my terminal
+(Macintosh NCSA Telnet 2.5 with Wrap Mode switched on), my host (NeXTstation
+running NeXTStep 2.0), my version of pine (3.07), or just "the way things
+work." If it can either be fixed so that I can type a name or if it auto-
+magically shortens the name with the same end-result, I would appreciate it.
+
+As it is, I think it's pine's fault, and my only work-around is quitting pine,
+opening up mail, saving the mail there, and going back to pine.
+
+If I am way off base, please let me know.
+
+thanx,
+shy
+
+
+
+From owner-pine-info@cac.washington.edu  Wed Jun 30 23:01:14 1993
+Received: from mx1.cac.washington.edu by shivafs.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA28965; Wed, 30 Jun 93 23:01:14 -0700
+Received: by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA15566; Wed, 30 Jun 93 22:50:28 -0700
+Errors-To: owner-pine-info@cac.washington.edu
+Sender: owner-pine-info@cac.washington.edu
+Received: from mail.swip.net by mx1.cac.washington.edu
+	(5.65/UW-NDC Revision: 2.28 ) id AA15560; Wed, 30 Jun 93 22:50:25 -0700
+Received: by mail.swip.net (5.65c8-/1.2)
+	id AA15941; Thu, 1 Jul 1993 07:50:21 +0200
+Received: by abalon.se (4.1/SMI-4.1)
+	id AA03875; Thu, 1 Jul 93 07:45:58 MET
+Date: Thu, 1 Jul 1993 07:35:49 +0200 (METDST)
+From: Christer Lindh <outside-owner@abalon.se>
+Reply-To: Christer Lindh <outside-owner@abalon.se>
+Subject: Re: Must all messages be coded?
+To: Pine Info List <pine-info@cac.washington.edu>
+In-Reply-To: <343916*jpalme@su-kom.dsv.su.se>
+Message-Id: <Pine.3.07.9307010704.C3685-c100000@abalon>
+Mime-Version: 1.0
+Content-Type: TEXT/PLAIN; CHARSET=US-ASCII
+
+On 30 Jun 1993, Jacob Palme DSV wrote:
+>
+> For example, all "=" are replaced by "=3D" and lines
+> with spaces before the end-of-line (which my text editor
+> produces very often) get the spaces converted to "=20".
+> People complain to me of this, they ask me why I have
+> such funny codes in my messages.
+>
+Jacob, this is because you use 8-bit characters in your mail. Pine sees
+this and encodes the message using "quoted printable". 
+
+There is no support for the MIME-encoding "8bit" which can be used if you
+know for sure that the path between you and the recipient is safe for
+8-bit characters. That's a bug or a feature depending how you see it.
+Forcing MIME-encoding will hopefully make more people convert to
+MIME-readers and thus raise the demand for MIME-compliant software.
+It would be nice if this was selectable when sending or composing though.
+
+All 8-bit chars are coded as =<hex>, and thus a plain "=" needs to be
+converted as well.
+
+Long lines (>70?) chars are wrapped and a "=" placed at the end, this is
+because it wants to guard the mail from evil gateways (some are known to
+auto-wrap).  
+
+What I don't understand is why this feature is mixed into the 8bit
+encoding at all. This makes all mails in English prone to be mangled by
+naughty gateways! 
+
+> I guess that the reason for this is that Pine encodes 
+> them in a MIME encoding. I am not against MIME, but is
+> it necessary to use MIME encodings of all messages. 
+
+It is necessary to encode all 8-bit characters, as gateways are known to
+(and according to specs must) strip the 8th bit. Some work is being done
+on SMTP to enhance the protocol with the capability to determine if the
+mail can be sent in 8-bit safe mode. Then the encoding/decoding would be
+done by the MTAs instead of by the user. But that is of limited use until
+everyone uses it.... 
+
+> Could not ordinary, plain ascii text messages be
+> transferred in a body part format which does not
+> require such encodings?
+> 
+They are already, as there are no 8-bit characters in ASCII.
+But not plain ISO-8859 messages, they must be encoded.
+
+(BTW, I just noticed a bug in Pico! I went into Help, and afterwards the
+title on line 1 still reads "Help on the Pine Composer, page 1 of 13".
+This is Pine 3.07)
+
+::       clindh@abalon.se       ::   o/        ::                      ::
+:: Abalon AB, Stockholm, Sweden ::  /@         ::        Earth.        ::
+::       59.19 N, 17.57 E       ::  /|>        :: Love it or leave it. ::
+::   * All disclaimers apply *  ::   |  climb! ::                      ::
+
+
+
+
+

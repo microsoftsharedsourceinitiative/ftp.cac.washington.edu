@@ -1,0 +1,15 @@
+The collection of Questions and Answers about and relating to Pine, and
+their subset of Frequently Asked Questions, can now be found in the Pine
+documents at
+
+http://www.washington.edu/pine/faq/
+or
+ftp://ftp.cac.washington.edu/pine/docs/FAQs.txt
+
+
+or among the Pine documents accessible by defining a folder definition in
+Pine as: 
+
+*{ftp.cac.washington.edu/anonymous}pine/docs/[]
+
+

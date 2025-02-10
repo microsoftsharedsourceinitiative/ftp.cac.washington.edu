@@ -1,0 +1,3182 @@
+
+   University of Washington 
+   
+    Search | Directories | Reference Tools
+   
+   UW Home > UWIN > Computing and Networking > Pine Information Center
+   
+   | Search Pine Information Center
+   
+Pine FAQs
+     _________________________________________________________________
+   
+   FAQ Topics
+    1. Getting Help With Pine
+    2. What is....?
+    3. Pine Bugs
+    4. Error Messages
+    5. General Usage Questions
+    6. Sending and Receiving Mail
+    7. Attachments
+    8. Usenet Newsreading
+    9. Customization and Configuration
+   10. Legal Issues
+   11. Information for System Administrators, Developers, and the
+       Technically Inclined
+   12. Account Conversion and Transfer
+   13. Security
+   14. Pine Development
+   15. Additional Pine FAQs
+     _________________________________________________________________
+   
+   1. Getting Help with Pine
+     * 1.1 What documentation is available for Pine?
+     * 1.2 Whom should I ask for help with Pine?
+       
+   2. What is ...?
+     * 2.1 What is PINE?
+          + 2.1.1 What PINE Does...
+          + 2.1.2 What PINE Does Not Do...
+     * 2.2 What is PICO?
+     * 2.3 What is PILOT?
+     * 2.4 What is MIME?
+     * 2.5 What is IMAP?
+     * 2.6 What is SMTP?
+     * 2.7 What is POP3?
+       
+   3. Pine Bugs
+     * 3.1 Policy on Bugs
+     * 3.2 Why does Pine hang when I read a certain message? When I look
+       at the message, I see that it has a Content-Location header. 
+       
+   4. Error Messages
+     * 4.1 What does "Folder Format Invalidated..." mean?
+     * 4.2 What happens when two Pine sessions access the same mailbox at
+       the same time?
+     * 4.3 What does the message "locked, override in _XXX_ sec" mean?
+     * 4.4 What are the messages with the subject DON'T DELETE THIS
+       MESSAGE--FOLDER INTERNAL DATA about?
+          + 4.4.1 What does the quell-folder-internal-msg feature do?
+     * 4.5 Why do I get the message "Invalid base64 string" when I try to
+       authenticate to a Cyrus server? 
+       
+   5. General Usage Questions
+     * 5.1 Pine seems to ignore some of my command keystrokes - why?
+     * 5.2 Why are certain commands not available?
+     * 5.3 What are these .pine-debug files for?
+          + 5.3.1 Can I delete the .pine-debug files?
+          + 5.3.2 How do I change the number of .pine-debug files kept or
+            prevent the .pine-debug files from being created?
+     * 5.4 Why does Pine repeatedly ask for my password after my intitial
+       login?
+     * 5.5 Why is it that I have to exit and reopen Pine in order to
+       receive new mail?
+     * 5.6 How do I do operations on multiple messages? (or, How do I use
+       Pine's aggregate commands?)
+     * 5.7 Does Pine block messages?
+     * 5.8 Can I create directories to store Pine folders?
+       
+   6. Sending and Receiving Mail
+     * 6.1 How do I send a message to multiple recipients without showing
+       all their names?
+     * 6.2 Can I get a "return-receipt" when sending a message with Pine?
+     * 6.3 Can I eliminate the @host.domain from local addresses?
+     * 6.4 How can I tell immediately whether I have received new mail?
+       
+   7. Attachments
+     * 7.1 How do I attach a file in Pine?
+     * 7.2 Why does Pine encode text attachments?
+          + 7.2.1 How can I send a text file without it being encoded?
+          + 7.2.2 Why does Pine use Base64 instead of UUencode?
+     * 7.3 How do I convert a Sun Mailtool attachment to MIME format?
+     * 7.4 How do I decode an attachment in a message I received that is
+       in BinHex or UUencoded format?
+     * 7.5 How can someone without Pine decipher an attachment to a
+       message I send?
+     * 7.6 How can I delete attachments?
+     * 7.7 Why doesn't "attached-to-ansi" printing work?
+       
+   8. Usenet Newsreading
+     * 8.1 How can I use Pine for reading and posting Internet News?
+     * 8.2 How can I sort newsgroups by thread?
+     * 8.3 How do I mark all messages in a newsgroup as "read" or
+       "deleted"?
+     * 8.4 How do I bring back (undelete) news messages I have deleted?
+       
+   9. Customization and Configuration
+   
+      General
+     * 9.1 Where does Pine look for configuration information?
+          + 9.1.1 How can I get a fresh copy of my Pine configuration
+            file?
+       
+      Server Config
+     * 9.2 Can I customize Pine on a per folder basis?
+     * 9.3 Can Pine be used with a POP server?
+       
+      User Settings
+     * 9.4 Why does my message index show From: instead of To:?
+     * 9.5 How do I change my 'From:' line?
+     * 9.6 How do I define my own headers like Reply-To and Organization?
+     * 9.7 How can I have a signature automatically appended to my mail
+       messages?
+       
+      Program Behavior
+     * 9.8 Can I reduce the frequent prompting to confirm an operation?
+     * 9.9 How can I filter messages into different incoming folders?
+     * 9.10 How do I control what is displayed in the FOLDER INDEX
+       screen?
+     * 9.11 How can I control association of MIME-attachments with
+       applications and filenames?
+     * 9.12 How can I read a ROT13 encoded message?
+     * 9.13 How can I make Pine work with a Wyse 60 terminal?
+     * 9.14 Does Pine offer color support?
+       
+      PC-Pine Specific
+     * 9.15 How can I perform spell checking with PC-Pine for Windows?
+       
+   10. Legal Issues
+     * 10.1 Is Pine Open Source?
+     * 10.2 Weren't earlier Pine licenses less restrictive regarding
+       redisribution of modified versions?
+     * 10.3 Can patch files be distributed by Pine users?
+     * 10.4 Are UW's "C-Client" libraries released under the same license
+       as Pine?
+       
+   11. Information for Systems Administrators, Developers, and the
+   Technically Inclined
+     * 11.1 Can we use Pine/Pico/Pilot source code in commercial
+       products?
+     * 11.2 What are the advantages of the various mailbox formats Pine
+       supports?
+     * 11.3 Can Kerberos authentication be used with Pine?
+     * 11.4 How does folder locking work?
+     * 11.5 Where does Pine create lockfiles, and what should that
+       directory's permissions be?
+     * 11.6 Why does Pine have problems with my filter's locking?
+     * 11.7 Why doesn't Pine recognize Content-Length header field?
+     * 11.8 How do I configure Pine to not leave mail in /usr/spool/mail?
+     * 11.9 Why did my messages disappear after I ran Pine? I can still
+       see them in Pine, but not with any other program (e.g. my ISP's
+       POP server). 
+     11.10 Why do I get the message "Unparsable Date" when I read
+       messages?
+     * 11.11 Why can't I compile Pine under SCO unix?
+     * 11.12 How can I set up Pine for rimap under Solaris 2.4 and NIS+?
+     * 11.13 What do I need to do when compiling Pine to let users change
+       their ``From:'' line?
+     * 11.14 Where is the .pine-debug setting set at compile-time?
+     * 11.15 What do I need to do to configure specific servers for use
+       with Pine?
+     * 11.16 What do I need to know about Pine file locking and what does
+       the "mailbox vulnerable" error mean?
+     * 11.17 How do I convert mh to mbx folders?
+       
+   12. Account Conversion and Transfer
+     * 12.1 How do I transfer messages from Pine on a Unix host to my PC?
+     * 12.2 How can I have all future messages sent to me automatically
+       forwarded to another account?
+     * 12.3 "How can I forward messages I have already saved in Pine to
+       another account?
+          + 12.3.1 While I'm transferring my messages ... how do I
+            transfer my email addressbook?
+     * 12.4 How do I convert Berkeley Mail aliases to Pine Addressbook?
+     * 12.5 How do I convert Elm aliases to Pine Addressbook?
+     * 12.6 How do I convert from Pine Address Book to/from the
+       equivalents in Eudora, Netscape, Pegasus, ... ?
+     * 12.7 How do I convert my Pine addressbook file to Mutt alias
+       format?
+       
+   13. Security
+     * 13.1 General Pine Security
+     * 13.2 How do I get a secure version of PC-Pine?
+     * 13.3 Is there a "remote exploit" bug in Pine's handling of mailcap
+       entries?
+     * 13.4 Can I get a virus through email?
+     * 13.5 What should I do if I receive email about a computer virus?
+     * 13.6 On Win2k, why do I get errors when trying to validate my host
+       name?
+       
+   14. Pine Development
+     * 14.1 What is the latest version of Pine, and what's new in it?
+     * 14.2 When is the next release of Pine scheduled?
+     * 14.3 What are the results of the anonymous messages sent to the UW
+       for tallying?
+       
+   15. Additional Pine FAQs
+     * 15.1 Are there other Pine FAQs available?
+     * 15.2 Can I contribute to these FAQs?
+       
+   | Search Pine Information Center
+   
+   UW Seal 
+   
+   
+    Pine® Information Center
+    Comments?
+    Modified: July 15, 2003
+
+   University of Washington 
+   
+    Search | Directories | Reference Tools
+   
+   UW Home > UWIN > Computing and Networking > Pine Information Center >
+   FAQs
+   
+   | Search Pine Information Center
+   
+Getting Help with Pine
+
+  1.1 What documentation is available for Pine?
+  
+   The Pine program itself includes extensive internal, context-sensitive
+   help, accessible by pressing _?_ or _^G_ in most screens. Pressing _R_
+   while at Pine's MAIN MENU displays the Release Notes. Additional
+   information, including a User's Guide, Technical Notes, Questions &
+   Answers, where to obtain the Pine software, what tools are available
+   to perform tasks that Pine itself does not, and more, can be accessed:
+     * In the _Pine Information Center_ on the World Wide Web at the URL:
+       http://www.washington.edu/pine/
+     * A list of _Unofficial Documentation for Pine_ is at the URL:
+       http://www.washington.edu/pine/getpine/non-UW.html#Documentation
+     _________________________________________________________________
+   
+  1.2 Whom should I ask for help with Pine?
+  
+   If you need assistance with Pine, contact the technical support staff
+   or computer help desk of your Internet Service Provider, school,
+   university, employer, ... -- whichever organization provided you with
+   the email account on which you are using Pine. (Due to the large
+   number of Pine installations worldwide, the University of Washington
+   _cannot_ provide individual support services to Pine users at other
+   organizations.)
+   Pine end-user questions are also discussed in the newsgroup
+   comp.mail.pine. Be sure to read the Frequently Asked Questions (FAQs)
+   before posting to the newsgroup.
+   
+   | Search Pine Information Center
+   
+   UW Seal 
+   
+   
+    Pine® Information Center
+    Comments?
+    Modified: November 13, 2003
+
+   University of Washington 
+   
+    Search | Directories | Reference Tools
+   
+   UW Home > UWIN > Computing and Networking > Pine Information Center >
+   FAQs
+   
+   | Search Pine Information Center
+   
+What is...?
+
+  2.1 What is PINE?
+  
+   This general information on the Pine message system is also available
+   from the main menu by pressing _?_:
+   
+   Pine® is the University of Washington's "_P_rogram for _I_nternet
+   _N_ews and _E_mail." It is intended to be an easy-to-use program for
+   sending, receiving, and filing Internet electronic mail messages and
+   Internet News (Usenet) messages. Pine supports the following Internet
+   protocols and specifications:
+     * SMTP Simple Mail Transport Protocol
+     * MIME Multipurpose Internet Mail Extensions
+     * IMAP Internet Message Access Protocol
+     * NNTP Network News Transport Protocol
+       
+   MIME allows you to attach any kind of file to your message, provided
+   that your recipient also has MIME-capable mail software (which is
+   readily available for most types of computers, although some
+   proprietary mail systems do not yet support MIME). IMAP allows access
+   to mailboxes on remote mailservers as if they were local.
+   
+   Although originally designed for inexperienced email users, Pine has
+   evolved to support many advanced features. There are an ever-growing
+   number of configuration and personal-preference options, though which
+   of them are available to you is determined by your local system
+   managers.
+     _________________________________________________________________
+   
+    2.1.1 What PINE Does...
+    
+   Pine is a "mail user agent" (MUA), which is a program that allows you
+   to compose and read messages using Internet mail standards. (Whether
+   you can correspond with others on the Internet depends on whether or
+   not your computer is connected to the Internet.) Pine also allows
+   reading and posting messages on the Internet Usenet News system,
+   provided that your site operates a suitable news server.
+   
+    2.1.2 What PINE Does Not Do...
+    
+   A "mail user agent" such as Pine is just one part of a messaging
+   system. Here are some things that are not done by Pine, but require
+   other programs:
+     * Actual relaying of email... which is done by "message transfer
+       agents."
+     * Vacation messages... automatically responding to incoming messages
+     * Anything to do with "talk"... which has nothing to do with email.
+     * Anything to do with "irc"... which has nothing to do with email.
+     * List processing... resending one message to a list of recipients.
+     _________________________________________________________________
+   
+  2.2 What is PICO?
+  
+   _Pi_ne's message _co_mposition editor is also available as a separate
+   stand-alone program, called PICO. PICO is a very simple and
+   easy-to-use text editor offering paragraph justification, cut/paste,
+   and a spelling checker.
+   
+   [Pico ScreenShot]
+     _________________________________________________________________
+   
+  2.3 What is PILOT?
+  
+   New in version 3.92, Pine's built-in file manager - used, for example,
+   to select a file for retrieval into the body of a message being
+   composed - is available as a stand-alone program for Unix hosts,
+   called PILOT (for "_Pi_ne's _L_ister _o_f _T_hings").
+   
+   [Pilot ScreenShot]
+     _________________________________________________________________
+   
+  2.4 What is MIME?
+  
+   MIME (Multipurpose Internet Mail Extensions) is an Internet standard
+   which allows transfer of binary files (word-processing documents,
+   spreadsheets, images, sounds, etc.) between any compliant mailers,
+   such as Pine. You can get technical information about MIME from the
+   section Multipurpose Internet Mail Extensions (MIME) in the Pine
+   Technical Notes.
+   
+   Ongoing discussion on MIME takes place in the newsgroup
+   comp.mail.mime. There is also a Frequently Asked Questions (FAQ) list
+   about MIME that is posted regularly to the newsgroups comp.mail.mime,
+   comp.answers and news.answers, and also accessible at the URLs:
+     * ftp://ftp.uu.net/usenet/news.answers/mail/mime-faq/
+     * ftp://rtfm.mit.edu/pub/usenet-by-group/news.answers/mail/mime-faq/
+     * http://www.cs.ruu.nl/wais/html/na-dir/mail/mime-faq/.html
+       
+   The MIME FAQ contains an appendix with useful information about MIME
+   types.
+     _________________________________________________________________
+   
+  2.5 What is IMAP?
+  
+   IMAP (Internet Message Access Protocol) is a method of accessing
+   electronic mail or bulletin board messages that are kept on a
+   (possibly shared) mail server. In other words, it permits a "client"
+   email program to access remote message stores as if they were local;
+   Pine is such a client. For more details on IMAP, please visit the
+   World Wide Web site _The IMAP Connection_ at the URL:
+   http://www.imap.org/
+     _________________________________________________________________
+   
+  2.6 What is SMTP?
+  
+   SMTP (Simple Mail Transfer Protocol) is the standard protocol used for
+   sending email. SMTP was defined in 1982 in RFC-821. The definition has
+   been modified by many later RFCs, such as RFC-1869 and RFC-1891.
+     _________________________________________________________________
+   
+  2.7 What is POP3?
+  
+   POP3 (Post Office Protocol 3) is an older protocol for downloading
+   electronic mail from a mail server, and is described in RFC-1939. POP3
+   is gradually being replaced by IMAP.
+   
+   | Search Pine Information Center
+   
+   UW Seal 
+   
+   
+    Pine® Information Center
+    Comments?
+    Modified: January 29, 2002
+
+   University of Washington 
+   
+    Search | Directories | Reference Tools
+   
+   UW Home > UWIN > Computing and Networking > Pine Information Center >
+   FAQs
+   
+   | Search Pine Information Center
+   
+Pine Bugs
+
+  3.1 Bug Policy
+  
+   When a bug is identified in an old release of Pine, there is a very
+   strong possibility that the associated code has been re-written to the
+   point that a fix will not apply to the current release. Hence, if we
+   can't reproduce the problem in the current version, our standard
+   response will be to ask you to upgrade.
+   
+   Documentation of past Bugs and when they were fixed can be found on
+   the Pine Release Chronology & Version Changes Web page.
+   
+  3.2 Why does Pine hang when I read a certain message? When I look at the
+  message, I see that it has a Content-Location header.
+  
+   It has recently been discovered that c-client's IMAP client parser
+   does not properly handle BODYSTRUCTURE extension data that is in the
+   form of a literal. Unfortunately, this creates a compatibility problem
+   with some newer IMAP servers which generate this extension data
+   (including the latest UW imapd in imap-2002!).
+   
+   The fix is to change file c-client/imap4r1.c, line:
+     net_getbuffer (LOCAL->netstream,j = max (i,(long) IMAPTMPLEN - 1),
+to become:
+      net_getbuffer (LOCAL->netstream,j = min (i,(long) IMAPTMPLEN - 1),
+
+   That is, change the "max" to a "min". After making this change,
+   rebuild c-client and/or Pine. Make sure that imap4r1.c is recompiled.
+   
+   The bug is that instead of reading the desired extension data, it
+   reads IMAPTMPLEN-1 bytes (generally a much larger number) beyond the
+   extension data, thus losing synchronization with subsequent data. The
+   user either sees a proliferation of error messages, or the IMAP
+   session seems to get stuck in a read timeout.
+   
+   This fix is for all versions of c-client up to and including the one
+   in imap-2002 RC2; this also means *ALL* versions of Pine up to and
+   including Pine 4.44. The fix is in imap-2002 RC3 and is in Pine
+   beginning with version 4.50
+   
+   UW Seal 
+   
+   
+    Pine® Information Center
+    Comments?
+    Modified: December 12, 2002
+
+   University of Washington 
+   
+    Search | Directories | Reference Tools
+   
+   UW Home > UWIN > Computing and Networking > Pine Information Center >
+   FAQs
+   
+   | Search Pine Information Center
+   
+Usage Problems and Error Messages
+
+  4.1 What does "Folder Format Invalidated..." mean?
+  
+   The message "Folder Format Invalidated (consult an expert), aborted"
+   means that Pine was reading your mail folder, and at the point in
+   which it expected a start-of-message header line, it found something
+   else.
+   
+   The "format invalidated" condition can happen in one of three ways:
+     * bad data exists at the beginning of the folder.
+     * data was appended to the folder after Pine initially read it, and
+       the new data did not begin with a start-of-message-header.
+     * the folder was modified without Pine being aware of it.
+       
+   All three problems are generally caused by software external to Pine.
+   
+   Condition (1) can be determined by whether or not the problem repeats
+   itself after restarting Pine. If restarting Pine does not make the
+   problem go away, then you need to look at the actual file for the
+   folder and see what is wrong with the very first line. In particular,
+   make sure that there are no blank lines at the beginning of the file
+   and that the first character of the folder file is a capital "F" , the
+   second an "r", the third an "o", etc. In the case of an INBOX, you may
+   want to rename the folder so that new mail can be delivered while
+   repairs on the corrupt folder are being done.
+   
+   Condition (2) may be caused by a mail delivery process (e.g.
+   /bin/mail) which writes some characters other than "From" at the
+   beginning of the new data.
+   
+   Condition (3) is caused by another program manipulating the mail
+   folder without following the normal folder locking protocols. This is
+   a general problem on UNIX.
+   
+   Conditions (2) and (3) have also been known to occur when accessing
+   folders via NFS, if the information returned by the stat() and read()
+   system calls do not correspond with each other as a result of NFS
+   attribute caching.
+   
+   Restarting Pine on that folder always clears conditions (2) and (3).
+   If the problem is chronic, it may be worth an investigation to
+   determine its cause. Usually, it is due to the misbehavior of some
+   external software. The reason why Pine gives up with conditions (2)
+   and (3) is that it does not want to risk damaging user data by
+   guessing what is right. Pine never writes to the folder unless it is
+   absolutely sure it knows what it is doing.
+   
+   There are some steps which can be taken to reduce the risk of these
+   conditions coming up. Some of these steps may require the assistance
+   of your system administrator (or whomever it was that built and
+   installed Pine on your system):
+     * Use IMAP instead of NFS to access remote folders. Problems with
+       locking over NFS are perhaps the single most important cause of
+       user difficulties. Using IMAP eliminates this class of problem.
+     * Consider enabling the mbox driver in Pine. If the mbox driver is
+       enabled, mail is transferred from the /usr/spool/mail mail into a
+       file called mbox in your home directory, if mbox exists. The home
+       directory mbox file is then your INBOX. This has the advantage
+       that Pine and the mail delivery system are less often in
+       contention for the INBOX, and never both trying to update it. Pine
+       only empties the /usr/spool/mail file, it never tries updating it.
+     * Be careful not to run other programs that modify your folders
+       while you are running Pine. Such programs may change the folder
+       out from under Pine, and lead Pine to conclude that there is a
+       problem with its view of the file.
+     _________________________________________________________________
+   
+  4.2 What happens when two Pine sessions access the same mailbox at the same
+  time?
+  
+   This varies depending on what format your folders are stored in. With
+   the default Berkeley format, the last session to open a folder will
+   get full access to the folder and the previous session(s) will be
+   changed to read-only access. When a folder is read-only, you will not
+   see any further updates to that folder until it is reopened with full
+   access. Currently the INBOX cannot be reopened without exiting and
+   restarting Pine. With other mailbox formats, such as the generally
+   recommended mbx format, any number of sessions can simultaneously have
+   full access to a folder, with the exception that expunging is
+   disabled.
+     _________________________________________________________________
+   
+  4.3 What does the message "locked, override in _XXX_ sec" mean?
+  
+   The message ""locked, will override in _xxx_ seconds"" occurs when
+   Pine has discovered that some other mail program claims to be
+   accessing your mail folder (i.e. _folder_.lock exists). This is a very
+   low-level lock used by programs such as the system mailer in
+   delivering mail, and by certain programs such as mail, elm, babyl, mm,
+   etc. Supposedly, this lock is only to be acquired and held for a very
+   short period of time (less than a second).
+   
+   Pine starts with 285 seconds, retries every second, and issues that
+   message every 15 seconds. The total period of time, 5 minutes, is the
+   time that it will keep on trying before it concludes that the lock is
+   false -- that is, that whatever program locked the folder forgot to
+   unlock it (perhaps it crashed) -- and Pine will go ahead and claim the
+   lock for itself.
+   
+   This is not due to a conflict between two copies of Pine, since Pine
+   interlocks against itself in a higher-level fashion.
+   
+   _NOTE:_ On some systems with 14 character filename limits, attempting
+   to open a folder with a 14 character name (e.g. saved-messages) will
+   trigger this sequence. Folder names should be limited to 9 characters
+   or less on those systems.
+     _________________________________________________________________
+   
+  4.4 What are the messages with the subject DON'T DELETE THIS MESSAGE--FOLDER
+  INTERNAL DATA about?
+  
+   _From the Pine 4.01 Release Notes:_
+   
+   Beginning with version _4.00,_ Pine supports enhanced functionality
+   for sites using the standard Unix mailbox format or the MMDF mailbox
+   format. It does this by creating a "pseudo-message" at the beginning
+   of the folder which holds the following values:
+     * unique identifier validity stamp
+     * last assigned unique identifer
+     * any keyword flags assigned to the mailbox
+       
+   These values are essential for the correct operation of modern IMAP
+   and POP servers (which use persistent unique identifiers, or UIDs),
+   but Pine also needs them to support capabilities such as being able to
+   mark messages as Answered when the Reply has been postponed, and (on
+   systems where Unix or MMDF folder formats are not standard), the
+   ability to create a folder in one of these formats. (Without the
+   pseudo message to identify the mailbox format type, the folder would
+   be empty and Pine would not know the desired format type for
+   subsequent use.)
+   
+   One disadvantage of this scheme is that mailers that are not built on
+   top of the University of Washington's message access subroutine
+   libraries will not "hide" the pseudo message from users. Another
+   disadvantage of having these pseudo messages is that, when found in
+   folders used to receive new messages, some mail notification tools may
+   be confused and behave incorrectly. There are several solutions to
+   this problem. For example, some sites have modified the notification
+   tools to ignore mailboxes whose length corresponds to the pseudo
+   message. However, these pseudo messages may be deemed undesirable at
+   sites where IMAP or POP are not used, and where it is more important
+   to support other unmodified mail tools than to permit Pine to be able
+   to mark messages as Answered when the Reply is postponed. Accordingly,
+   Pine _4.01_ offered a new feature to quell-folder-internal-msg.
+   
+   Note that this feature _only_ relates to mailboxes in standard Unix or
+   MMDF format.
+   
+    4.4.1 What does the quell-folder-internal-msg feature do?
+    
+   This feature, introduced in Pine 4.01, determines whether or not Pine
+   will create "pseudo messages" in folders that are in standard Unix or
+   MMDF format.
+   
+   Pine will normally create these pseudo messages when they are not
+   already present in a standard Unix or MMDF folder. Their purpose is to
+   record certain mailbox state data needed for correct IMAP and POP
+   server operation, and also for Pine to be able to mark messages as
+   Answered when the Reply has been postponed.
+   
+   Sites which do not use IMAP/POP for remote mail access, and which need
+   to support mail tools that are adversely affected by the presence of
+   the pseudo-messages (e.g. some mail notification tools) may enable
+   this feature to tell Pine not to create them. Note that Pine's
+   "Answered" flag capability will be adversely affected if this is done.
+   
+   Note too that, even if this feature is enabled, Pine will not remove
+   pseudo-messages when it encounters them (e.g. those created by UW's
+   imapd or ipopd servers.) This feature has no effect on folders that
+   are not in standard Unix or MMDF format, as pseudo-messages are not
+   needed in the other formats to record mailbox state information.
+   
+    4.5 Why do I get the message "Invalid base64 string" when I try to
+    authenticate to a Cyrus server?
+    
+   This slightly misleading message is the way that a Cyrus server
+   indicates that an authentication exchange was cancelled. It is not
+   indicative of a bug or protocol violation.
+   
+   The most common reason that this happens is if the Cyrus server offers
+   Kerberos authentication, Pine is built with Kerberos support, but your
+   client system is not within the Kerberos realm. In this case, the
+   client code will try to authenticate via Kerberos, fail to get the
+   Kerberos credentials, cancel the authentication attempt, and try the
+   next available authentication technology.
+   
+   | Search Pine Information Center
+   
+   UW Seal 
+   
+   
+    Pine® Information Center
+    Comments?
+    Modified: October 29, 2002
+
+   University of Washington 
+   
+    Search | Directories | Reference Tools
+   
+   UW Home > UWIN > Computing and Networking > Pine Information Center >
+   FAQs
+   
+   | Search Pine Information Center
+   
+General Usage Questions
+
+  5.1 Pine seems to ignore some of my command keystrokes - why?
+  
+   If some control characters don't work in Pine (or Pico), it is
+   probably because the communication or operating system software you
+   are using is intercepting those characters before they get to Pine.
+   Some that are more likely to be intercepted include _^C_, _^J_, _^O_,
+   _^^_, and _^__. If you are unable to reconfigure your communication
+   software to correct this, a work-around is to press the ESCAPE key
+   twice followed by the desired control key. For example, _^C_ would be
+   simulated by pressing "_ESC ESC C_" and "_^^_" would be "_ESC ESC ^_".
+     _________________________________________________________________
+   
+  5.2 Why are certain commands not available?
+  
+   Some of the Pine commands you may read or hear about have to be
+   explicitly enabled in the [S]ETUP CONFIGURATION screen, which is
+   accessed from Pine's [M]AIN MENU, to be functional. For example, to be
+   able to use the "_B_ Bounce" command, the following feature has to be
+   checked:
+     [X]  enable-bounce-cmd
+
+   and to be able to use the "Select"/"Apply" operations, you must first
+   check:
+     [X]  enable-aggregate-command-set
+
+   Also note: The key menu at the bottom of the message composer does not
+   show _all_ of the available commands. Use "_^G_ Get Help" for a
+   complete list.
+     _________________________________________________________________
+   
+  5.3 What are these .pine-debug files for?
+  
+   _Q&A submitted by: Timothy J. Luoma _<luomat+pine@luomat.peak.org>
+   
+   _(From the PINE source code:)_
+   
+   The files are useful for figuring out what a user did when he
+   complains that something went wrong. It's important to keep a bunch
+   around, usually 4, so that the debug file in question will still be
+   around when the problem gets investigated. Users tend to go in and out
+   of Pine a few times and there is one file for each pine invocation.
+   
+    5.3.1 Can I delete the .pine-debug files?
+    
+   Yes, but there's really no need to do so. PINE will only keep a
+   certain amount of them around, usually 4. The files are rather small
+   and do no harm.
+   
+    5.3.2 How do I change the number of .pine-debug files kept or prevent the
+    .pine-debug files from being created?
+    
+   You can prevent the files from being created by using the -d flag as
+   follows:
+   -d n
+
+   If n=0, no debug files will be created.
+   
+   You can change the level of debugging done with numbers 1-9:
+   1 - logs only highest level events and errors
+   2 - logs events like file writes
+   3 -
+   4 - logs each command
+   5 -
+   6 -
+   7 - logs details of command execution (7 is highest to run any production)
+   8 -
+   9 - logs gross details of command execution
+
+   For systems administrators and advanced users, see also 11.13 Where is
+   the .pine-debug setting set at compile-time?.
+     _________________________________________________________________
+   
+  5.4 Why does Pine repeatedly ask for my password after my initial login?
+  
+   This occurs when Pine is configured to access remote folders or
+   mailboxes at remote or multiple servers. By default Pine uses the
+   login used when Pine first begins.
+   
+   To clear up the confusion, edit your pinerc and add /user=yourusername
+   to every instance of your mail server address.
+   
+   For example,
+   {mail.server.com}INBOX
+   would become,
+   {mail.server.com/user=yourusername}INBOX
+     _________________________________________________________________
+   
+  5.5 Why is it that I have to exit and reopen Pine in order to receive new
+  mail?
+  
+   Pine is capable of accessing mailboxes, but only in a quasi-online
+   mode, unable to preserve message flags (New, Read, Deleted).
+   Furthermore, due to the nature of the POP3 Protocol, Pine will not see
+   new messages arriving on the POP3 server unless the connection to the
+   server is closed and reopened. This occurs by quitting and restarting
+   Pine, or by opening another folder and and then returning to the POP3
+   inbox.
+     _________________________________________________________________
+   
+  5.6 How do I do operations on multiple messages?
+  
+   Or "_How do I use Pine's aggregate operations?_"
+   
+   Aggregate operations were introduced in Pine 3.90. They give you the
+   ability to select all of the messages in the current folder that match
+   some specified criteria, and then to apply any of Pine's message
+   operations (i.e. Save, Export, Print, Forward, Reply, TakeAddr, Pipe,
+   Flag, Delete, Undelete) to the entire set of selected messages.
+   
+   The following commands constitute the "aggregate-command-set":
+     "_;_ Select" -  to select a set of messages
+     "_Z_ Zoom"   -  to change the Index to show only selected messages
+     "_A_ Apply"  -  to apply a command (e.g. Save) to all selected msgs
+
+   As is the case with most advanced Pine features, aggregate operations
+   are not enabled by default so that the basic "out of the box" Pine
+   configuration may remain as simple as possible. To use this particular
+   capability, set the enable-aggregate-command-set feature in the Setup
+   Configuration screen (from the [M]ain Menu choose [S]etup, then
+   [C]onfig).
+   
+   Message selection can be based on message numbers (as shown in the
+   Folder Index), dates, status (e.g. New, Answered), or any part of the
+   message text (headers or body). Selected messages are denoted by an
+   "X" in the first column of their FOLDER INDEX entry, unless the
+   show-selected-in-boldface feature has been chosen via the Setup/Config
+   screen.
+   
+   In addition, when aggregate operations are enabled, the WhereIs
+   command in the FOLDER INDEX screen will have a new "_^X_ Select
+   Matches" sub-command. When you enter a match string at the WhereIs
+   prompt and press _^X_ instead of RETURN, every message in the folder
+   whose Index listing includes the match string will be selected.
+   
+   Pine has built-in help on all of the aggregate operations.
+     _________________________________________________________________
+   
+  5.7 Does Pine block messages?
+  
+   Although Pine does not actually prevent delivery of mail, beginning
+   with version 4.21 it can delete messages before you see them by using
+   filter rules. You will find the Filter option in the Main menu, under
+   [S]etup, [R]ules.
+     _________________________________________________________________
+   
+  5.8 Can I create directories to store Pine folders?
+  
+   Yes, this is possible beginning with Pine version 4.00. From Pine's
+   Folder List screen, select [A] to add a folder then _^X_ to create a
+   directory. You can also create a directory at the same time you save a
+   message. For example, at the "SAVE Msg" prompt, type:
+
+           newDir/misc
+
+   This will create a directory named "newDir" and a folder named "misc"
+   within it. Your message will be saved to the "misc" folder. If your
+   server uses "." or any other character to indicate a directory,
+   replace the "/" with that character.
+   _Note_: Due to system limitations, some servers do not support this
+   feature.
+   
+   | Search Pine Information Center
+   
+   UW Seal 
+   
+   
+    Pine® Information Center
+    Comments?
+    Modified: October 29, 2002
+
+   University of Washington 
+   
+    Search | Directories | Reference Tools
+   
+   UW Home > UWIN > Computing and Networking > Pine Information Center >
+   FAQs
+   
+   | Search Pine Information Center
+   
+Sending and Receiving Mail
+
+  6.1 How do I send a message to multiple recipients without showing all their
+  names?
+  
+   In Pine's message composer, with the cursor in the message headers
+   area, press "_^R_ rich headers". Then read the context-sensitive help
+   screens for the _Bcc:_ and _Lcc:_ fields, by pressing "_^G_ Get Help".
+     _________________________________________________________________
+   
+  6.2 Can I get a "return-receipt" when sending a message with Pine?
+  
+   Many Pine users, who may have seen this feature in other email systems
+   (such as those on a Local Area Network, where it is common), have
+   asked if there is a way to confirm whether or not a message they send
+   over the Internet has been received, or even whether it has been read,
+   by the recipient. The answer is "perhaps"--reasons _against_
+   generation of return receipts include:
+     * There is no Internet standard for email return receipts, thus the
+       functionality of delivery acknowledgment is unpredictable.
+     * Since the request for a return receipt generates (at least) one
+       new outgoing message for each one received, the increased message
+       traffic could easily overload some email-processing hosts and
+       networks.
+     * On mailing lists (or any sort of one-to-many communication), one
+       sender requesting a return receipt, even inadvertently, _could_
+       generate a large number of delivery acknowledgment messages coming
+       into their host and mailbox in rapid succession.
+     * If an outgoing message with a return-receipt request bears an
+       invalid return email address, or one which becomes unreachable due
+       to connectivity problems, the acknowledgment message from the
+       recipient could not reach the sender and would probably bounce
+       back to the recipient's mailserver or INBOX.
+     * Some online services and gateway providers, especially outside the
+       USA, still charge users a per-message-fee for Internet email
+       (inbound, outbound, or both), so that sending them a
+       return-receipt-requested message would cause them to have to pay
+       for an extra outbound message that they had no control over.
+     * Privacy considerations--many recipients of Internet email may not
+       wish to divulge whether or not they have received or read a
+       message, especially in the case of unwelcome solicitation
+       messages.
+       
+   However:
+     * _Some_ sites support delivery notifications for messages that have
+       a Return-Receipt-To: header. This header can be added to Pine
+       messages in the customized-hdrs field of Pine's SETUP
+       CONFIGURATION screen, which is accessed from Pine's Main Menu.
+     * However, even then the delivery acknowledgment will typically come
+       from the recipient's _Mailer Daemon_ (email server), thus merely
+       indicating that the message was received on the receiving site's
+       mailhost, not whether or not the recipient "picked up," let alone
+       read, the message.
+       
+   If a message _cannot_ be delivered due a technical problem--such as
+   connectivity interrupted, or mailhost down or misconfigured--the
+   sender will almost always receive a diagnostic message to that effect,
+   which they can forward to their computing support staff for
+   interpretation and troubleshooting. The best solution to the "lack of
+   return-receipt" problem is therefore to include a line requesting
+   confirmation from the recipient that a message was received in that
+   message itself.
+     _________________________________________________________________
+   
+  6.3 Can I eliminate the @host.domain from local addresses?
+  
+   This is not a new idea. It's a very old idea, in fact, and just about
+   everyone who has ever dealt with email has had it at one time or
+   another. Regrettably, it has come to be recognized as a bad idea.
+   Here's why:
+   
+   An email address without a host name is not syntactically valid
+   according to RFC-822. Now, it is true that RFC-822 only specifies what
+   must be done in messages which are transmitted over the network, and
+   that strictly local messages are not under RFC-822's dictates.
+   
+   This means that there are two formats of email, one that conforms to
+   RFC-822 and one that does not. Careful efforts must be made to ensure
+   that the non-conforming mail format never escapes the local system
+   onto the network. Twenty years of experience has shown that it is
+   impossible to guarantee that the non-conforming format does not escape
+   into the network, even in the face of traps to catch such messages on
+   their way out and convert them to RFC-822 conforming format. Indeed,
+   such traps have often contributed additional problems on their own.
+   
+   The non-conforming format is ambiguous as to what host is intended.
+   Although the off-the-cuff solution (and the one that everyone
+   implements) is "use the local host", numerous examples have occurred
+   in which this leads to wrong behavior. For example, it may be the
+   "local mail center" instead of the "local machine which is a
+   single-user workstation". Or, if a one of the non-conforming messages
+   escaped on to the network, it's some remote system and we have no idea
+   at all what system that may be! There's no way for the mail reader to
+   tell; a human may infer from context but often does so by using
+   information that is not available to the program.
+   
+   The Pine team has spent long (and at times heated) meetings reviewing
+   this issue, before coming to the conclusion (as other email groups
+   have independently done) that it's a no-win situation. The policy of
+   the email development community for years (since the RFC-733
+   discussions) has been to exterminate the non-conforming format by not
+   implementing it in modern mail tools.
+   
+   It may be feasible to implement a feature in a future version of Pine
+   that would suppress the display of the local host name in email
+   addresses. That is, the host name would still be in the file on disk,
+   but would not show up on the screen.
+     _________________________________________________________________
+   
+  6.4 How can I tell immediately whether I have received new mail?
+  
+   By default, Pine automatically checks for new mail every 2.5 minutes.
+   (You can change this time interval with the mail-check-interval option
+   in the SETUP CONFIGURATION screen.) Some system administrators may
+   have globally modified this interval.
+   
+   When viewing the FOLDER INDEX, you can force Pine to check for new
+   mail by pressing ^L, or if on the last item in the Index, by pressing
+   "N". The eXpunge command will also force a new-mail check. If you
+   would like to have some visual indication of when Pine is checking for
+   new mail, set the enable-mail-check-cue feature and watch for an
+   asterisk to flash in the upper-left-hand corner of the screen. (Two
+   asterisks mean that Pine is check-pointing --saving state changes in--
+   your INBOX.)
+   
+   | Search Pine Information Center
+   
+   UW Seal 
+   
+   
+    Pine® Information Center
+    Comments?
+    Modified: January 4, 2002
+
+   University of Washington 
+   
+    Search | Directories | Reference Tools
+   
+   UW Home > UWIN > Computing and Networking > Pine Information Center >
+   FAQs
+   
+   | Search Pine Information Center
+   
+Attachments to Email Messages
+
+Sending
+
+  7.1 How do I attach a file in Pine?
+  
+   When composing a message, move your cursor to the "Attchmnt:" line.
+   Using Pine's "To Files" key (_^T_), go to the files on your computer;
+   select the one you would like to attach. The file must be on the
+   computer running Pine. You also have the option of typing in the full
+   path name at the "Attchmnt:" line.
+     _________________________________________________________________
+   
+  7.2 Why does Pine encode text attachments?
+  
+   Pine uses MIME's Base64 encoding for _all_ attachments, including
+   text, in order to assure that they are not modified in transit. The
+   goal is make sure that sending file attachments in Pine is as
+   dependable as using FTP.
+   
+   Although it may seem like encoding is unnecessary for files that are
+   plain text, certain email gateway, trasport, and delivery agents pose
+   a threat to the integrity of even text files (much less binary files).
+   For example, long lines may be wrapped, trailing spaces deleted, tabs
+   turned into spaces, lines beginning with "From" modified, etc.
+   
+    7.2.1 How can I send a text file without it being encoded?
+    
+   This is easily done by using Pine's "file inclusion" key (_^R_).
+   Instead of entering the file name on the Attchmnt: header line, move
+   the cursor to the bottom of your message, and press "_^R_ Read File",
+   then enter the name of the text file. It will be included at the end
+   of your message without any encoding (unless the file contains 8 bit
+   or binary characters, in which case the entire message becomes subject
+   to MIME encoding rules.)
+   
+    7.2.2 Why does Pine use Base64 instead of UUencode?
+    
+   Pine uses the Internet MIME (Multipurpose Internet Mail Extensions)
+   standard for all attachments. MIME uses "Base64" encoding rather than
+   uuencode, because uuencode uses characters that are transformed by
+   some email gateways, and there are also several incompatible versions
+   of uuencode. However, if needed, you can certainly uuencode a file
+   outside of Pine, then use the Composer's "file inclusion" (_^R_)
+   command to insert the uuencoded file into the message.
+     _________________________________________________________________
+   
+Receiving
+
+  7.3 How do I convert a Sun Mailtool attachment to MIME format?
+  
+   Keith Moore <moore@cs.utk.edu> has written a Perl conversion script to
+   convert Mailtool to MIME. The Perl script and C conversion are
+   available in
+   
+   ftp://cs.utk.edu/pub/MIME/sun-to-mime.perl.Z
+   ftp://cs.utk.edu/pub/MIME/sun-to-mime.c.Z
+   
+   and a description of the program can be found in
+   
+   ftp://cs.utk.edu/pub/MIME/sun-to-mime.README
+     _________________________________________________________________
+   
+  7.4 How do I decode an attachment in a message I received that is in BinHex
+  or UUencoded format?
+  
+   Save the attachment to a file and use a decoding program running on
+   the operating system you are using and capable of handling the
+   encoding format; for example:
+     * Stuffit Expander (free) from Aladdin Systems
+       For Microsoft Windows, Macintosh, and DOS
+       http://www.stuffit.com/expander/index.html
+       handles BinHex or UUencoded files
+     * WinZip (shareware), available for Microsoft Windows, at:
+       http://www.winzip.com/
+       handles BinHex or UUencoded files
+     * the uudecode command on Unix hosts (for UUencoded files)
+       
+   Please note: Successfully _decoding_ an attachment alone does not
+   assure that you can _use_ the resulting file(s) on your computer. For
+   example, you may be able to decode a BinHex-encoded file on your MS
+   Windows/DOS PC, but end up with a Macintosh application that you
+   cannot run; or you may not have the application program needed to open
+   a data file. Ask the sender of the message with the attachment what it
+   is/how do handle it, if in doubt.
+     _________________________________________________________________
+   
+  7.5 How can someone without Pine decipher an attachment to a message I send?
+  
+   Pine uses the MIME Internet standard for attaching files to email
+   messages. Any MIME-capable mailer should be able to "understand"
+   Pine's attachments. If the recipient of your message with attachment
+   does not have MIME-capable email software, they should be able to save
+   the attachment to a file and then decode that. One freely-available
+   program which can decipher a MIME attachment is _munpack_ from
+   Carnegie Mellon. It is available at:
+   ftp://ftp.andrew.cmu.edu/pub/mpack
+   
+   Another one is UUDeview, available at:
+   http://www.fpx.de/fp/Software/UUDeview/
+     _________________________________________________________________
+   
+  7.6 How can I delete attachments?
+  
+   In Pine, message attachments can be deleted without removing the
+   entire message. This is accomplished by marking the undesired
+   attachment for deletion and saving the message to a folder.
+   Attachments marked for deletion are excluded from the message when it
+   is saved. In addition, the delete mark only applies for the current
+   Pine Session, and is of course gone when the message is saved, and the
+   attachment excluded.
+   
+   The associated attachments of a message are viewed by pressing ">" or
+   _V_, opening the ATTACHMENT INDEX. The undesired attachments can be
+   marked for deletion by pressing _D_. To exit out of the ATTACHMENT
+   INDEX press "<". To actually remove the attachment the message must be
+   saved. Pressing _S_ in the MESSAGE INDEX will display the following
+   warning message:
+Saved copy will NOT include entire message!  Continue?
+Y [Yes]
+N No
+
+   If you are sure you want to save the message and exclude the marked
+   attachments, press _Y_ for yes.
+     _________________________________________________________________
+   
+Printing
+
+  7.7 Why doesn't "attached-to-ansi" printing work?
+  
+   So-called "attached-to-ansi" printing relies on the communication
+   software you are using to interpret certain special character
+   sequences that tell it to divert the incoming stream of characters to
+   your printer, and then back to your screen. Perhaps 99% of "pine
+   printing problems" are either due to PC or Mac communications software
+   that doesn't understand ANSI escape sequences for printing, _or_ (in
+   the dialin case) software flow-control problems.
+   
+   We didn't understand how big a problem software flow control was until
+   3.90 came out... we changed pine to intercept flow control characters
+   so that users would not see Pine "wedge" mysteriously if a mis-type or
+   noise generated a Control-S, but that did bad things when printers,
+   modems, or comm software was depending on s/w flow control.
+   
+   In 3.91 we added the preserve-start-stop-characters feature, so that
+   Pine could be configured to respect s/w flow control characters (if
+   the operating system did) for those folks who needed them. Enabling
+   this feature should make Pine 3.91 behave the same way as earlier
+   versions.
+   
+   Then we discovered that some operating systems don't enable software
+   flow control by default. So starting in 3.92, the
+   preserve-start-stop-characters feature does more than "not ignoring"
+   them, it will try to force the OS to pay attention to them.
+   
+   So here's the sequence of things to try if you have pine printing
+   problems:
+    1. Check For Software Flow-Control Problems
+         1. Try enabling preserve-start-stop-characters (requires 3.91 or
+            later)
+         2. If that doesn't help, verify that the OS is enabling s/w flow
+            control; if it isn't, you can either change that in a global
+            .login script, or as a worst case, wrap pine in a script that
+            does it. By the way, on our AIX systems, we had to execute
+            "stty -ixon" followed by "stty ixon" --no one here knows why
+            the first stty is needed. (Note that explicitly enabling s/w
+            flow control in the OS will not be needed in 3.92 or later).
+         3. If neither of the above apply, double-check that you actually
+            have _some_ kind of flow control enabled on your system,
+            either hardware or software.
+    2. Check Your Comm Software For Ansi Printing Capability
+         1. After ruling out s/w flow control problems, if printing still
+            doesn't work, the odds are that the PC or Mac comm s/w is at
+            fault. I don't know how to determine this other than via
+            trial-and-error and word-of-mouth.
+         2. The "ansiprt" utility included in the pine distribution can
+            also be used for testing. It simply sends the specified text
+            file to user's terminal device, bracketed with the ANSI
+            escape sequences for print diversion. This is just what Pine
+            does as well (although some versions of ansiprt offer a few
+            options not available via Pine.)
+    3. Possible Other Printing Problems
+         1. Printing via Pine's "attached-to-ansi" facility to a
+            postscript-only printer. Pine does not yet have the ability
+            to encapsulate text into postscript, ala "enscript", so the
+            custom print option using enscript and ansiprt will be needed
+            in that case.
+         2. Other printer-specific configuration problems. For example,
+            whether or not the printer needs a trailing formfeed to eject
+            the last page, or a control-D, or non-Unix newline
+            conventions, etc. Many of these problem will also require
+            using the custom print command option and "ansiprt".
+       
+   | Search Pine Information Center
+   
+   UW Seal 
+   
+   
+    Pine® Information Center
+    Comments?
+    Modified: January 29, 2002
+
+   University of Washington 
+   
+    Search | Directories | Reference Tools
+   
+   UW Home > UWIN > Computing and Networking > Pine Information Center >
+   FAQs
+   
+   | Search Pine Information Center
+   
+Usenet News - Pine is a Newsreader
+
+  8.1 How can I use Pine for reading and posting Internet News?
+  
+   This section was formerly part of the document _Secrets of Pine_.
+   
+   Versions before Pine 3.9 were capable of reading Internet newsgroups
+   (Usenet), but the ability to post messages to these newsgroups, or
+   subscribe to them, was added in Pine 3.90.
+   
+   It is possible that your system manager has configured Pine so that
+   everyone on the system automatically has access to news. You can check
+   this by looking for a news folder collection at the end of your FOLDER
+   LIST for versions up to and including 3.96 (in version 4, COLLECTION
+   LIST) - if it's _not_ there, you will need to tell Pine the name of
+   your local news server. Here are the steps:
+    1. Choose the "_S_ Setup" command from the [M]AIN MENU.
+    2. Select "_C_ Config".
+    3. Use the down-arrow-key to select the option nntp-server.
+    4. Press "_A_ Add Value" to this option. Type in the name of the news
+       server for your site, then press Return. You will need to get this
+       information from your local computing/network support staff. A
+       typical news server name would be: "news.nowhere.edu" (this one is
+       fictional).
+    5. Press "_E_ Exit Setup, save your modifications; you are returned
+       to the MAIN MENU.
+    6. Press "_Q_" to Quit Pine; then restart Pine. This is necessary to
+       have the above configuration change take effect.
+    7. After restarting Pine, choose the FOLDER LIST screen by pressing
+       "_L_ LstFldrs" from the [M]AIN MENU.
+    8. Select "News-collection" (you can press the spacebar to move to
+       the news-collection, which will be the last item in the FOLDER
+       LIST (COLLECTION LIST in Pine 4) screen.)
+    9. Press Return if you see: [ Select Here to See Expanded List ]. If
+       you have used a different newsreader previously, you probably
+       already have a news subscription file with your favorite
+       newsgroups listed. If not, you need to add some...
+   10. Press "_A_ Add" to add more news groups to your news subscription
+       file. If you know the name of the group you wish to subscribe to,
+       enter it at the prompt and press Return; otherwise, use the "_^T_
+       To All Grps" command. Select the desired group and press Return.
+       Repeat to add more groups.
+   11. Once you have newsgroups displayed in the FOLDER LIST, you may
+       select them just like mail folders.
+       
+   In order to remain compatible with other news readers, Pine uses the
+   same news subscription file (".newsrc" in the Unix version). However,
+   this file can record very little message state information. The
+   "Deleted" flag is the only message status flag that is preserved
+   between sessions.
+     * PC-Pine users, take note! PC-Pine will normally look for your news
+       configuration file (NEWSRC) first in your PC home directory
+       (typically C:\NEWSRC) and if it doesn't find it there will look in
+       the same directory where your PINERC file is. You may set the
+       newsrc-path variable (PC-Pine only) to specify a different path if
+       you prefer. This may be helpful for compatibility with other PC
+       news readers.
+       
+   When you reply to a news message, Pine will ask if you want to post
+   the reply to the listed Newsgroups. When the current folder is a
+   newsgroup and you enter the Composer, Pine will ask if you want to
+   post to the current newsgroup. Even if you say "no", you may manually
+   enter a newsgroup name, after exposing that header in the Composer by
+   pressing _^R_. (There is also an optional feature,
+   compose-sets-newsgroup-without-confirm you can set in SETUP
+   CONFIGURATION to suppress this prompt if you'd like Pine to assume
+   that you want to Post whenever invoking the composer while reading a
+   newsgroup folder.)
+   
+   Here are some additional hints about using Pine for newsreading:
+     * In most cases, the only thing you will need to do to enable news
+       reading/posting is to set the nntp-server variable, as described
+       above. For some configurations, such as reading news from the same
+       machine Pine is running on, you will also need to set the
+       "News-collections" variable (in Pine versions before 4.00); use
+       the context-sensitive help in the SETUP CONFIGURATION screen to
+       see an example of this case.
+     * You may specify a list of hosts for the nntp-server variable. In
+       the absence of an explicit news-collection setting, the first
+       nntp-server listed will be used for reading news. Any other hosts
+       listed will be used for posting messages if the first host is
+       unavailable.
+     * If posting to news groups seems slow, especially if you are using
+       PC-Pine over a slow dialup link, set the
+       news-post-without-validation feature via the SETUP CONFIGURATION
+       screen. This will suppress immediate validation of each newsgroup
+       name appearing in a message you are about to post.
+     * If you don't want your subscribed newsgroups to be displayed in
+       alphabetical order, you may set the news-read-in-newsrc-order
+       feature and then manually edit your newsrc file to the order you
+       prefer.
+     * Remember that when you get "Empty List" for news folders in your
+       FOLDER LIST, you need to use the "_A_ Add" command to subscribe to
+       the news groups of interest to you. Unfortunately, you need to do
+       this one-at-a-time right now.
+     * New feature in version 3.91: For those who miss having messages
+       marked with an "N" in the Folder Index, try the
+       "news-approximates-new-status" feature. Read the help text that
+       goes with it, though, so you don't get surprised when some
+       messages you've seen before show an N again...
+       
+   If you are searching for newsgroups in subject areas of your interest,
+   check the directories of USENET newsgroups.
+     _________________________________________________________________
+   
+  8.2 How can I sort newsgroups by thread?
+  
+   Beginning in Pine 4.30, the _tHread_ sort option is available. In
+   Pine's message index, press _$_ SortIndex" followed by "_H_ tHread".
+   
+   In previous versions, a sort by _Ordered Subject_ provides "pseudo"
+   threading of messages by grouping messages with the same subject name
+   together and putting them into date order. Pine ignores leading "Re:"
+   and "re:" and trailing "(fwd)" when determining the order of subject
+   lines. In Pine's message index, press "_$_ SortIndex" followed by "_O_
+   OrderedSubj".
+     _________________________________________________________________
+   
+  8.3 How do I mark all messages in a newsgroup as "read" or "deleted"?
+  
+   First, you need to make sure that you have access to all the commands
+   necessary.
+   
+   From the [M]AIN MENU, choose [S]etup and then [C]onfig, then make sure
+   that there are 'X' marks next to these two options:
+           [X]  enable-aggregate-command-set
+           [X]  enable-flag-cmd
+
+   To mark all messages as "read" or "deleted" press and release each of
+   the following:
+        _;_ = Select
+        _a_ = All
+        _a_ = Apply
+        _*_ = Flag
+
+   which will bring you to the FLAG MAINTENANCE screen (if you do not
+   have enable-flag-screen-implicitly set in SETUP CONFIGURATION, select
+   "_^T_ To Flag Details" to reach it now):
+   
+   Set desired flags for current message below. An 'X' means set it, and
+   a ' ' means to unset it. Choose "_E_ Exit Flags" when finished.
+=============================================================================
+            Set        Flag Name
+            ---   ----------------------
+            [ ]  Important
+            [X]  New
+            [ ]  Answered
+            [ ]  Deleted
+
+
+        ? Help  E Exit Flags    P Prev  - PrevPage      Y prYnt
+                X [Set/Unset]   N Next  Spc NextPage    W WhereIs
+=============================================================================
+
+   Using the arrow keys, move down to "New" and press "_X_" until it
+   looks like this:
+=============================================================================
+            Set        Flag Name
+            ---   ----------------------
+            [ ]  Important
+            [ ]  New
+            [ ]  Answered
+            [ ]  Deleted
+=============================================================================
+
+   _Note_: if you want to _delete_ all the messages, the process is the
+   same _except_ at this point you should use the arrow keys to move down
+   to "Deleted" and press "_X_" until it looks like this:
+=============================================================================
+            Set        Flag Name
+            ---   ----------------------
+            [ ]  Important
+            [ ]  New
+            [ ]  Answered
+            [X]  Deleted
+=============================================================================
+
+   _To Exit_: Press "_E_ Exit Flags" as seen at the bottom menu.
+   
+   _Power Tip_: To select and delete all the messages in a mailbox or
+   newsgroup press and release each of the following:
+        _;_ = Select
+        _a_ = All
+        _a_ = Apply
+        _d_ = Delete
+     _________________________________________________________________
+   
+  8.4 How do I bring back (undelete) news messages I have deleted?
+  
+   The unexclude command will view all available messages in a newsgroup.
+   This includes messages that have been previously Deleted and
+   Expunged/Excluded. The unexclude command is activated by pressing
+   Ampersand (_&_).
+   
+   One difference between news and (personal) mail folders, while you can
+   mark News messages Deleted, unlike mail folders you may not actually
+   eXpunge them from the newsgroup folder, since the messages reside on a
+   shared server. Instead, you may remove them from your own view, using
+   the "_X_ eXclude" command.
+   
+   _More Info_: If unexcluding messages does not reveal the desired
+   messages, it is likely they were removed from the news server, since
+   old posts are periodically removed. Many newsgroups are archived and
+   available via the World Wide Web.
+   
+   | Search Pine Information Center
+   
+   UW Seal 
+   
+   
+    Pine® Information Center
+    Comments?
+    Modified: January 4, 2002
+
+   University of Washington 
+   
+    Search | Directories | Reference Tools
+   
+   UW Home > UWIN > Computing and Networking > Pine Information Center >
+   FAQs
+   
+   | Search Pine Information Center
+   
+Customization and Configuration
+
+  9.1 Where does Pine look for configuration information?
+  
+   In Unix and PC-Pine 3.90 and higher, the PINE RELEASE NOTES (Press
+   "_R_" when on the [M]AIN MENU) contain a section on Configuration,
+   including default file names and environment variables. Almost all
+   personal configuration can be accomplished through the SETUP
+   CONFIGURATION SCREEN (Press "_S_ Setup" then "_C_ Config" when on the
+   [M]AIN MENU.
+   
+   Unix Pine uses three configuration files: a system-wide defaults file,
+   a system-wide non-overridable settings file and a personal
+   coniguration file (.pinerc in the user's home directory).
+   If, for some reason, you need to generate a blank personal
+   configuration file, run
+   "pine -pinerc pinerc.blank".
+   If you need to generate a "blank" copy of the system wide
+   configuration files (can usually only be done by systems
+   administrator), run
+   "pine -conf > /usr/local/lib/pine.conf".
+   
+    9.1.1 How can I get a fresh copy of my Pine configuration file?
+    
+   If you run "pine -pinerc new_pinerc_file_name" you will get a fresh
+   copy of your .pinerc configuration information placed into the file
+   new_pinerc_file_name" with the options you are using set. It will also
+   have fresh comments, and then everything in the config screen and the
+   pinerc file should match. Old variables that are no longer being used
+   will disappear. If you ever plan on editing your .pinerc file in the
+   future (and don't want to be confused by obsolete comments), it would
+   be a good idea to run the command: "pine -pinerc .pinerc", or in the
+   case of PC-Pine: "pine -pinerc \pine\pinerc" (assuming your pinerc
+   file is in the \pine directory on your PC.)
+     _________________________________________________________________
+   
+  9.2 Can I customize Pine on a per folder basis?
+  
+   Pine doesn't have that capability. You can only set configuration
+   options which apply to the whole pine session; not to particular
+   situations.
+   
+   One way to get part part of the effect of per-folder customization is
+   to have several custom .pinerc files and shell aliases which use them.
+   For example if you want pine to behave a certain way when you are
+   reading newsgroups, you might copy your .pinerc to a new one which you
+   will customize for newsreading:
+   
+   _cp .pinerc .pinerc-news_
+   
+   Then you can start pine using the separate configuration file with the
+   command:
+   
+   _pine -p .pinerc-news_
+   
+   After doing that, you can make all the changes you want to settings to
+   make life easier when reading news, and save the configuration. If it
+   is a problem to enter that pine command every time, add this line to
+   your .cshrc file:
+   
+   alias pinen 'pine -p .pinerc-news'
+   
+   to create a "pinen" command. You could add to that and have the
+   configuration file use the "initial-keystroke-list" variable to go to
+   the newsgroups list. E.g.,
+   
+   initial-keystroke-list=l,n,cr
+   
+   You can also do a lot with the pine command line options and a shell
+   alias for that.
+   
+   For more information on Pine Command Line Options use "pine -h" or
+   view the Pine Technical Notes concerning Pine Command Line Options.
+     _________________________________________________________________
+   
+  9.3 Can Pine be used with a POP server?
+  
+   Versions of PC-Pine _prior to 4.00 cannot_ be used with a POP (Post
+   Office Protocol) server. With Unix Pine, and with PC-Pine _4.00 and
+   after,_ you can access a POP server in "online" mode. That is, Pine
+   will start a POP3 session and keep it open until the mailbox is
+   closed. Due to the nature of the POP3 protocol, Pine will not see any
+   new mail which arrives during the POP3 session. Thus new mail only
+   arrives upon starting a session.
+   
+   To access the message INBOX on a POP3 server, use the folder
+   definition syntax:
+   
+   {pop3server/pop3}INBOX
+   
+   or, especially useful if your POP account user-id is different from
+   the one in your Pine configuration:
+   
+   {pop3server/pop3/user=popuserid}INBOX
+   
+   where pop3server is the hostname of the POP3 server, and popuserid is
+   your user-id for your POP account. However, this method accesses the
+   POP server in quasi-online mode, not in offline mode, which POP was
+   designed for. Accessing the inbox on a POP3 server with Pine does not
+   preserve changes to message flags (New, Answered, Deleted, etc.)
+   between sessions.
+   
+   As an alternative, a program such as fetchmail (which supercedes
+   popclient) can be used to download email from a POP server to a local
+   Unix account, where it can then be accessed with Pine. fetchmail can
+   be obtained from:
+   
+   http://www.catb.org/~esr/fetchmail/
+   
+   For a more detailed comparison of the POP and IMAP protocols, and
+   discussion of the various message access modes (online, offline,
+   disconnected), see:
+   
+   Message Access Paradigms and Protocols
+   RFC-1733: Distributed Electronic Mail Models in IMAP4
+   
+   _Pine does not support the old POP2 protocol, and there are no plans
+   to do so._
+     _________________________________________________________________
+   
+  9.4 Why does my message index show _From:_ instead of _To:_?
+  
+   If the user has manually changed their _From:_ header, or can receive
+   mail with other addresses, Pine must be aware of these _alternate
+   addresses_, by having them entered in in the alt-addresses option in
+   SETUP CONFIGURATION.
+   
+   _Applies to Pine for Unix only_
+   
+   See also the FAQ: "9.5 How do I change my 'From:' line?."
+   
+   The following is concerned with Pine displaying the user's own name,
+   rather than the name of the recipient, in folder index listings of
+   messages they have sent. This occurs when Pine detects the specific
+   hostname of the computer on which it is running in the _From:_ header.
+   To avoid this from happening, set use-only-domain-name in Pine's SETUP
+   CONFIGURATION menu to _Yes_; this strips the name of the specific host
+   from your _From:_ address. Alternatively, specify your domain name in
+   user-domain (be _sure_ you enter it correctly, otherwise all your
+   outgoing messages will have an invalid return address! Ask your local
+   computing support people if in doubt). When setting either of these
+   options, also read the help screen for
+   quell-user-lookup-in-passwd-file to see whether you should enable that
+   feature too.
+   
+   Administrators of systems where Pine exhibits this behavior should
+   also check the /etc/hosts file for invalid entries; as an example, it
+   should read:
+  123.456.78.90   hostname.domain    hostname
+
+   not just
+  123.456.78.90   hostname
+
+   -- otherwise, users' setting of use-only-domain-name to _Yes_ will not
+   have the intended effect.
+     _________________________________________________________________
+   
+  9.5 How do I change my 'From:' line?
+  
+   From Pine's [M]AIN MENU, choose [S]etup, then [C]onfig. Move down to
+   the customized-hdrs option. Press "_A_ Add Value". Use the format:
+        From: "My Real Name" <myusername@domain.edu>
+
+   _Note_: You may wish to configure default-composer-hdrs so you can
+   easily change the From: line when composing new messages. The process
+   is the same as adding to the customized-hdrs entry. If you use this
+   setting, remember that you must specify all the headers you want to
+   see; simply changing the value to From: will make From: your only
+   visible header.
+   
+   Press Return to accept the change, and "_E_ Exit Setup".
+   
+   Beginning with Pine 4.30, changing of the From: value is allowed by
+   default.
+   
+   For Pine releases pre-4.30: If you go to COMPOSE MESSAGE and get the
+   error:
+              [Not allowed to change header "From"]
+
+   then you, if you are installing Pine yourself, or your systems
+   administrator (if users changing their From lines does not violate
+   your site's policy) will have to recompile Pine.
+   
+   _Note_: Changing the "From:" line may not give you the anonymity you
+   desire, since the "Sender:" or "X-Sender:" line may still include your
+   entire email address.
+   
+   In Pine 4.00 through Pine 4.21, users can add allow-changing-from to
+   the feature-list in their pinerc file (by editing the file, not via
+   SETUP CONFIGURATION); recompiling is not necessary.
+   
+   See also 11.12 What do I need to do when compiling PINE to let users
+   change their "From:" line?
+   
+   A thorough guide concerning this subject is available at infinite ink
+   by Nancy Mcough at the URL:
+   http://www.ii.com/internet/messaging/pine/changing_from/
+     _________________________________________________________________
+   
+  9.6 How do I define my own headers like Reply-To and Organization?
+  
+   From Pine's [M]AIN MENU, choose [S]etup, then [C]onfig. Move down to
+   the customized-hdrs option and read the context-sensitive help screen.
+     _________________________________________________________________
+   
+  9.7 How can I have a signature automatically appended to my mail messages?
+  
+   From Pine's MAIN MENU, choose Setup, then Signature. The text you
+   enter in the SIGNATURE EDITOR (new in Pine 3.92) will be appended to
+   all messages you compose. With the signature-at-bottom feature in
+   SETUP CONFIGURATION, you can alter the placement of the text in
+   replies (but not forwards).
+   
+   You can create multiple signature files outside of Pine (using, for
+   example, the Pico editor) and then include whichever one you wish,
+   wherever you wish, in a message you are composing in Pine via the Read
+   File command in the composer. If the file names you choose are very
+   short (e.g. s1, s2) this is relatively painless.
+     _________________________________________________________________
+   
+  9.8 Can I reduce the frequent prompting to confirm an operation?
+  
+   If you find Pine's tendency to ask you for confirmation on certain
+   operations annoying, you may suppress several of the prompts. In the
+   SETUP CONFIGURATION screen, reached from the MAIN MENU, look for the
+   features ending in -without-confirm, beginning with auto-, and for
+   include-text-in-reply. Read their help screens to be sure to
+   understand what enabling these features will do.
+     _________________________________________________________________
+   
+  9.9 How can I filter messages into different incoming folders?
+  
+   Pine now supports mail filtering, see the Pine Technical Notes for
+   more information
+   
+   However, the function of other programs, such as (on Unix hosts)
+   "procmail" or "mailagent" are better suited for this task. For details
+   on procmail, see ii Procmail Qstart (by Nancy McGough):
+   
+   http://www.ii.com/internet/robots/procmail/qs/
+   
+   Once you have successfully set up your delivery filtering, you will
+   have new mail arriving in several different folders, in addition to
+   your Inbox. You can then access these folders just like any other mail
+   folder. You can also define a collection of incoming message folders
+   in Pine, through which you can then TAB to read new messages. For more
+   information, see Pine's internal help on the enable-incoming-folders
+   feature in Pine's SETUP CONFIGURATION menu.
+   
+   If you are looking for a way to move multiple messages that you have
+   already received, see FAQ 5.6: How do I use Pine's aggregate
+   operations?
+     _________________________________________________________________
+   
+  9.10 How do I control what is displayed in the FOLDER INDEX screen?
+  
+   The display of fields in the FOLDER INDEX screen can be customized.
+   For example, you can choose to have both the From and the To field (by
+   default, the FOLDER INDEX will list the From address unless it is you,
+   then it will list the To address) of each message shown; to suppress
+   the message number display in each line; or to have the Subject field
+   take up 60% of the line width. From Pine's MAIN MENU, choose Setup,
+   then Config. Then go to the index-format option and read the
+   context-sensitive help screen.
+     _________________________________________________________________
+   
+  9.11 How can I control association of MIME-attachments with applications and
+  filenames?
+  
+   This requires one, and possibly two, configuration changes, which may
+   already have been performed by your system administrator:
+    1. Create a _mailcap file_ that associates the MIME-type of the
+       attachment with the application you wish to use to open files of
+       that MIME-type; see the section MIME: Reading a Message in the
+       Pine Technical Notes for the name and location of mailcap file(s)
+       on different platforms. (For further information on MIME, see What
+       is MIME?.)
+    2. _(New in Pine 3.92)_
+       You can control which filename extension (which is shown in the
+       message MIME-attachment) is associated with which MIME-type by
+       creating a _mimetype file_; see the section MIME.Types file in the
+       Pine Technical Notes for the name and location of mimetype file(s)
+       on different platforms. You may need to do this to preserve the
+       filename extension in the temporary file that PC-Pine creates to
+       pass attachment data to the associated DOS/Windows-application, if
+       that application requires a certain (temporary) filename extension
+       to open that file; or to make sure that a MIME-attachment with a
+       certain filename extension is opened in the application you
+       desire, even if the MIME-type as identified in the incoming
+       message is not exactly the one which you specified in your mailcap
+       file, which may be the case if the application you have is not of
+       the same version as the application the sender used to create the
+       attachment file that s/he sent to you. This also controls the
+       MIME-typing for messages you send; for example, to assure that
+       files with the extension .PDF are sent as a MIME attachment of
+       type _application/acrobat_.
+       
+   Note: many files attached to email messages (though not email messages
+   themselves) can contain viruses -- unless from a trustworthy source,
+   don't open them without checking them for viruses first, as far as
+   possible! If in doubt about the nature of an attachment, ask the
+   sender what application was used to create it; and/or ask the sender
+   to resend the message with the attachment, this time disabling any
+   special encoding techniques that his/her email software may be
+   employing.
+   
+   Here are a sample MAILCAP file for PC-Pine:
+   
+# PC MAILCAP SAMPLE FILE
+# All lines beginning with the # symbol are comments.
+
+# As some long directory and/or filenames suggest,
+# the examples here are for a PC running the Windows95 operating system.
+
+# These examples using certain third-party software programs do not
+# constitute any recommendation thereof by the University of Washington.
+
+# Open image files with Paintshop Pro for viewing/editing:
+image/*;"C:\Program Files\Paint Shop Pro\Psp.exe" %s
+
+# Play audio and video files via Internet Explorer WWW browser:
+audio/*;"C:\Program Files\Internet Explorer\Iexplore.exe" %s
+video/*;"C:\Program Files\Internet Explorer\Iexplore.exe" %s
+
+# View HTML files with Netscape WWW browser:
+text/html;"C:\Program Files\netscape\Navigator\program\netscape.exe" %s
+
+# Unpack ZIPed archives with WinZip:
+application/zip;"C:\Program Files\WinZip\WinZip32.exe" %s
+
+# View PDF files with Acrobat Reader:
+application/pdf;"C:\Acrobat3\Reader\AcroRd32.exe" %s
+
+#You can add other entries below for other MIME types...
+
+   and a sample MIMETYPE file for PC-Pine:
+   
+# PC SAMPLE MIMETYPE FILE
+# All lines beginning with the # symbol are comments.
+
+# Line format: MIME Type/Subtype, associated filename extensions.
+
+text/plain                     txt dat
+text/html                      html htm
+
+audio/basic                    au snd
+
+audio/x-realaudio              ra ram
+audio/x-wav                    wav
+
+image/gif                      gif
+image/jpeg                     jpeg jpg jpe
+image/tiff                     tiff tif
+
+video/mpeg                     mpeg mpg mpe
+video/quicktime                qt mov
+
+application/postscript         ai eps ps
+application/rtf                rtf
+application/pdf                pdf
+application/zip                zip
+
+   which you can copy and edit as needed to conform to the location of
+   applications on _your_ system (in the MAILCAP file), and to the
+   filename extensions of files (in the MIMETYPE file). (Note: Unix Pine
+   uses different pathnames and applications than PC-Pine.)
+     _________________________________________________________________
+   
+  9.12 How can I read a ROT13 encoded message?
+  
+   _Applies to Pine for Unix only_
+   When viewing the message, use the '|' (Pipe) command and give it the
+   following:
+   
+        tr '[A-Za-z]' '[N-ZA-Mn-za-m]'
+
+   Or write a script including the above line, and pipe the message to
+   the script. Note: the pipe command only works in Pine 3.90 or higher
+   with the enable-unix-pipe-cmd feature must be set.
+   
+   Another tactic, if it is possible to change fonts during a dialup
+   session, is to switch to a font in which the characters are rearranged
+   in ROT13 order.
+   
+   For those dialing in from MS-DOS, a package including a VGA
+   font-editing and changing utility is available as freeware. If your
+   terminal program allows you to shell out to DOS then it is possible to
+   use the font-changing program in this package to swap between a cp1252
+   font (Windows superset of ISO-8859-1) and a ROT13 font. Those using a
+   Windows-based terminal emulator can use a Windows ROT13 font in either
+   Terminal, HyperTerminal, or Notepad.
+   
+   For more information, see:
+   Tip # 19: ISO-8859-1 and CP1252 fonts and VGA font-swapping
+   ROT13 or The Lumber Cartel (TINLC) "Sooper Sekrit" Decoder Ring!
+   Full Sail Vol.2 No.4: Computers With Character(s)
+   
+   _Thanks to Norman De Forest for contributing to this FAQ._
+     _________________________________________________________________
+   
+  9.13 How can I make Pine work with a Wyse 60 terminal?
+  
+   Add the following lines to your feature-list:
+   termdef-takes-precedence and
+   enable-arrow-navigation
+   
+   The first one allows your termdef file to be used for the specified
+   emulations. The second allows the arrow keys to be used under a mixed
+   environment. Please note, however, that this may break the arrow key
+   navigation in some terminal types.
+   
+   _Thanks to Bryan Springborn for suggesting this FAQ._
+     _________________________________________________________________
+   
+  9.14 Does Pine offer color support?
+  
+   Yes, beginning in Pine 4.20.
+   
+   For color-style, from the [M]ain Menu select [S]etup followed by
+   [K]olor -- [C] was already taken :). For index coloring from the Setup
+   menu, select [R]ules, [I]ndexcoloring.
+     _________________________________________________________________
+   
+  9.15 How can I perform spell checking with PC-Pine for Windows?
+  
+   _PC-Pine 4.00 has spell-checking built in. For older versions, read
+   on:_
+   
+   Brian Quinion has developed a Spell Checker for Windows that can be
+   used with many Microsoft Windows applications that do not have their
+   own spell checker.
+   
+   Spell Checker for Windows requires Windows version 3.1 or higher. A
+   32-bit version of the spell checker is not available yet (as of 27
+   Sep. 1996) and _the 16-bit version of the Spell Checker for Windows
+   does not work with the 32-bit version of PC-Pine._
+   
+   The following installation instructions have been tested on Windows
+   for Workgroups, Windows NT and Windows95 with the _16-bit_ version of
+   PC-Pine. This installation assumes that the 16-bit version of PC-Pine
+   is already installed.
+    1. Create a subdirectory called pcpspell on your local hard drive
+       (e.g. C:\ - all examples in these instructions assume the
+       installation is on C:\).
+    2. The Spell Check program itself, and dictionaries for it in several
+       languages, are available from the World Wide Web at:
+       http://www.quinion.com/mqa/spell.htm
+       Download the Spell Check program and the dictionary of your choice
+       to your C:\PcSpell directory.
+    3. Use the decompression program PKUNZIP or equivalent to expand both
+       of the .zip files you downloaded, beginning with the program
+       itself -- for example,
+         1. spel300e.zip (the program itself, version 3.00), and then
+         2. useng.zip (the US English dictionary).
+       During the expansion of the dictionary, you'll get a message that
+       README.1ST already exits. Choose _R_ to rename the second
+       README.1ST file to README. Make certain that you read both of
+       these information files at the end of the installation.
+          + If you do not already have PKUNZIP, it can be obtained by
+            downloading it from:
+            ftp://ftp.cac.washington.edu/pine/pcpine/pkunzip.exe
+    4. From Windows, execute C:\PcSpell\Spell.exe. The installation may
+       take a couple of minutes to complete.
+          + When the Options dialog box appears, ensure that the language
+            in the dictionary box is the one you intend to use. The
+            Windows Help file C:\PcSpell\Spell.hlp provides additional
+            information on how to make the correct language appear.
+          + Once the correct language appears in the dialog box, you are
+            ready to try the spell checker from within PC-Pine. The
+            dictionary file called useng.scd is for the US English
+            Language. Close the Options dialog box (and any open README
+            files).
+    5. After closing the Options dialog box, run PC-Pine, compose a
+       message, and enter _^T_ to invoke the spell checker from within
+       the message window.
+    6. For Spell Checker for Windows to work automatically with each
+       reboot, copy the program's DLL file and the dictionary file (for
+       example, Spellch3.dll and useng.scd) to the directory
+       C:\Windows\System\. If the spell checker still does not work
+       automatically, try running C:\PcSpell\spell.exe after each reboot,
+       close spell's window and try again.
+    7. You can remove the spell checker by executing C:\PcSpell\Spell.exe
+       and clicking on "uninstall". After restarting Windows, you can
+       then remove all files in the C:\PcSpell directory on your local
+       hard drive. Also, delete the two .dll and .scd files you copied to
+       C:\Windows\System\.
+       
+   | Search Pine Information Center
+   
+   UW Seal 
+   
+   
+    Pine® Information Center
+    Comments?
+    Modified: April 16, 2003
+
+   University of Washington 
+   
+    Search | Directories | Reference Tools
+   
+   UW Home > UWIN > Computing and Networking > Pine Information Center >
+   FAQs
+   
+   | Search Pine Information Center
+   
+Pine Legal Issues
+
+  10.1 Is Pine Open Source?
+  
+   It depends on how that term is defined. Source for Unix Pine is
+   provided to allow users and system administrators to customize and
+   adapt Pine for their own requirements. UW's Pine license allows anyone
+   to download source code for Unix Pine and make modifications for their
+   own local use without asking permission. Anyone can also create and
+   distribute patch files to implement bug fixes or minor enhancements
+   without asking permission. However, redistribution of a modified
+   version of Pine requires explicit permission from the University of
+   Washington.
+     _________________________________________________________________
+   
+  10.2 Weren't earlier Pine licenses less restrictive regarding redistribution
+  of modified versions?
+  
+   No. License wording has changed from time to time, but the owner's
+   intent has not. When it was discovered that some individuals were
+   misinterpreting the intent of the University, the license wording was
+   clarified.
+   
+   In particular, the earliest Pine licenses included the words:
+   "Permission to use, copy, modify, and distribute this software... is
+   hereby granted," but some people tried to pervert the meaning of that
+   sentence to define "this software" to include derivative works of
+   "this software". The intent has always been that you can re-distribute
+   the UW distribution, but if you modify it, you have created a
+   derivative work and must ask permission to redistribute it. There has
+   never been implicit or explicit permission given to redistribute
+   modified or derivative versions without permission. The license
+   wording was therefore changed to clarify this point.
+     _________________________________________________________________
+   
+  10.3 Can patch files be distributed by Pine users?
+  
+   Yes. Distribution of patch files "to accomplish bug fixes, minor
+   enhancements, or adaptation to new operating systems" are permitted
+   and encouraged. (For more extensive changes, check with the UW.)
+     _________________________________________________________________
+   
+  10.4 Are UW's "C-Client" libraries released under the same license as Pine?
+  
+   No; currently a less restrictive license is used for those libraries.
+   See the University of Washington's Free Fork License on the IMAP
+   Information Center Web site.
+   
+   | Search Pine Information Center
+   
+   UW Seal 
+   
+   
+    Pine® Information Center
+    Comments?
+    Modified: January 4, 2002
+
+   University of Washington 
+   
+    Search | Directories | Reference Tools
+   
+   UW Home > UWIN > Computing and Networking > Pine Information Center >
+   FAQs
+   
+   | Search Pine Information Center
+   
+Information for System Administrators, Developers, and the Technically Inclined
+
+   Primarily, but may also be of interest to advanced end users. For more
+   on Pine's "nuts and bolts" see the Technical Notes.
+   
+  11.1 Can we use Pine/Pico/Pilot source code in commercial products?
+  
+   For information on use of Pine, Pico and Pilot software, see the Pine
+   Legal Notices at:
+   http://www.washington.edu/pine/overview/legal.html
+     _________________________________________________________________
+   
+  11.2 What are the advantages of the various mailbox formats Pine supports?
+  
+   (formerly "_What is a Tenex mailbox and why should I use it?_")
+   
+   Pine, being based on the c-client library for messaging applications,
+   supports several formats for mailboxes. For a comparative table and
+   details on how to select the format Pine will use, and on mailbox name
+   conventions, see, respectively, the files docs/drivers.txt and
+   docs/naming.txt that are included in the UW IMAP server source
+   distribution, which is available from:
+   ftp://ftp.cac.washington.edu/imap/imap.tar.Z
+   
+   Basically, mbx is the recommended (and default) format for PC-Pine.
+   (PC Pine 4.x supports mbx, mtx, tenex, and unix formats, all
+   read-write. PC Pine 3.x supported mtx and tenex read-write and unix
+   read-only.) For UNIX Pine, the mbx format, because it allows
+   multi-session access, is recommended over the unix format if (and only
+   if) NFS is not involved.
+   
+   Using the mbx format allows multiple sessions (or multiple users,
+   subject to the usual access controls) to have full Read-Write (RW)
+   access to the INBOX. Message state changes (e.g. marking a message as
+   deleted) and expunges can be done, and all such actions are
+   automatically communicated to other sessions which have the mailbox
+   open. In contrast: the normal Berkeley style folders can have only one
+   RW client at a time, so given the current software the latest session
+   steals the RW lock away from any previous session, with the earlier
+   session becoming Read-Only. mbx format is also considerably faster and
+   uses memory much more efficiently than the normal Berkeley style
+   folder format.
+   
+   An mbx format mailbox can be created by prefixing the desired name
+   with "#driver.mbx/". For example, if you want an mbx format mailbox
+   called "test", create "#driver.mbx/test". The "#driver.mbx/" prefix is
+   used only when creating the mailbox; to open it, just use "test". A
+   user can have their INBOX in mbx format as well, by creating
+   "#driver.mbx/INBOX". Mail will be automatically moved from the mail
+   spool to the mbx format INBOX whenever Pine or an IMAP/POP server is
+   run.
+   
+   _CAUTION:_ mbx format uses read/write open modes and file locking, and
+   depends upon local disk file semantics which are not present on NFS.
+   Although mbx format will "work" via NFS, there are likely to be
+   problems; consequently we do NOT advise using mbx format over NFS.
+   
+   _CAUTION:_ mbx format is supported only on software based upon the UW
+   c-client library, such as Pine, imapd, and ipop3d. If you use other
+   software, e.g. elm, mm, etc., you should not use mbx format.
+     _________________________________________________________________
+   
+  11.3 Can Kerberos authentication be used with Pine?
+  
+   Kerberos 5 support was added in Pine version 4.00; see the Pine
+   Technical Notes for including Kerberos 5 functionality.
+   
+   More information about Kerberos can be found at:
+   http://web.mit.edu/kerberos/www/
+     _________________________________________________________________
+   
+  11.4 How does folder locking work?
+  
+   Locks are used by Pine and other mail programs to prevent damage from
+   occurring to the mail file when multiple programs try to write to the
+   file at the same time.
+   
+   Because there are many different schemes of mail file locking used on
+   UNIX, Pine implements all of them. The result is a lot of complexity.
+   There are several reasons why locking needs to be done:
+    1. If you want to read the mail file, you want to make sure that no
+       other process will modify the mail file while you are reading it.
+    2. If you want to write to the mail file, you want to make sure that
+       no other process is accessing the mail file while you are writing
+       it.
+    3. If you have the mail file open, you want to make sure that no
+       other process can alter any of the internal contents of the mail
+       file that you have read, but it is OK if another process appends
+       new data to the mail file.
+    4. If you want to alter any of the internal contents of the mail
+       file, you want to make sure that no other process has the mail
+       file open.
+       
+   There are several mechanisms of locking:
+     * The creation of a file which has the same name as the mail file,
+       but with a suffix of ".lock" (for example, this lock for
+       /usr/spool/mail/isma is named /usr/spool/mail/isma.lock). This
+       file accomplishes locks (1) and (2) above. This is an exclusive
+       lock.
+     * The use of an flock() with LOCK_SH on the mail file. This
+       accomplishes lock (1), and prevents lock (2). Multiple processes
+       can do this.
+     * The use of an flock() with LOCK_EX on the mail file. This
+       accomplishes lock (2), and prevents lock (1). This is an exclusive
+       lock.
+     * The use of an flock() with LOCK_EX on a file on /tmp. The file
+       name used depends upon the version of Pine. This accomplishes
+       locks (3) and (4). This is an exclusive lock.
+       
+   On SVR4-based systems, the lockf() subroutine or fcntl() system call
+   it used instead of flock(). It is rumored that this creates a kind of
+   lock file as well, but this has not been directly verified.
+   
+   NOTE: flock() on BSD systems does not work over NFS, so only the most
+   basic .lock file locking -- locks (1) and (2) happen over NFS. On SVR4
+   systems, fcntl() locking attempts to work over NFS, but there are
+   known problems in the rpc.lockd daemon which have caused hangs if an
+   application beats on the mechanism too much (and Pine beats on it).
+   All of the above mechanisms work reliably over IMAP connections.
+     _________________________________________________________________
+   
+  11.5 Where does Pine create lockfiles, and what should that directory's
+  permissions be?
+  
+   To protect against conflicts with mail delivery by sendmail, which
+   could cause INBOX corruption, Pine creates lockfiles in the directory
+   /var/spool/mail [1]. The permission setting for that directory should
+   be 1777 (world writable with the sticky bit set). The alternative
+   would be to make all mail programs setgid to some special group -- an
+   unacceptable security risk in the opinion of the Pine developers [2].
+   
+   By contrast, lockfiles created in the /tmp directory serve
+   interlocking of different Pine sessions with each other, not of Pine
+   with the Mail Delivery Agent. Lockfiles in the /tmp directory are mode
+   666 because of the case of shared folders (e.g., tenex format) and
+   "kiss of death" functionality (UNIX mbox format and MMDF format). The
+   lock needs to be accessible by processes which may be logged in as
+   another user name; this is a tradeoff between security and
+   functionality.
+   
+   [1] Versions of Pine prior to 3.92 did not warn users when locking in
+   /var/spool/mail failed.
+   
+   [2] Some version of the Linux operating system are being distributed
+   with permissions that would _require_ Pine to run setgid.
+     _________________________________________________________________
+   
+  11.6 Why does Pine have problems with my filter's locking?
+  
+   There are multiple levels of locking, just as there are multiple
+   levels of operations on a mail file.
+   
+   Pine reads the mail file and keeps a notion in memory of what messages
+   exist and where they are in the file. It is alright to modify the mail
+   file by appending new messages to it (which is what the mailer does in
+   delivering mail) and Pine permits this to happen (it does not keep the
+   file.lock style of lock locked).
+   
+   However, if you modify the part of the mail file which Pine has
+   already read, then Pine has no way of knowing what it is you might
+   have done other than by tossing out everything it knows about the mail
+   file and completely rereading it. In the internal engine used by Pine,
+   this is done by a "mail_close()" followed by a "mail_open()"
+   operation. Pine normally does not issue a mail_close() call on INBOX
+   except when you quit Pine.
+   
+   Pine detects that the file has been modified from under it and changes
+   its notion of the internal state from "representation of the mail
+   file" to "snapshot of a representation of the mail file sometime in
+   the past". The difference between the two is that only the former will
+   be written back to the disk if you do something such as a flag change
+   or an expunge.
+   
+   Pine also has an extra level of locking, to prevent the inadvertant
+   modification of mailboxes from under it. This locking is implemented
+   by the internal engine used by Pine. If you implement this sort of
+   locking in your application, you can write code to steal this lock
+   from Pine, or to prevent you from modifying the internals of the file
+   (note that appending is OK) while Pine has it open. Source code for
+   this locking is found in the file pine/imap/c-client/bezerk.c
+     _________________________________________________________________
+   
+  11.7 Why doesn't Pine recognize Content-Length header field?
+  
+   It would be a significant detriment to the performance of the Berkeley
+   format mailbox parsing code, as well as to Pine's behavior on normal
+   systems which do not use the Content-Length: header, if any attempt
+   were made to implement Content-Length:.
+   
+   There are many serious technical problems with the Content-Length:
+   header, and we do not recommend its use. Furthermore, we recommend
+   that a mail delivery agent such as our tmail tool be used that applies
+   smart quoting, as opposed to the ordinary BSD /bin/mail quoting of all
+   lines that begin with "From:". We have installed such tools on all of
+   our systems.
+   
+   For example, one problem is that a system whose mailer does not
+   implement Content-Length: will also not enforce its validity should
+   that header appear. This offers significant potential for mischief.
+   Another problem is that Berkeley format mailbox files which use the
+   Content-Length: header can not be edited with an editor such as emacs
+   or vi without invalidating the Content-Length: field. If this problem
+   is not a consideration at your site, we recommend the use of the tenex
+   format (mail.txt), which is also length tagged but in a much more
+   efficient fashion.
+     _________________________________________________________________
+   
+  11.8 How do I configure Pine to not leave mail in /usr/spool/mail?
+  
+   You have several options:
+    1. Leave inbox in /usr/spool/mail, but turn on the Pine option to
+       prompt users to move read messages to a folder in their home
+       directory upon exiting Pine.
+    2. Modify your mail delivery program to deliver mail directly into
+       the user's home directory, and specify that inbox-path in your
+       global pine.conf (See the "tmail" program on
+       ftp.cac.washington.edu for an example.)
+    3. "mailutil create #driver.mbx/INBOX&quote; in each home directory,
+       which will cause Pine (upon startup) to pull mail from
+       /usr/spool/mail into ~/INBOX -- however, mail.txt will be a
+       mbx-format, rather than Berkeley mail format folder (faster, but
+       non-standard).
+    4. "touch mbox" in each home directory, which will cause Pine (upon
+       startup) to pull mail from /usr/spool/mail into ~/mbox, which will
+       be a Bky-format folder.
+     _________________________________________________________________
+   
+  11.9 Why did my messages disappear after I ran Pine? I can still see them in
+  Pine, but not with any other program (e.g. my ISP's POP server).
+  
+   This is probably caused by the mbox driver. If the file "mbox" exists
+   on the user's home directory and is in UNIX mailbox format, then when
+   INBOX is opened this file will be selected as INBOX instead of the
+   mail spool file. Messages will be automatically transferred from the
+   mail spool file into the mbox file.
+   
+   If you delete mbox file, this behavior will no longer occur.
+     _________________________________________________________________
+   
+  11.10 Why do I get the message "Unparsable Date" when I read messages?
+  
+   Pine parses the date and time in the UNIX mbox "From:" line in order
+   to determine an "internal date" for each message. One of the
+   components of this date and time is the offset from Universal Time.
+   Certain older mailers write a symbolic timezone name instead of the
+   more modern numeric offset, which expresses number of hours of
+   deviation from Greenwich Mean Time (GMT). The problem with symbolic
+   timezone names is that such names are ambiguous. Is BST "Bering
+   Standard Time" or "British Summer Time"? Is KST in Korea or Kuwait?
+   etc.
+   
+   The routine mail_parse_date() in pine/imap/c-client/mail.c knows how
+   to parse some, but not all, of these symbolic timezones. We recommend
+   that you modify this routine to add support for your own local
+   timezone. Due to the ambiguity problem, however, it is unlikely that
+   we will add any more symbolic timezones in the distribution sources.
+   But, hopefully, this will only be a minor editing consideration for
+   you.
+   
+   The correct solution is to undertake the transition from symbolic
+   timezone names to numeric timezone values. UNIX software is definitely
+   moving in this direction due to the ambiguity problem, and has been
+   doing so for several years now.
+     _________________________________________________________________
+   
+  11.11 Why can't I compile Pine under SCO unix?
+  
+   Q&A from: Gunther Anderson <gunther@ssi.edc.org>
+   
+   Pine has been tested and compiles just fine on a suitably equipped SCO
+   Unix 3.2.4, and probably works on the whole 3.2 series (testing has
+   not been as extensive). It handles both MMDF and sendmail mailboxes
+   without needing recompilation. It should be sufficient just to unpack
+   the source tree and run "sh build sco" at the top level. You need to
+   own the complete Development System, and the Developer's Versions of
+   the other packages. Pine will not compile without TCP/IP support.
+   
+   The most common problem is when people own the Development System, but
+   keep getting missing header files (netbd.h is one) in their builds.
+   This is a common problem on SCO systems because of the great
+   fragmentation SCO enjoys in the marketing of system components. It is
+   easy to get confused about just what you've bought. And in this case,
+   haven't bought. What you need is the "Developer's Version" of the
+   TCP/IP product. The normal version just supports the TCP/IP protocol,
+   but doesn't include tools (including header files) to compile
+   TCP/IP-specific programs. Alas, the only remedies available to you are
+   to pick up a pre-compiled version (mine is on odi.cwc.whecn.edu,
+   ftp.celestial.com has their own, which prefers Bezerk mailboxes,
+   though it supports MMDF too), or to buy the Developer's Version of
+   TCP/IP. If you intend to do any serious compiling of Internet-
+   available programs, I'd recommend the latter, though many of the most
+   useful ones are available precompiled on other FTP sites.
+     _________________________________________________________________
+   
+  11.12 How can I set up Pine for rimap under Solaris 2.4 and NIS+?
+  
+   Q&A submitted by: David Drum <david@services.more.net>
+   
+   I have figured out how to configure Solaris 2.4 running NIS+ and Pine
+   so that users may access an imapd server without having to provide
+   their password yet not compromising the security of the imap server
+   machine.
+   
+   I hope that these instructions are useful to someone. Perhaps this
+   will go in the FAQ.
+   
+   You may also contact me if you have problems compiling Pine under
+   Solaris.
+0) Install /etc/rimapd
+
+1) Reconfigure the Solaris nsswitch.conf
+   The OS must know how to treat login requests.  We use NIS passwd entry
+   rewriting to ensure the login security of the server machine.  Thus we
+   must tell the OS to use NIS-style lookups.
+
+   Edit /etc/nsswitch.conf on the computer running the imapd server.
+   Replace the "passwd: [files] [nis] [nisplus]" line with:
+
+passwd: compat
+passwd_compat: nisplus
+
+2) Tell the imap server machine about the machines that will be requesting
+   remote logins
+
+   Edit /etc/hosts.equiv and add the names of the trusted hosts:
+
+host1.your.domain
+...
+hostn.your.domain
+
+3) Configure /etc/passwd and /etc/shadow to filter NIS+ password entries
+   This is where the security measures are made.  We "rewrite" password
+   entries for users not in /etc/passwd, giving them a different shell -
+   /etc/rimapd - which allows rlogin, but not shell access.
+
+   Append this line to /etc/passwd:
++:x:-1:-1:::/etc/rimapd
+
+   Append this line to /etc/shadow:
++::-1::::::
+     _________________________________________________________________
+   
+  11.13 What do I need to do when compiling Pine to let users change their
+  ``From:'' line?
+  
+   Beginning in Pine 4.30, allow-changing-from is the default.
+   
+   In Pine 4.00 through 4.21, users can add allow-changing-from to the
+   feature-list in their system configuration file (by editing the pinerc
+   file, not via SETUP CONFIGURATION), and then add From to their
+   customized-hdrs option. For previous versions, read on:
+   
+   Q&A submitted by: Timothy J. Luoma <luomat+pine@luomat.peak.org>
+You must edit the appropriate file in the source code.  Assuming the current
+version of pine is 'x.y' you would need to go to pine.x.y/pine/osdep/
+and edit the appropriate ``os-XXX.h'' file, where ``XXX stands for the
+3-letter abbreviation for your OS.  Look for the line:
+
+/* #define ALLOW_CHANGING_FROM  /* comment out to not allow changing From */
+
+and change it to
+
+#define ALLOW_CHANGING_FROM  /* comment out to not allow changing From */
+
+and then compile as usual.
+
+   See also 9.5 How do I change my 'From:' line? in Customization and
+   Configuration.
+     _________________________________________________________________
+   
+  11.14 Where is the .pine-debug setting set at compile-time?
+  
+   Q&A submitted by: Timothy J. Luoma <luomat+pine@luomat.peak.org>
+   
+   The default settings are defined in the os-XXX.h file inside the
+   _osdep_ directory in the pine source code directory, where XXX stands
+   for the three-letter abbreviation for your Operating System; for
+   example, the file _pine/osdep/os-bsd.h_ would be used for those
+   compiling PINE for BSD.
+   
+   There are three settings:
+   
+   _DEBUGFILE_ = Where to put the output of pine in debug mode. Files are
+   created in the user's home directory and have a number appended to
+   them when there is more than one.
+   
+   _NUMDEBUGFILES_ = The number of debug files to maintain
+   
+   _DEFAULT_DEBUG_ = The default level of debugging information
+     _________________________________________________________________
+   
+  11.15 What do I need to do to configure specific servers for use with Pine?
+  
+   Some messaging servers may require configuration changes to work
+   properly with the Pine client (and perhaps other clients as well).
+   This information is provided here only for the convenience of
+   administrators of those servers, and not necessarily exhaustive or
+   based on experiences or tests by the University of Washington.
+     * _Microsoft Exchange 5.5_: "Enable Fast Message Retrieval" (which
+       causes Exchange to give an estimate of message size, rather than
+       exact size) must _not_ be selected; otherwise, messages when read
+       by Pine may appear truncated or with "garbage" characters at the
+       end. Unfortunately, even after turning "Enable Fast Message
+       Retrieval" off, there is still a known bug in Exchange 5.5 in
+       calculating the message size for certain types of MIME messages.
+       Microsoft has told us (8 September 1998) that this bug is fixed in
+       the next release of Exchange.
+       Be sure also to set rsh-open-timeout to zero in pinerc, since rsh
+       is not supported on NT/Exchange. If you do not, you will
+       experience long delays in accessing the remote server.
+       
+   You should also consult the server's documentation on these issues.
+     _________________________________________________________________
+   
+  11.16 What do I need to know about Pine file locking and what does the
+  "mailbox vulnerable" error mean?
+  
+   There is an extensive section on locking in the Pine Technical Notes:
+   Folder Locking; this information is intended to provide answers to
+   some common questions:
+     * _Why did locking change in Pine 4.00?_
+       The actual locking mechanisms did not change in 4.00. What changed
+       is that when one particular locking mechanism used by Pine fails,
+       Pine now issues a warning message. Prior to 4.00, the locking
+       failure would occur, but no warning was issued.
+     * _Is this what the "Mailbox vulnerable" message is about?_
+       Yes. It means that Pine was unable to create a lockfile in the
+       spool directory, generally because of overly restrictive
+       protections on the spool directory. The correct permissions on the
+       spool directory for running Pine are 1777, i.e. read-write-execute
+       permission for everyone, with the sticky-bit set, so only owners
+       of a file can delete them.
+     * _Why does Pine require that the mail spool directory have 1777
+       protections?_
+       Pine was designed to run without special privileges. This means
+       that in order to create a lockfile in the spool directory, it is
+       necessary to have the spool directory permissions be
+       world-writable.
+     * _Can't you create the lockfile somewhere else?_
+       No. The lockfile in question must be in the mail spool directory,
+       because that's where the mail delivery program expects to find it,
+       and the purpose of the file is to coordinate access between the
+       mail client (Pine) and the mail delivery program.
+     * _Isn't having the spool directory world-writable a big security
+       risk?_
+       No. Remember that the individual mail files in the spool directory
+       are NOT world-writable, only the containing directory. Setting the
+       "sticky bit" -- indicated by the "1" before the "777" mode --
+       means that only the owner of the file (or root) can delete files
+       in the directory. So the only bad behavior that is invited by the
+       1777 mode is that anyone could create a random file in the spool
+       directory. If the spool directory is under quota control along
+       with home directories, there is little incentive for anyone to do
+       this, and even without quotas a periodic scan for non-mail files
+       usually takes care of the problem.
+     * _Why not run Pine as setgid mail?_
+       Pine was never designed to run with privileges, and to do so
+       introduces a significant security vulnerability. For example, if a
+       user suspends Pine, the resulting shell will have group
+       privileges. This is one example of why we strongly recommend
+       against running Pine as a privileged program. In addition, a
+       "privileged mailer" paradigm would mean that normal users could
+       not test Pine versions or other mailers that had not been
+       installed by the system administrators.
+     * _Are there any alternatives to creating .lock files in the spool
+       dir?_
+       There are, but they all have different sets of tradeoffs, and not
+       all will work on all systems. Some examples:
+          + Use lock system calls. Works fine on a few systems, provided
+            mail spool is local. Doesn't work reliably if NFS is used.
+            Doesn't work unless all the mail programs accessing the spool
+            dir use the same calls.
+          + Deliver mail to user's home directory. An excellent solution,
+            highly recommended -- but one which is incompatible with some
+            "legacy" mail tools that always look in the spool directory
+            for the mail.
+     * _Are these spool directory lock files the only kinds of locks used
+       by Pine?_
+       No. Pine also creates lockfiles in the /tmp directory. For normal
+       Unix mailbox format folders, these are used to coordinate access
+       between multiple Pine sessions.
+     * _What about the "quell-lock-failure-warnings" feature added in
+       Pine 4.01?_
+       This is for people who are content to live dangerously, or who
+       have specific knowledge that the spool directory lockfiles are
+       superfluous on their system (because both Pine and the mail
+       delivery program are using system call file locking in a context
+       that works reliably, e.g. not NFS.)
+     * _Where can I find more details on how Pine locking works?_
+       See the Pine Technical Notes: Folder Locking.
+     _________________________________________________________________
+   
+  11.17 How do I convert mh to mbx folders?
+  
+   If you want to convert mh to mbx folders, you should get a copy of the
+   mbxcvt program, part of the imap-utils, located at the URL:
+   
+   ftp://ftp.cac.washington.edu/mail/imap-utils.tar.Z
+   
+   Then use something similar to the command "mbxcvt #mh/oldname mbx
+   newname"
+   
+   Read about Folder Collections in the Pine help to learn how to set up
+   ~/Mail as a directory containing mailboxes.
+   
+   If you want to access your existing mh folders without converting
+   them, you can access them from Pine by prefixing the mh folder name
+   with "#mh/" for example, to access your "foo" mh folder, use
+   "#mh/foo".
+   
+   For a comparative table and details on Pine formats, and on mailbox
+   name conventions, see, respectively, the files imap/docs/drivers.txt,
+   imap/docs/formats.txt and imap/docs/naming.txt that are included in
+   the UW IMAP server source distribution, which is available at the URL:
+   
+   ftp://ftp.cac.washington.edu/imap/imap.tar.Z
+   
+   | Search Pine Information Center
+   
+   UW Seal 
+   
+   
+    Pine® Information Center
+    Comments?
+    Modified: April 25, 2003
+
+   University of Washington 
+   
+    Search | Directories | Reference Tools
+   
+   UW Home > UWIN > Computing and Networking > Pine Information Center >
+   FAQs
+   
+   | Search Pine Information Center
+   
+Account Conversion and Transfer
+
+  12.1 How do I transfer messages from Pine on a Unix host to my PC?
+  
+   _Applies to Pine for Unix only_
+   
+   Users of Pine on a remote host may sometimes wish to transfer messages
+   to their desktop computer. The process for this depends on the version
+   of Pine you are using and on how you connect from your PC to the host
+   running Pine.
+     * In Pine, go to the message, or select the message(s)* you wish to
+       transfer.
+     * Export the message(s) by pressing "_E_".
+     * If you are using Pine version _3.92 or later_ _and_ are connecting
+       to the account on which you are running Pine using
+       terminal-emulation communications software (such as Procomm,
+       Kermit, Telix, or MS Windows Terminal for IBM-compatibles; or
+       MicroPhone or ZTerm for Macintosh) and a modem, you can simplify
+       the process of downloading exported messages to your PC. In Pine's
+       SETUP CONFIGURATION screen, go to the download-command line and
+       read the context-sensitive help to learn how to configure Pine to
+       transfer exported messages to your PC using a serial line transfer
+       protocol (which must be available _both_ on the host on which you
+       are running Pine and from the communications software on your PC;
+       check with your Internet account provider if in doubt) such as
+       Xmodem, Zmodem, or Kermit. With this configuration, you can
+       eliminate the following steps.
+     * Otherwise, read on:
+         1. Make note of the name you provide for the resulting file when
+            prompted by the Export function. If you enter only a filename
+            (for example: export.msg), the file will be saved to your
+            Unix account's home directory. You can also provide a path
+            including a subdirectory (it must already exist!), for
+            example: temp/export.msg_The following steps are not a
+            function of Pine; contact your Internet account provider
+            and/or consult the documentation/technical support for your
+            PC software if you encounter problems or need further
+            details._
+               o If you have FTP client software on your PC, you can now
+                 use it to transfer the file you just exported from the
+                 host on which you are running Pine to your PC. _Skip to
+                 the last numbered instruction_. (Note: If you can run
+                 FTP client software on your PC, and use the DOS or
+                 Microsoft Windows operating systems, you can probably
+                 (check with your Internet access provider) also run
+                 PC-Pine, which eliminates the need to transfer files
+                 between your PC and the host on which you are running
+                 Pine, because PC-Pine runs _on_ your PC.)
+         2. Suspend (must be enabled in Pine's SETUP CONFIG screen with
+            the option enable-suspend) or exit Pine.
+               o Depending on how your Unix account environment is set
+                 up, you may be able or required to perform the remaining
+                 steps by making choices from a menu; or by entering
+                 commands at the Unix prompt, as shown below. In either
+                 case, check with your Unix account provider for details
+                 on the procedure if you encounter problems.
+               o For the following transfer, you need to choose a serial
+                 line transfer protocol that must be available _both_ on
+                 the host on which you are running Pine and from the
+                 communications software on your PC. Common ones are
+                 Xmodem, Ymodem, Kermit, and Zmodem. Assuming you are
+                 using Zmodem:
+         3. At the Unix prompt, type: sz filename where filename is the
+            name you gave the file when you exported your message(s) from
+            Pine.
+               o Many file transfer sending commands, including sz, have
+                 a variety of command-line options; among the more useful
+                 being those that assure that the "carriage returns" in
+                 text files are preserved as intended when the file
+                 arrives on your PC, dep ending on its operating system.
+                 Type man _command_ at the Unix prompt (where _command_
+                 is your chosen file sending command) to learn about
+                 them.
+         4. The Unix host is now sending the file. Depending on your PC
+            software, you must now initiate the download sequence to
+            receive the file; or, a strong feature of the Zmodem
+            protocol, your PC communications software may recognize that
+            a file is being sent and initiate receiving using Zmodem
+            automatically.
+         5. After the transfer, you may wish to delete the exported file
+            from your Unix account to eliminate duplication and save disk
+            space.
+       
+   _*Multiple messages can be exported to a single file by selecting them
+   (if enable-aggregate-command-set is checked in Pine's SETUP
+   CONFIGURATION) and applying the Export command to them. The sequence
+   of the messages in the exported file can be changed by sorting (press
+   $ in the FOLDER INDEX view) the messages first._
+     _________________________________________________________________
+   
+  12.2 How can I have all future messages sent to me automatically forwarded to
+  another account?
+  
+   _This is actually not a function of Pine itself, but is often asked by
+   Pine users, thus we cover this question here._
+   
+   Many users migrate from one Internet account to another as they
+   graduate from college, switch Internet Service Providers, and so on.
+   Others maintain multiple Internet accounts, receive email messages in
+   all or several of them, but want to manage and respond to all their
+   email from one of them. In those situations, you may want to have your
+   email automatically forwarded from one account to another.
+   
+   Let's says you currently have this email address at your university:
+   lella@here.edu, but you are graduating and will lose that account in
+   another few weeks. Thus, you sign up with an Internet Service Provider
+   for a personal account, where your email address is:
+   lombardi@elsewhere.net. You decide that, rather than logging into both
+   accounts during the time period you have both to check your email, you
+   want to receive all your messages in your new elsewhere.net account,
+   and respond to them from there, especially to inform those who still
+   send email to your here.edu account that they should start sending
+   email only to your new address.
+   
+   If your here.edu account is on a Unix host, you can accomplish this
+   automatic forwarding by creating a file named _.forward_ --note the
+   dot at the beginning of the filename!--in your home directory in that
+   account. This file should contain the email address to which you want
+   all your email forwarded, in this case: lombardi@elsewhere.net
+   --nothing more and nothing less. After creating the .forward file,
+   send yourself a message to your lella@here.edu address, then check
+   whether it arrived in your lombardi@elsewhere.net email INBOX. Note:
+   establishing this _.forward_ file only forwards messages arriving from
+   now on, not those already in your account. For achieving that, see the
+   next Frequently Asked Question below. If you
+     * are not sure whether your here.edu account _is_ on a Unix host
+     * if it is, do not know how to create a file in your Unix account's
+       home directory
+     * believe that your systems administrator may have provided other
+       means of enabling message forwarding
+     * are sure that your here.edu account _is not_ on a Unix host then
+       ask the technical support staff for your here.edu account for
+       assistance on how to forward email from it to another address.
+     _________________________________________________________________
+   
+  12.3 "How can I forward messages I have already saved in Pine to another
+  account?
+  
+   To copy messages you _already have saved_ in PINE to another account,
+   you can use one of these methods:
+     * Store messages on personal computer using PC-Pine
+     * Save directly to folders in other account using IMAP
+     * Copy mail folders via FTP or rcp or portable storage medium
+     * Send folders as attachments to email messages
+     * Bounce messages
+       
+   They are listed in order of probable preference based on safety and
+   practicality, but each has its advantages, disadvantages, and specific
+   requirements, so you should evaluate carefully which one might work
+   best in your particular situation. It is best to do this while you
+   still have access to both accounts, and the technical support people
+   of the organizations providing them, for a while. Regardless of which
+   method (except for the first one) you choose, you should be able to
+   access both accounts simultaneously to monitor the operation's
+   progress. In particular, _do not delete_ any messages before you have
+   assured yourself that their transfer has completed, and that they are
+   accessible, as expected.
+   
+   _Store messages on personal computer using PC-Pine_
+   
+   Note: for this method to work, the messages in your present account -
+   the one _from_ which you wish to transfer messages _to_ another
+   account - must be stored on an IMAP server. If in doubt, contact your
+   local computing support people. This method has the advantage that you
+   do not already have to have your "other" account established; however,
+   that account should be one that will allow you to use PC-Pine. If you
+   already have the "other" account, also see the method _Save directly
+   to folders in other account using IMAP_ for an alternative; it also
+   works using PC-Pine.
+   
+   If you have your own personal computer, install PC-Pine on it. After
+   installing, check enable-aggregate-command-set in PC-Pine's SETUP
+   CONFIGURATION screen, and read that feature's context-sensitive help,
+   as you will use it for transferring your messages.
+   
+   Then, create folder collection definitions for the IMAP server on
+   which your messages are stored, and for your PC's hard disk and/or
+   floppy disk. For the syntax on defining these folder collections, see
+   PC-Pine's context-sensitive help for folder-collections in the SETUP
+   CONFIGURATION screen for versions up to and including 3.96. (In
+   PC-Pine 4, from the [M]AIN MENU, go to [S]ETUP collection[L]ist, then
+   choose [A]dd Cltn.) In the folder collection(s) on your PC, you can
+   create folders for saving messages to first, or you can do that "on
+   the fly" while saving messages to your PC from the IMAP server later -
+   just enter the name of the folder you want on your PC, and then con
+   firm when prompted for its creation. Then, for each folder on the IMAP
+   server, Select the messages to transfer, then Apply-Save them to a
+   folder in (one of) the folder collection(s) on your PC. Don't be
+   suprised - especially if you are using a modem connection from your PC
+   to do this - if saving messages to folders on your PC takes much
+   longer than moving messages among folders using Unix PINE on the same
+   account, since the messages have to be transported from the IMAP
+   server to your PC.
+   
+   Later, if you wish, you can transfer the messages from your PC to your
+   other account if it supports IMAP server-based storage.
+   
+   _Save directly to folders in other account using IMAP_
+   
+   Note: enable-aggregate-command-set in your SETUP CONFIGURATION screen
+   must be checked for this method to work. Read that feature's
+   context-sensitive help if you are not familiar with it. This method
+   requires that your other account allow you to store messages on an
+   IMAP server (check with that account's provider if in doubt).
+   
+   Save the messages from each PINE folder in your current account to a
+   folder on your other account's IMAP server, using Select, Apply and
+   Save. For the syntax on defining the folder (collection) for your
+   other account so you can save messages to them with PINE, see PINE's
+   context-sensitive help for folder-collections in the SETUP
+   CONFIGURATION screen for versions up to and including 3.96. (In PINE
+   4, see the context-sensitive help for the COLLECTION LIST screen.)
+   When accessing the folder in your other account to save to, you may be
+   prompted for that account's username (if you did not specify it in
+   your folder (collection) definition already) and password. Don't be
+   suprised if saving messages to folders in your other account takes
+   longer than moving messages among folders in the same account on which
+   you are currently using PINE, since the messages have to be
+   transported across the Internet to the other account's IMAP server.
+   
+   _Copy mail folders via FTP or rcp or portable storage medium_
+   
+   Transfer the file(s) containing the mail folder(s) to the other
+   account using FTP (File Transfer Protocol) or rcp (remote file copy),
+   or save them to a portable medium such as floppy disks, removable hard
+   disks, or backup tapes; see also _3.3 How do I transfer messages from
+   Pine on a Unix host to my PC?_. If you have questions about how to use
+   FTP or rcp after consulting these utilities' documentation (man ftp or
+   man rcp at the Unix prompt), where your mail folder files are located,
+   or how to save mail folder files to a portable storage medium, contact
+   your local computing support people.
+   
+   However, using the mail folders thus transferred _with an email
+   client_ in your other account will only work if the email client you
+   are using with your other account supports the same mail folder format
+   used with PINE. To use the FTP transfer method, you will also have to
+   be able to FTP "into" your other account (preferrably the area where
+   mail folders are stored), which is often not the case with POP (Post
+   Office Protocol) accounts; check with the account provider if in
+   doubt. To use the rcp transfer method, both accounts need to be on
+   Unix hosts, and you need to have shell access on both.
+   
+   As an alternative to transferring the mail folder files directly,
+   which will not work if they are stored on a host you cannot directly
+   log into (which is often the case at least for your INBOX), you can
+   Select, Apply (enable-aggregate-command-set in your SETUP
+   CONFIGURATION screen must be checked) and Export messages from folders
+   to files and then transfer those files; however, this will at least
+   temporarily increase your storage capacity requirements - a
+   consideration if your PINE account has a storage quota.
+   
+   Before using either of the next two methods, be _sure_ that
+     * you know the correct email address of your other account;
+     * our other account can receive email messages _at this time_ - you
+       may want to send one or two test messages to it and check for
+       their arrival before proceeding; and
+     * your other account has enough storage space for the messages you
+       intend to forward to it, since they will likely be quite large
+       either in size or in number.
+       
+   _Send folders as attachments to email messages_
+   
+   Note: For this method to work, your PINE mail folders have to be
+   stored on the same host as the one on which PINE is running; on Unix
+   hosts, this is typically your ~/mail/ directory. Increasingly, message
+   folders are _instead_ stored on a dedicated IMAP server. In that case,
+   this method _won't work_ for you. If in doubt about the location of
+   your mail folders, contact your local computing support people. You
+   also should be comfortable with the process of sending attachments
+   with PINE email messages.
+   
+   Since each PINE mail folder is stored as a file, you can attach one or
+   more of those files to a PINE email message and send that to your
+   other account. There, you can then save each attachment (file
+   containing a PINE message folder) back to disk. However, using the
+   mail folders thus transferred _with an email client_ in your other
+   account will only work if the email client you are using with your
+   other account supports the same mail folder format used with PINE.
+   
+   _Bounce messages_
+   
+   Among those listed here, this method should work most independently of
+   your other account's _and_ email software's attributes. However, use
+   this method judiciously, as forwarding many email messages at once
+   consumes considerable system and network resources. Note: in your PINE
+   SETUP CONFIGURATION screen, enable-aggregate-command-set and
+   enable-bounce-cmd _must_ be checked, and fcc-on-bounce _should not_ be
+   checked, for this method.
+    1. Go to the PINE folder from which you want to forward messages.
+    2. Press "_;_ Select" to select the messages you wish to forward.
+    3. Choose "_A_ Apply, then "_B_ Bounce".
+    4. At the BOUNCE (redirect) N messages to: prompt, input, or choose
+       from your addressbook, the email address of your other account.
+       Confirm at the Send N messages? prompt.
+    5. The messages should all appear in the INBOX of your other account.
+       You may want to move them to other folders _in your other account_
+       before repeating this procedure with other folders _in the account
+       from which you are forwarding,_ unless you don't mind messages you
+       had saved from different folders all being together in your INBOX,
+       from where you may have to sort them out into different folders
+       again.
+       
+    12.3.1 While I'm transferring my messages...how do I transfer my email
+    addressbook?
+    
+   When transferring your PINE message folders to another account, you
+   may also wish to transfer your PINE addressbook. You can do this by
+   attaching the addressbook file to an email message, and saving that
+   attachment from the received message in your other account, as
+   described for message folder files in Send folders as attachments to
+   email messages ; or copying it to your other account or PC, as
+   described for message folder files in Copy mail folders via FTP or rcp
+   or portable storage medium. The addressbook for Unix PINE is by
+   default stored in your ~/.addressbook file.
+     _________________________________________________________________
+   
+  12.4 How do I convert Berkeley Mail aliases to Pine Addressbook?
+  
+   The Pine source distribution includes a shell script to do this in the
+   contrib/utils directory. It is called brk2pine.sh.
+     _________________________________________________________________
+   
+  12.5 How do I convert Elm aliases to Pine Addressbook?
+  
+   _From_: Klaus Wacker <wacker@Physik.Uni-Dortmund.DE>
+   
+   I wrote my own perl script, which I claim digests everything elm
+   accepts and converts it into something pine accepts. Please tell me if
+   you find otherwise. I intend to use this script regularly to keep
+   system-wide aliases and addressbooks in synch. The source is available
+   from
+   http://www.Physik.Uni-Dortmund.DE/~wacker/elm-to-pine
+     _________________________________________________________________
+   
+  12.6 How do I convert from Pine Address Book to/from the equivalents in
+  Eudora, Netscape, Pegasus, ... ?
+  
+   Here are two solutions to this, both created by others:
+     * Joseph Davidson has created a WWW site to perform conversion
+       between the address book of Pine and a number of other address
+       book/data file formats at: http://www.interguru.com/mailconv.htm
+     * Johannes Becker (Johannes.Becker@hrz.uni-giessen.de) has a
+       web-based addressbook converter available for general use at:
+       http://www.uni-giessen.de/hrz/kommuni/ldap/a_book.shtml. He says
+       that it "just converts between Netscape, Pegasus and Pine, but
+       it's for free."
+       
+   _Please note that we have not tested either of these ourselves._
+     _________________________________________________________________
+   
+  12.7 How do I convert my Pine addressbook file to Mutt alias format?
+  
+   Use this Perl command:
+   
+             perl -ane '$F[$#F] = "<$F[$#F]>"; print "alias @F\n";' \
+             $HOME/.addressbook > $HOME/.mutt.aliases
+
+   The resulting data (the mail aliases) will be saved in file
+   "$HOME/.mutt.aliases"; to make mutt read them in on startup you must
+   add this line to mutt's setup file:
+             source $HOME/.mutt.aliases
+
+   Q&A from Sven Guckes
+   
+   | Search Pine Information Center
+   
+   UW Seal 
+   
+   
+    Pine® Information Center
+    Comments?
+    Modified: January 29, 2002
+
+   University of Washington 
+   
+    Search | Directories | Reference Tools
+   
+   UW Home > UWIN > Computing and Networking > Pine Information Center >
+   FAQs
+   
+   | Search Pine Information Center
+   
+Security
+
+  13.1 General Pine Security
+  
+   Making your system as secure as possible is an important first step to
+   making your applications, including Pine, more secure. The following
+   links provide resources to help you make your system more secure:
+   
+   CERT Coordination Center
+          The CERT Coordination Center studies Internet security
+          vulnerabilities, provides incident response services to sites
+          that have been the victims of attack, publishes a variety of
+          security alerts, researches security and survivability in
+          wide-area-networked computing, and develops information to help
+          you improve security at your site.
+          
+   The World Wide Web Security FAQ
+          This is the World Wide Web Security Frequently Asked Question
+          list (FAQ). It attempts to answer some of the most frequently
+          asked questions relating to the security implications of
+          running a Web server and using Web browsers.
+          
+   CIAC (Computer Incident Advisory Capability group)
+          The CIAC Website provides an extensive, comprehensive resource
+          for diverse computer security issues. These resources are
+          presented in various forms and topics and are available to the
+          public as well as the DOE community.
+          
+   Center for Education and Research in Information Assurance and
+          Security
+          Purdue University's center for multidisciplinary research and
+          education in areas of information security (computer security,
+          network security, and communications security), and information
+          assurance. (See also the related COAST web site.)
+     _________________________________________________________________
+   
+  13.2 How do I get a secure version of PC-Pine?
+  
+   All versions of PC-Pine include TLS/SSL support. Some versions also
+   are available with Kerberos. Both Kerberos and TLS/SSL require setup
+   on the administrative end.
+     _________________________________________________________________
+   
+  13.3 Is there a "remote exploit" bug in Pine's handling of mailcap entries?
+  
+   Many people have inquired about a recent widely-distributed message
+   describing a "remote exploit in pine," specifically, a "vulnerability
+   in the metamail package used with pine" and a claim that the "`"
+   character "is incorrectly expanded by pine."
+   
+   We believe the following to be true:
+     * There is indeed a vulnerability in the default _mailcap_ file
+       distributed with the popular metamail MIME-support package.
+     * This same mailcap file has in the past been included in Pine
+       distributions as a sample; however, this sample file is not used
+       by Pine unless it is manually installed and renamed.
+     * While the metamail package _can_ be used with Pine, Pine does not
+       _require_ the installation of metamail.
+     * If a site chooses to install metamail, they should definitely
+       expunge the dangerous entries from the default mailcap file. A
+       corrected mailcap file is available.
+     * If correcting the system mailcap file is not immediately possible,
+       users may wish to set Pine's "mailcap-search-path" variable to a
+       personal mailcap file path. (See Pine's Main/Setup/Config screen.)
+     * Everyone should beware of offered workarounds in the form of Pine
+       patches that simply insert the shell-escape character before any
+       substituted back-quotes, as this only results in moving the
+       problem down one level of shell-nesting.
+     * PC-Pine users are not vulnerable to these dangerous mailcap
+       entries.
+       
+   We do not agree that the "`" character "is incorrectly expanded by
+   pine." Rather, we believe that Pine correctly implements RFC-1524.
+   However, it is possible to modify Pine to preclude mailcap parameter
+   substitution and thereby avoid mailcap risks at sites where faulty
+   mailcap files may be installed. A patch to do this for Pine 4.10 is
+   available. Obviously, this patch will also break any legitimate
+   mailcap entries that depend on parameter substitution.
+   
+   While one could modify Pine to guard against the particular exploit
+   permitted by the mailcap entries in question, it is very difficult to
+   conceive of a truly safe "paranoid mode" other than disabling
+   parameter substitution entirely. However, we suspect most people will
+   find it far easier to remove any unsafe entries from their mailcap
+   configuration file.
+     _________________________________________________________________
+   
+  13.4 Can I get a virus through email?
+  
+   The answer is, "yes," since email attachments sent to you can be
+   arbitrary programs containing a virus, or they can be documents
+   containing so-called "macro viruses." But remember that viruses are
+   computer programs, which must come as attachments, while electronic
+   mail often consists merely of plain text. You cannot get a virus from
+   a plain text email message, but you can get one from an attachment to
+   a plain email message.
+   
+   Since most email programs permit users to send "attachments," and
+   these attachments can be executable programs, you need to be careful.
+   Nevertheless, you cannot get a virus from an attachment _unless you
+   run the program._ Pine will always ask you to confirm that you wish to
+   view an email attachment before doing anything else, such as running a
+   program that views the attachment or even executing the attachment
+   itself (if it is a runnable program file). Remember, if you tell Pine
+   to view an attachment, in many cases the associated application (such
+   as Word) will automatically be run. If in doubt, _do not view the
+   attachment._ Instead, check it first with a virus checker or just
+   delete it.
+   
+   Keep in mind, as well, that modern spreadsheet programs and word
+   processing programs have full-featured macro languages, and that some
+   people have written viruses that take advantage of this. For this
+   reason, an attached spreadsheet or document _could_ contain an
+   executable macro program, and that program could conceivably be a
+   virus. To prevent this, you can disable the macro language in your
+   spreadsheet or word processing program. Be aware, though that this
+   might disable useful features, too. (As an alternative to disabling
+   macros in MS Word, try Nancy McGough's tips on Avoiding MS Word Macro
+   Viruses.) Instead, or in addition to this, you can make sure to always
+   use a virus checker. Again, try to only accept files from trusted
+   sources, but take your own precautions as well.
+   
+   Yahoo! provides lists on virus information.
+     _________________________________________________________________
+   
+  13.5 What should I do if I receive email about a computer virus?
+  
+   The Internet is constantly being flooded with information about
+   computer viruses. However, interspersed among real virus notices are
+   computer virus hoaxes. While these hoaxes do not infect systems, the
+   flood of email messages they generate is nevertheless time consuming
+   and costly to handle. Therefore, before broadcasting a warning that
+   you received via email, it would be a good idea to check with trusted
+   computer support people. There are well-developed methods for
+   distributing information about viruses and it would be better for
+   interested people to check with those resources rather than pass on
+   questionable information.
+   
+   You'll find examples of confirmed hoaxes, information about how to
+   identify a hoax, and what to do when you receive a virus warning at:
+   http://hoaxbusters.ciac.org/
+   
+   Another useful Web site is the "Computer Virus Myths home page"
+   (http://www.vmyths.com/) which contains descriptions of several known
+   hoaxes. In most cases, common sense would eliminate Internet hoaxes.
+     _________________________________________________________________
+   
+  13.6 On Win2k, why do I get errors when trying to validate my host name?
+  
+   There is a problem with pre-SP1 (Service Pack 1) versions of Windows
+   2000 that causes wildcard SSL certificates to fail. This was actually
+   a design feature in that version, which Microsoft was persuaded to
+   revoke.
+   
+   | Search Pine Information Center
+   
+   UW Seal 
+   
+   
+    Pine® Information Center
+    Comments?
+    Modified: April 16, 2003
+
+   University of Washington 
+   
+    Search | Directories | Reference Tools
+   
+   UW Home > UWIN > Computing and Networking > Pine Information Center >
+   FAQs
+   
+   | Search Pine Information Center
+   
+Pine Development
+
+  14.1 What is the latest version of Pine, and what's new in it?
+  
+   See "Pine Release Chronology & Version Changes" at
+   
+   http://www.washington.edu/pine/changes.html
+     _________________________________________________________________
+   
+  14.2 When is the next release of Pine scheduled?
+  
+   As late as possible, as soon as necessary, and vice versa! Seriously,
+   firm future release dates are hard to establish. To make sure _you_
+   won't miss the next release, you can subscribe to the Pine-Announce
+   mailing list; for more information on that, see
+   
+   http://www.washington.edu/pine/pine-info/pine-announce.html
+     _________________________________________________________________
+   
+  14.3 What are the results of the anonymous messages sent to the UW for
+  tallying?
+  
+   This refers to the following message when Pine begins for the first
+   time, or when a new .pinerc is generated:
+                    <<<This message will appear only once>>>
+
+           Welcome to Pine ... a Program for Internet News and Email
+
+  We hope you will explore Pine's many capabilities. From the Main Menu,
+  select Setup/Config to see many of the options available to you. Also
+  note that all screens have context-sensitive help text available.
+
+  SPECIAL REQUEST: This software is made available world-wide as a public
+  service of the University of Washington in Seattle. In order to justify
+  continuing development, it is helpful to have an idea of how many people
+  are using Pine. Are you willing to be counted as a Pine user? Pressing
+  Return will send an anonymous (meaning, your real email address will not
+  be revealed) message to the Pine development team at the University of
+  Washington for purposes of tallying.
+
+              Pine is a trademark of the University of Washington.
+
+   First-Use Statistics are generated from these messages.
+   
+   | Search Pine Information Center
+   
+   UW Seal 
+   
+   
+    Pine® Information Center
+    Comments?
+    Modified: July 15, 2003
+
+   University of Washington 
+   
+    Search | Directories | Reference Tools
+   
+   UW Home > UWIN > Computing and Networking > Pine Information Center >
+   FAQs
+   
+   | Search Pine Information Center
+   
+Additional Pine FAQs
+
+  15.1 Are there other Pine FAQs available?
+  
+   Yes. Links to supporting Pine FAQs and other documentation are posted
+   on the Non-UW Pine adaptations and Resources page.
+   
+  15.2 Can I contribute to these FAQs?
+  
+   Yes. If you have a tip for Pine that is not yet discussed elsewhere in
+   the Pine documentation, and that you believe will be of value to other
+   Pine users, please submit it to _PIC@cac.washington.edu_ for inclusion
+   in this collection of questions and answers.
+   
+   When submitting questions, try to make the answer as generic as
+   possible: Avoid references to specific versions of Pine and avoid
+   terminology and references that are specific to one platform or site.
+   If possible, references to sources of software or documentation should
+   be in the form of a URL pointing to the primary source.
+   
+   The question and answer will be evaluated for accuracy and
+   appropriateness before inclusion in the collection.
+   
+   | Search Pine Information Center
+   
+   UW Seal 
+   
+   
+    Pine® Information Center
+    Comments?
+    Modified: April 4, 2002

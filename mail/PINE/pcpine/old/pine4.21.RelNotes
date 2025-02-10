@@ -1,0 +1,112 @@
+
+
+                               Pine Release Notes
+
+                                 Version 4.21
+                            University of Washington
+
+Pine(R) is the University of Washington's "Program for Internet News and
+Email". It is intended to be an easy-to-use program for sending,
+receiving, and filing Internet electronic mail messages and bulletin
+board (Netnews) messages. There are versions that will run on many
+different flavors of the Unix(R) operating system, as well as a version
+with GUI amenities for 32-bit flavors of Microsoft Windows (95, 98, and
+NT).
+
+NEW IN PINE 4.21
+
+Version 4.21 is mainly intended to fix bugs introduced in previous
+versions.
+
+Bugs that have been addressed in this release include:
+
+ *  'N' flag not preserved across sessions
+ *  'N' flag not cleared when messages containing non-text pieces viewed
+ *  Sort failure using non-UW IMAP servers
+ *  Linux port: failure to recognize resized display
+ *  Problems with quoted /user= argument in smtp-server config
+ *  Transient (e.g., mistyped password) authentication failures not
+    reported
+ *  Rare cases of deleted header lines reappearing after ^X in Composer
+ *  Customized headers Bcc, To, Cc and Lcc not shown when posting news
+ *  Problem with role pattern vs. color patterns in a file
+ *  Problem with color display vs. single line scrolling
+ *  Last line of one-page message not displayed in rare cases
+ *  Text in Reply/Forward of encapsulated multipart/alternative and
+    signed missing
+ *  Failure to recognize list management headers in sorted folder
+ *  Attachments sometimes marked for deletion when scoring in use
+ *  Delayed notification of messages filtered from Inbox to current
+    folder
+ *  WhereIs to start or end of Folder List screen didn't
+ *  PC-Pine crash selecting text from secondary window
+ *  PC-Pine instances of "FOLDER CLOSED DUE TO ACCESS ERROR"
+
+General improvements include:
+
+ *  Filter performance and interface tuning:
+     +  User-Interface changes to avoid accidental deletion of mail
+     +  Action Folders local to PC-Pine no longer require
+        double-backslashes
+     +  Improved expunge performance with filters enabled
+ *  NNTP performance improvements in MESSAGE INDEX screen
+ *  Role Command (#) improvements
+ *  Improved display of addresses containing comma in personal name
+ *  Numerous Text/HTML parser improvements
+ *  Continued help text improvements
+
+Additional details on changes in this (and previous) versions of Pine may
+be found at the following URL:
+
+                  http://www.washington.edu/pine/changes.html
+
+          ____________________________________________________________
+
+GETTING HELP
+
+  Online Help
+      Every Pine screen and command has associated help text accesseible
+      via the "?" key (or Ctrl-G in text-input contexts).
+
+  Web Help
+      The most current source of information about Pine, including new
+      version availability, is the web page at
+
+                        http://www.washington.edu/pine/
+
+Frequently Asked Questions (and answers) may be found at the following
+URL:
+
+                      http://www.washington.edu/pine/faq/
+
+Some topics of current interest include:
+
+ *  Information on Folder Locking
+
+ *  Information on Missing mail and the mbox driver
+
+ *  Information on Folder Namespaces
+
+          ____________________________________________________________
+
+ADDITIONAL INFORMATION
+
+General Pine configuration information can be found here.
+
+Pine is also avilable for Windows 32-bit environments. More information
+on PC-Pine can be found here.
+
+Pine was developed by the Office of Computing & Communications at the
+University of Washington in Seattle. A more complete list of principal
+players and key contributors can be found on the credits Web page at
+
+                     http://www.washington.edu/pine/credits
+
+Pine and Pico are trademarks of the University of Washington.
+
+Pine, Pico and Pilot Copyright 1989-1999 University of Washington
+
+Additional legal notices can be found here or at the web URL:
+
+                      http://www.washington.edu/pine/legal
+

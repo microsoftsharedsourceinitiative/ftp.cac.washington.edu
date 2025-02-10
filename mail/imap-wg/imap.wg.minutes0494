@@ -1,0 +1,187 @@
+93 Mar 31
+teg
+
+  Notes from...       IMAP WORKING GROUP at IETF29 (Seattle)
+
+
+--------------------------------------------------------------------------
+SUMMARY
+--------------------------------------------------------------------------
+
+Administrivia:
+  o Two sessions were held (Tuesday afternoon and Wednesday morning).
+  o Approximately 35 people attended, most attended both sessions.
+
+Conclusions:
+  o A new "CAPABILITIES" command was added.  The intent is to provide
+    a convenient way for a client to discover optional extensions on a
+    server without having to "go fishing" (i.e. probing for individual
+    capabilities).  The approach was encouraged in part based on statements
+    that a similar philosophy in ESMTP has worked very well.
+  o Several proposed functional extensions were deferred, as candidates
+    for the new Capabilities capability.  (These included: Have server
+    do MD5 validation; have server do MIME External/FTP fetching, provide
+    per-message annotation, and provide for binary transfer of large MIME
+    objects such as voice mail.)
+  o Additional authentication schemes (beyond user/passwd and kerberos)
+    will be accommodated.
+  o Some additional text is needed in the document to address disconnected
+    use and failure/error conditions more fully.
+  o Restructuring of the document into several self-standing "chunks" is 
+    needed; with some of those chunks turning into either Appendices or 
+    separate documents. 
+  o There are still some open issues on FLAGS that need to be nailed down 
+    or intentionally not nailed down.
+
+Assigned subtasks:
+  o Wording for new CAPABILITIES command.  (1st cut done)
+  o Revision of Server flow control paragraph (1st cut done)
+  o Revision of section on authentication alternatives
+  o Wording for extension to LIST response to denote "interesting" folders
+  o Revision to FLAGS wording
+  o New text on use in disconnected mode
+  o More text on what happens in failure/error cases
+  o Document restructuring
+  o There will also be proposed extensions, e.g. per-message annotation,
+    however, these will not be in the base document, so are not subject
+    to the following schedule...
+
+Schedule:
+  o Subcommittee inputs received no later than 15 April.
+  o New draft available no later than 1 May.
+  o New goal of Proposed Standard around 1 June.
+
+
+--------------------------------------------------------------------------
+DETAILS
+--------------------------------------------------------------------------
+
+Several topics other than those on the preliminary agenda were 
+discussed: 
+	o general extensibility mechanism
+	o imap document format
+	o imap document content re: examples, failure conditions
+	o proposed extension for binary transfer
+	o discussion of Posting (or lack thereof)
+	o schedule
+
+The discussion of extensibility (the "topic that refused to 
+die") has led to consensus that a "CAPABILITIES" command will be 
+added to the imap4 spec to allow for more graceful addition of new 
+features. While the previous "probing" philosophy was held sufficient
+by some, a consensus emerged to add the new command based on the
+following:
+	o clients wishing to adapt their user-interface to currently
+	  available server capabilities (e.g. the greyed-out button
+	  case) will have an easier job with such a command.
+	o It was reported that some clients are already failing to 
+          correctly use the probing philosophy, at the cost of
+          interoperability, and that such a command will have
+          psychological benefit in discouraging mindless dependency on
+          later extensions. 
+	o The existence of this command makes the task of adding extensions 
+          seem less intimidating, therefore it becomes more reasonable to 
+          defer action on certain proposed new features.  Without it,
+          there was a sense among many --correct or not-- that adding a
+          new (non-private) extension was tantamount to a major revision 
+          of the protocol. 
+
+Annotation of the original agenda follows...
+
+-----------------------
+NEW FUNCTIONALITY
+
+ o Per-message annotation fields (fixed or arbitrary length; how many?)
+--> Deferred as a candidate for the new extension mechanism
+ o S/Key authentication?
+--> Draft text will be modified to allow for other authentication 
+    mechanisms besides user/passwd and kerberos.  There will be a
+    way to communicate the challenge string to the client for challenge
+    response systems.
+ o How to handle ftp/external refs?  (On client, on server, or both?)
+--> Deferred as a candidate for the new extension mechanism.
+    That is, it is currently a client problem.  If there is constituency 
+    for having a way for the client to ask the server to fetch external
+    body parts (e.g. via FTP), this would be appropriate as a candidate
+    extension. 
+
+-----------------------
+The LIST Command
+
+ o General discussion on hierarchy support; esp. changes since Houston IETF
+ o Method to quickly discover which folders have unseen and/or recent msgs
+ o Should there be a fast way to determine if a server mailbox is
+   unchanged since the time a client made a cache copy of it?
+
+--> There was agreement that it would be useful to have a way to indicate 
+    when a folder might have something interesting in it.  A subcommittee 
+    will provide a draft revision of the LIST description to accomplish this.
+
+-----------------------
+FLAGS
+
+ o Which are private, which are not (in a shared mailbox case)?  
+--> There is widespread sentiment that it is impossible to agree on
+    exactly which flags should always and only be per-user, and which ones
+    --in a shared mailbox case-- should be visible/settable by anyone with
+    appropriate permissions.  Thus, this is likely to remain implementation
+    dependent. 
+ o Which should be preserved on Copy/Append?  (e.g. Del, user flag "Saved")
+--> There is agreement to leave the current approach alone concerning 
+    Copy/Append, wherein COPY copies all reasonable flags, and APPEND
+    allows the client to specify which flags will be copied.  
+ o How do user flags get created?  explicitly, implicitly, or by preconfig?
+--> There is agreement that the current wording concerning creation and 
+    storing of flags is OK.  A server will indicate the flags it knows 
+    about, and whether it allows implicit creation of new ones.  (There 
+    is an issue of deleting no-longer-used, or created-in-error flags.)  
+ o Should there be an \UNSENT system flag? (As opposed to a user flag?)
+--> A subcommittee has been tasked with recommending what to do about 
+    /unsent and any other open FLAGS related issues.
+
+-----------------------
+SUGGESTIONS FOR PROTOCOL SIMPLIFICATION
+
+ o Deprecate BODY Fetch?
+--> Suggestion withdrawn by its proposer.
+ o Remove STORE untagged response?
+--> Suggestion defeated and/or withdrawn by its proposer.
+ o Remove MD5 fetch?   --> At least don't do it implicitly?
+--> Deferred as a possible extension.  (The current draft allows the 
+    client to fetch the raw MD5 value and compute the value from other 
+    fetched body parts.  The issue is whether to invent a way to ask the
+    *server* to verify the message integrity.)
+
+-----------------------
+PROTOCOL CLARIFICATIONS (aka FAQs :)
+
+ o Can clients make any assumptions about the context for non-FQNs, i.e. 
+   context-sensitive names?  
+--> Answer: "No."  Issue noted; no changes to spec recommended.
+
+ o Is IMAP capable of async operation?  For example:
+--> New wording will be incorporated to clarify what a server must do to 
+    avoid deadlock *if* it elects to send unsolicited data while not 
+    processing a client command.
+
+-----------------------
+MISC TOPICS
+
+ o Special information tokens for error conditions
+--> It was reported that a separate document, that does not propose
+    changes to the current IMAP draft, will be forthcoming to address the
+    question of parsing/presentation messages coming from servers in a 
+    language other than english. 
+ o If bodystructure extensions must be in a defined order, doesn't
+   this defeat their utility as an extensibility mechanism?
+--> The intent is to make sure that an IMAP4 client will not be upset if
+    a later server sends additional elements it doesn't know about.
+    No protocol change was recommended.  Perhaps a wording clarification...
+ o Should the address structure include a place for comments, since those
+   are not always personal names?
+--> Changing the IMAP envelope structure definition will break existing 
+    clients.  Clients wishing to obtain the entire RFC822 header and parse
+    the address locally (for purposes of extracting the comment field) may
+    do so. 
+
+-----------------------

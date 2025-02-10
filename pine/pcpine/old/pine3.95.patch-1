@@ -1,0 +1,1442 @@
+*** imap/ANSI/c-client/Makefile.orig	Fri Jun 21 14:25:45 1996
+--- imap/ANSI/c-client/Makefile	Tue Oct 15 15:28:55 1996
+***************
+*** 174,180 ****
+  	$(MAKE) mtest OS=sol EXTRADRIVERS="$(EXTRADRIVERS)" CC=gcc \
+  		STDPROTO=bezerkproto MAILSPOOL=/var/mail \
+  		ACTIVEFILE=/usr/share/news/active NEWSSPOOL=/var/spool/news \
+! 		RSHPATH=/usr/bin/rsh CFLAGS="-g -O2 -DNFSKLUDGE $(EXTRACFLAGS)" \
+  		RANLIB=true LDFLAGS="-lsocket -lnsl -lgen"
+  
+  gsu:	# GCC SUN-OS
+--- 174,181 ----
+  	$(MAKE) mtest OS=sol EXTRADRIVERS="$(EXTRADRIVERS)" CC=gcc \
+  		STDPROTO=bezerkproto MAILSPOOL=/var/mail \
+  		ACTIVEFILE=/usr/share/news/active NEWSSPOOL=/var/spool/news \
+! 		RSHPATH=/usr/bin/rsh \
+! 		CFLAGS="-g -O2 -DNFSKLUDGE -DSOLARISKERNELBUG $(EXTRACFLAGS)" \
+  		RANLIB=true LDFLAGS="-lsocket -lnsl -lgen"
+  
+  gsu:	# GCC SUN-OS
+***************
+*** 321,327 ****
+  		STDPROTO=bezerkproto MAILSPOOL=/var/mail \
+  		ACTIVEFILE=/usr/share/news/active NEWSSPOOL=/var/spool/news \
+  		RSHPATH=/usr/bin/rsh \
+! 		CFLAGS="-g -O2 -DNFSKLUDGE $(EXTRACFLAGS)" \
+  		RANLIB=true LDFLAGS="-lsocket -lnsl -lgen"
+  
+  sos:	# Secure OSF/1
+--- 322,328 ----
+  		STDPROTO=bezerkproto MAILSPOOL=/var/mail \
+  		ACTIVEFILE=/usr/share/news/active NEWSSPOOL=/var/spool/news \
+  		RSHPATH=/usr/bin/rsh \
+! 		CFLAGS="-g -O2 -DNFSKLUDGE -DSOLARISKERNELBUG $(EXTRACFLAGS)" \
+  		RANLIB=true LDFLAGS="-lsocket -lnsl -lgen"
+  
+  sos:	# Secure OSF/1
+*** imap/ANSI/c-client/bezerk.c.orig	Tue May 21 16:06:12 1996
+--- imap/ANSI/c-client/bezerk.c	Tue Oct 15 15:21:57 1996
+***************
+*** 1142,1148 ****
+    time_t t;
+    struct stat sb;
+  				/* build lock filename */
+!   if (chk_notsymlink (strcat (dummy_file (lock,file),".lock"))) do {
+      t = time (0);		/* get the time now */
+  #ifdef NFSKLUDGE
+    /* SUN-OS had an NFS, As kludgy as an albatross;
+--- 1142,1148 ----
+    time_t t;
+    struct stat sb;
+  				/* build lock filename */
+!   if (chk_notsymlink (strcat (dummy_file (lock,file),".lock"),NIL)) do {
+      t = time (0);		/* get the time now */
+  #ifdef NFSKLUDGE
+    /* SUN-OS had an NFS, As kludgy as an albatross;
+*** imap/ANSI/c-client/env_unix.c.orig	Tue May 21 15:57:52 1996
+--- imap/ANSI/c-client/env_unix.c	Tue Oct 15 15:19:06 1996
+***************
+*** 396,416 ****
+    if (stat (fname,&sbuf))	/* get file status */
+      sprintf (tmp,"/tmp/.%s",s ? s : fname);
+    else sprintf (tmp,"/tmp/.%hx.%lx",sbuf.st_dev,sbuf.st_ino);
+!   return chk_notsymlink (tmp) ? tmp : NIL;
+  }
+  
+  
+  /* Check to make sure not a symlink
+   * Accepts: file name
+   * Returns: T if not symlink, NIL if symlink
+   */
+  
+! long chk_notsymlink (char *name)
+  {
+    struct stat sbuf;
+!   if (!lstat (name,&sbuf) && ((sbuf.st_mode & S_IFMT) == S_IFLNK)) {
+      mm_log ("SECURITY ALERT: symbolic link on lock name!",ERROR);
+      syslog (LOG_CRIT,"SECURITY PROBLEM: lock file %s is a symbolic link",name);
+      return NIL;
+    }
+    return T;			/* OK */
+--- 396,424 ----
+    if (stat (fname,&sbuf))	/* get file status */
+      sprintf (tmp,"/tmp/.%s",s ? s : fname);
+    else sprintf (tmp,"/tmp/.%hx.%lx",sbuf.st_dev,sbuf.st_ino);
+!   return chk_notsymlink (tmp,T) ? tmp : NIL;
+  }
+  
+  
+  /* Check to make sure not a symlink
+   * Accepts: file name
++  *	    check hard link flag
+   * Returns: T if not symlink, NIL if symlink
+   */
+  
+! long chk_notsymlink (char *name,long chkhard)
+  {
+    struct stat sbuf;
+! 				/* OK if not exists */
+!   if (lstat (name,&sbuf)) return T;
+!   if ((sbuf.st_mode & S_IFMT) == S_IFLNK) {
+      mm_log ("SECURITY ALERT: symbolic link on lock name!",ERROR);
+      syslog (LOG_CRIT,"SECURITY PROBLEM: lock file %s is a symbolic link",name);
++     return NIL;
++   }
++   if (chkhard && (sbuf.st_nlink > 1)) {
++     mm_log ("SECURITY ALERT: hard link to lock name!",ERROR);
++     syslog (LOG_CRIT,"SECURITY PROBLEM: lock file %s has a hard link",name);
+      return NIL;
+    }
+    return T;			/* OK */
+*** imap/ANSI/c-client/env_unix.h.orig	Tue May 21 16:03:57 1996
+--- imap/ANSI/c-client/env_unix.h	Tue Oct 15 15:17:55 1996
+***************
+*** 44,50 ****
+  char *myusername ();
+  char *sysinbox ();
+  char *lockname (char *tmp,char *fname);
+! long chk_notsymlink (char *name);
+  MAILSTREAM *user_flags (MAILSTREAM *stream);
+  void dorc (char *file);
+  void grim_pid_reap_status (int pid,int killreq,void *status);
+--- 44,50 ----
+  char *myusername ();
+  char *sysinbox ();
+  char *lockname (char *tmp,char *fname);
+! long chk_notsymlink (char *name,long chkhard);
+  MAILSTREAM *user_flags (MAILSTREAM *stream);
+  void dorc (char *file);
+  void grim_pid_reap_status (int pid,int killreq,void *status);
+*** imap/ANSI/c-client/flock.c.orig	Thu Nov 23 17:20:35 1995
+--- imap/ANSI/c-client/flock.c	Sat Oct 12 13:38:16 1996
+***************
+*** 46,51 ****
+--- 46,53 ----
+    struct stat sbuf;
+    struct ustat usbuf;
+    struct flock fl;
++   int ret;
++   char tmp[MAILTMPLEN];
+  				/* lock applies to entire file */
+    fl.l_whence = fl.l_start = fl.l_len = 0;
+    fl.l_pid = getpid ();		/* shouldn't be necessary */
+***************
+*** 64,71 ****
+      return -1;
+    }
+  				/* ftinode should be -1 if NFS */
+!   return ((!fstat (fd,&sbuf) && !ustat (sbuf.st_dev,&usbuf) &&
+! 	   !++usbuf.f_tinode) ||
+! 	  ((int) mail_parameters (NIL,GET_DISABLEFCNTLLOCK,NIL))) ? NIL :
+! 	    fcntl (fd,(operation & LOCK_NB) ? F_SETLK : F_SETLKW,&fl);
+  }
+--- 66,86 ----
+      return -1;
+    }
+  				/* ftinode should be -1 if NFS */
+!   if ((!fstat (fd,&sbuf) && !ustat (sbuf.st_dev,&usbuf) && !++usbuf.f_tinode)||
+!       mail_parameters (NIL,GET_DISABLEFCNTLLOCK,NIL))
+!     ret = 0;			/* NFS or locking disabled */
+!   else while (ret = fcntl (fd,(operation & LOCK_NB) ? F_SETLK : F_SETLKW,&fl))
+!     if (errno != EINTR) {	/* ignore signals */
+! 				/* non-blocking lock case? */
+!       if ((operation & LOCK_NB) &&
+! 	  ((errno == EWOULDBLOCK) || (errno == EAGAIN) || (errno == EACCES))) {
+! 	errno = EWOULDBLOCK;	/* canonicalize error */
+! 	return -1;		/* OK to fail */
+!       }
+!       sprintf (tmp,"Unexpected locking failure %s",strerror (errno));
+!       mm_log (tmp,WARN);	/* give the user a warning of what happened */
+!       sleep (5);		/* barf */
+!       break;
+!     }
+!   return ret;
+  }
+*** imap/ANSI/c-client/mail.c.orig	Sun Jul 14 13:36:21 1996
+--- imap/ANSI/c-client/mail.c	Tue Oct 15 15:03:58 1996
+***************
+*** 1208,1224 ****
+      elt->hours = d; elt->minutes = m; elt->seconds = y;
+      switch (*s) {		/* time zone specifier? */
+      case ' ':			/* numeric time zone */
+        if (!isalpha (s[1])) {	/* treat as '-' case if alphabetic */
+  				/* test for sign character */
+  	if ((elt->zoccident = (*++s == '-')) || (*s == '+')) s++;
+  				/* validate proper timezone */
+! 	if (!(isdigit (*s) && isdigit (s[1]) && isdigit (s[2]) &&
+! 	      isdigit (s[3])) || (s[4] && (s[4] != ' '))) return NIL;
+  	elt->zhours = (*s - '0') * 10 + (s[1] - '0');
+  	elt->zminutes = (s[2] - '0') * 10 + (s[3] - '0');
+- 	break;
+        }
+!       while (s[1] == ' ') s++;	/* slurp extra whitespace */
+  				/* falls through */
+  
+      case '-':			/* symbolic time zone */
+--- 1208,1224 ----
+      elt->hours = d; elt->minutes = m; elt->seconds = y;
+      switch (*s) {		/* time zone specifier? */
+      case ' ':			/* numeric time zone */
++       while (s[1] == ' ') s++;	/* slurp extra whitespace */
+        if (!isalpha (s[1])) {	/* treat as '-' case if alphabetic */
+  				/* test for sign character */
+  	if ((elt->zoccident = (*++s == '-')) || (*s == '+')) s++;
+  				/* validate proper timezone */
+! 	if (isdigit(*s) && isdigit(s[1]) && isdigit(s[2]) && isdigit(s[3])) {
+  	  elt->zhours = (*s - '0') * 10 + (s[1] - '0');
+  	  elt->zminutes = (s[2] - '0') * 10 + (s[3] - '0');
+  	}
+! 	return T;		/* all done! */
+!       }
+  				/* falls through */
+  
+      case '-':			/* symbolic time zone */
+***************
+*** 1227,1233 ****
+  	ms -= 'A'; ms *= 1024;	/* yes, make compressed three-byte form */
+  	ms += ((*s++ - 'A') * 32);
+  	if (*s) ms += *s++ - 'A';
+! 	if (*s) ms = 'Z';	/* more than three characters */
+        }
+        /* This is not intended to be a comprehensive list of all possible
+         * timezone strings.  Such a list would be impractical.  Rather, this
+--- 1227,1233 ----
+  	ms -= 'A'; ms *= 1024;	/* yes, make compressed three-byte form */
+  	ms += ((*s++ - 'A') * 32);
+  	if (*s) ms += *s++ - 'A';
+! 	if (*s) ms = '\0';	/* more than three characters */
+        }
+        /* This is not intended to be a comprehensive list of all possible
+         * timezone strings.  Such a list would be impractical.  Rather, this
+*** imap/ANSI/c-client/mmdf.c.orig	Tue May 21 16:06:50 1996
+--- imap/ANSI/c-client/mmdf.c	Tue Oct 15 15:20:50 1996
+***************
+*** 1044,1050 ****
+    time_t t;
+    struct stat sb;
+  				/* build lock filename */
+!   if (chk_notsymlink (strcat (dummy_file (lock,file),".lock"))) do {
+      t = time (0);		/* get the time now */
+  #ifdef NFSKLUDGE
+    /* SUN-OS had an NFS, As kludgy as an albatross;
+--- 1044,1050 ----
+    time_t t;
+    struct stat sb;
+  				/* build lock filename */
+!   if (chk_notsymlink (strcat (dummy_file (lock,file),".lock"),NIL)) do {
+      t = time (0);		/* get the time now */
+  #ifdef NFSKLUDGE
+    /* SUN-OS had an NFS, As kludgy as an albatross;
+*** imap/ANSI/c-client/mtx.c.orig	Tue May 21 15:57:57 1996
+--- imap/ANSI/c-client/mtx.c	Tue Oct 15 15:21:30 1996
+***************
+*** 1193,1199 ****
+    if (!fstat (fd,&sbuf)) {	/* get data for this file */
+  				/* make temporary file name */
+      sprintf (lock,"/tmp/.%hx.%lx",sbuf.st_dev,sbuf.st_ino);
+!     if (chk_notsymlink (lock) &&
+  	((ld = open (lock,O_RDWR|O_CREAT,
+  		     (int)mail_parameters(NIL,GET_LOCKPROTECTION,NIL))) >= 0)){
+        flock (ld,op);		/* get this lock */
+--- 1193,1199 ----
+    if (!fstat (fd,&sbuf)) {	/* get data for this file */
+  				/* make temporary file name */
+      sprintf (lock,"/tmp/.%hx.%lx",sbuf.st_dev,sbuf.st_ino);
+!     if (chk_notsymlink (lock,T) &&
+  	((ld = open (lock,O_RDWR|O_CREAT,
+  		     (int)mail_parameters(NIL,GET_LOCKPROTECTION,NIL))) >= 0)){
+        flock (ld,op);		/* get this lock */
+*** imap/ANSI/c-client/pop3.c.orig	Wed Feb 15 22:41:45 1995
+--- imap/ANSI/c-client/pop3.c	Tue Oct 22 13:04:29 1996
+***************
+*** 870,875 ****
+--- 870,876 ----
+  long pop3_send (MAILSTREAM *stream,char *command,char *args)
+  {
+    char tmp[MAILTMPLEN];
++   if (!LOCAL->tcpstream) return pop3_fake (stream,"No-op dead stream");
+  				/* build the complete command */
+    if (args) sprintf (tmp,"%s %s",command,args);
+    else strcpy (tmp,command);
+***************
+*** 888,893 ****
+--- 889,895 ----
+  long pop3_reply (MAILSTREAM *stream)
+  {
+    char *s;
++   if (!LOCAL->tcpstream) return pop3_fake (stream,"No-op dead stream");
+  				/* flush old reply */
+    if (LOCAL->response) fs_give ((void **) &LOCAL->response);
+    				/* get reply */
+*** imap/ANSI/c-client/tcp_unix.c.orig	Tue Apr  9 12:45:24 1996
+--- imap/ANSI/c-client/tcp_unix.c	Tue Oct 15 15:28:35 1996
+***************
+*** 194,202 ****
+--- 194,204 ----
+  	 (errno == EINTR));
+    if (i > 0) {			/* success, make sure really connected */
+      fcntl (sock,F_SETFL,flgs);	/* restore blocking status */
++ #ifndef SOLARISKERNELBUG
+  				/* get socket status */
+      while ((i = read (sock,tmp,0)) < 0 && errno == EINTR);
+      if (!i) i = 1;		/* make success if the read is OK */
++ #endif
+    }	
+    if (i <= 0) {			/* timeout or error? */
+      sprintf (tmp,"Can't connect to %.80s,%d: %s",hostname,port,
+*** imap/ANSI/c-client/tenex2.c.orig	Tue May 21 15:57:59 1996
+--- imap/ANSI/c-client/tenex2.c	Tue Oct 15 15:21:14 1996
+***************
+*** 1213,1219 ****
+    if (!fstat (fd,&sbuf)) {	/* get data for this file */
+  				/* make temporary file name */
+      sprintf (lock,"/tmp/.%hx.%lx",sbuf.st_dev,sbuf.st_ino);
+!     if (chk_notsymlink (lock) &&
+  	((ld = open (lock,O_RDWR|O_CREAT,
+  		     (int)mail_parameters(NIL,GET_LOCKPROTECTION,NIL))) >= 0)){
+        flock (ld,op);		/* get this lock */
+--- 1213,1219 ----
+    if (!fstat (fd,&sbuf)) {	/* get data for this file */
+  				/* make temporary file name */
+      sprintf (lock,"/tmp/.%hx.%lx",sbuf.st_dev,sbuf.st_ino);
+!     if (chk_notsymlink (lock,T) &&
+  	((ld = open (lock,O_RDWR|O_CREAT,
+  		     (int)mail_parameters(NIL,GET_LOCKPROTECTION,NIL))) >= 0)){
+        flock (ld,op);		/* get this lock */
+*** imap/non-ANSI/c-client/Makefile.orig	Fri Jun 21 14:26:12 1996
+--- imap/non-ANSI/c-client/Makefile	Tue Oct 15 15:28:55 1996
+***************
+***************
+*** 174,180 ****
+  	$(MAKE) mtest OS=sol EXTRADRIVERS="$(EXTRADRIVERS)" CC=gcc \
+  		STDPROTO=bezerkproto MAILSPOOL=/var/mail \
+  		ACTIVEFILE=/usr/share/news/active NEWSSPOOL=/var/spool/news \
+! 		RSHPATH=/usr/bin/rsh CFLAGS="-g -O2 -DNFSKLUDGE $(EXTRACFLAGS)" \
+  		RANLIB=true LDFLAGS="-lsocket -lnsl -lgen"
+  
+  gsu:	# GCC SUN-OS
+--- 174,181 ----
+  	$(MAKE) mtest OS=sol EXTRADRIVERS="$(EXTRADRIVERS)" CC=gcc \
+  		STDPROTO=bezerkproto MAILSPOOL=/var/mail \
+  		ACTIVEFILE=/usr/share/news/active NEWSSPOOL=/var/spool/news \
+! 		RSHPATH=/usr/bin/rsh \
+! 		CFLAGS="-g -O2 -DNFSKLUDGE -DSOLARISKERNELBUG $(EXTRACFLAGS)" \
+  		RANLIB=true LDFLAGS="-lsocket -lnsl -lgen"
+  
+  gsu:	# GCC SUN-OS
+***************
+*** 321,327 ****
+  		STDPROTO=bezerkproto MAILSPOOL=/var/mail \
+  		ACTIVEFILE=/usr/share/news/active NEWSSPOOL=/var/spool/news \
+  		RSHPATH=/usr/bin/rsh \
+! 		CFLAGS="-g -O2 -DNFSKLUDGE $(EXTRACFLAGS)" \
+  		RANLIB=true LDFLAGS="-lsocket -lnsl -lgen"
+  
+  sos:	# Secure OSF/1
+--- 322,328 ----
+  		STDPROTO=bezerkproto MAILSPOOL=/var/mail \
+  		ACTIVEFILE=/usr/share/news/active NEWSSPOOL=/var/spool/news \
+  		RSHPATH=/usr/bin/rsh \
+! 		CFLAGS="-g -O2 -DNFSKLUDGE -DSOLARISKERNELBUG $(EXTRACFLAGS)" \
+  		RANLIB=true LDFLAGS="-lsocket -lnsl -lgen"
+  
+  sos:	# Secure OSF/1
+*** imap/non-ANSI/c-client/bezerk.c.orig	Tue May 21 16:07:35 1996
+--- imap/non-ANSI/c-client/bezerk.c	Tue Oct 15 15:20:17 1996
+***************
+*** 1228,1234 ****
+    time_t t;
+    struct stat sb;
+  				/* build lock filename */
+!   if (chk_notsymlink (strcat (dummy_file (lock,file),".lock"))) do {
+      t = time (0);		/* get the time now */
+  #ifdef NFSKLUDGE
+    /* SUN-OS had an NFS, As kludgy as an albatross;
+--- 1228,1234 ----
+    time_t t;
+    struct stat sb;
+  				/* build lock filename */
+!   if (chk_notsymlink (strcat (dummy_file (lock,file),".lock"),NIL)) do {
+      t = time (0);		/* get the time now */
+  #ifdef NFSKLUDGE
+    /* SUN-OS had an NFS, As kludgy as an albatross;
+*** imap/non-ANSI/c-client/env_unix.c.orig	Tue May 21 16:03:14 1996
+--- imap/non-ANSI/c-client/env_unix.c	Wed Oct 16 10:21:03 1996
+***************
+*** 410,431 ****
+    if (stat (fname,&sbuf))	/* get file status */
+      sprintf (tmp,"/tmp/.%s",s ? s : fname);
+    else sprintf (tmp,"/tmp/.%hx.%lx",sbuf.st_dev,sbuf.st_ino);
+!   return chk_notsymlink (tmp) ? tmp : NIL;
+  }
+  
+  
+  /* Check to make sure not a symlink
+   * Accepts: file name
+   * Returns: T if not symlink, NIL if symlink
+   */
+  
+! long chk_notsymlink (name)
+  	char *name;
+  {
+    struct stat sbuf;
+!   if (!lstat (name,&sbuf) && ((sbuf.st_mode & S_IFMT) == S_IFLNK)) {
+      mm_log ("SECURITY ALERT: symbolic link on lock name!",ERROR);
+      syslog (LOG_CRIT,"SECURITY PROBLEM: lock file %s is a symbolic link",name);
+      return NIL;
+    }
+    return T;			/* OK */
+--- 410,440 ----
+    if (stat (fname,&sbuf))	/* get file status */
+      sprintf (tmp,"/tmp/.%s",s ? s : fname);
+    else sprintf (tmp,"/tmp/.%hx.%lx",sbuf.st_dev,sbuf.st_ino);
+!   return chk_notsymlink (tmp,T) ? tmp : NIL;
+  }
+  
+  
+  /* Check to make sure not a symlink
+   * Accepts: file name
++  	    check hard link flag
+   * Returns: T if not symlink, NIL if symlink
+   */
+  
+! long chk_notsymlink (name, chkhard)
+  	char *name;
++ 	long chkhard;
+  {
+    struct stat sbuf;
+! 				/* OK if not exists */
+!   if (lstat (name,&sbuf)) return T;
+!   if ((sbuf.st_mode & S_IFMT) == S_IFLNK) {
+      mm_log ("SECURITY ALERT: symbolic link on lock name!",ERROR);
+      syslog (LOG_CRIT,"SECURITY PROBLEM: lock file %s is a symbolic link",name);
++     return NIL;
++   }
++   if (chkhard && (sbuf.st_nlink > 1)) {
++     mm_log ("SECURITY ALERT: hard link to lock name!",ERROR);
++     syslog (LOG_CRIT,"SECURITY PROBLEM: lock file %s has a hard link",name);
+      return NIL;
+    }
+    return T;			/* OK */
+*** imap/non-ANSI/c-client/flock.c.orig	Tue Nov 28 16:23:16 1995
+--- imap/non-ANSI/c-client/flock.c	Tue Oct 15 15:24:44 1996
+***************
+*** 48,53 ****
+--- 48,55 ----
+    struct stat sbuf;
+    struct ustat usbuf;
+    struct flock fl;
++   int ret;
++   char tmp[MAILTMPLEN];
+  				/* lock applies to entire file */
+    fl.l_whence = fl.l_start = fl.l_len = 0;
+    fl.l_pid = getpid ();		/* shouldn't be necessary */
+***************
+*** 66,73 ****
+      return -1;
+    }
+  				/* ftinode should be -1 if NFS */
+!   return ((!fstat (fd,&sbuf) && !ustat (sbuf.st_dev,&usbuf) &&
+! 	   !++usbuf.f_tinode) ||
+! 	  ((int) mail_parameters (NIL,GET_DISABLEFCNTLLOCK,NIL))) ? NIL :
+! 	    fcntl (fd,(operation & LOCK_NB) ? F_SETLK : F_SETLKW,&fl);
+  }
+--- 68,88 ----
+      return -1;
+    }
+  				/* ftinode should be -1 if NFS */
+!   if ((!fstat (fd,&sbuf) && !ustat (sbuf.st_dev,&usbuf) && !++usbuf.f_tinode)||
+!       mail_parameters (NIL,GET_DISABLEFCNTLLOCK,NIL))
+!     ret = 0;			/* NFS or locking disabled */
+!   else while (ret = fcntl (fd,(operation & LOCK_NB) ? F_SETLK : F_SETLKW,&fl))
+!     if (errno != EINTR) {	/* ignore signals */
+! 				/* non-blocking lock case? */
+!       if ((operation & LOCK_NB) &&
+! 	  ((errno == EWOULDBLOCK) || (errno == EAGAIN) || (errno == EACCES))) {
+! 	errno = EWOULDBLOCK;	/* canonicalize error */
+! 	return -1;		/* OK to fail */
+!       }
+!       sprintf (tmp,"Unexpected locking failure %s",strerror (errno));
+!       mm_log (tmp,WARN);	/* give the user a warning of what happened */
+!       sleep (5);		/* barf */
+!       break;
+!     }
+!   return ret;
+  }
+*** imap/non-ANSI/c-client/mail.c.orig	Sun Jul 14 13:37:21 1996
+--- imap/non-ANSI/c-client/mail.c	Tue Oct 15 15:04:17 1996
+***************
+*** 1325,1341 ****
+      elt->hours = d; elt->minutes = m; elt->seconds = y;
+      switch (*s) {		/* time zone specifier? */
+      case ' ':			/* numeric time zone */
+        if (!isalpha (s[1])) {	/* treat as '-' case if alphabetic */
+  				/* test for sign character */
+  	if ((elt->zoccident = (*++s == '-')) || (*s == '+')) s++;
+  				/* validate proper timezone */
+! 	if (!(isdigit (*s) && isdigit (s[1]) && isdigit (s[2]) &&
+! 	      isdigit (s[3])) || (s[4] && (s[4] != ' '))) return NIL;
+  	elt->zhours = (*s - '0') * 10 + (s[1] - '0');
+  	elt->zminutes = (s[2] - '0') * 10 + (s[3] - '0');
+- 	break;
+        }
+!       while (s[1] == ' ') s++;	/* slurp extra whitespace */
+  				/* falls through */
+  
+      case '-':			/* symbolic time zone */
+--- 1325,1341 ----
+      elt->hours = d; elt->minutes = m; elt->seconds = y;
+      switch (*s) {		/* time zone specifier? */
+      case ' ':			/* numeric time zone */
++       while (s[1] == ' ') s++;	/* slurp extra whitespace */
+        if (!isalpha (s[1])) {	/* treat as '-' case if alphabetic */
+  				/* test for sign character */
+  	if ((elt->zoccident = (*++s == '-')) || (*s == '+')) s++;
+  				/* validate proper timezone */
+! 	if (isdigit(*s) && isdigit(s[1]) && isdigit(s[2]) && isdigit(s[3])) {
+  	  elt->zhours = (*s - '0') * 10 + (s[1] - '0');
+  	  elt->zminutes = (s[2] - '0') * 10 + (s[3] - '0');
+  	}
+! 	return T;		/* all done! */
+!       }
+  				/* falls through */
+  
+      case '-':			/* symbolic time zone */
+***************
+*** 1344,1350 ****
+  	ms -= 'A'; ms *= 1024;	/* yes, make compressed three-byte form */
+  	ms += ((*s++ - 'A') * 32);
+  	if (*s) ms += *s++ - 'A';
+! 	if (*s) ms = 'Z';	/* more than three characters */
+        }
+        /* This is not intended to be a comprehensive list of all possible
+         * timezone strings.  Such a list would be impractical.  Rather, this
+--- 1344,1350 ----
+  	ms -= 'A'; ms *= 1024;	/* yes, make compressed three-byte form */
+  	ms += ((*s++ - 'A') * 32);
+  	if (*s) ms += *s++ - 'A';
+! 	if (*s) ms = '\0';	/* more than three characters */
+        }
+        /* This is not intended to be a comprehensive list of all possible
+         * timezone strings.  Such a list would be impractical.  Rather, this
+*** imap/non-ANSI/c-client/mmdf.c.orig	Tue May 21 16:07:44 1996
+--- imap/non-ANSI/c-client/mmdf.c	Tue Oct 15 15:20:35 1996
+***************
+*** 1121,1127 ****
+    time_t t;
+    struct stat sb;
+  				/* build lock filename */
+!   if (chk_notsymlink (strcat (dummy_file (lock,file),".lock"))) do {
+      t = time (0);		/* get the time now */
+  #ifdef NFSKLUDGE
+    /* SUN-OS had an NFS, As kludgy as an albatross;
+--- 1121,1127 ----
+    time_t t;
+    struct stat sb;
+  				/* build lock filename */
+!   if (chk_notsymlink (strcat (dummy_file (lock,file),".lock"),NIL)) do {
+      t = time (0);		/* get the time now */
+  #ifdef NFSKLUDGE
+    /* SUN-OS had an NFS, As kludgy as an albatross;
+*** imap/non-ANSI/c-client/mtx.c.orig	Tue May 21 16:03:18 1996
+--- imap/non-ANSI/c-client/mtx.c	Tue Oct 15 15:21:55 1996
+***************
+*** 1272,1278 ****
+    if (!fstat (fd,&sbuf)) {	/* get data for this file */
+  				/* make temporary file name */
+      sprintf (lock,"/tmp/.%hx.%lx",sbuf.st_dev,sbuf.st_ino);
+!     if (chk_notsymlink (lock) &&
+  	((ld = open (lock,O_RDWR|O_CREAT,
+  		     (int)mail_parameters(NIL,GET_LOCKPROTECTION,NIL))) >= 0)){
+        flock (ld,op);		/* get this lock */
+--- 1272,1278 ----
+    if (!fstat (fd,&sbuf)) {	/* get data for this file */
+  				/* make temporary file name */
+      sprintf (lock,"/tmp/.%hx.%lx",sbuf.st_dev,sbuf.st_ino);
+!     if (chk_notsymlink (lock,T) &&
+  	((ld = open (lock,O_RDWR|O_CREAT,
+  		     (int)mail_parameters(NIL,GET_LOCKPROTECTION,NIL))) >= 0)){
+        flock (ld,op);		/* get this lock */
+*** imap/non-ANSI/c-client/pop3.c.orig	Wed Feb 15 22:49:04 1995
+--- imap/non-ANSI/c-client/pop3.c	Tue Oct 22 13:06:12 1996
+***************
+*** 947,952 ****
+--- 947,953 ----
+  	char *args;
+  {
+    char tmp[MAILTMPLEN];
++   if (!LOCAL->tcpstream) return pop3_fake (stream,"No-op dead stream");
+  				/* build the complete command */
+    if (args) sprintf (tmp,"%s %s",command,args);
+    else strcpy (tmp,command);
+***************
+*** 966,971 ****
+--- 967,973 ----
+  	MAILSTREAM *stream;
+  {
+    char *s;
++   if (!LOCAL->tcpstream) return pop3_fake (stream,"No-op dead stream");
+  				/* flush old reply */
+    if (LOCAL->response) fs_give ((void **) &LOCAL->response);
+    				/* get reply */
+*** imap/non-ANSI/c-client/tcp_unix.c.orig	Tue Apr  9 12:44:53 1996
+--- imap/non-ANSI/c-client/tcp_unix.c	Tue Oct 15 15:27:58 1996
+***************
+*** 199,207 ****
+--- 199,209 ----
+  	 (errno == EINTR));
+    if (i > 0) {			/* success, make sure really connected */
+      fcntl (sock,F_SETFL,flgs);	/* restore blocking status */
++ #ifndef SOLARISKERNELBUG
+  				/* get socket status */
+      while ((i = read (sock,tmp,0)) < 0 && errno == EINTR);
+      if (!i) i = 1;		/* make success if the read is OK */
++ #endif
+    }
+    if (i <= 0) {			/* timeout or error? */
+      sprintf (tmp,"Can't connect to %.80s,%d: %s",hostname,port,
+*** imap/non-ANSI/c-client/tenex2.c.orig	Tue May 21 16:03:20 1996
+--- imap/non-ANSI/c-client/tenex2.c	Tue Oct 15 15:21:44 1996
+***************
+*** 1298,1304 ****
+    if (!fstat (fd,&sbuf)) {	/* get data for this file */
+  				/* make temporary file name */
+      sprintf (lock,"/tmp/.%hx.%lx",sbuf.st_dev,sbuf.st_ino);
+!     if (chk_notsymlink (lock) &&
+  	((ld = open (lock,O_RDWR|O_CREAT,
+  		     (int)mail_parameters(NIL,GET_LOCKPROTECTION,NIL))) >= 0)){
+        flock (ld,op);		/* get this lock */
+--- 1298,1304 ----
+    if (!fstat (fd,&sbuf)) {	/* get data for this file */
+  				/* make temporary file name */
+      sprintf (lock,"/tmp/.%hx.%lx",sbuf.st_dev,sbuf.st_ino);
+!     if (chk_notsymlink (lock,T) &&
+  	((ld = open (lock,O_RDWR|O_CREAT,
+  		     (int)mail_parameters(NIL,GET_LOCKPROTECTION,NIL))) >= 0)){
+        flock (ld,op);		/* get this lock */
+*** pico/makefile.a41.orig	Tue Jul  9 18:11:54 1996
+--- pico/makefile.a41	Tue Aug 13 15:26:46 1996
+***************
+*** 46,56 ****
+  
+  OFILES=		ansi.o attach.o basic.o bind.o browse.o buffer.o \
+  		composer.o display.o file.o fileio.o line.o osdep.o \
+! 		pico.o random.o region.o search.o spell.o tcap.o window.o word.o
+  
+  CFILES=		ansi.c attach.c basic.c bind.c browse.c buffer.c \
+  		composer.c display.c file.c fileio.c line.c osdep.c \
+! 		pico.c random.c region.c search.c spell.c tcap.c window.c word.c
+  
+  HFILES=		estruct.h edef.h efunc.h ebind.h pico.h
+  
+--- 46,56 ----
+  
+  OFILES=		ansi.o attach.o basic.o bind.o browse.o buffer.o \
+  		composer.o display.o file.o fileio.o line.o osdep.o \
+! 		pico.o random.o region.o search.o spell.o tinfo.o window.o word.o
+  
+  CFILES=		ansi.c attach.c basic.c bind.c browse.c buffer.c \
+  		composer.c display.c file.c fileio.c line.c osdep.c \
+! 		pico.c random.c region.c search.c spell.c tinfo.c window.c word.c
+  
+  HFILES=		estruct.h edef.h efunc.h ebind.h pico.h
+  
+*** pine/addrbook.c.orig	Fri Jun  7 11:32:09 1996
+--- pine/addrbook.c	Thu Sep 26 15:50:13 1996
+***************
+*** 473,478 ****
+--- 473,482 ----
+  void           redraw_addr_screen PROTO((void));
+  void           restore_state PROTO((SAVE_STATE_S *));
+  void           rfc822_write_address_decode PROTO((char *, ADDRESS *, char **));
++ ADDRESS       *abe_to_address PROTO((AdrBk_Entry *, AddrScrn_Disp *,
++ 				     AdrBk *, int *));
++ char          *abe_to_nick_or_addr_string PROTO((AdrBk_Entry *,
++ 						 AddrScrn_Disp *, AdrBk *));
+  void           save_state PROTO((SAVE_STATE_S *));
+  int            search_book PROTO((long, int, long *, int *, int *));
+  int            search_in_one_line PROTO((AddrScrn_Disp *, AdrBk_Entry *, char *,
+***************
+*** 4847,4852 ****
+--- 4851,4857 ----
+  		  BuildTo        bldto;
+  		  char          *to    = NULL;
+  		  char          *error = NULL;
++ 		  AdrBk_Entry   *abe;
+  
+  		  dl = dlist(as.top_ent+as.cur_row);
+  
+***************
+*** 4875,4881 ****
+  		  else if(as.checkboxes){
+  		      size_t incr = 100, avail, alloced;
+  		      int ind;
+- 		      AdrBk_Entry *abe;
+  
+  		      /*
+  		       * Have to run through all of the checked entries
+--- 4880,4885 ----
+***************
+*** 4901,4906 ****
+--- 4905,4912 ----
+  		      for(i = 0; i < as.n_addrbk; i++){
+  			  EXPANDED_S *next_one;
+  			  adrbk_cntr_t num;
++ 			  AddrScrn_Disp fake_dl;
++ 			  char *a_string;
+  
+  			  pab = &as.adrbks[i];
+  			  if(pab->address_book)
+***************
+*** 4911,4923 ****
+  			  while((num = entry_get_next(&next_one)) != NO_NEXT){
+  			      abe = adrbk_get_ae(pab->address_book,
+  						 (a_c_arg_t)num, Normal);
+  			      if(selecting_mult_nicks && return_array){
+! 				  (*return_array)[ind++]
+! 				      = cpystr(abe ? abe->nickname : "");
+  			      }
+  			      else{
+  				  while(abe && avail
+! 					  < (size_t)strlen(abe->nickname)+1){
+  				      alloced += incr;
+  				      avail   += incr;
+  				      fs_resize((void **)&to, alloced);
+--- 4917,4942 ----
+  			  while((num = entry_get_next(&next_one)) != NO_NEXT){
+  			      abe = adrbk_get_ae(pab->address_book,
+  						 (a_c_arg_t)num, Normal);
++ 			      /*
++ 			       * Since we're picking up address book entries
++ 			       * directly from the address books and have
++ 			       * no knowledge of the display lines they came
++ 			       * from, we don't know the dl's that go with
++ 			       * them.  We need to pass a dl to abe_to_nick
++ 			       * but it really is only going to use the
++ 			       * type in this case.
++ 			       */
++ 			      dl = &fake_dl;
++ 			      dl->type = (abe->tag == Single) ? Simple
++ 							      : ListHead;
++ 			      a_string = abe_to_nick_or_addr_string(abe,
++ 							 dl, pab->address_book);
+  			      if(selecting_mult_nicks && return_array){
+! 				  (*return_array)[ind++] = a_string;
+  			      }
+  			      else{
+  				  while(abe && avail
+! 					  < (size_t)strlen(a_string)+1){
+  				      alloced += incr;
+  				      avail   += incr;
+  				      fs_resize((void **)&to, alloced);
+***************
+*** 4924,4936 ****
+  				  }
+  
+  				  if(!*to)
+! 				    strcpy(to, abe ? abe->nickname : "");
+  				  else{
+  				      strcat(to, ",");
+! 				      strcat(to, abe ? abe->nickname : "");
+  				  }
+  
+! 				  avail -= (strlen(abe?abe->nickname:"")+1);
+  			      }
+  			  }
+  		      }
+--- 4943,4955 ----
+  				  }
+  
+  				  if(!*to)
+! 				    strcpy(to, a_string);
+  				  else{
+  				      strcat(to, ",");
+! 				      strcat(to, a_string);
+  				  }
+  
+! 				  avail -= (strlen(a_string) + 1);
+  			      }
+  			  }
+  		      }
+***************
+*** 4940,4945 ****
+--- 4959,4967 ----
+  		       * correct fullname can make it to the To line.
+  		       * If we expand it ahead of time, the list name
+  		       * and first user's fullname will get mushed together.
++ 		       * If an entry doesn't have a nickname then we're
++ 		       * out of luck as far as getting the right entry
++ 		       * in the To line goes.
+  		       */
+  		      if(selecting_mult_nicks){
+  			  if(return_array)
+***************
+*** 4960,4967 ****
+  			    break;
+  			}
+  			else{
+- 			    AdrBk_Entry *abe;
+- 
+  			    /*
+  			     * Even though we're supposedly selecting
+  			     * nicknames, we have a special case here to
+--- 4982,4987 ----
+***************
+*** 4971,4986 ****
+  			     * composer, and it allows somebody to mail to
+  			     * a single member of a distribution list.
+  			     */
+- 			    if(dl->type == ListEnt){
+- 				return(cpystr(listmem_from_dl(pab->address_book,
+- 							      dl)));
+- 			    }
+- 			    else{
+  				abe = ae(as.top_ent+as.cur_row);
+! 				return(cpystr(abe ? abe->nickname : ""));
+  			    }
+  			}
+- 		      }
+  		      else{
+  			  if(dl->type == ListEnt){
+  			      bldto.type    = Str;
+--- 4991,5001 ----
+  			     * composer, and it allows somebody to mail to
+  			     * a single member of a distribution list.
+  			     */
+  			    abe = ae(as.top_ent+as.cur_row);
+! 			    return(abe_to_nick_or_addr_string(abe, dl,
+! 							    pab->address_book));
+  			}
+  		      }
+  		      else{
+  			  if(dl->type == ListEnt){
+  			      bldto.type    = Str;
+***************
+*** 10587,10593 ****
+--- 10602,10628 ----
+      AdrBk_Entry *abe;
+      char        *ret = NULL;
+      SAVE_STATE_S state;
++     jmp_buf	 save_jmp_buf;
+  
++     state.savep = NULL;
++     state.stp = NULL;
++     state.dlc_to_warp_to = NULL;
++ 
++     memcpy(save_jmp_buf, addrbook_changed_unexpectedly, sizeof(jmp_buf));
++     if(setjmp(addrbook_changed_unexpectedly)){
++ 	if(state.savep)
++ 	  fs_give((void **)&(state.savep));
++ 	if(state.stp)
++ 	  fs_give((void **)&(state.stp));
++ 	if(state.dlc_to_warp_to)
++ 	  fs_give((void **)&(state.dlc_to_warp_to));
++ 
++ 	q_status_message(SM_ORDER, 3, 5, "Resetting address book...");
++ 	dprint(1, (debugfile,
++ 	    "RESETTING address book... get_nickname_from_addr()!\n"));
++ 	addrbook_reset();
++     }
++ 
+      init_ab_if_needed();
+      save_state(&state);
+  
+***************
+*** 10618,10624 ****
+--- 10653,10679 ----
+      AdrBk_Entry *abe;
+      char        *ret = NULL;
+      SAVE_STATE_S state;
++     jmp_buf	 save_jmp_buf;
+  
++     state.savep = NULL;
++     state.stp = NULL;
++     state.dlc_to_warp_to = NULL;
++ 
++     memcpy(save_jmp_buf, addrbook_changed_unexpectedly, sizeof(jmp_buf));
++     if(setjmp(addrbook_changed_unexpectedly)){
++ 	if(state.savep)
++ 	  fs_give((void **)&(state.savep));
++ 	if(state.stp)
++ 	  fs_give((void **)&(state.stp));
++ 	if(state.dlc_to_warp_to)
++ 	  fs_give((void **)&(state.dlc_to_warp_to));
++ 
++ 	q_status_message(SM_ORDER, 3, 5, "Resetting address book...");
++ 	dprint(1, (debugfile,
++ 	    "RESETTING address book... get_fcc_from_addr()!\n"));
++ 	addrbook_reset();
++     }
++ 
+      init_ab_if_needed();
+      save_state(&state);
+  
+***************
+*** 10849,10857 ****
+   *       f       -- Function to use to print one address in list.  If NULL,
+   *                  use rfc822_write_address_decode to print whole list.
+   *       verbose -- Include [charset] string if charset doesn't match ours.
+!  * Result:  comma separated list of addresses
+!  *             if buf is non-null, it is returned in buf, else,
+!  *             it is malloced here and returned.
+   *		(the list is rfc1522 decoded unless f is *not* NULL)
+   */
+  char *
+--- 10904,10911 ----
+   *       f       -- Function to use to print one address in list.  If NULL,
+   *                  use rfc822_write_address_decode to print whole list.
+   *       verbose -- Include [charset] string if charset doesn't match ours.
+!  * Result:  comma separated list of addresses which is
+!  *                                     malloced here and returned
+   *		(the list is rfc1522 decoded unless f is *not* NULL)
+   */
+  char *
+***************
+*** 10898,10903 ****
+--- 10952,11084 ----
+  }
+  
+  
++ /*
++  * Turn an AdrBk_Entry into a nickname (if it has a nickname) or a
++  * formatted addr_string which has been rfc1522 decoded.
++  *
++  * Args: abe      -- the AdrBk_Entry
++  *       dl       -- the corresponding dl
++  *       abook    -- which addrbook the abe is in (only used for type ListEnt)
++  *
++  * Result:  allocated string is returned
++  */
++ char *
++ abe_to_nick_or_addr_string(abe, dl, abook)
++     AdrBk_Entry   *abe;
++     AddrScrn_Disp *dl;
++     AdrBk         *abook;
++ {
++     ADDRESS       *addr;
++     char          *a_string;
++ 
++     if(!dl || !abe)
++       return(cpystr(""));
++ 
++     if((dl->type == Simple || dl->type == ListHead)
++        && abe->nickname && abe->nickname[0])
++       return(cpystr(abe->nickname));
++ 
++     addr = abe_to_address(abe, dl, abook, NULL);
++     a_string = addr_list_string(addr, NULL, 0); /* always produces a string */
++     if(addr)
++       mail_free_address(&addr);
++     
++     return(a_string);
++ }
++ 
++ 
++ /*
++  * Turn an AdrBk_Entry into an address list
++  *
++  * Args: abe      -- the AdrBk_Entry
++  *       dl       -- the corresponding dl
++  *       abook    -- which addrbook the abe is in (only used for type ListEnt)
++  *       how_many -- The number of addresses is returned here
++  *
++  * Result:  allocated address list or NULL
++  */
++ ADDRESS *
++ abe_to_address(abe, dl, abook, how_many)
++     AdrBk_Entry   *abe;
++     AddrScrn_Disp *dl;
++     AdrBk         *abook;
++     int           *how_many;
++ {
++     char          *fullname, *tmp_a_string;
++     char          *list, *l1, **l2;
++     char          *fakedomain = "@";
++     ADDRESS       *addr = NULL;
++     size_t         length;
++     int            count = 0;
++ 
++     if(!dl || !abe)
++       return(NULL);
++ 
++     fullname = (abe->fullname && abe->fullname[0]) ? abe->fullname : NULL;
++ 
++     switch(dl->type){
++       case Simple:
++ 	/* rfc822_parse_adrlist feels free to destroy input so send copy */
++ 	tmp_a_string = cpystr(abe->addr.addr);
++ 	rfc822_parse_adrlist(&addr, tmp_a_string, fakedomain);
++ 
++ 	if(tmp_a_string)
++ 	  fs_give((void **)&tmp_a_string);
++ 
++ 	if(fullname){
++ 	    if(addr->personal)
++ 	      fs_give((void **)&addr->personal);
++ 
++ 	    addr->personal = cpystr(adrbk_formatname(fullname));
++ 	}
++ 
++ 	count++;
++         break;
++ 
++       case ListEnt:
++ 	/* rfc822_parse_adrlist feels free to destroy input so send copy */
++ 	tmp_a_string = cpystr(listmem_from_dl(abook, dl));
++ 	rfc822_parse_adrlist(&addr, tmp_a_string, fakedomain);
++ 	if(tmp_a_string)
++ 	  fs_give((void **)&tmp_a_string);
++ 
++ 	count++;
++         break;
++ 
++       case ListHead:
++ 	length = 0;
++ 	for(l2 = abe->addr.list; *l2; l2++)
++ 	  length += (strlen(*l2) + 1);
++ 
++ 	list = (char *)fs_get(length + 1);
++ 	l1 = list;
++ 	for(l2 = abe->addr.list; *l2; l2++){
++ 	    if(l1 != list)
++ 	      *l1++ = ',';
++ 	    strcpy(l1, *l2);
++ 	    l1 += strlen(l1);
++ 	    count++;
++ 	}
++ 
++ 	rfc822_parse_adrlist(&addr, list, fakedomain);
++ 	if(list)
++ 	  fs_give((void **)&list);
++ 
++         break;
++       
++       default:
++ 	dprint(2,
++ 	   (debugfile, "default case in abe_to_address, shouldn't happen\n"));
++ 	break;
++     } 
++ 
++     if(how_many)
++       *how_many = count;
++ 
++     return(addr);
++ }
++ 
++ 
+  /* Write RFC822 address with 1522 decoding of personal name
+   * Accepts: pointer to destination string
+   *	    address to interpret
+***************
+*** 13647,13659 ****
+      ADDRESS       *addr, *a, *a2;
+      int            how_many_selected;
+      TA_S          *current;
+-     char          *fakedomain = "@";
+      AdrBk_Entry   *abe;
+      AddrScrn_Disp *dl;
+-     char          *tmp_a_string;
+-     char          *list, *l1, **l2;
+      char          *fcc, *comment, *fullname, *nickname;
+-     size_t         length;
+      TakeAddrScreenMode mode;
+  
+      dprint(2, (debugfile, "\n - taking address from address book - \n"));
+--- 13828,13836 ----
+***************
+*** 13670,13710 ****
+      how_many_selected = 0;
+      current = NULL;
+  
+      switch(dl->type){
+        case Simple:
+- 	/* rfc822_parse_adrlist feels free to destroy input so send copy */
+- 	tmp_a_string = cpystr(abe->addr.addr);
+- 	addr = NULL;
+- 	rfc822_parse_adrlist(&addr, tmp_a_string, fakedomain);
+- 
+- 	if(tmp_a_string)
+- 	  fs_give((void **)&tmp_a_string);
+- 
+- 	if(fullname){
+- 	    if(addr->personal)
+- 	      fs_give((void **)&addr->personal);
+- 
+- 	    addr->personal = cpystr(adrbk_formatname(fullname));
+- 	}
+- 
+  	mode = SingleMode;
+- 	how_many_selected++;
+  	current = fill_in_ta(&current, addr, 0, (char *)NULL);
+          break;
+  
+        case ListEnt:
+- 	/* rfc822_parse_adrlist feels free to destroy input so send copy */
+- 	tmp_a_string = cpystr(listmem_from_dl(abook, dl));
+- 	addr = NULL;
+- 	rfc822_parse_adrlist(&addr, tmp_a_string, fakedomain);
+- 	if(tmp_a_string)
+- 	  fs_give((void **)&tmp_a_string);
+- 
+- 	if(!addr->personal && fullname)
+- 	  addr->personal = cpystr(adrbk_formatname(fullname));
+- 
+  	mode = SingleMode;
+- 	how_many_selected++;
+  	current = fill_in_ta(&current, addr, 0, (char *)NULL);
+  	fcc = NULL;
+  	comment = NULL;
+--- 13847,13864 ----
+      how_many_selected = 0;
+      current = NULL;
+  
++     addr = abe_to_address(abe, dl, abook, &how_many_selected);
++     if(!addr)
++       return;
++ 
+      switch(dl->type){
+        case Simple:
+  	mode = SingleMode;
+  	current = fill_in_ta(&current, addr, 0, (char *)NULL);
+          break;
+  
+        case ListEnt:
+  	mode = SingleMode;
+  	current = fill_in_ta(&current, addr, 0, (char *)NULL);
+  	fcc = NULL;
+  	comment = NULL;
+***************
+*** 13713,13738 ****
+          break;
+  
+        case ListHead:
+- 	length = 0;
+- 	for(l2 = abe->addr.list; *l2; l2++)
+- 	  length += (strlen(*l2) + 1);
+- 
+- 	list = (char *)fs_get(length + 1);
+- 	l1 = list;
+- 	for(l2 = abe->addr.list; *l2; l2++){
+- 	    if(l1 != list)
+- 	      *l1++ = ',';
+- 	    strcpy(l1, *l2);
+- 	    l1 += strlen(l1);
+- 	    how_many_selected++;
+- 	}
+- 
+- 	addr = NULL;
+- 	rfc822_parse_adrlist(&addr, list, fakedomain);
+  	mode = ListMode;
+- 	if(list)
+- 	  fs_give((void **)&list);
+- 
+  	for(a = addr; a; a = a->next){
+  	    a2 = copyaddr(a);
+  	    current = fill_in_ta(&current, a2, 1, (char *)NULL);
+--- 13867,13873 ----
+*** pine/adrbklib.c.orig	Wed Jun 19 14:33:27 1996
+--- pine/adrbklib.c	Wed Dec 18 10:20:35 1996
+***************
+*** 1392,1399 ****
+      static char line[MAXLINE+1];
+      static char next_nickname[MAX_NICKNAME+1];
+      static char this_nickname[MAX_NICKNAME+1];
+!     static char this_address[MAX_CHARS_IN_HASH+1];
+!     static char next_address[MAX_CHARS_IN_HASH+1];
+      char *p;
+      int   c;
+      char *nickname;
+--- 1392,1399 ----
+      static char line[MAXLINE+1];
+      static char next_nickname[MAX_NICKNAME+1];
+      static char this_nickname[MAX_NICKNAME+1];
+!     static char this_address[MAXLINE+1];
+!     static char next_address[MAXLINE+1];
+      char *p;
+      int   c;
+      char *nickname;
+***************
+*** 1547,1553 ****
+  	    addr = p;
+  	    SKIP_TO_TAB(p);
+  	    *p = '\0';
+! 	    strncpy(next_address, addr, MAX_CHARS_IN_HASH);
+  	}
+  	else
+  	  next_address[0] = '\0';  /* won't happen with good input data */
+--- 1547,1553 ----
+  	    addr = p;
+  	    SKIP_TO_TAB(p);
+  	    *p = '\0';
+! 	    strncpy(next_address, addr, MAXLINE);
+  	}
+  	else
+  	  next_address[0] = '\0';  /* won't happen with good input data */
+***************
+*** 1698,1704 ****
+  	    addr = p;
+  	    SKIP_TO_TAB(p);
+  	    *p = '\0';
+! 	    strncpy(next_address, addr, MAX_CHARS_IN_HASH);
+  	}
+  	else
+  	  next_address[0] = '\0';  /* shouldn't happen */
+--- 1698,1704 ----
+  	    addr = p;
+  	    SKIP_TO_TAB(p);
+  	    *p = '\0';
+! 	    strncpy(next_address, addr, MAXLINE);
+  	}
+  	else
+  	  next_address[0] = '\0';  /* shouldn't happen */
+*** pine/mailcmd.c.orig	Tue Jul  2 18:53:35 1996
+--- pine/mailcmd.c	Fri Jan 10 11:58:30 1997
+***************
+*** 4455,4461 ****
+  	}
+      }
+      else{
+!         for(i = mn_first_cur(msgmap); i > 0L; i = mn_next_cur(msgmap)){
+  	    if(next && F_ON(F_AGG_PRINT_FF, state))
+  	      if(!print_char(FORMFEED))
+  	        break;
+--- 4455,4461 ----
+  	}
+      }
+      else{
+!         for(i = mn_first_cur(msgmap); i > 0L; i = mn_next_cur(msgmap), next++){
+  	    if(next && F_ON(F_AGG_PRINT_FF, state))
+  	      if(!print_char(FORMFEED))
+  	        break;
+***************
+*** 4463,4469 ****
+  	    if(!(e=mail_fetchstructure(state->mail_stream, mn_m2raw(msgmap,i),
+  				       &b))
+  	       || (F_ON(F_FROM_DELIM_IN_PRINT, ps_global)
+! 		   && !bezerk_delimiter(e, print_char, next++))
+  	       || !format_message(mn_m2raw(msgmap, mn_get_cur(msgmap)), e, b,
+  				(FM_NEW_MESS|FM_DO_PRINT), print_char)){
+  	        q_status_message(SM_ORDER | SM_DING, 3, 3,
+--- 4463,4469 ----
+  	    if(!(e=mail_fetchstructure(state->mail_stream, mn_m2raw(msgmap,i),
+  				       &b))
+  	       || (F_ON(F_FROM_DELIM_IN_PRINT, ps_global)
+! 		   && !bezerk_delimiter(e, print_char, next))
+  	       || !format_message(mn_m2raw(msgmap, mn_get_cur(msgmap)), e, b,
+  				(FM_NEW_MESS|FM_DO_PRINT), print_char)){
+  	        q_status_message(SM_ORDER | SM_DING, 3, 3,
+*** pine/pine.h.orig	Thu Jul 11 11:15:44 1996
+--- pine/pine.h	Wed Oct 16 13:39:06 1996
+***************
+*** 63,69 ****
+  #ifndef _PINE_INCLUDED
+  #define _PINE_INCLUDED
+  
+! #define PINE_VERSION		"3.95"
+  #define	PHONE_HOME_VERSION	"395"
+  #define	PHONE_HOME_HOST		"docserver.cac.washington.edu"
+  #define	UPDATE_FOLDER		"{pine.cac.washington.edu:144/anonymous}#news."
+--- 63,69 ----
+  #ifndef _PINE_INCLUDED
+  #define _PINE_INCLUDED
+  
+! #define PINE_VERSION		"3.95q"
+  #define	PHONE_HOME_VERSION	"395"
+  #define	PHONE_HOME_HOST		"docserver.cac.washington.edu"
+  #define	UPDATE_FOLDER		"{pine.cac.washington.edu:144/anonymous}#news."
+*** pine/send.c.orig	Mon Jul  8 11:10:50 1996
+--- pine/send.c	Wed Oct 23 10:54:01 1996
+***************
+*** 5610,5618 ****
+  	}
+  
+  	/* first, write delimiter */
+! 	if(((!in_group && writehdr && f && !(*f)(s, delim))
+  	   || (localcopy && local_so && !local_written
+! 	       && !so_puts(local_so, delim))))
+  	  return(0);
+  
+  	tmp[0]		= '\0';
+--- 5610,5618 ----
+  	}
+  
+  	/* first, write delimiter */
+! 	if(((!in_group||was_start_of_group) && writehdr && f && !(*f)(s,delim))
+  	   || (localcopy && local_so && !local_written
+! 	       && !so_puts(local_so, delim)))
+  	  return(0);
+  
+  	tmp[0]		= '\0';
+***************
+*** 5651,5657 ****
+  	else
+  	  count += i + 2;
+  
+! 	if((!in_group && writehdr && f && !(*f)(s, tmp))
+  	   || (localcopy && local_so && !local_written
+  	       && !so_puts(local_so, tmp)))
+  	  return(0);
+--- 5651,5657 ----
+  	else
+  	  count += i + 2;
+  
+! 	if(((!in_group || was_start_of_group) && writehdr && f && !(*f)(s, tmp))
+  	   || (localcopy && local_so && !local_written
+  	       && !so_puts(local_so, tmp)))
+  	  return(0);
+***************
+*** 5963,5978 ****
+   * l_flust_net - empties gf_io terminal function's buffer
+   */
+  int
+! l_flush_net()
+  {
+      if(c_in_buf){
+  	tmp_20k_buf[c_in_buf] = '\0';
+  
+  	if((l_f && !(*l_f)(l_stream, tmp_20k_buf))
+  	   || (local_so && !local_written && !so_puts(local_so, tmp_20k_buf)))
+  	  return(0);
+  
+  	c_in_buf = 0;
+      }
+  
+      return(1);
+--- 5963,6007 ----
+   * l_flust_net - empties gf_io terminal function's buffer
+   */
+  int
+! l_flush_net(force)
+!     int force;
+  {
+      if(c_in_buf){
++ 	char *p = &tmp_20k_buf[0], *lp = NULL, c = '\0';
++ 
+  	tmp_20k_buf[c_in_buf] = '\0';
++ 	if(!force){
++ 	    /*
++ 	     * The start of each write is expected to be the start of a
++ 	     * "record" (i.e., a CRLF terminated line).  Make sure that is true
++ 	     * else we might screw up SMTP dot quoting...
++ 	     */
++ 	    for(p = tmp_20k_buf, lp = NULL;
++ 		p = strstr(p, "\015\012");
++ 		lp = (p += 2))
++ 	      ;
+  	      
++ 
++ 	    if(!lp && c_in_buf > 2)			/* no CRLF! */
++ 	      for(p = &tmp_20k_buf[c_in_buf] - 2;
++ 		  p > &tmp_20k_buf[0] && *p == '.';
++ 		  p--)					/* find last non-dot */
++ 		;
++ 
++ 	    if(lp && *lp){				/* snippet remains */
++ 		c = *lp;
++ 		*lp = '\0';
++ 	    }
++ 	}
++ 
+  	if((l_f && !(*l_f)(l_stream, tmp_20k_buf))
+  	   || (local_so && !local_written && !so_puts(local_so, tmp_20k_buf)))
+  	  return(0);
+  
+  	c_in_buf = 0;
++ 	if(lp && (*lp = c))				/* Shift text left? */
++ 	  while(tmp_20k_buf[c_in_buf] = *lp)
++ 	    c_in_buf++, lp++;
+      }
+  
+      return(1);
+***************
+*** 5988,5994 ****
+      int c;
+  {
+      tmp_20k_buf[c_in_buf++] = (char) c;
+!     return((c_in_buf >= PIPE_MAX) ? l_flush_net() : TRUE);
+  }
+  
+  
+--- 6017,6023 ----
+      int c;
+  {
+      tmp_20k_buf[c_in_buf++] = (char) c;
+!     return((c_in_buf >= PIPE_MAX) ? l_flush_net(FALSE) : TRUE);
+  }
+  
+  
+***************
+*** 6102,6108 ****
+  	display_message('x');
+  	return(0);
+      }
+!     else if(!l_flush_net()){
+  	return(0);
+      }
+  
+--- 6131,6137 ----
+  	display_message('x');
+  	return(0);
+      }
+!     else if(!l_flush_net(TRUE)){
+  	return(0);
+      }
+  
+*** pine/status.c.orig	Tue May 14 13:00:40 1996
+--- pine/status.c	Tue Aug 13 16:23:29 1996
+***************
+*** 757,762 ****
+--- 757,763 ----
+  		   max((ps_global->ttyo->screen_rows-sizeof(modal_msg))/2, 0));
+  	Write_to_screen(modal_msg);
+  	ClearLine(ps_global->ttyo->screen_rows-1);
++ 	mark_status_dirty();
+  	mark_keymenu_dirty();
+  
+  	while(1){
+*** pine/ttyin.c.orig	Tue Jul  9 16:11:53 1996
+--- pine/ttyin.c	Tue Oct  1 10:54:50 1996
+***************
+*** 679,686 ****
+  	 res = poll (&pollfd, 1, time_out * 1000);
+  	 dprint(9, (debugfile, "poll on tty returned %d, events %d\n",
+  		    res, pollfd.revents));
+! 	 if((pollfd.revents & (POLLERR | POLLHUP | POLLNVAL)) && res >= 0)
+  	   res = -1;		/* exit below! */
+  #else
+  	 FD_ZERO(&readfds);
+  	 FD_ZERO(&errfds);
+--- 679,690 ----
+  	 res = poll (&pollfd, 1, time_out * 1000);
+  	 dprint(9, (debugfile, "poll on tty returned %d, events %d\n",
+  		    res, pollfd.revents));
+! 	 if((pollfd.revents & (POLLERR | POLLHUP | POLLNVAL)) && res >= 0){
+! 	     if(pollfd.revents & POLLHUP)
+! 	       read_bail();		/* non tragic */
+! 	     else
+  	       res = -1;		/* exit below! */
++ 	 }
+  #else
+  	 FD_ZERO(&readfds);
+  	 FD_ZERO(&errfds);

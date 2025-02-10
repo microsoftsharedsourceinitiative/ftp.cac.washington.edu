@@ -1,0 +1,57 @@
+Revised 2006.04.20
+
+----------------------------------------------------------------------------
+                  University of Washington e-mail tools
+----------------------------------------------------------------------------
+
+NOTE!!!!  All Pine files can now be found in the /pine directory
+          of this server, also accessible as /mail/PINE.
+          A courtesy link for pine.tar.Z remains in /mail.
+
+----------------------------------------------------------------------------
+
+FILES IN THE /mail DIRECTORY:
+  README           - This file.
+  imap.tar.Z       - IMAP developer's kits; includes sources for imapd 
+                     server, mailutil utility, pop2 and pop3 servers, 
+                     and c-client library.
+  imap-????.DEV.tar.Z
+                   - Development snapshot of next version.
+  pine.tar.Z       - Pine/Pico/IMAPd source distribution for latest version
+
+FILES IN THE /mail/imap.rfcs DIRECTORY:
+  All current IMAP-related RFCs.
+
+FILES IN THE /mail/powertools DIRECTORY:
+  Additional unsupported programs.
+
+FILES IN THE /mail/imap-wg DIRECTORY:
+  Miscellaneous files relating to the IETF IMAP Working Group for the
+  standardization of the Internet Message Access Protocol.
+
+FILES IN THE /mail/mime-examples DIRECTORY:
+  barbershop.mbox	- MIME demonstration message
+  multimedia-demo.mbox  - MIME torture test mailbox
+
+FILES IN THE /mail/historical/interlisp DIRECTORY:
+  M-D (Xerox Lisp machine IMAP client) source distribution.
+
+FILES IN THE /mail/historical/next DIRECTORY:
+  EasyMail.tar.Z   - EasyMail source distribution for latest version
+  MailManager.tar.Z - MailManager source distribution for latest version
+
+FILES IN THE /mail/historical/tops-20 DIRECTORY:
+  Source files used to build an IMAP2 server for TOPS-20.
+
+
+----------------------------------------------------------------------------
+                              LEGAL NOTICES
+----------------------------------------------------------------------------
+
+ --> All UW Software is copyrighted by the University of Washington
+ --> Pine and Pico are trademarks of the University of Washington
+ --> Use of IMAP mailing list message archives for the compilation of email 
+     address lists for commercial purposes is prohibited (Chapter 42.17 RCW).
+----------------------------------------------------------------------------
+                                END README
+----------------------------------------------------------------------------

@@ -1,0 +1,361 @@
+From gray@cac.washington.edu Sat Nov  6 20:47:15 1993
+Date: Thu, 4 Nov 1993 23:24:02 -0800 (PST)
+From: Terry Gray <gray@cac.washington.edu>
+To: imap@cac.washington.edu
+Subject: Houston IETF IMAP WG Mtg Notes
+
+
+SUMMARY
+
+On Monday (1 Nov 1993) 27 people convened for the first of two scheduled IMAP
+WG sessions (although only 21 signed the attendance sheet!) On Tues, a proper
+subset of around a dozen stalwarts carried on.  For the continuation session
+after dinner, we were down to six, and there were two different ad hoc
+"midnight subcommittee" meetings... 
+
+The 15 original agenda items and 4 new ones were all considered.
+Considerable progress was made on all fronts. One notable result: on
+Monday the group agreed that the acronym "IMAP" should be remapped to the
+words "Internet Message Access Protocol" to better reflect what the
+protocol has evolved into. 
+
+There are three remaining work items:
+
+ -John Myers to propose an additional set of protocol-specified
+  special information tokens.
+
+ -Chris Newman to propose a revised hierarchy support solution
+  based on conceptual agreement reached at the meeting.
+
+ -Chris Newman to propose a syntax for an IMAP "meta" namespace,
+  to allow unambiguous identification of multiple namespaces.
+
+A new draft, incorporating at least some of the above three pending items and
+all of the other agreed upon items is expected around 12 November 1993. 
+
+All in all, a very productive meeting!
+
+--------------------------------------------------------------------------
+
+RESOLUTION OF SPECIFIC AGENDA ITEMS (in no particular order)
+
+1. Is the UID AFTER construct now superfluous?
+	-> YES; delete UID AFTER
+2. Should John Myers' Quota extension be included in the draft?
+	-> NO; requires future study.
+3. How useful is selective header fetch (vs. fetch 822 and grep)?
+	-> Useful enough to keep in the spec.
+4. Format of special information tokens which have args (UNSEEN).
+	-> Change syntax so value is inside square brackets
+5. Definition of special information tokens for error conditions.
+	-> Agreed they are useful if situation might require client to take
+	   action "behind the scenes', e.g. TRYCREATE
+	-> No consensus on using these protocol-specified strings as an
+	   interim method to allow internationalization (client could
+	   index into local-language error message table.)
+	-> John Myers to formulate specific proposal for additions to spec.
+6. Mstring grammar.
+	-> Objection to current definition was dropped.
+7. RFC-1522 search strings.  Is current spec wording OK?
+	-> Wording revised.
+8. Additional non-ascii issues (cf.  Peter Svanberg, Olle Jarnefors).
+	-> New wording resulted.
+9. Extended search.  (Define in imap2bis, or defer to separate RFC?)
+	-> John Myer's proposal accepted with some modifications;
+	   especially NOT will be allowed in front of groups, and patterns
+	   (wildcards) will not be allowed at this time because of unknown
+	   interactions with international character strings.
+10. How to support hierarchy.
+	-> Conceptual agreement reached on a hybrid proposal; abandoned
+	   idea that client should define hierarchy, lest there be no 
+	   hope of any consistency across clients.  Rather, client should
+	   present server (mailbox driver's) view of hierarchy to allow
+	   users to use pathnames discovered via docs, voice, or msgs.
+	-> Chris Newman to do syntax engineering and submit revised proposal.
+11. Global vs. private flags... consistency across servers/clients
+	-> New unsolicited responses will indicate which flags are stored
+	   permanently on the server, and which ones the client can update,
+	   and whether a client can add new ones.
+12. Namespace/driver selection, esp. for non-filesystem drivers.
+	-> "Rough Consensus" that there are multiple well-entrenched 
+	   namespaces in the world that we need to deal with, and they
+	   don't divide cleanly into the MAILBOX and BBOARD namespaces.
+	-> Examples: filesystem-based mail, news, ftp archives, gopher
+	   collections, other non-filesystem mailbox namespaces.
+	-> Chris Newman to propose constructs to allow specification
+	   and/or merging of multiplicity of namespaces into one IMAP
+	   "meta" namespace.
+13. How useful is the BBOARD construct?
+	-> "Rough Consensus" that if Chris is able to come up with a
+	   satisfactory namespace syntax that BBOARD construct should
+	   be deprecated on the grounds that eliminating BBOARD simplifies
+	   the protocol, "two" namespaces is either too few or too many, and
+	   in some cases forcing "real world" namespaces into either MAILBOX
+	   or BBOARD can result in artificial and confusing distinctions
+	   for the user.
+14. Should "IMAP" == "Internet Message Access Protocol"
+	-> YES.  Agreed that the new words are more descriptive of what
+	   the protocol has evolved into.
+15. Revise the milestones in the WG's charter.
+	-> No revision required (yet).  December goal for Proposed Standard
+	   submission still thought plausible.
+
+Additional issues since agenda was posted before the mtg:
+
+16. Protocol feature negotiation
+	-> Prevailing wisdom was sustained, namely: if there had been two
+	   clear epochs of IMAP software, it might make sense to have a
+	   version mechanism, but capabilities of both clients and servers
+	   have evolved gradually, so there is a real hodgepodge of 
+	   capabilities in the installed base.  Accordingly, the client
+	   must probe individually each post-RFC-1176 function anyway to
+	   see if the server supports it.  If individual probing is
+	   necessary, then having a single command to return capabilities
+	   doesn't offer any significant simplification of the client. 
+	-> Each new feature must have a specified way of probing for its
+	   existence without changing server state.
+17. Change definition of internal date
+	-> Agreed to change definition of internal date to be the "date of 
+	   final delivery as defined in RFC-821."
+	-> Agreed to preserve internal date on COPY and APPEND.
+18. PEM vs. MIME vs. IMAP  (compute checksum on server?)
+	-> Integrity-protected PEM messages allow for the possibility of
+	   having the server compute the MD5 checksum, and let the client
+	   compare it with the sealed checksum sent in the message.
+	   The advantage is that the client can then verify integrity
+	   without fetching the entire message, as long as it is willing
+	   to trust the server to send the real message on subsequent
+	   fetches.  It was agreed that, given the prospect of large
+	   body parts the client might not want, this would be a good
+	   feature to include. 
+	-> Confidentiality-protected (encrypted) PEM messages (or 
+	   individual body parts), will be structurally opaque.  However, 
+	   it is possible to fetch the portion of the message containing
+	   the sealed key, unseal it on the client, hand it back to the
+	   server, and have the server decrypt the body part, thence 
+	   allowing the server to parse the MIME structure and allow
+	   subsequent fetching of individual body parts.
+	-> A "midnight ad hoc task force" identified wording to define
+	   extensions for both of the above cases.
+19. Fetch Peek
+	-> This was a non-controversial extension to allow fetching
+	   messages without setting the \SEEN flag, as one might like
+	   to do for disconnected operation.
+
+Additions, clarifications, corrections, and comments are all welcome.
+
+-teg
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+From gray@cac.washington.edu Sat Nov  6 20:47:24 1993
+Date: Sat, 6 Nov 1993 20:16:18 -0800 (PST)
+From: Terry Gray <gray@cac.washington.edu>
+To: imap@cac.washington.edu
+Subject: Namespace notes from IMAP WG mtg
+
+Here are some of the "slides" used in discussing the IMAP namespace and
+hierarchy issues at last week's Houston IETF meeting.  In a few cases I've
+modified the wording from the original to better reflect the consensus of
+those present, and the section on relative navigation will be unfamiliar
+to those attending the mtg because --perhaps in the euphoria of the
+progress we were making-- that slide was omitted...
+
+-teg
+
+-----------------------------------------------------------------------
+
+NAMESPACE ASSUMPTIONS
+
+1. Multiple namespaces exist and are entrenched in the world.
+
+2. People get pathnames via multiple channels (e.g. print, voice, msgs)
+
+3. It is unlikely that we can propose a OneTrueNamespace that will 
+   supersede existing practice.
+
+4. Therefore: clients that allow pathname input should allow input of a 
+   context-specific path syntax.
+
+5. Most users are well-served by relative navigation, but sometimes will
+   want to enter full path names.
+
+6. A single server may export multiple namespaces, 
+   e.g. comp.mail.misc and ~ftp/mail/imap.archive
+
+7. Namespaces are ultimately defined by IMAP mailbox drivers: some 
+   reflect their OS filesystem, some do not.
+
+---------------------------
+
+PHILOSOPHICAL CHOICES
+
+1. Clients present native server namespaces to users.
+
+2. Each client defines its own namespace.
+
+3. Everyone agrees on one (or two) namespaces.
+
+---------------------------
+
+BIG QUESTION
+
+  Should a given UA accept/present all hierarchies from all servers in the 
+  same way (i.e. accept pathnames from user only in OneTrueSyntax)... 
+OR...
+  Should clients reflect/present the multiplicity of server namespaces?
+
+<Assumptions argue for the latter.>
+
+  IF clients pick their own hierarchy syntax, should all clients adopt the
+  *same* OneTrueSyntax? 
+
+<Cross-client UI compatibility would argue in favor, but assumption #3
+ says this approach is unlikely to sell.>
+
+---------------------------
+
+HIERARCHY PROPOSALS
+
+1. OneTrueSyntax: world domination (supersedes existing practice).
+
+  <Unlikely to get agreement.>
+
+2. OneTrueSyntax: clients & servers map between OTS and existing practice.
+
+  <Since *both* ends must map to existing conventions, why bother?>
+
+3. TwoTrueSyntaxes:
+	-MAILBOX --> foo/bar
+	-BBOARD  --> foo.bar
+
+  <Unlikely to get agreement.  And there is always foo\bar...>
+
+4. Server-exported hierarchy.
+
+  <Viewed --esp. by server implementors-- as unnecessarily complex.>
+
+5. Flatlander.
+
+  <Can do better...>
+
+6. Modified Flatlander.
+
+  <See below...>
+
+----------------------------
+
+MODIFIED FLATLANDER
+
+Goals/Premises:
+ -Still uses fully-qualified names across the wire.
+ -Should allow easy use of natural hierarchy of each server namespace.
+ -Client should not need to know the separator character for any namespace.
+ -Client is not allowed to specify a separator character.
+ -Should blur distinction between terminals and non-terminals (directories)
+  so that existing CREATE, DELETE, RENAME operations can be used for both.
+
+Detailed proposal to follow from Chris Newman.
+
+---------------------------
+
+RELATIVE NAVIGATION
+
+ o Think of Relative Navigation as "simple names" plus "change directory".
+
+ o Useful abstraction for users; therefore, client builders would like to
+   have primitives that match the relative navigation abstraction.
+
+ o RN can be implemented in:
+	-client or client's engine/library.
+	-in protocol and therefore also in server.
+
+ o RN primitives may exist in either a flatlander model or a server-exported
+   hierarchy model.
+
+ o If RN primitives are implemented on server (esp. with server-exported 
+   hierarchy), changing directory to parent can be ambiguous if the
+   current directory has more than one parent.
+
+ o In a flatland view using FQNs, the change-directory primitive may be
+   modeled as a "set prefix" in order to avoid ambiguity when there are 
+   multiple parents.  (A stack of pointers into the prefix string would
+   define each level traversed, and allow unambiguous return to the next 
+   higher level.)
+
+ o Special care must be taken in flatlander model to design things so 
+   that the client does not need to know what the natural separator 
+   character is for any given namespace, and to recognize that a server
+   may export more than one kind of namespace.
+
+ o Advantages of implementing RN primitives on server:
+	-simplifies client.
+	-increases consistency across clients.
+	-avoids buggy server that might return FQNs that don't match prefix.
+
+ o Advantages of implementing RN primitives on client:
+	-simplifies protocol
+	-simplifies server
+
+ o Either way, many clients would like to avoid knowing about path 
+   separators, and to do this effectively, they must implement a prefix
+   stack anyway to keep track of what "the next level up" really is;
+   therefore, there seems to be little benefit to doing the same thing on
+   the server. 
+
+---------------------------
+
+NAMESPACE SELECTION
+
+       Real World					IMAP
+       ----------					----
+
+  o Personal filesystem					o MAILBOX
+  o News						o BBOARD
+  o ~ftp/
+  o "carmel"
+  o "oracle"
+  o "gopher"
+
+
+A proposal for a "prefix syntax" to allow identification of 
+multiple namespaces, will be forthcoming from Chris Newman.
+
+---------------------------
+
+MESSAGE COLLECTION TAXONOMY: 3 KINDS...
+
+1. Personal/Private
+
+	-User may CREATE new mailboxes.
+	-User may modify existing mailboxes (data and flags).
+	-User may define mailbox relationships (collections, hierarchy).
+
+2. Shared (RW or RO)
+
+	-Combination of both private and public attributes.
+	-Actions of one user may affect others.
+
+3. Public/Anonymous
+
+	-User may not CREATE.
+	-User may not define relationships.
+	-User may not modify data or flags.
+	-User typically lacks an account on server, therefore...
+	-Personal state must be stored separately and used by client.
+
+
+-----------------------
+

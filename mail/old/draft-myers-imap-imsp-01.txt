@@ -1,0 +1,3304 @@
+
+Network Working Group                                        J. G. Myers
+Internet Draft: IMSP                                     Carnegie Mellon
+Document: internet-drafts/draft-myers-imap-imsp-01.txt      October 1994
+
+
+               IMSP -- Internet Message Support Protocol
+
+
+Status of this Memo
+
+   This document is an Internet Draft.  Internet Drafts are working
+   documents of the Internet Engineering Task Force (IETF), its Areas,
+   and its Working Groups.  Note that other groups may also distribute
+   working documents as Internet Drafts.
+
+   Internet Drafts are draft documents valid for a maximum of six
+   months.  Internet Drafts may be updated, replaced, or obsoleted by
+   other documents at any time.  It is not appropriate to use Internet
+   Drafts as reference material or to cite them other than as a
+   ``working draft'' or ``work in progress``.
+
+   To learn the current status of any Internet-Draft, please check the
+   1id-abstracts.txt listing contained in the Internet-Drafts Shadow
+   Directories on ds.internic.net, nic.nordu.net, ftp.isi.edu, or
+   munnari.oz.au.
+
+   This document suggests a proposed protocol for the Internet
+   community, and requests discussion and suggestions for improvements.
+   Distribution of this draft is unlimited.  This document will expire
+   before April 25, 1995.
+
+   The protocol discussed in this document is experimental and subject
+   to change.  Persons planning on either implementing or using this
+   protocol are STRONGLY URGED to get in touch with the author before
+   embarking on such a project.
+
+
+Abstract
+
+   The Internet Message Support Protocol (IMSP) is designed to support
+   the provision of mail in a medium to large scale operation.  It is
+   intended to be used as a companion to the IMAP4 protocol [IMAP4],
+   providing services which are either outside the scope of mail access
+   or which pertain to environments which must run more than one IMAP4
+   server in the same mail domain.  The services that IMSP provides are
+   extended mailbox management, configuration options, and address
+   books.
+
+
+
+
+Myers                                                           [Page i]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+
+
+
+                           Table of Contents
+
+
+
+Status of this Memo ...............................................    i
+Abstract ..........................................................    i
+IMSP Protocol Specification .......................................    1
+1.      Conventions Used in this Document .........................    1
+2.      Protocol Overview .........................................    1
+2.1.    Link Level ................................................    1
+2.2.    Commands and Responses ....................................    1
+2.2.1.  Client Protocol Sender and Server Protocol Receiver .......    1
+2.2.2.  Server Protocol Sender and Client Protocol Receiver .......    2
+3.      State and Flow Diagram ....................................    4
+3.1.    Non-Authenticated State ...................................    4
+3.2.    Authenticated State .......................................    4
+3.3.    Logout State ..............................................    4
+4.      Data Formats ..............................................    6
+4.1.    Atom ......................................................    6
+4.2.    Number ....................................................    6
+4.3.    String ....................................................    6
+4.3.1.  8-bit and Binary Strings ..................................    7
+5.      Operational Considerations ................................    8
+5.1.    Mailbox Naming ............................................    8
+5.2.    Untagged Status Updates ...................................    8
+5.3.    Response when no Command in Progress ......................    8
+5.4.    Autologout Timer ..........................................    8
+5.5.    Multiple Commands in Progress .............................    8
+5.6.    IMAP4 Protocol Fallback ...................................    9
+6.      Client Commands ...........................................   10
+6.1.    Client Commands - Any State ...............................   10
+6.1.1.  CAPABILITY Command ........................................   10
+6.1.2.  NOOP Command ..............................................   11
+6.1.3.  LOGOUT Command ............................................   11
+6.2.    Client Commands - Non-Authenticated State .................   12
+6.2.1.  AUTHENTICATE Command ......................................   12
+6.2.2.  LOGIN Command .............................................   13
+6.3.    Client Commands - Mailbox management ......................   14
+6.3.1.  CREATE Command ............................................   14
+6.3.2.  DELETE Command ............................................   15
+6.3.3.  RENAME Command ............................................   16
+6.3.4.  REPLACE Command ...........................................   16
+6.3.5.  MOVE Command ..............................................   17
+6.3.6.  SUBSCRIBE Command .........................................   17
+6.3.7.  UNSUBSCRIBE Command .......................................   18
+
+
+
+Myers                                                         [Page iii]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+6.3.8.  LIST Command ..............................................   18
+6.3.9.  LSUB Command ..............................................   20
+6.3.10. LMARKED Command ...........................................   20
+6.4.    Client Commands - Configuration information ...............   21
+6.4.1.  GET Command ...............................................   21
+6.4.2.  SET Command ...............................................   21
+6.4.3.  UNSET Command .............................................   22
+6.5.    Client Commands - Address books ...........................   22
+6.5.1.  SEARCHADDRESS Command .....................................   23
+6.5.2.  FETCHADDRESS Command ......................................   24
+6.5.3.  STOREADDRESS Command ......................................   24
+6.5.4.  DELETEADDRESS Command .....................................   25
+6.5.4.  ADDRESSBOOK Command .......................................   25
+6.5.5.  CREATEADDRESSBOOK Command .................................   25
+6.5.6.  DELETEADDRESSBOOK Command .................................   26
+6.5.7.  RENAMEADDRESSBOOK Command .................................   26
+6.6.    Client Commands - Advisory locking ........................   27
+6.6.1.  LOCK OPTION Command .......................................   27
+6.6.2.  UNLOCK OPTION Command .....................................   28
+6.6.3.  LOCK ADDRESSBOOK Command ..................................   28
+6.6.4.  UNLOCK ADDRESSBOOK Command ................................   30
+6.7.    Client Commands - Access control lists ....................   30
+6.7.1.  SETACL MAILBOX Command ....................................   30
+6.7.2.  SETACL ADDRESSBOOK Command ................................   32
+6.7.3.  DELETEACL MAILBOX Command .................................   32
+6.7.4.  DELETEACL ADDRESSBOOK Command .............................   33
+6.7.5.  GETACL MAILBOX Command ....................................   33
+6.7.6.  GETACL ADDRESSBOOK Command ................................   34
+6.7.7.  MYRIGHTS MAILBOX Command ..................................   34
+6.7.8.  MYRIGHTS ADDRESSBOOK Command ..............................   34
+7.      Server Responses ..........................................   36
+7.1.    Server Responses - Status Responses .......................   36
+7.1.1.  OK Response ...............................................   37
+7.1.2.  NO Response ...............................................   37
+7.1.3.  BAD Response ..............................................   38
+7.1.4.  PREAUTH Response ..........................................   38
+7.1.5.  BYE Response ..............................................   38
+7.2.    Server Responses - Status .................................   39
+7.2.1.  CAPABILITY Response .......................................   39
+7.2.2.  LIST Response .............................................   39
+7.2.3.  LSUB Response .............................................   41
+7.2.4.  OPTION Response ...........................................   41
+7.2.5.  SEARCHADDRESS Response ....................................   41
+7.2.6.  FETCHADDRESS Response .....................................   42
+7.2.7.  ADDRESSBOOK Response ......................................   42
+7.2.8.  ACL MAILBOX Response ......................................   43
+7.2.9.  ACL ADDRESSBOOK Response ..................................   43
+7.2.10. MYRIGHTS MAILBOX Response .................................   43
+
+
+
+Myers                                                          [Page iv]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+7.2.11. MYRIGHTS ADDRESSBOOK Response .............................   43
+7.3.    Server Responses - Command Continuation Request ...........   44
+8.      Minimal conformance .......................................   44
+9.      Formal Syntax .............................................   46
+10.     Security Considerations ...................................   52
+11.     Author's Address ..........................................   52
+Appendices ........................................................   53
+A.      References ................................................   53
+B.      IMSP Keyword Index ........................................   54
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Myers                                                           [Page v]
+
+
+
+
+IMSP Protocol Specification
+
+
+
+1.      Conventions Used in this Document
+
+   In examples, "C:" and "S:" indicate lines sent by the client and
+   server respectively.
+
+
+2.      Protocol Overview
+
+2.1.    Link Level
+
+   The IMSP protocol assumes a reliable data stream such as provided by
+   TCP.  When TCP is used, an IMSP server listens on port 406.
+
+
+2.2.    Commands and Responses
+
+   An IMSP session consists of the establishment of a client/server
+   connection, an initial greeting from the server, and client/server
+   interactions.  These client/server interactions consist of a client
+   command, server data, and a server completion result response.
+
+   All interactions transmitted by client and server are in the form of
+   lines; that is, strings that end with a CRLF.  The protocol receiver
+   of an IMSP client or server is either reading a line, or is reading a
+   sequence of octets with a known count followed by a line.
+
+
+2.2.1.  Client Protocol Sender and Server Protocol Receiver
+
+   The client command begins an operation.  Each client command is
+   prefixed with a identifier (typically a short alphanumeric string,
+   e.g. A0001, A0002, etc.) called a "tag".  A different tag is
+   generated by the client for each command.
+
+   There are two cases in which a line from the client does not
+   represent a complete command.  In one case, a command argument is
+   quoted with an octet count (see the description of literal in String
+   under Data Formats); in the other case, the command arguments require
+   server feedback (see the AUTHENTICATE command).  In either case, the
+   server sends a command continuation request response if it is ready
+   for the octets (if appropriate) and the remainder of the command.
+   This response is prefixed with the token "+".
+
+        Note: If, instead, the server detected an error in the
+
+
+
+Myers                                                           [Page 1]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+        command, it sends a BAD completion response with tag
+        matching the command (as described below) to reject the
+        command and prevent the client from sending any more of the
+        command.
+
+        It is also possible for the server to send a completion
+        response for some other command (if multiple commands are
+        in progress), or untagged data.  In either case, the
+        command continuation request is still pending; the client
+        takes the appropriate action for the response, and reads
+        another response from the server.
+
+   The protocol receiver of an IMSP server reads a command line from the
+   client, parses the command and its arguments, and transmits server
+   data and a server command completion result response.
+
+
+2.2.2.  Server Protocol Sender and Client Protocol Receiver
+
+   Data transmitted by the server to the client and status responses
+   that do not indicate command completion are prefixed with the token
+   "*", and are called untagged responses.
+
+   Server data may be sent as a result of a client command, or may be
+   sent unilaterally by the server.  There is no syntactic difference
+   between server data that resulted from a specific command and server
+   data that were sent unilaterally.
+
+   The server completion result response indicates the success or
+   failure of the operation.  It is tagged with the same tag as the
+   client command which began the operation.  Thus, if more than one
+   command is in progress, the tag in a server completion response
+   identifies the command to which the response applies.  There are
+   three possible server completion responses: OK (indicating success),
+   NO (indicating failure), or BAD (indicating protocol error such as
+   unrecognized command or command syntax error).
+
+   The protocol receiver of an IMSP client reads a response line from
+   the server.  It then takes action on the response based upon the
+   first token of the response, which may be a tag, a "*", or a "+".  As
+   described above.
+
+   A client MUST be prepared to accept any server response at all times.
+   This includes server data that it may not have requested.  Server
+   data SHOULD be recorded, so that the client can reference its
+   recorded copy rather than sending a command to the server to request
+   the data.
+
+
+
+
+Myers                                                           [Page 2]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+   This topic is discussed in greater detail in the Server Responses
+   section.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Myers                                                           [Page 3]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+3.      State and Flow Diagram
+
+   An IMSP server is in one of three states.  Most commands are valid in
+   only certain states.  It is a protocol error for the client to
+   attempt a command while the command is in an inappropriate state.  In
+   this case, a server will respond with a BAD or NO (depending upon
+   server implementation) command completion result.
+
+
+3.1.    Non-Authenticated State
+
+   In non-authenticated state, the user must supply authentication
+   credentials before most commands will be permitted.  This state is
+   entered when a connection starts unless the connection has been
+   pre-authenticated.
+
+
+3.2.    Authenticated State
+
+   In authenticated state, the user is authenticated and most commands
+   will be permitted.  This state is entered when a pre-authenticated
+   connection starts or when acceptable authentication credentials have
+   been provided.
+
+
+3.3.    Logout State
+
+   In logout state, the session is being terminated, and the server will
+   close the connection.  This state can be entered as a result of a
+   client request or by unilateral server decision.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Myers                                                           [Page 4]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+            +--------------------------------------+
+            |initial connection and server greeting|
+            +--------------------------------------+
+                      || (1)          || (2)  || (3)
+                      VV              ||      ||
+            +-----------------+       ||      ||
+            |non-authenticated|       ||      ||
+            +-----------------+       ||      ||
+             || (5)      || (4)       ||      ||
+             ||          VV           VV      ||
+             ||          +----------------+   ||
+             ||          | authenticated  |   ||
+             ||          +----------------+   ||
+             ||            || (5)             ||
+             VV            VV                 VV
+            +--------------------------------------+
+            |     logout and close connection      |
+            +--------------------------------------+
+
+         (1) connection without pre-authentication (OK greeting)
+         (2) pre-authenticated connection (PREAUTH greeting)
+         (3) rejected connection (BYE greeting)
+         (4) successful LOGIN or AUTHENTICATE command
+         (5) LOGOUT command, server shutdown, or connection closed
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Myers                                                           [Page 5]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+4.      Data Formats
+
+   IMSP uses textual commands and responses.  Data in IMSP can be in one
+   of several forms: atom, number, string, parenthesized list, or NIL.
+
+
+4.1.    Atom
+
+   An atom consists of one or more non-special characters.
+
+
+4.2.    Number
+
+   A number consists of one or more digit characters, and represents a
+   numeric value.
+
+
+4.3.    String
+
+   A string is in one of two forms: literal and quoted string.  The
+   literal form is the general form of string.  The quoted string form
+   is an alternative that avoids the overhead of processing a literal at
+   the cost of restrictions of what may be in a quoted string.
+
+   A literal is a sequence of zero or more octets (including CR and LF),
+   prefix-quoted with an octet count in the form of an open brace ("{"),
+   the number of octets, close brace ("}"), and CRLF.  In the case of
+   literals transmitted from server to client, the CRLF is immediately
+   followed by the octet data.  In the case of literals transmitted from
+   client to server, the client must wait to receive a command
+   continuation request (described later in this document) before
+   sending the octet data (and the remainder of the command).
+
+   A quoted string is a sequence of zero or more 7-bit characters,
+   excluding CR and LF, with double quote (<">) characters at each end.
+
+   The empty string is respresented as either "" (a quoted string with
+   zero characters between double quotes) or as {0} followed by CRLF (a
+   literal with an octet count of 0).
+
+        Note: Even if the octet count is 0, a client transmitting a
+        literal must wait to receive a command continuation
+        request.
+
+
+
+
+
+
+
+
+Myers                                                           [Page 6]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+4.3.1.  8-bit and Binary Strings
+
+   IMSP implementations MAY transmit 8-bit or multi-octet characters in
+   literals, but should do so only when the character set is identified.
+
+   Unencoded binary strings are not permitted.  A "binary string" is any
+   string with NUL characters.  Implementations MUST encode binary data
+   into a textual form such as BASE64 before transmitting the data.  A
+   string with an excessive amount of CTL characters may also be
+   considered to be binary, although this is not required.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Myers                                                           [Page 7]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+5.      Operational Considerations
+
+5.1.    Mailbox Naming
+
+   The interpretation of mailbox names is implementation-dependent.
+   However, the mailbox name INBOX is a special name reserved to mean
+   "the primary mailbox for this user on this server".  If it is desired
+   to export hierarchical mailbox names, mailbox names must be left-to-
+   right hierarchical using a single character to separate levels of
+   hierarchy.  The same hierarchy separator character is used for all
+   levels of hierarchy within a single name.
+
+5.2.    Untagged Status Updates
+
+   At any time, a server can send data that the client did not request.
+
+
+5.3.    Response when no Command in Progress
+
+   Server implementations are permitted to send an untagged response
+   while there is no command in progress.  Server implementations that
+   send such responses MUST deal with flow control considerations.
+   Specifically, they must either (1) verify that the size of the data
+   does not exceed the underlying transport's available window size, or
+   (2) use non-blocking writes.
+
+
+5.4.    Autologout Timer
+
+   If a server has an inactivity autologout timer, that timer MUST be of
+   at least 30 minutes' duration.  The receipt of ANY command from the
+   client during that interval should suffice to reset the autologout
+   timer.
+
+
+5.5.    Multiple Commands in Progress
+
+   The client is not required to wait for the completion result response
+   of a command before sending another command, subject to flow control
+   constraints on the underlying data stream.  Similarly, a server is
+   not required to process a command to completion before beginning
+   processing of the next command, unless an ambiguity would result
+   because of a command that would affect the results of other commands.
+   If there is such an ambiguity, the server executes commands to
+   completion in the order given by the client.
+
+
+
+
+
+
+Myers                                                           [Page 8]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+5.6.    IMAP4 Protocol Fallback
+
+   When a client is directed by a user or an initial configuration to
+   contact a mailbox service on a given host, it should first attempt to
+   reach the IMSP service on that host.  The client should then use the
+   IMSP mailbox management commands instead of the IMAP4 mailbox
+   management commands.  If the connection to the IMSP server fails with
+   a refused connection, the client should fall back to using the IMAP4
+   protocol.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Myers                                                           [Page 9]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+6.      Client Commands
+
+   IMSP commands are described in this section.  Commands are organized
+   first by the state in which the command is permitted, then by a
+   general category of command type.
+
+   Command arguments, identified by "Arguments:" in the command
+   descriptions below, are described by function, not by syntax.  The
+   precise syntax of command arguments is described in the Formal Syntax
+   section.
+
+   Some commands cause specific server data to be returned; these are
+   identified by "Data:" in the command descriptions below.  See the
+   response descriptions in the Responses section for information on
+   these responses, and the Formal Syntax section for the precise syntax
+   of these responses.  It is possible for server data to be transmitted
+   as a result of any command; thus, commands that do not specifically
+   require server data specify "no specific data for this command"
+   instead of "none".
+
+   The "Result:" in the command description refers to the possible
+   tagged status responses to a command, and any special interpretation
+   of these status responses.
+
+
+6.1.    Client Commands - Any State
+
+   The following commands are valid in any state: CAPABILITY, NOOP, and
+   LOGOUT.
+
+6.1.1.  CAPABILITY Command
+
+   Arguments:  none
+
+   Data:       mandatory untagged response: CAPABILITY
+
+   Result:     OK - capability completed
+               BAD - command unknown or arguments invalid
+
+      The CAPABILITY command requests a listing of capabilities that the
+      server supports.  This listing of capabilities is not dependent
+      upon connection state or user.  It is therefore not necessary to
+      issue a CAPABILITY command more than once in a session.
+
+      Capability names refer to extensions, revisions, or amendments to
+      this specification.  See the documentation of the CAPABILITY
+      response for additional information.  No capabilities are enabled
+      without explicit client action to invoke the capability.  See the
+
+
+
+Myers                                                          [Page 10]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+      section entitled "Client Commands - Experimental/Expansion" for
+      information about the form of site or implementation-specific
+      capabilities.
+
+   Example:    C: abcd CAPABILITY
+               S: * CAPABILITY
+               S: abcd OK CAPABILITY completed
+
+
+6.1.2.  NOOP Command
+
+   Arguments:  none
+
+   Data:       no specific data for this command (but see below)
+
+   Result:     OK - noop completed
+               BAD - command unknown or arguments invalid
+
+      The NOOP command always succeeds.  It does nothing.
+
+      Since any command can return a status update as untagged data, the
+      NOOP command can be used as a periodic poll for status updates
+      during a period of inactivity.  The NOOP command can also be used
+      to reset any inactivity autologout timer on the server.
+
+   Example:    C: a002 NOOP
+               S: a002 OK NOOP completed
+
+
+6.1.3.  LOGOUT Command
+
+   Arguments:  none
+
+   Data:       mandatory untagged response: BYE
+
+   Result:     OK - logout completed
+               BAD - command unknown or arguments invalid
+
+      The LOGOUT command informs the server that the client is done with
+      the session.  The server must send a BYE untagged response before
+      the (tagged) OK response, and then close the network connection.
+
+   Example:    C: A023 LOGOUT
+               S: * BYE IMSP Server logging out
+               S: A023 OK LOGOUT completed
+               (Server and client then close the connection)
+
+
+
+
+
+Myers                                                          [Page 11]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+6.2.    Client Commands - Non-Authenticated State
+
+   In non-authenticated state, the AUTHENTICATE or LOGIN command
+   establishes authentication and enter authenticated state.  The
+   AUTHENTICATE command provides a general mechanism for a variety of
+   authentication techniques, whereas the LOGIN command uses the
+   traditional user name and plaintext password pair.
+
+   Server implementations may allow non-authenticated access to certain
+   information.  The convention is to use a LOGIN command with the
+   userid "anonymous".  A password is required.  It is implementation-
+   dependent what requirements, if any, are placed on the password and
+   what access restrictions are placed on anonymous users.
+
+   Once authenticated (including as anonymous), it is not possible to
+   re-enter non-authenticated state.
+
+   In addition to the universal commands (CAPABILITY, NOOP, and LOGOUT),
+   the following commands are valid in non-authenticated state:
+   AUTHENTICATE and LOGIN.
+
+6.2.1.  AUTHENTICATE Command
+
+   Arguments:  authentication mechanism name
+
+   Data:       continuation data may be requested
+
+   Result:     OK - authenticate completed, now in authenticated state
+               NO - authenticate failure: unsupported authentication
+                    mechanism, credentials rejected
+               BAD - command unknown or arguments invalid,
+                    authentication exchange cancelled
+
+      The AUTHENTICATE command indicates an authentication mechanism,
+      such as described in [IMAP-AUTH], to the server.  If the server
+      supports the requested authentication mechanism, it performs an
+      authentication protocol exchange to authenticate and identify the
+      user.  Optionally, it also negotiates a protection mechanism for
+      subsequent protocol interactions.  If the requested authentication
+      mechanism is not supported, the server should reject the
+      AUTHENTICATE command by sending a tagged NO response.
+
+      The authentication protocol exchange consists of a series of
+      server challenges and client answers that are specific to the
+      authentication mechanism.  A server challenge consists of a
+      command continuation request response with the "+" token followed
+      by a BASE64 encoded string.  The client answer consists of a line
+      consisting of a BASE64 encoded string.  If the client wishes to
+
+
+
+Myers                                                          [Page 12]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+      cancel an authentication exchange, it should issue a line with a
+      single "*".  If the server receives such an answer, it must reject
+      the AUTHENTICATE command by sending a tagged BAD response.
+
+      A protection mechanism provides integrity and privacy protection
+      to the protocol session.  If a protection mechanism is negotiated,
+      it is applied to all subsequent data sent over the connection.
+      The protection mechanism takes effect immediately following the
+      CRLF that concludes the authentication exchange for the client,
+      and the CRLF of the tagged OK response for the server.  Once the
+      protection mechanism is in effect, the stream of command and
+      response octets is processed into buffers of ciphertext.  Each
+      buffer is transferred over the connection as a stream of octets
+      prepended with a four octet field in network byte order that
+      represents the length of the following data.  The maximum
+      ciphertext buffer length is defined by the protection mechanism.
+
+      The server is not required to support any particular
+      authentication mechanism, nor are authentication mechanisms
+      required to support any protection mechanisms.  If an AUTHENTICATE
+      command fails with a NO response, the client may try another
+      authentication mechanism by issuing another AUTHENTICATE command,
+      or may attempt to authenticate by using the LOGIN command.  In
+      other words, the client may request authentication types in
+      decreasing order of preference, with the LOGIN command as a last
+      resort.
+
+   Example:    S: * OK KerberosV4 IMSP Server
+               C: A001 AUTHENTICATE KERBEROS_V4
+               S: + AmFYig==
+               C: BAcAQU5EUkVXLkNNVS5FRFUAOCAsho84kLN3/IJmrMG+25a4DT
+                  +nZImJjnTNHJUtxAA+o0KPKfHEcAFs9a3CL5Oebe/ydHJUwYFd
+                  WwuQ1MWiy6IesKvjL5rL9WjXUb9MwT9bpObYLGOKi1Qh
+               S: + or//EoAADZI=
+               C: DiAF5A4gA+oOIALuBkAAmw==
+               S: A001 OK Kerberos V4 authentication successful
+
+        Note: the line breaks in the first client answer are for
+        editorial clarity and are not in real authenticators.
+
+
+
+
+
+
+
+
+
+
+
+
+Myers                                                          [Page 13]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+6.2.2.  LOGIN Command
+
+   Arguments:  user name
+               password
+
+   Data:       no specific data for this command
+
+   Result:     OK - login completed, now in authenticated state
+               NO - login failure: user name or password rejected
+               BAD - command unknown or arguments invalid
+
+      The LOGIN command identifies the user to the server and carries
+      the plaintext password authenticating this user.
+
+   Example:    C: a001 LOGIN SMITH SESAME
+               S: a001 OK LOGIN completed
+
+
+
+6.3.    Client Commands - Mailbox management
+
+   This section describes commands permitted in authenticated state for
+   manipulating mailboxes as atomic entities.
+
+6.3.1.  CREATE Command
+
+   Arguments:  mailbox name
+               optional server/partition parenthesized list
+
+   Data:       no specific data for this command
+
+   Result:     OK - create completed
+               NO - create failure: can't create mailbox with that name
+                    can't create mailbox on that server/partition
+               BAD - command unknown or arguments invalid
+
+      The CREATE command creates a mailbox with the given name.  An OK
+      response is returned only if a new mailbox with that name has been
+      created.  It is an error to attempt to create INBOX or a mailbox
+      with a name that refers to an extant mailbox.  Any error in
+      creation will return a tagged NO response.
+
+      If the mailbox name is suffixed with the server's hierarchy
+      separator character (as returned from the server by a LIST
+      command), this is a declaration that the client may, in the
+      future, create mailbox names under this name in the hierarchy.
+      Server implementations that do not require this declaration MUST
+      ignore it and return a tagged OK response.
+
+
+
+Myers                                                          [Page 14]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+      If a server/partition parentesized list is specified, it indicates
+      the server or set of servers on which the mailbox is to be
+      created.  Each hostname in the list may be followed by a slash
+      character and an atom.  The atom specifies in an implementation-
+      dependent manner how or where to store the mailbox on the server.
+
+      If server/partition parentesized list is not specified, the
+      placement of the mailbox is left to the implementation.
+
+   Example:    C: A003 CREATE owatagusiam/
+               S: A003 OK CREATE completed
+               C: A004 CREATE owatagusiam/blurdybloop
+               S: A004 OK CREATE completed
+               C: A005 CREATE FOOBAR (imap2.do.main/a imap4.do.main)
+               S: a005 OK CREATE completed
+
+        Note: the interpretation of the first two commands in this
+        example depends on whether "/" was returned as the
+        hierarchy separator from LIST.  If "/" is the hierarchy
+        separator, a new level of hierarchy named "owatagusiam"
+        with a member called "blurdybloop" is created.  Otherwise,
+        two mailboxes at the same hierarchy level are created.
+
+
+6.3.2.  DELETE Command
+
+   Arguments:  mailbox name
+               optional hostname
+
+   Data:       no specific data for this command
+
+   Result:     OK - delete completed
+               NO - delete failure: can't delete mailbox with that name
+               BAD - command unknown or arguments invalid
+
+      The DELETE command permanently removes the mailbox with the given
+      name.  An OK response is returned only if the mailbox has been
+      deleted.  It is an error to attempt to delete INBOX or a mailbox
+      name that does not exist.  Any error in deletion will return a
+      tagged NO response.
+
+      If hostname is specified, the mailbox is deleted on the IMAP4
+      server on that host.  This would be used to remove a replication
+      site for a mailbox.  If it is not specified, the mailbox is
+      deleted on all hosts on which the mailbox resides.
+
+   Example:    C: A683 DELETE blurdybloop
+               S: A683 OK DELETE completed
+
+
+
+Myers                                                          [Page 15]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+6.3.3.  RENAME Command
+
+   Arguments:  existing mailbox name
+               new mailbox name
+
+   Data:       no specific data for this command
+
+   Result:     OK - rename completed
+               NO - rename failure: can't rename mailbox with that name,
+                    can't rename to mailbox with that name
+               BAD - command unknown or arguments invalid
+
+      The RENAME command changes the name of a mailbox.  An OK response
+      is returned only if the mailbox has been renamed.  It is an error
+      to attempt to rename from a mailbox name that does not exist or to
+      a mailbox name that already exists.  Any error in renaming will
+      return a tagged NO response.
+
+      Should any users be subscribed to "oldmailbox", they will
+      subsequently be subscribed to "newmailbox".
+
+      Renaming INBOX is permitted; a new, empty INBOX is created in its
+      place.
+
+   Example:    C: Z4S9 RENAME blurdybloop owatagusiam
+               S: Z4S9 OK RENAME completed
+
+
+6.3.4.  REPLACE Command
+
+   Arguments:  existing mailbox name
+               existing new mailbox name
+
+   Data:       no specific data for this command
+
+   Result:     OK - replace completed
+               NO - replace failure:  can't  delete  mailbox  with  that
+               name,
+                    can't replace with mailbox with that name
+               BAD - command unknown or arguments invalid
+
+      The REPLACE command deletes a mailbox, automatically changing
+      subscriptions to a new mailbox.  An OK response is returned only
+      if the mailbox has been removed.  It is an error to attempt to
+      replace a mailbox name that does not exist or replace with a
+      mailbox name that does not exist.  Any error in deletion will
+      return a NO response.
+
+
+
+
+Myers                                                          [Page 16]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+      Should any users be subscribed to "oldmailbox", they will
+      subsequently be subscribed to "newmailbox".
+
+      Replacing INBOX is not permitted.
+
+   Example:    C: Z4S9 REPLACE blurdybloop owatagusiam
+               S: Z4S9 OK REPLACE completed
+
+
+6.3.5.  MOVE Command
+
+   Arguments:  mailbox name
+               server/partition parenthesized list
+
+   Data:       no specific data for this command
+
+   Result:     OK - move completed
+               NO - move failure: can't move mailbox with that name
+                    can't move mailbox to that server/partition
+               BAD - command unknown or arguments invalid
+
+      The MOVE command moves a mailbox between servers, moves a mailbox
+      between partitions on a server, and/or replicates a mailbox.  The
+      server/partition parenthesized list specifies where the mailbox is
+      to be moved to.  The interpretation of the server/partition
+      parenthesized list is the same as for the CREATE command.
+
+   Example:    C: A005 MOVE FOOBAR (imap2.do.main/a imap4.do.main)
+               S: a005 OK MOVE completed
+
+6.3.6.  SUBSCRIBE Command
+
+Arguments:  mailbox
+
+Data:       no specific data for this command
+
+Result:     OK - subscribe completed
+            NO - subscribe failure: can't subscribe to that name
+            BAD - command unknown or arguments invalid
+
+      The SUBSCRIBE command adds the specified mailbox name to the
+      server's set of "active" or "subscribed" mailboxes as returned by
+      the LSUB command.  This command returns an OK response only if the
+      subscription is successful.
+
+   Example:    C: A002 SUBSCRIBE #news.comp.mail.mime
+               S: A002 OK SUBSCRIBE completed
+
+
+
+
+Myers                                                          [Page 17]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+6.3.7.  UNSUBSCRIBE Command
+
+   Arguments:  mailbox name
+
+   Data:       no specific data for this command
+
+   Result:     OK - unsubscribe completed
+               NO - unsubscribe failure: can't unsubscribe that name
+               BAD - command unknown or arguments invalid
+
+      The UNSUBSCRIBE command removes the specified mailbox name from
+      the server's set of "active" or "subscribed" mailboxes as returned
+      by the LSUB command.  This command returns an OK response only if
+      the unsubscription is successful.
+
+   Example:    C: A002 UNSUBSCRIBE #news.comp.mail.mime
+               S: A002 OK UNSUBSCRIBE completed
+
+
+6.3.8.  LIST Command
+
+   Arguments:  reference name
+               mailbox name with possible wildcards
+
+   Data:       untagged responses: LIST
+
+   Result:     OK - list completed
+               NO - list failure: can't list that reference or name
+               BAD - command unknown or arguments invalid
+
+      The LIST command returns a subset of names from the complete set
+      of all names available to the user.  Zero or more untagged LIST
+      replies are returned, containing the name attributes, hierarchy
+      delimiter, name, and IMAP4 server list; see the description of the
+      LIST reply for more detail.
+
+      An empty ("" string) reference name argument indicates that the
+      mailbox name is interpreted as by SELECT. The returned mailbox
+      names MUST match the supplied mailbox name pattern.  A non-empty
+      reference name argument is the name of a mailbox or a level of
+      mailbox hierarchy, and indicates a context in which the mailbox
+      name is interpreted in an implementation-defined manner.
+
+      The reference and mailbox name arguments are interpreted, in an
+      implementation-dependent fashion, into a canonical form that
+      represents an unambiguous left-to-right hierarchy.  The returned
+      mailbox names will be in the interpreted form.
+
+
+
+
+Myers                                                          [Page 18]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+      Any part of the reference argument that is included in the
+      interpreted form SHOULD prefix the interpreted form.  It should
+      also be in the same form as the reference name argument.  This
+      rule permits the client to determine if the returned mailbox name
+      is in the context of the reference argument, or if something about
+      the mailbox argument overrode the reference argument.  Without
+      this rule, the client would have to have knowledge of the server's
+      naming semantics including what characters are "breakouts" that
+      override a naming context.
+
+           For example, here are some examples of how references
+           and mailbox names might be interpreted on a UNIX-based
+           server:
+
+               Reference     Mailbox Name  Interpretation
+               ------------  ------------  --------------
+               ~smith/Mail/  foo.*         ~smith/Mail/foo.*
+               archive/      %             archive/%
+               #news.        comp.mail.*   #news.comp.mail.*
+               ~smith/Mail/  /usr/doc/foo  /usr/doc/foo
+               archive/      ~fred/Mail/*  ~fred/Mail/*
+
+           The first three examples demonstrate interpretations in
+           the context of the reference argument.  Note that
+           "~smith/Mail" should not be transformed into something
+           like "/u2/users/smith/Mail", or it would be impossible
+           for the client to determine that the interpretation was
+           in the context of the reference.
+
+      The character "*" is a wildcard, and matches zero or more
+      characters at this position.  The character "%" is similar to "*",
+      but it does not match a hierarchy delimiter.
+
+      Server implementations are permitted to "hide" otherwise
+      accessible mailboxes from the wildcard characters, by preventing
+      certain characters or names from matching a wildcard in certain
+      situations.  For example, a UNIX-based server might restrict the
+      interpretation of "*" so that an initial "/" character does not
+      match.
+
+      The special name INBOX is included in the output from LIST if it
+      matches the input arguments and INBOX is supported by this server
+      for this user.  The criteria for omitting INBOX is whether SELECT
+      INBOX will return failure; it is not relevant whether the user's
+      real INBOX resides on this or some other server.
+
+   Example:    C: A002 LIST "~/Mail/" "%"
+               S: * LIST (\Noselect) "/" ~/Mail/foo (imap5.do.main)
+
+
+
+Myers                                                          [Page 19]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+               S: * LIST () "/" ~/Mail/meetings (imap7.do.main)
+               S: A002 OK LIST completed
+
+
+6.3.9.  LSUB Command
+
+   Arguments:  reference name
+               mailbox name with possible wildcards
+
+   Data:       untagged responses: LSUB
+
+   Result:     OK - lsub completed
+               NO - lsub failure: can't list that reference or name
+               BAD - command unknown or arguments invalid
+
+      The LSUB command returns a subset of names from the set of names
+      that the user has declared as being "active" or "subscribed".
+      Zero or more untagged LSUB replies are returned.  The arguments to
+      LSUB are in the same form as those for LIST.
+
+   Example:    C: A002 LSUB "#news." "comp.mail.*"
+               S: * LSUB () "." #news.comp.mail.mime (imap5.do.main)
+               S: * LSUB () "." #news.comp.mail.misc (imap7.do.main)
+               S: A002 OK LSUB completed
+
+
+6.3.10. LMARKED Command
+
+   Arguments:  reference name
+               mailbox name with possible wildcards
+
+   Data:       untagged responses: LSUB
+
+   Result:     OK - lmarked completed
+               NO - lmarked failure: can't list that reference or name
+               BAD - command unknown or arguments invalid
+
+      The LMARKED command returns a subset of names from the set of
+      names that the user has declared as being "active" or "subscribed"
+      and which do not have the \Unmarked attribute.  Zero or more
+      untagged LSUB replies are returned.  The arguments to LMARKED are
+      in the same form as those for LSUB.
+
+   Example:    C: A002 LMARKED "" "comp.mail.*"
+               S: * LSUB () "." comp.mail.mime (imap5.do.main)
+               S: * LSUB (\Marked) "." comp.mail.misc (imap7.do.main)
+               S: A002 OK LMARKED completed
+
+
+
+
+Myers                                                          [Page 20]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+6.4.    Client Commands - Configuration information
+
+   This section describes commands permitted in authenticated state for
+   manipulating ``options''.  Options are hierarchically named objects
+   primarily useful for storing configuration information.
+
+6.4.1.  GET Command
+
+   Arguments:  pattern
+
+   Data:       untagged responses: OPTION
+
+   Result:     OK - get completed
+               BAD - command unknown or arguments invalid
+
+      The GET command accepts as an argument a pattern that specifies
+      some set of configuration options.  Wildcards are permitted as in
+      LIST, except that the behavior of the "%" wildcard is undefined.
+      Option names are case-insensitive.
+
+      The GET command will return some set of untagged OPTION replies,
+      giving the names and values of matching options.
+
+   Example:    C: A002 GET COMMON.SENT.*
+               S: * OPTION COMMON.SENT.MAILBOX SENT-MAIL [READ-WRITE]
+               S: A002 OK Get completed
+
+
+6.4.2.  SET Command
+
+   Arguments:  option name
+               new value
+
+   Data:       no specific data for this command
+
+   Result:     OK - set completed
+               NO - set failure: can't set that name
+               BAD - command unknown or arguments invalid
+
+      The SET command accepts as arguments the name of an option and a
+      string value.  The value of the option is set to the specified
+      string.  If the option with that name does not already exist, it
+      is created.
+
+      Option names are case-insensitive atoms.
+
+      SET is not allowed if the named option is read-only.
+
+
+
+
+Myers                                                          [Page 21]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+   Example:    C: A002 SET COMMON.SENT.MAILBOX user.Fred.fcc
+               S: A002 OK Set completed
+
+
+6.4.3.  UNSET Command
+
+   Arguments:  option
+
+   Data:       untagged responses: OPTION
+
+   Result:     OK - unset completed
+               NO - unset failure: can't unset that name
+               BAD - command unknown or arguments invalid
+
+      The UNSET command accepts as an argument the name of an option.
+      Depending on the implementation, the option is either removed or
+      its value reverts to the implementation-defined default.  If its
+      value reverts to an implmentation-defined default, the new value
+      of the option is returned in an untagged OPTION reply.
+
+      UNSET is not allowed if the named option is read-only.
+
+   Example:    C: A002 UNSET COMMON.SENT.MAILBOX
+               S: A002 OK Unset completed
+
+
+
+6.5.    Client Commands - Address books
+
+   This section describes commands permitted in authenticated state for
+   manipulating address books. Address books provide a way for users to
+   store and search typed information.  They are primarily intended to
+   be used for storing information about entities with which the user
+   communicates.
+
+   The address book name field to the various commands allows users to
+   access address books belonging to other users, should they have the
+   appropriate access.  Servers are expected to at least allow the
+   client to manipulate the address book with the same name as the
+   "user" specified in the LOGIN command.  Servers may accept address
+   book names that do not correspond to users that may LOGIN.
+
+   Each address book contains some number of entries.  Each entry has a
+   name and any number of fields.  Each field has an atom name and a
+   string value.
+
+   The standard fields are:
+
+
+
+
+Myers                                                          [Page 22]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+   EMAIL   CRLF-separated list of electronic mail addresses
+
+   MEMBERS CRLF-separated list of address book entry specifiers
+           which should be recursively expanded when sending
+           mail to the address book entry.
+
+           An address book entry specifier may be the name of an
+           address book entry in the current address book, or it
+           may be the name of an address book followed by a ":"
+           followed by the name of an entry in that address book.
+           Any occurances of ":" or "\" in the address book name
+           or entry name must be quoted with a preceeding "\".
+
+   PHONE   CRLF-separated list of phone numbers
+
+   ADDRESS Postal address
+
+   An entry may also have additional, user-defined fields.  Clients are
+   expected to allow the user to view and modify all fields of an entry,
+   even if they do not recognize some field names.
+
+6.5.1.  SEARCHADDRESS Command
+
+   Arguments:  address book name
+               lookup criteria
+
+   Data:       untagged responses: SEARCHADDRESS
+
+   Result:     OK - searchaddress completed
+               NO - searchaddress failure: can't searchaddress that name
+               BAD - command unknown or arguments invalid
+
+      The SEARCHADDRESS command searches the specified address book for
+      entries that express the intersection (AND function) of all of the
+      specified criteria.  The names matching the criteria are returned
+      in some set of untagged SEARCHADDRESS replies.  If no criterea are
+      specified, all names in the address book are returned.
+
+      The lookup criteria is a sequence of "field pattern" pairs, each
+      specifying entries where the value of field matches the specified
+      pattern in a case-independent manner.  Wildcards are permitted in
+      the pattern as in LIST, except that the behavior of the "%"
+      wildcard is undefined.  The reserved field "name" specifies
+      entries whose name matches the specified pattern.
+
+   Example:    C: A340 SEARCHADDRESS Fred name "* Rubble"
+               S: * SEARCHADDRESS "Barney Rubble"
+               S: * SEARCHADDRESS "Betty Rubble"
+
+
+
+Myers                                                          [Page 23]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+               S: A340 OK Searchaddress completed
+
+
+6.5.2.  FETCHADDRESS Command
+
+   Arguments:  address book name
+               one or more entry names
+
+   Data:       untagged responses: FETCHADDRESS
+
+   Result:     OK - fetchaddress completed
+               NO - fetchaddress failure: can't fetchaddress that name
+               BAD - command unknown or arguments invalid
+
+      Fetches the contents of the entries in the specified address book
+      for the specified names.  The entries are returned in a series of
+      untagged FETCHADDRESS replies.  Entry names are case-insensitive.
+
+   Example:    C: A0341 FETCHADDRESS Fred "Barney Rubble"
+               S: * FETCHADDRESS Fred "Barney Rubble" hair "blond"
+                  email "barney@bedrock"
+               S: A0341 OK Fetchaddress completed
+
+6.5.3.  STOREADDRESS Command
+
+Arguments:  address book name
+            entry name
+            field data
+
+Data:       no specific data for this command
+
+Result:     OK - storeaddress completed
+            NO - storeaddress failure: can't searchaddress that name
+            BAD - command unknown or arguments invalid
+
+      Creates or modifies the entry in the specified address book for
+      the specified name.  Fields not specified in the command are not
+      changed.  Setting the value of a field to the null string removes
+      the field.
+
+      Entry names are case-insensitive strings.  The reserved field name
+      "name" may not be specified in the field data.
+
+   Example:    C: A342 STOREADDRESS Fred "Barney Rubble" phone "555"
+               email ""
+               S: A342 OK Storeaddress completed
+               C: A343 FETCHADDRESS Fred
+               S: * FETCHADDRESS Fred "Barney Rubble" hair "blond" phone
+
+
+
+Myers                                                          [Page 24]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+               "555"
+               S: A343 OK Fetchaddress completed
+
+
+6.5.4.  DELETEADDRESS Command
+
+   Arguments:  address book name
+               entry name
+
+   Data:       no specific data for this command
+
+   Result:     OK - deleteaddress completed
+               NO - deleteaddress failure: can't searchaddress that name
+               BAD - command unknown or arguments invalid
+
+      Removes the entry in the specified address book for the specified
+      name.
+
+
+6.5.4.  ADDRESSBOOK Command
+
+   Arguments:  address book name with possible wildcards
+
+   Data:       untagged responses: ADDRESSBOOK
+
+
+      The ADDRESSBOOK command accepts as an argument a pattern (as for
+      LIST) that specifies some subset of names from the complete set of
+      all address book names available to the user.  Zero or more
+      unsolicted ADDRESSBOOK replies are returned, containing the name
+      attributes, hierarchy delimiter, and name; see the description of
+      the ADDRESSBOOK reply for more detail.
+
+   Example:    C: A002 ADDRESSBOOK *
+               S: * ADDRESSBOOK () "." Fred
+               S: * ADDRESSBOOK () "." Fred.public
+               S: A002 OK Addressbook completed
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Myers                                                          [Page 25]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+6.5.5.  CREATEADDRESSBOOK Command
+
+   Arguments:  address book name
+
+   Data:       no specific data for this command
+
+   Result:     OK - createaddressbook completed
+               NO - createaddressbook failure: can't create address book
+               with that name
+               BAD - command unknown or arguments invalid
+
+      The CREATEADDRESSBOOK command creates an address book with the
+      given name.  This command returns an OK response only if a new
+      address book with that name has been created.  It is an error to
+      attempt to create an address book with a name that refers to an
+      extant mailbox.  Any error in creation will return a NO response.
+
+   Example:    C: A002 CREATEADDRESSBOOK Fred.FOO
+               S: A002 OK Createaddressbook completed
+
+
+6.5.6.  DELETEADDRESSBOOK Command
+
+   Arguments:  address book name
+
+   Data:       no specific data for this command
+
+   Result:     OK - deleteaddressbook completed
+               NO - deleteaddressbook failure: can't delete address book
+               with that name
+               BAD - command unknown or arguments invalid
+
+      The DELETEADDRESSBOOK command deletes an address book with the
+      given name.  This command returns an OK response only if an
+      address book with that name has been deleted.  It is an error to
+      attempt to delete an address book name that does not exist.  Any
+      error in deletion will return a NO response.
+
+      A server SHOULD NOT attempt to test that an address book is empty
+      prior to permitting deletion.  Any such checking should be left to
+      the discretion of the client.
+
+
+
+
+
+
+
+
+
+
+Myers                                                          [Page 26]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+6.5.7.  RENAMEADDRESSBOOK Command
+
+   Arguments:  existing address book name
+               new address book name
+
+   Data:       no specific data for this command
+
+   Result:     OK - renameaddressbook completed
+               NO - renameaddressbook failure: can't rename address book
+               with that name
+                    can't rename to address book with that name
+               BAD - command unknown or arguments invalid
+
+      The RENAMEADDRESSBOOK command changes the name of an address book.
+      This command returns an OK response only if an address book with
+      the old name exists and has been successfully renamed to the new
+      name.  It is an error to attempt to rename with an old address
+      book name that does not exist or a new address book name which
+      already exists.  Any error in renaming will return a NO response.
+
+
+
+6.6.    Client Commands - Advisory locking
+
+   This section describes commands permitted in authenticated state for
+   obtaining advisory locks.  These commands allow cooperating clients
+   to synchronize their updates to options and address books.  The
+   ability to lock nonexistent options or address book entries allows
+   clients to synchronize the addition of new options or address book
+   entries.
+
+   Although the locking interface is specified with a per-option and
+   per-entry granularity, a server may implement the commands with a
+   coarser granularity, say, per-user for options and per-address-book
+   for address books.
+
+6.6.1.  LOCK OPTION Command
+
+   Arguments:  option name
+
+   Data:       untagged responses: OPTION
+
+   Result:     OK - lock option completed
+               NO - lock option failure: can't lock that option name
+                    some other client has obtained lock on that option
+               BAD - command unknown or arguments invalid
+
+      The LOCK OPTION command accepts as an argument the name of an
+
+
+
+Myers                                                          [Page 27]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+      option and attempts to acquire an exclusive semaphore.  The named
+      option need not exist.
+
+      If the command is successful, the server must ensure that no other
+      client will be able to successfully lock the named option until
+      the successful client either performs a matching UNLOCK OPTION
+      command or closes the connection.  If the named option exists, the
+      server then must ensure that the client's cached value of the
+      option is up to date, by sending an untagged OPTION reply if
+      necessary.
+
+      If some other client has obtained the semaphore, the server must
+      send a NO response, with the first word of the text being the
+      token "[LOCKED]".
+
+      The server should ensure that the client has permission to perform
+      a SET operation on the option.  Even though other clients may not
+      perform a LOCK OPTION operation on the option, servers should not
+      prevent them from performing SET operations on the option.
+
+   Example:    C: A0067 LOCK OPTION COMMON.SENT.MAILBOX
+               S: * OPTION COMMON.SENT.MAILBOX SENT-1993 [READ-WRITE]
+               S: A0067 OK Lock completed
+               C: A0068 LOCK OPTION DELIVERY.HOSTS
+               S: A0068 NO [LOCKED] Locked by Fred on client3.do.main
+
+
+6.6.2.  UNLOCK OPTION Command
+
+   Arguments:  option name
+
+   Data:       no specific data for this command
+
+   Result:     OK - unlock option completed
+               NO - unlock option failure: can't unlock that option name
+               BAD - command unknown or arguments invalid
+
+      The UNLOCK OPTION command accepts as an argument the name of an
+      option and releases any exclusive semaphore the client may have
+      previously obtained on that option by using the LOCK OPTION
+      command.
+
+
+
+
+
+
+
+
+
+
+Myers                                                          [Page 28]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+6.6.3.  LOCK ADDRESSBOOK Command
+
+   Arguments:  address book name
+               entry name
+
+   Data:       untagged responses: FETCHADDRESS
+
+   Result:     OK - lock addressbook completed
+               NO - lock addressbook failure: can't lock that entry
+                    some other client has obtained lock on that entry
+               BAD - command unknown or arguments invalid
+
+      The LOCK ADDRESSBOOK command accepts as arguments an address book
+      and the name of an entry.  It attempts to acquire an exclusive
+      semaphore on that address book entry.  The address book must
+      exist, but the named entry need not.
+
+      If the command is successful, the server must ensure that no other
+      client will be able to successfully lock the named entry in the
+      addressbook until the successful client either performs a matching
+      UNLOCK ADDRESSBOOK command or closes the connection.  If the named
+      option exists, the server then must ensure that the client's
+      cached value of the entry is up to date, by sending an untagged
+      FETCHADDRESS reply if necessary.
+
+      If some other client has obtained the semaphore, the server must
+      send a NO response, with the first word of the text being the
+      token "[LOCKED]".
+
+      The server should ensure that the client has permission to perform
+      a STOREADDRESS operation on the entry.  Even though other clients
+      may not perform a LOCK ADDRESSBOOK operation on the entry, servers
+      should not prevent them from performing STOREADDRESS operations on
+      the entry.
+
+      Servers need not preserve addressbook locks across
+      RENAMEADDRESSBOOK operations.
+
+   Example:    C: A069 LOCK ADDRESSBOOK Fred barney
+               S: * FETCHADDRESS Fred barney email "barney@bedrock"
+               S: A069 OK Lock completed
+               C: A070 LOCK ADDRESSBOOK Shared-book "Bam Bam"
+               S: A0070 NO [LOCKED] Locked by Barney on client7.do.main
+
+
+
+
+
+
+
+
+Myers                                                          [Page 29]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+6.6.4.  UNLOCK ADDRESSBOOK Command
+
+   Arguments:  address book name
+               address book entry name
+
+   Data:       no specific data for this command
+
+   Result:     OK - unlock addressbook completed
+               NO - unlock addressbook failure: can't unlock that entry
+               BAD - command unknown or arguments invalid
+
+      The UNLOCK ADDRESSBOOK command accepts as an arguments an
+      adressbook and the name of an entry.  It releases any exclusive
+      semaphore the client may have previously obtained on that option
+      by using the LOCK ADDRESSBOOK command.
+
+
+
+6.7.    Client Commands - Access control lists
+
+   This section describes commands permitted in authenticated state for
+   managing access control lists on mailboxes and address books.
+
+6.7.1.  SETACL MAILBOX Command
+
+   Arguments:  mailbox name
+               authentication identifier
+               access rights
+
+   Data:       no specific data for this command
+
+   Result:     OK - setacl mailbox completed
+               NO - setacl  mailbox  failure:  can't  set  acl  on  that
+               mailbox
+               BAD - command unknown or arguments invalid
+
+      The SETACL MAILBOX command changes the access control list on the
+      specified mailbox so that the specified identifier is granted the
+      permissions enumerated in rights.
+
+      Identifier has implementation-defined semantics.  Possible
+      variations of identifier interpretation include:
+
+      * User names, as specified in the LOGIN command.
+
+      * Named groups of users, presumably managed by some
+        authorization service.
+
+
+
+
+Myers                                                          [Page 30]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+      * Only allowing identifiers supported by the operating system
+        (e.g. ``user'', ``group'', and ``other'' for the Unix filesystem)
+
+      * Whether rights granted to other mailboxes in an
+        implementation-defined hierarchy are inherited
+
+      * A portion of the identifier specifying an "authentication
+        type".
+
+        As an example, an implementation may control posting to a group
+        based on the contents of the From: header:
+
+        from$user             p
+
+      * Whether the union of rights for matching identifiers are granted
+        to a user or whether the rights for the most specific matching
+        identifier is granted.
+
+        As an example, for a mailbox with the following ACL:
+
+        user                  lrsa
+        group-user-is-in      lrsw
+
+        One implementation may grant the user 'lrswa' rights, another
+        may only grant the user 'lrsa'.
+
+      * A prefix to an identifier name specifying the listed rights
+        are to be removed from users who match the prefixed identifier.
+
+        As an example, for a mailbox with the following ACL:
+
+        group-user-is-in      lrsw
+        -user                 w
+
+        An implementation may grant the user 'lrs' rights.
+
+      Rights is a string listing a (possibly empty) set of alphanumeric
+      characters, each character listing a set of operations which is
+      being controlled.  Letters [lowercase?] are reserved for
+      ``standard'' rights, listed below.  Digits are reserved for
+      implementation or site defined rights.  The standard rights are:
+
+      l - lookup (mailbox is visible to LIST/LSUB/LMARKED commands,
+          addressbook is visible to ADDRESSBOOK commands)
+      r - read (SELECT the mailbox, perform CHECK, FETCH, PARTIAL,
+          SEARCH, COPY from mailbox, perform SEARCHADDRESS and FETCHADDRESS
+          on addressbook)
+      s - keep seen/unseen information across sessions (STORE \SEEN flag)
+
+
+
+Myers                                                          [Page 31]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+      w - write (STORE flags other than \SEEN and \DELETED, perform
+          STOREADDRESS on addressbooks)
+      i - insert (perform APPEND, COPY into mailbox)
+      p - post (send mail to submission address for mailbox, send mail to
+          address book entry, not enforced by IMAP4/IMSP itself)
+      c - create (CREATE new sub-mailboxes in any implementation-defined
+          hierarchy, similarly CREATEADDRESSBOOK new sub-addressbooks)
+      d - delete (STORE \DELETED flag, perform EXPUNGE, perform DELETEADDRESS)
+      a - administer (perform SETACL)
+
+      An implementation may tie rights together or may force rights to
+      always or never be granted.  For example, in an implementation
+      that uses unix mode bits, the rights "wisd" are tied.  The "a"
+      right is always granted to the owner and is never granted to
+      another user.  If rights are tied in an implementation, it should
+      be conservative in granting rights in response to SETACL
+      commands--unless all rights in a tied set are specified, none
+      should be used.  Numeric rights may not be tied.
+
+
+6.7.2.  SETACL ADDRESSBOOK Command
+
+   Arguments:  address book name
+               authentication identifier
+               access rights
+
+   Data:       no specific data for this command
+
+   Result:     OK - setacl addressbook completed
+               NO - setacl addressbook failure: can't set  acl  on  that
+               address book
+               BAD - command unknown or arguments invalid
+
+      Changes the access control list of the specified addressbook so
+      that the specified identifier is granted the permissions
+      enumerated in rights.
+
+      Identifier and rights are as specified for SETACL MAILBOX.  Not
+      all rights specified in SETACL MAILBOX are meaningful for an
+      address book.
+
+
+
+
+
+
+
+
+
+
+
+Myers                                                          [Page 32]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+6.7.3.  DELETEACL MAILBOX Command
+
+   Arguments:  mailbox name
+               authentication identifier
+
+   Data:       no specific data for this command
+
+   Result:     OK - deleteacl mailbox completed
+               NO - deleteacl mailbox failure: can't delete acl on  that
+               mailbox
+               BAD - command unknown or arguments invalid
+
+      Removes any portion of the access control list for mailbox for the
+      specified identifier.
+
+
+6.7.4.  DELETEACL ADDRESSBOOK Command
+
+   Arguments:  address book name
+               authentication identifier
+
+   Data:       no specific data for this command
+
+   Result:     OK - deleteacl addressbook completed
+               NO - deleteacl addressbook failure: can't delete  acl  on
+               that address book
+               BAD - command unknown or arguments invalid
+
+      Removes any portion of the access control list for the specified
+      addressbook for the specified identifier.
+
+
+6.7.5.  GETACL MAILBOX Command
+
+   Arguments:  mailbox name
+
+   Data:       untagged responses: ACL MAILBOX
+
+   Result:     OK - getacl mailbox completed
+               NO - getacl  mailbox  failure:  can't  get  acl  on  that
+               mailbox
+               BAD - command unknown or arguments invalid
+
+      The GETACL MAILBOX command returns the access control list for
+      mailbox in some set of untagged ACL replies.  There may not be
+      more than one ACL reply specifying any given identifier.
+
+   Example:    C: A002 GETACL MAILBOX INBOX
+
+
+
+Myers                                                          [Page 33]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+               S: * ACL MAILBOX INBOX Fred rwipslda
+               S: A002 Ok Getacl complete
+
+
+6.7.6.  GETACL ADDRESSBOOK Command
+
+   Arguments:  address book name
+
+   Data:       untagged responses: ACL ADDRESSBOOK
+
+   Result:     OK - getacl addressbook completed
+               NO - getacl addressbook failure: can't get  acl  on  that
+               address book
+               BAD - command unknown or arguments invalid
+
+      The GETACL ADDRESSBOOK command returns the access control list for
+      the specified addressbook in some set of untagged ACL replies.
+
+   Example:    C: A002 GETACL ADDRESSBOOK Fred
+               S: * ACL ADDRESSBOOK Fred anybody-else r
+               S: * ACL ADDRESSBOOK Fred Fred rwipd
+               S: A002 Ok Getacl complete
+
+
+6.7.7.  MYRIGHTS MAILBOX Command
+
+   Arguments:  mailbox name
+
+   Data:       untagged responses: MYRIGHTS MAILBOX
+
+   Result:     OK - myrights mailbox completed
+               NO - myrights mailbox failure: can't get rights  on  that
+               mailbox
+               BAD - command unknown or arguments invalid
+
+      The MYRIGHTS MAILBOX command returns the set of rights that the
+      user has to mailbox in an untagged MYRIGHTS reply.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Myers                                                          [Page 34]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+6.7.8.  MYRIGHTS ADDRESSBOOK Command
+
+   Arguments:  address book name
+
+   Data:       untagged responses: MYRIGHTS ADDRESSBOOK
+
+   Result:     OK - myrights addressbook completed
+               NO - myrights addressbook failure: can't  get  rights  on
+               that address book
+               BAD - command unknown or arguments invalid
+
+      Returns the set of rights that the user has to the specified
+      addressbook in an untagged MYRIGHTS reply.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Myers                                                          [Page 35]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+7.      Server Responses
+
+   Server responses are in three forms: status responses, server data,
+   and command continuation request.
+
+   Server response data, identified by "Data:" in the response
+   descriptions below, are described by function, not by syntax.  The
+   precise syntax of server response data is described in the Formal
+   Syntax section.
+
+   The client MUST be prepared to accept any response at all times.
+
+   Status responses that are tagged indicate the completion result of a
+   client command, and have a tag matching the command.
+
+   Some status responses, and all server data, are untagged.  An
+   untagged response is indicated by the token "*" instead of a tag.
+   Untagged status responses indicate server greeting, or server status
+   that does not indicate the completion of a command.
+
+   Certain server data MUST be recorded by the client when it is
+   received; this is noted in the description of that data.  Such data
+   conveys critical information which affects the interpretation of all
+   subsequent commands and responses (e.g. updates reflecting the
+   creation or destruction of messags).
+
+   Other server data SHOULD be recorded for later reference; if the
+   client does not need to record the data, or if recording the data has
+   no obvious purpose, the data SHOULD be ignored.
+
+   Command continuation request responses use the token "+" instead of a
+   tag.  These responses are sent by the server to indicate acceptance
+   of an incomplete client command and readiness for the remainder of
+   the command.
+
+
+7.1.    Server Responses - Status Responses
+
+   Status responses may include an optional response code.  A response
+   code consists of data inside square brackets in the form of an atom,
+   possibly followed by a space and arguments.  The response code
+   contains additional information or status codes for client software
+   beyond the OK/NO/BAD condition, and are defined when there is a
+   specific action that a client can take based upon the additional
+   information.
+
+   The currently defined response codes are:
+
+
+
+
+Myers                                                          [Page 36]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+      ALERT          The human-readable text contains a special alert
+                     that MUST be presented to the user in a fashion
+                     that calls the user's attention to the message.
+
+      LOCKED         The option or address book entry is already locked
+                     by another client.
+
+      Additional response codes defined by particular client or server
+      implementations should be prefixed with an "X" until they are
+      added to a revision of this protocol.  Client implementations
+      should ignore response codes that they do not recognize.
+
+
+7.1.1.  OK Response
+
+   Data:       optional response code
+               human-readable text
+
+      The OK response indicates an information message from the server.
+      When tagged, it indicates successful completion of the associated
+      command.  The human-readable text may be presented to the user as
+      an information message.  The untagged form indicates an
+      information-only message; the nature of the information may be
+      indicated by a response code.
+
+      The untagged form is also used as one of three possible greetings
+      at session startup.  It indicates that the session is not yet
+      authenticated and that a LOGIN command is needed.
+
+   Example:    S: * OK IMSP server ready
+               C: A001 LOGIN fred blurdybloop
+               S: * OK [ALERT] System shutdown in 10 minutes
+               S: A001 OK LOGIN Completed
+
+
+7.1.2.  NO Response
+
+   Data:       optional response code
+               human-readable text
+
+      The NO response indicates an operational error message from the
+      server.  When tagged, it indicates unsuccessful completion of the
+      associated command.  The untagged form indicates a warning; the
+      command may still complete successfully.  The human-readable text
+      describes the condition.
+
+   Example:    C: A001 LOGIN fred secret
+               S: * NO [ALERT] Addressbook "fred" is at 98% of quota
+
+
+
+Myers                                                          [Page 37]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+               S: A001 OK LOGIN
+                  ...
+               C: A222 STOREADDRESS fred "Barney Rubble" phone "555"
+               S: A222 NO Quota exhausted
+
+
+7.1.3.  BAD Response
+
+   Data:       optional response code
+               human-readable text
+
+      The BAD response indicates an error message from the server.  When
+      tagged, it reports a protocol-level error in the client's command;
+      the tag indicates the command that caused the error.  The untagged
+      form indicates a protocol-level error for which the associated
+      command can not be determined; it may also indicate an internal
+      server failure.  The human-readable text describes the condition.
+
+   Example:    C: ...empty line...
+               S: * BAD Empty command line
+               C: A443 BLURDYBLOOP
+               S: A443 BAD Unknown command
+
+
+7.1.4.  PREAUTH Response
+
+   Data:       optional response code
+               human-readable text
+
+      The PREAUTH response is always untagged, and is one of three
+      possible greetings at session startup.  It indicates that the
+      session has already been authenticated by external means and thus
+      no LOGIN command is needed.
+
+   Example:    S: * PREAUTH IMSP server ready and logged in as Smith
+
+
+7.1.5.  BYE Response
+
+   Data:       optional response code
+               human-readable text
+
+      The BYE response is always untagged, and indicates that the server
+      is about to close the connection.  The human-readable text may be
+      displayed to the user in a status report by the client.  The BYE
+      response may be sent as part of a normal logout sequence, or as a
+      panic shutdown announcement by the server.  It is also used by
+      some server implementations as an announcement of an inactivity
+
+
+
+Myers                                                          [Page 38]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+      autologout.
+
+      This response is also used as one of three possible greetings at
+      session startup.  It indicates that the server is not willing to
+      accept a session from this client.
+
+   Example:    S: * BYE Autologout; idle for too long
+
+
+
+7.2.    Server Responses - Status
+
+   These responses are always untagged.  This is how server data are
+   transmitted from the server to the client, often as a result of a
+   command with the same name.
+
+7.2.1.  CAPABILITY Response
+
+   Data:       capability listing
+
+      The CAPABILITY response occurs as a result of a CAPABILITY
+      command.  The capability listing contains a space-separated
+      listing of capability names that the server supports.
+
+      A capability name indicates that the server supports an extension,
+      revision, or amendment to the IMSP protocol.  Server responses
+      MUST conform to this document until the client issues a command
+      that uses the associated capability.
+
+      Capability names MUST either begin with "X" or be standard or
+      standards-track IMAP4 extensions, revisions, or amendments
+      registered with IANA.  A server MUST NOT offer unregistered or
+      non-standard capability names, unless such names are prefixed with
+      an "X".
+
+      Client implementations SHOULD NOT require any capability name, and
+      MUST ignore any unknown capability names.
+
+   Example:    S: * CAPABILITY XPIG-LATIN
+
+
+7.2.2.  LIST Response
+
+   Data:       name attributes
+               hierarchy delimiter
+               name
+               IMAP server list
+
+
+
+
+Myers                                                          [Page 39]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+      The LIST response occurs as a result of a LIST command.  It
+      returns a single name that matches the LIST specification.  There
+      may be multiple LIST responses for a single LIST command.
+
+      Four name attributes are defined:
+
+      \Noinferiors   It is not possible for any child levels of
+                     hierarchy to exist under this name; no child levels
+                     exist now and none can be created in the future.
+
+      \Noselect      It is not possible to use this name as a selectable
+                     mailbox.
+
+      \Marked        The mailbox has been marked "interesting" by the
+                     server; the mailbox probably contains messages that
+                     have been added since the last time the mailbox was
+                     selected.
+
+      \Unmarked      The mailbox does not contain any additional
+                     messages since the last time the mailbox was
+                     selected.
+
+      If it is not feasible for the server to determine whether the
+      mailbox is "interesting" or not, or if the name is a \Noselect
+      name, the server should not send either \Marked or \Unmarked.
+
+      The hierarchy delimiter is a character used to delimit levels of
+      hierarchy in a mailbox name.  A client may use it to create child
+      mailboxes, and to search higher or lower levels of naming
+      hierarchy.  All children of a top-level hierarchy node must use
+      the same separator character.  A NIL hierarchy delimiter means
+      that no hierarchy exists; the name is a "flat" name.
+
+      The name represents an unambiguous left-to-right hierarchy, and
+      MUST be valid for use as a reference in LIST and LSUB commands.
+      Unless \Noselect is indicated, the name must also be valid as an
+      argument for commands, such as SELECT, that accept mailbox names.
+
+      The IMAP server list contains one or more hosts which contain the
+      mailbox.  Should the server list contain more than one host name,
+      the client should access the mailbox by attempting to connect to
+      each server and accessing the maibox until one access succeeds.
+      The client should attempt each possible host in the sequence
+      listed unless it has good reason to do otherwise (such as an
+      already-open connection or geographic information).
+
+   Example:    S: * LIST (\Noselect) "/" ~/Mail/foo (imap8.do.main)
+
+
+
+
+Myers                                                          [Page 40]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+7.2.3.  LSUB Response
+
+   Data:       name attributes
+               hierarchy delimiter
+               name
+               IMAP server list
+
+      The LSUB response occurs as a result of an LSUB or LMARKED
+      command.  It returns a single name that matches the LSUB or
+      LMARKED specification.  There may be multiple LSUB responses for a
+      single LSUB or LMARKED command.  The data is identical in format
+      to the LIST response.
+
+   Example:    S: * LSUB () "." #news.comp.mail.misc (imap7.do.main)
+
+
+7.2.4.  OPTION Response
+
+   Data:       name
+               value
+               read/write access
+
+      The OPTION response occurs as a result of a GET, UNSET, or LOCK
+      OPTION command.  It returns a single option name that matches the
+      GET or UNSET specification, the option's value, and the user's
+      access to the option.  The user's access is the value [READ-WRITE]
+      if the user may change the option, or [READ-ONLY] if the user may
+      not.
+
+      The option name registry is currently imsp-options@andrew.cmu.edu.
+
+   Example:    S: * OPTION COMMON.SENT.MAILBOX SENT-MAIL [READ-WRITE]
+
+
+
+7.2.5.  SEARCHADDRESS Response
+
+   Data:       address book name
+               entry name
+
+      The SEARCHADDRESS response occurs as a result of a SEARCHADDRESS
+      command.  The name refers to an address book entry that matches
+      the search criteria.
+
+
+
+
+
+
+
+
+Myers                                                          [Page 41]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+7.2.6.  FETCHADDRESS Response
+
+   Data:       address book name
+               entry name
+               field data
+
+      The FETCHADDRESS response occurs as a result of a FETCHADDRESS or
+      LOCK ADDRESSBOOK command.  This is the means by which address book
+      entries are returned to the client.  The entry for name in
+      addressbook contains the field data.
+
+
+7.2.7.  ADDRESSBOOK Response
+
+   Data:       name attributes
+               hierarchy delimiter
+               name
+
+      The ADDRESSBOOK response occurs as a result of an ADDRESSBOOK
+      command.  It returns a single name that matches the ADDRESSBOOK
+      specification.  There may be multiple ADDRESSBOOK responses for a
+      single ADDRESSBOOK command.
+
+      Two name attributes are defined:
+
+      \Noinferiors   It is not possible for any child levels of
+                     hierarchy to exist under this name; no child levels
+                     exist now and none can be created in the future.
+
+      \Noselect      It is not possible to use this name as a searchable
+                     or storable addressbook.
+
+      The hierarchy delimiter is a character used to delimit levels of
+      hierarchy in an address book name.  A client may use it to create
+      child address books, and to search higher or lower levels of
+      naming hierarchy.  All children of a top-level hierarchy node must
+      use the same separator character.  A NIL hierarchy delimiter means
+      that no hierarchy exists; the name is a "flat" name.
+
+      The name represents an unambiguous left-to-right hierarchy. Unless
+      \Noselect is indicated, the name must also be valid as an argument
+      for commands, such as SEARCHADDRESS, that accept address book
+      names.
+
+
+
+
+
+
+
+
+Myers                                                          [Page 42]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+7.2.8.  ACL MAILBOX Response
+
+   Data:       mailbox name
+               identifier
+               rights
+
+      The ACL MAILBOX response occurs as a result of a GETACL MAILBOX
+      command.  The first string is the mailbox name for which this ACL
+      entry applies.  The second string is the identifier for which this
+      entry applies.  The third string is the set of rights that the
+      identifier has.
+
+
+7.2.9.  ACL ADDRESSBOOK Response
+
+   Data:       address book name
+               identifier
+               rights
+
+      The ACL ADDRESSBOOK response occurs as a result of a GETACL
+      ADDRESSBOOK command.  The first string is the address book name
+      for which this ACL entry applies.  The second string is the
+      identifier for which this entry applies.  The third string is the
+      set of rights that the identifier has.
+
+7.2.10. MYRIGHTS MAILBOX Response
+
+   Data:       mailbox name
+               rights
+
+      The MYRIGHTS MAILBOX response occurs as a result of a MYRIGHTS
+      MAILBOX command.  The first string is the mailbox name for which
+      this ACL entry applies.  The second string is the set of rights
+      that the client has.
+
+7.2.11. MYRIGHTS ADDRESSBOOK Response
+
+   Data:       address book name
+               rights
+
+      The MYRIGHTS ADDRESSBOOK response occurs as a result of a MYRIGHTS
+      ADDRESSBOOK command.  The first string is the address book name
+      for which this ACL entry applies.  The second string is the set of
+      rights that the client has.
+
+
+
+
+
+
+
+Myers                                                          [Page 43]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+7.3.    Server Responses - Command Continuation Request
+
+   The command completion request response is indicated by a "+" token
+   instead of a tag.  This form of response indicates that the server is
+   ready to accept the continuation of a command from the client.  The
+   remainder of this response is a line of text.
+
+   This response is used in the AUTHENTICATE command to transmit server
+   data to the client, and request additional client data.  This
+   response is also used if an argument to any command is a literal.
+
+   The client is not permitted to send the octets of the literal unless
+   the server indicates that it expects it.  This permits the server to
+   process commands and reject errors on a line-by-line basis.  The
+   remainder of the command, including the CRLF that terminates a
+   command, follows the octets of the literal.  If there are any
+   additional command arguments the literal octets are followed by a
+   space and those arguments.
+
+   Example:    C: A001 LOGIN {11}
+               S: + Ready for additional command text
+               C: FRED FOOBAR {7}
+               S: + Ready for additional command text
+               C: fat man
+               S: A001 OK LOGIN completed
+               C: A044 BLURDYBLOOP {102856}
+               S: A044 BAD No such command as "BLURDYBLOOP"
+
+8.      Minimal conformance
+
+   Implementation of the following commands is mandatory:
+
+   NOOP
+   LOGIN
+   AUTHENTICATE
+   LOGOUT
+   LIST
+   LSUB
+   LMARKED
+   SUBSCRIBE
+   UNSUBSCRIBE
+   CREATE          (server_partition_list argument is optional)
+   DELETE
+   RENAME
+   GET
+   SET
+   SEARCHADDRESS
+   FETCHADDRESS
+
+
+
+Myers                                                          [Page 44]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+   STOREADDRESS
+   DELETEADDRESS
+   ADDRESSBOOK
+   CREATEADDRESSBOOK
+   DELETEADDRESSBOOK
+   RENAMEADDRESSBOOK
+   LOCK
+   UNLOCK
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Myers                                                          [Page 45]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+9.      Formal Syntax
+
+   The following syntax specification uses the augmented Backus-Naur
+   Form (BNF) notation as specified in [RFC-822] with one exception; the
+   delimiter used with the "#" construct is a single space (SPACE) and
+   not a comma.
+
+   Except as noted otherwise, all alphabetic characters are
+   case-insensitive.  The use of upper or lower case characters to
+   define token strings is for editorial clarity only.  Implementations
+   MUST accept these strings in a case-insensitive fashion.
+
+   acl_data        ::= "ACL" SPACE acl_option SPACE astring SPACE astring
+                       SPACE astring
+
+   acl_option      ::= "MAILBOX" / "ADDRESSBOOK"
+
+   addressbook     ::= astring
+                       ;; Names may be case-sensitive depending on
+                       ;; implementation.
+
+   addressbook_cmd ::= "ADDRESSBOOK" SPACE list_mailbox
+
+   address_list    ::= "(" 0#("\Noinferiors" / "\Noselect" / flag_extension) ")"
+                       SPACE (<"> QUOTED_CHAR <"> / nil) SPACE astring
+
+   alpha           ::= "A" / "B" / "C" / "D" / "E" / "F" / "G" / "H" / "I" /
+                       "J" / "K" / "L" / "M" / "N" / "O" / "P" / "Q" / "R" /
+                       "S" / "T" / "U" / "V" / "W" / "X" / "Y" / "Z" /
+                       "a" / "b" / "c" / "d" / "e" / "f" / "g" / "h" / "i" /
+                       "j" / "k" / "l" / "m" / "n" / "o" / "p" / "q" / "r" /
+                       "s" / "t" / "u" / "v" / "w" / "x" / "y" / "z" /
+                       ;; Case-sensitive
+
+   astring         ::= atom / string
+
+   atom            ::= 1*ATOM_CHAR
+
+   ATOM_CHAR       ::= <any CHAR except atom_specials>
+
+   atom_specials   ::= "(" / ")" / "{" / SPACE / CTLs / list_wildcards /
+                       quoted_specials
+
+   authenticate    ::= "AUTHENTICATE" SPACE auth_type *(CRLF base64)
+
+   auth_type       ::= atom
+
+   base64          ::= *(4base64_char) [base64_terminal]
+
+
+
+Myers                                                          [Page 46]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+   base64_char     ::= alpha / digit / "+" / "/"
+
+   base64_terminal ::= (2base64_char "==") / (3base64_char "=")
+
+   capability      ::= atom
+                       ;; Must begin with "X" or be registered with IANA
+                       ;; as standard or standards-track
+
+   capability_data ::= "CAPABILITY" [SPACE 1#capability]
+
+   CHAR            ::= <any 7-bit US-ASCII character except NUL, 0x01 - 0x7f>
+
+   CHAR8           ::= <any 8-bit octet except NUL, 0x01 - 0xff>
+
+   command         ::= tag SPACE (command_any / command_auth /
+                       command_nonauth) CRLF
+                       ;; Modal based on state
+
+   command_any     ::= "CAPABILITY" / "LOGOUT" / "NOOP" / x_command
+                       ;; Valid in all states
+
+   command_auth    ::= list / lsub / lmarked / subscribe / unsubscribe /
+                       create / delete / rename / replace / move /
+                       get / set / searchaddress / fetchaddress /
+                       storeaddress / deleteaddress / addressbook_cmd /
+                       createaddressbook / deleteaddressbook /
+                       renameaddressbook / getacl / setacl / deleteacl /
+                       myrights
+                       ;; Valid only when in Authenticated or Selected state
+
+   command_nonauth ::= login / authenticate
+                       ;; Valid only when in Non-Authenticated state
+
+   continue_req    ::= "+" SPACE (resp_text / base64)
+
+   CR              ::= <ASCII CR, carriage return, 0x0C>
+
+   create          ::= "CREATE" SPACE mailbox [ SPACE server_partition_list ]
+                       ;; Use of INBOX gives a NO error
+
+   CRLF            ::= CR LF
+
+   CTL             ::= <any ASCII control character and DEL, 0x00-0x1f, 0x7f>
+
+   createaddressbook
+                   ::= "CREATEADDRESSBOOK" SPACE addressbook
+
+
+
+
+
+Myers                                                          [Page 47]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+   delete          ::= "DELETE" SPACE mailbox [ SPACE hostname ]
+                       ;; Use of INBOX gives a NO error
+
+   deleteacl       ::= "DELETEACL" SPACE acl_option SPACE astring SPACE astring
+
+   deleteaddress   ::= "DELETEADDRESS" SPACE addressbook SPACE name
+
+   deleteaddressbook
+                   ::= "DELETEADDRESSBOOK" SPACE astring
+
+   digit           ::= "0" / "1" / "2" / "3" / "4" / "5" / "6" / "7" /
+                       "8" / "9"
+
+   fetchaddress    ::= "FETCHADDRESS" SPACE addressbook 1#( SPACE name )
+
+   fetchaddress_d  ::= "FETCHADDRESS" SPACE astring SPACE name field_data
+
+   field_data      ::= 0#key_value
+
+   flag_extension  ::= "\" atom
+                       ;; Future expansion.  Client implementations
+                       ;; MUST accept flag_extension flags.  Server
+                       ;; implementations MUST NOT generate
+                       ;; flag_extension flags except as defined by
+                       ;; future standard or standards-track
+                       ;; revisions of this specification.
+
+   get             ::= "GET" SPACE list_mailbox
+
+   getacl          ::= "GETACL" SPACE acl_option SPACE astring
+
+   greeting        ::= "*" SPACE (resp_cond_auth / resp_cond_bye) CRLF
+
+   hostname        ::= atom
+                       ;; Fully qualified domain name
+
+   key             ::= atom
+
+   key_value       ::= SPACE key SPACE astring
+
+   LF              ::= <ASCII LF, line feed, 0x0A>
+
+   list            ::= "LIST" SPACE mailbox SPACE list_mailbox
+
+   list_mailbox    ::= 1*(ATOM_CHAR / list_wildcards) / string
+
+   list_wildcards  ::= "%" / "*"
+
+
+
+
+Myers                                                          [Page 48]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+   literal         ::= "{" number "}" CRLF *CHAR8
+                       ;; The number represents the number of CHAR8 octets
+
+   lmarked         ::= "LMARKED" SPACE mailbox SPACE list_mailbox
+
+   login           ::= "LOGIN" SPACE userid SPACE password
+
+   lookup_criterea ::= 0#( SPACE key SPACE list_mailbox )
+
+   lsub            ::= "LSUB" SPACE mailbox SPACE list_mailbox
+
+   mailbox         ::= "INBOX" / astring
+                       ;; INBOX is case-insensitive.  Other names may be
+                       ;; case-sensitive depending on implementation.
+
+   mailbox_data    ::= "LIST" SPACE mailbox_list / "LSUB" SPACE mailbox_list
+
+   mailbox_list    ::= "(" #("\Marked" / "\Noinferiors" / "\Noselect" /
+                       "\Unmarked" / flag_extension) ")" SPACE
+                       (<"> QUOTED_CHAR <"> / nil) SPACE mailbox
+                       SPACE "(" 1#hostname ")"
+
+   move            ::= "MOVE" SPACE mailbox SPACE server_partition_list
+
+   myrights        ::= "MYRIGHTS" SPACE acl_option SPACE astring
+
+   myrights_data   ::= "MYRIGHTS" acl_option SPACE astring SPACE astring
+
+   name            ::= astring
+
+   nil             ::= "NIL"
+
+   number          ::= 1*DIGIT
+
+   option_data     ::= "OPTION" SPACE atom SPACE astring SPACE
+                       ("[READ-ONLY]" / "[READ-WRITE]")
+
+   password        ::= astring
+
+   quoted          ::= <"> *QUOTED_CHAR <">
+
+   QUOTED_CHAR     ::= <any TEXT_CHAR except quoted_specials> /
+                       "\" quoted_specials
+
+   quoted_specials ::= <"> / "\"
+
+   rename          ::= "RENAME" SPACE mailbox SPACE mailbox
+                       ;; Use of INBOX as a destination gives a NO error
+
+
+
+Myers                                                          [Page 49]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+   renameaddressbook
+                   ::= "RENAMEADDRESSBOOK" SPACE addressbook SPACE addressbook
+
+   replace         ::= "REPLACE" SPACE mailbox SPACE mailbox
+
+   response        ::= *<response_data> response_done
+
+   response_data   ::= "*" SPACE (resp_cond_state / resp_cond_bye /
+                       mailbox_data / option_data /
+                       searchaddress_d / fetchaddress_d / address_data /
+                       acl_data / myrights_data) CRLF
+
+   response_done   ::= response_tagged / response_fatal
+
+   response_fatal  ::= "*" SPACE resp_cond_bye CRLF
+
+   response_tagged ::= tag SPACE resp_cond_state CRLF
+
+   resp_cond_auth  ::= ("OK" / "PREAUTH") SPACE resp_text
+                       ;; Authentication condition
+
+   resp_cond_bye   ::= "BYE" SPACE resp_text
+                       ;; Server will disconnect condition
+
+   resp_cond_state ::= ("OK" / "NO" / "BAD") SPACE resp_text
+                       ;; Status condition
+
+   resp_text       ::= ["[" resp_text_code "]" SPACE] (text_mime2 / text)
+
+   resp_text_code  ::= "ALERT" / "LOCKED" /
+                       atom [SPACE 1*<any TEXT_CHAR except "]">]
+
+   searchaddress   ::= "SEARCHADDRESS" SPACE addressbook lookup_criteria
+
+   searchaddress_d ::= "SEARCHADDRESS" SPACE addressbook SPACE name
+
+   server_partition
+                   ::= hostname [ "/" atom ]
+
+   server_partition_list
+                   ::= "(" 1#server_partition ")"
+
+   set             ::= "SET" SPACE atom SPACE astring
+
+   setacl          ::= "SETACL" SPACE acl_option SPACE astring SPACE astring
+                       SPACE astring
+
+   SPACE           ::= <ASCII SP, space, 0x20>
+
+
+
+Myers                                                          [Page 50]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+   specials        ::= "(" / ")" / "{" / qspecials
+
+   storeaddress    ::= "STOREADDRESS" SPACE astring SPACE name field_data
+
+   string          ::= quoted / literal
+
+   subscribe       ::= "SUBSCRIBE" SPACE mailbox
+
+   tag             ::= 1*<any ATOM_CHAR except "+">
+
+   text            ::= 1*TEXT_CHAR
+
+   text_mime2       ::= "=?" <charset> "?" <encoding> "?" <encoded-text> "?="
+                       ;; Syntax defined in [MIME-2]
+
+   TEXT_CHAR       ::= <any CHAR except CR and LF>
+
+   unsubscribe     ::= "UNSUBSCRIBE" SPACE mailbox
+
+   userid          ::= astring
+
+   x_command       ::= "X" atom <experimental command arguments>
+
+
+   A protocol session is as follows:
+
+    Server: greeting
+    *<Client: command (first part, if it contains a literal)
+      *<Server: continue_req
+        Client: request (next part)
+       >
+      Server: response
+     >
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Myers                                                          [Page 51]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+10.     Security Considerations
+
+   IMSP protocol transactions, including address book and option data,
+   are sent in the clear over the network unless the optional privacy
+   protection is negotiated in the AUTHENTICATE command.
+
+   A server error message for an AUTHENTICATE command which fails due to
+   invalid credentials should not detail why the credentials are
+   invalid.
+
+   Use of the LOGIN command sends passwords in the clear.  This can be
+   avoided by using the AUTHENTICATE command instead.
+
+   A server error message for a failing LOGIN command should not specify
+   that the user name, as opposed to the password, is invalid.
+
+   Additional security considerations are discussed in the section
+   discussing the AUTHENTICATE and LOGIN commands.
+
+
+11.     Author's Address
+
+   John G. Myers
+   Carnegie-Mellon University
+   5000 Forbes Ave.
+   Pittsburgh PA, 15213-3890
+
+   Email: jgm+@cmu.edu
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Myers                                                          [Page 52]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+Appendices
+
+A.      References
+
+   [IMAP4] Crispin, Mark R.,  "Internet Message Access Protocol -
+   Version 4", Work in Progress of the IETF IMAP WG, draft-ietf-imap-
+   imap4-??.txt.  Check Internet Drafts listing for latest version.
+
+   [IMAP-AUTH] Myers, J., "IMAP4 Authentication Mechanism", Work in
+   Process of the IETF IMAP WG, draft-ietf-imap-auth-??.txt.  Check
+   Internet Drafts listing for latest version.
+
+   [MIME-2] Moore, K., "MIME (Multipurpose Internet Mail Extensions)
+   Part Two: Message Header Extensions for Non-ASCII Text", RFC 1522.
+
+   [RFC-822] Crocker, D., "Standard for the Format of ARPA Internet Text
+   Messages", STD 11, RFC 822.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Myers                                                          [Page 53]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+B.      IMSP Keyword Index
+
+
+       ACL ADDRESSBOOK (response) .................................   43
+       ACL MAILBOX (response) .....................................   43
+       ADDRESSBOOK (command) ......................................   25
+       ADDRESSBOOK (response) .....................................   42
+       ALERT (response code) ......................................   37
+       AUTHENTICATE (command) .....................................   12
+       BAD (response) .............................................   38
+       BYE (response) .............................................   38
+       CAPABILITY (command) .......................................   10
+       CAPABILITY (response) ......................................   39
+       CREATE (command) ...........................................   14
+       CREATEADDRESSBOOK (command) ................................   25
+       DELETE (command) ...........................................   15
+       DELETEACL ADDRESSBOOK (command) ............................   33
+       DELETEACL MAILBOX (command) ................................   32
+       DELETEADDRESS (command) ....................................   25
+       DELETEADDRESSBOOK (command) ................................   26
+       FETCHADDRESS (command) .....................................   24
+       FETCHADDRESS (response) ....................................   42
+       GET (command) ..............................................   21
+       GETACL ADDRESSBOOK (command) ...............................   34
+       GETACL MAILBOX (command) ...................................   33
+       LIST (command) .............................................   18
+       LIST (response) ............................................   39
+       LMARKED (command) ..........................................   20
+       LOCK ADDRESSBOOK (command) .................................   28
+       LOCK OPTION (command) ......................................   27
+       LOGIN (command) ............................................   13
+       LOGOUT (command) ...........................................   11
+       LSUB (command) .............................................   20
+       LSUB (response) ............................................   41
+       MOVE (command) .............................................   17
+       MYRIGHTS ADDRESSBOOK (command) .............................   34
+       MYRIGHTS ADDRESSBOOK (response) ............................   43
+       MYRIGHTS MAILBOX (command) .................................   34
+       MYRIGHTS MAILBOX (response) ................................   43
+       NO (response) ..............................................   37
+       NOOP (command) .............................................   11
+       OK (response) ..............................................   37
+       OPTION (response) ..........................................   41
+       PREAUTH (response) .........................................   38
+       RENAME (command) ...........................................   16
+       RENAMEADDRESSBOOK (command) ................................   26
+       REPLACE (command) ..........................................   16
+       SEARCHADDRESS (command) ....................................   23
+       SEARCHADDRESS (response) ...................................   41
+
+
+
+Myers                                                          [Page 54]
+
+Internet DRAFT                    IMSP                  October 26, 1994
+
+
+
+       SET (command) ..............................................   21
+       SETACL ADDRESSBOOK (command) ...............................   32
+       SETACL MAILBOX (command) ...................................   30
+       STOREADDRESS (command) .....................................   24
+       SUBSCRIBE (command) ........................................   17
+       UNLOCK ADDRESSBOOK (command) ...............................   30
+       UNLOCK OPTION (command) ....................................   28
+       UNSET (command) ............................................   22
+       UNSUBSCRIBE (command) ......................................   18
+       \Marked (mailbox name attribute) ...........................   40
+       \Noinferiors (address book name attribute) .................   42
+       \Noinferiors (mailbox name attribute) ......................   40
+       \Noselect (address book name attribute) ....................   42
+       \Noselect (mailbox name attribute) .........................   40
+       \Unmarked (mailbox name attribute) .........................   40
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Myers                                                          [Page 55]
+

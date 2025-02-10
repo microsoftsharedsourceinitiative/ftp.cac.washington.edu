@@ -1,0 +1,429 @@
+
+                              Pine Release Notes
+                                       
+                                Version 4.56
+                          University of Washington
+                                      
+   Pine(R) is the University of Washington's "Program for Internet News
+   and Email". It is intended to be an easy-to-use program for sending,
+   receiving, and filing Internet electronic mail messages and bulletin
+   board (Netnews) messages. There are versions that will run on many
+   different flavors of the Unix(R) operating system, as well as a
+   version with GUI amenities for 32-bit flavors of Microsoft Windows
+   (95, 98, NT, 2000, Me, and XP).
+   
+New in Pine 4.56
+
+   Version 4.56 is a maintenance release with only a few new features.
+   
+   Additions include:
+   
+     * enable-multiple-newsrcs makes Pine use a different newsrc file for
+       each NNTP server
+     * predict-nntp-server makes Pine use current NNTP server for posting
+     * Now possible to set the outgoing NNTP server based on the Role
+       being used
+     * Option (tab-checks-recent) to have TAB display number of recent
+       messages in a highlighted folder
+     * For aggregate Saves there is now a default Save folder, which is
+       derived from the first message being saved
+     * If Unix Pine alternate compose editor returns nonzero, ask the
+       user if they want to use the resulting file anyway
+     * Environment variable default values supported
+     * Missing arguments to -f or -F are prompted for
+     * Some speedup to subscribe to news when the whole list of groups is
+       not needed
+       
+   Bugs that have been addressed in this release include:
+   
+     * Mbox functionality was broken
+     * Take to a Filter or other Rule crashed in 4.55
+     * Crash when Sorting on an IMAP server which does not have SORT
+       extension and some other related mystery crashes
+     * Features which were changed in Setup/Config and then backed out by
+       answering "No" would sometimes stay changed until quitting Pine
+     * After UnCut in composer headers leave the cursor positioned at the
+       end of the uncut text instead of at the beginning or end of the
+       line
+     * When Unix Pine forwarded address book entries as a Vcard
+       attachment it added extra carriage returns which caused problems
+     * Full header prevented the ability to view the ATTACHMENT INDEX
+       screen
+     * In MIME Digests, Newsgroups, References, and other headers were
+       ignored when viewing or replying to messages inside the digest
+     * PC-Pine installer could possibly present incorrect information for
+       the mail server login name
+     * Roles with search criteria weren't being used when composing a new
+       message
+     * For attachments of type application/octet-stream, place precedence
+       of a mailcap entry over the file's extension
+       
+   Version 4.55 addressed bugs found in previous releases and also
+   introduced some new functionality.
+   
+   Additions included:
+   
+     * Experimental Mail Drop setup is now possible using the "#move"
+       Namespace
+     * "Send-Without-Confirm"
+     * "Return-To-Inbox-Without-Confirm"
+     * "Signature Color" when viewing a message
+     * Mail access using POP3 should be faster with modern POP3 servers,
+       since Pine now uses the TOP and LIST commands if available. Append
+       "/loser" to the server name to get the old, more paranoid/reliable
+       behavior.
+     * NNTP-Range may speed news access if newsgroups are large
+     * In PC-Pine, the tree icon turns yellow when there is an unexpected
+       closing of a mail folder
+     * "Folder-Reopen-Rule"
+     * Rule Pattern Age intervals and Score intervals may be lists of
+       intervals now. Careful, Pines prior to version 4.55 will notice
+       only the first interval in the list.
+     * Translation of various Unicode punctuation characters and the Euro
+       symbol found in HTML mail to their US-ASCII equivalents
+     * New ROLENICK token
+     * "Warn-if-blank-Subject"
+     * "Warn-if-blank-To-and-Cc-and-Newsgroups"
+     * Added PC-Pine features "Quell-User-Id-Prompt" and
+       "Quell-Personal-Name-Prompt"
+     * Turned off setlocale call for category LC_CTYPE and now provide a
+       hidden feature "enable-setlocale-ctype" to turn it back on and a
+       hidden feature "disable-setlocale-collate" to turn off the
+       setlocale call for category LC_COLLATE. It is understood that you
+       probably don't know what this means, in which case you should
+       leave these features alone. Turning off the CTYPE setlocale solves
+       a technical problem in some cases.
+     * Added PC-Pine command line arguments "-install" and "-registry
+       clearsilent" for use with the new PC-Pine installer.
+       
+   Bugs that were addressed in this release included:
+   
+     * Messages may be unexpectedly marked Deleted or expunged if the
+       following conditions hold:
+          + The folder is accessed using IMAP
+          + The feature "Expunge-Only-Manually" is set
+          + Some messages in the folder have been Filtered during this
+            session
+          + The folder contains messages which haven't been displayed in
+            the index or viewed in this session
+       If these conditions hold, then any messages which were previously
+       marked Deleted will be expunged from the folder, and a seemingly
+       random set of the messages which haven't been displayed this
+       session will be marked Deleted.
+     * Do not attempt extra authentications after already authenticated
+       to SMTP server
+     * Pine appears to hang when viewing mailto urls with
+       initial-keystroke-list set to start in index
+     * Crash in mailutil and incorrect hierarchy handling in mailutil
+     * Crash when viewing last message of a folder when the message is
+       Expunged and titlebar-color-style is not default
+     * In PC-Pine, correcting a spell-checked word can sometimes cause a
+       crash
+     * Crash when expunging while quitting with a particular combination
+       of filters and messages in the folder
+     * Mailboxes connected to via POP3 could display message data for the
+       wrong message in the event of an expunge
+     * Change Win2K/XP Kerberos support to not try to get the Kerberos
+       realm name (needed to work in a pure MS Kerberos environment)
+     * If inbox-path is set to or defaults to "inbox", then FCCs to inbox
+       will fail after an incorrect attempt to create inbox in the
+       primary collection.
+     * Remote pine config might double in size when running both pine4.4x
+       and pine4.5x
+     * Sort and thread subject matching now complies completely with the
+       specification
+     * When replying or forwarding something with a charset that is
+       different from ours, label with our character-set if charset
+       conversion is enabled.
+     * Stored passwords work incorrectly if you use two accounts on the
+       same server
+     * Can only rename an incoming folder once per session
+     * WhereIs command sometimes displays negative line number by mistake
+     * Invisible current line after going from viewing a threaded message
+       to Main menu and then Index
+     * When Zooming an index where some messages in the selected set are
+       in collapsed threads, it wasn't possible to see the selected
+       messages, and the current message may even have been hidden.
+       Auto-expand collapsed threads which contain selected messages at
+       the time of the Zoom.
+     * TAB command stopped one thread too soon if in threaded index and
+       the new message was inside a thread.
+     * Failed open of a folder from a newsgroup caused the equivalent of
+       an uneXclude when the newsgroup was reopened.
+     * Rare crash when replying
+     * With some defective IMAP servers a filter which required a match
+       in the To pattern would not match. The IMAP server defect is that
+       the server does not implement a HEADER search for the empty string
+       to be equivalent to a test for the header existing.
+     * When forwarding HTML messages with attachments, they are marked as
+       being HTML Text even though they are being sent out as Plain text.
+     * Forwarding an attachment can incorrectly use a role even if there
+       are patterns that aren't matched.
+     * Whereis fails when searching from a threaded index when in
+       separate-index-screen mode.
+     * The message "Keeping x messages and removing y" was counting
+       filtered (and so invisible) messages in the Keeping number.
+     * Avoid deeply nested IMAP search commands because some servers
+       object. This should make large numbers of items in Rule header
+       patterns work correctly.
+     * Restore the old justify behavior from 4.44.
+     * Selecting using WhereIs ^X command did not respect
+       auto-zoom-after-select
+       
+   Version 4.53 was a bug-fix release.
+   
+   No additional functionality was added.
+   
+   Bugs addressed in the 4.53 release included:
+   
+     * If a Filter Rule which does not Delete or Move a message is
+       followed by another Rule which does a Move or Delete, that second
+       rule will be applied (if there is a match) even if the first rule
+       also matched
+     * Crash in address book select screen
+     * In PC-Pine's MAPI DLL, there was a bug corrupting attachments
+       (safe to ignore this if you didn't install the external pmapi32
+       package)
+       
+   Version 4.52 was also a bug-fix release.
+   
+   Additions included:
+   
+     * Experimental method to reopen a newsgroup or POP folder to check
+       for new messages with < command followed by > command. See the
+       help text for "Folder-Reopen-Rule" for a short explanation.
+       
+   Bugs addressed in the 4.52 release included:
+   
+     * Delete, Rename, and Shuffle broken in Incoming Folders
+     * Role-based SMTP Server should not override administratively fixed
+       SMTP Server
+     * Html typed file with garbage contents can cause crash
+     * Scramble-Message-Id drops first character of hostname
+     * When alternate-editor is used to compose, assume charset should be
+       that of user
+     * Rare crash when new mail arrives with threading enabled
+     * Threaded index lines displayed incorrectly with IMAP servers that
+       do not support threading
+     * View attachment command should not be available if Full Header
+       mode is turned on
+     * In PC-Pine, pine.conf registry setting was always used even if
+       overridden in the command-line
+     * Duplicate printing of To and Cc lines when using "all-except" in
+       viewer-hdrs
+     * Justification of quoted paragraphs is not possible when forwarding
+       a non-us-ascii message
+       
+   Version 4.51 was also a bug-fix release.
+   
+   Additions included:
+   
+     * New feature "Disable-Sender"
+     * New feature "Scramble-Message-Id"
+     * New feature "Spell-Check-Before-Sending"
+     * New pico option -Q <quotestr>
+       
+   Bugs addressed in the 4.51 release included:
+   
+     * Malformed Date in first message of mailbox causes threading crash
+     * Fetching POP3 message when /tmp and/or /var/tmp is full causes
+       crash
+     * In Rules, Current Folder Type of Any should match even if no
+       current folder
+     * Get rid of extra screen redrawing when collapsed thread is changed
+     * Allow setting Index Line Color to Default explicitly
+     * Fix LDAP URL parsing
+     * When Zoomed, Unselect current message advances past next message
+     * Malformed From address shown incorrectly in THREAD INDEX
+     * Missing Date in message causes truncated THREAD INDEX display
+     * Tab should skip over messages inside collapsed thread
+     * Hangs when sending base64 encoded text
+     * Current message number not correctly updated when viewing a
+       message with reverse sorting
+     * Interoperability problems between pre-4.50 and 4.50 remote address
+       books
+     * Role SMTP server not saved when postponing
+     * Fix delays and multiple warning messages when unexpected text
+       appears after a BASE64 part
+     * Fixed session-wide underlining or bolding caused by malformed
+       enriched or richtext messages
+       
+   Version 4.50 was an evolutionary release which introduced some new
+   functionality.
+   
+   Additions included:
+   
+     * Threading support
+          + Threading display styles configurable
+            (Threading-Display-Style)
+          + Threading index styles configurable (Threading-Index-Style)
+          + Options to affect threading display,
+            "Threading-Indicator-Character",
+            "Threading-Expanded-Character", and
+            "Threading-Lastreply-Character"
+          + Feature to color thread index lines the same color as the
+            Important symbol "thread-index-shows-important-color"
+          + Feature to make slash command collapse whole thread instead
+            of just the subthread at current line
+            "slash-collapses-entire-thread"
+          + Feature to keep Pine from asking you about Next and Prev
+            commands when they move you to another thread
+            ("next-thread-without-confirm"
+     * Rule Pattern enhancements
+          + Non-terminating Filter Rules
+          + New option in Rule Patterns to match message body text but
+            not headers
+          + "Not" ("!") operator in Header patterns, AllText patterns,
+            and BodyText patterns
+          + New option in Rule Patterns to match messages of a certain
+            age
+          + New option in Rule Patterns to match messages with raw 8-bit
+            characters in the Subject (Raw 8-bit in Subject)
+          + New option in Rule Patterns to match messages which have a
+            From or Reply-To address which is in your address book (more)
+          + New option in Rule Patterns to match messages which are
+            Recent
+          + If Patterns contain elements that are unrecognized, most
+            likely because they are from a version of Pine which is newer
+            than the Pine that is running, Pine will not act on them.
+            _WARNING_: If you are using a version of Pine which is 4.50
+            or newer and also using a version which is older than 4.50
+            you should probably read this additional information.
+     * New option to use a role-based SMTP server
+     * Rudimentary support for converting a message in a character set
+       different from yours to your character set when displaying the
+       message (more). The old, broken ISO_TO_CP and CP_TO_ISO hooks have
+       been removed.
+     * Rudimentary support for ISO-2022-JP. Uses EUC for UNIX Pine with
+       terminals that understand how to display EUC, and uses Shift-JIS
+       for PC-Pine (more).
+     * Fcc copies of sent mail may be automatically marked Seen
+     * Select text body (excluding header) option
+     * New feature "enable-full-header-and-text"
+     * New feature "quell-attachment-extra-prompt"
+     * New color feature "Titlebar-Color-Style"
+     * More new index format tokens
+     * "Pass-control-characters-as-is". feature is always turned on in
+       PC-Pine now
+     * Now possible to search LDAP from bounce command with ^T
+     * Attachment viewing now offers option to view by file extension if
+       mime type is unknown
+     * New PC-Pine feature "store-window-position-in-config"
+     * New PC-Pine command line flag "-nosplash" to disable splash screen
+     * New feature "quell-timezone-comment-when-sending" for working
+       around paranoid SMTP servers
+     * Hidden feature "quell-maildomain-warning"
+     * Add References header to all replies, whether it be in newsgroups
+       or email
+     * More efficient use of IMAP connections when viewing and managing
+       folders
+     * New PC-Pine registry setting for the pine.conf file
+     * Pico only preserves the start-stop characters (^Q/^S) if given the
+       -p option
+     * If a filter sets status bits and then the user uses D, U, or *
+       command on a message, don't refilter that message when expunging.
+       _WARNING_: it will still be refiltered next time the folder is
+       opened.
+     * Trivial change so that cursor advances when unselecting the
+       current message and a new feature to restore the old behavior
+       "unselect-will-not-advance"
+       
+   Bugs addressed in the 4.50 release included:
+   
+     * Potential security problem with remote data folders
+     * Potential denial of service with maliciously-crafted From: header
+     * Bug in HTML parser that left underline character turned on
+     * Bug in HTML parser that swallowed last character when there was a
+       wrap
+     * Crash in HTML parser when encountering many links on one line
+     * Recognize HTML <SCRIPT> and <STYLE> elements so at least we don't
+       spew them onto the display
+     * Strip directories from suggested filenames when saving attachments
+     * Fixed bug that adds extra line for each postpone
+     * Get rid of duplicate "sent-mail" display after monthly pruning
+     * Bug using Netscape IMAP server and remote Pine config
+     * Bug displaying multipart/alternative if text alternative has a
+       name
+     * Clean control characters out of status messages unless
+       pass-control-characters-as-is
+     * Preserve character set labeling of Subject when forwarding if it
+       is unchanged
+     * In PC-Pine, remember script the user sets the font to
+     * In PC-Pine, turn off scroll bar updating while formatting a large
+       message for viewing, which is particularly helpful for Windows XP.
+     * In PC-Pine, rename of folder which was only a case change didn't
+       work
+     * Make PC-Pine stop complaining about spaces in filenames for
+       attachments
+     * Always write CRLF and not LF newlines when writing out PC-Pine
+       pinerc
+     * Fix to handle IMAP referral URL with auth=anonymous properly
+     * When replying or forwarding something with a charset that is
+       different from ours, label with that charset if user has not
+       entered any new characters with high bit set
+     * With one message selected and it wasn't the currently highlighted
+       message, Apply Save would get confused
+     * Crash when adding filter that filters to incoming folder that does
+       not exist and is first incoming folder other than INBOX
+     * Out of memory crash with some filters that set status bits
+     * INBOX didn't work as an Fcc target
+     * Thread and Score sorts were missing from Sort dialog
+     * In PC-Pine, don't write screen position to registry if minimized
+     * Accept nulls in files when reading them into composer
+     * Justify crashes and bugs with non-whitespace-terminated indent
+       strings and with long words
+     * PC-Pine select and copy crash
+     * Fix quoting for PC-Pine command line arguments
+       
+   Additional details on changes in this (and previous) versions of Pine
+   may be found at the following URL:
+   
+                http://www.washington.edu/pine/changes.html
+            ____________________________________________________
+   
+Getting Help
+
+   Online Help
+          Every Pine screen and command has associated help text
+          accessible via the "?" key (or Ctrl-G in text-input contexts).
+          
+   Web Help
+          The most current source of information about Pine, including
+          new version availability, is the web page at
+          
+                      http://www.washington.edu/pine/
+                                      
+   Frequently Asked Questions (and answers) may be found at the following
+   URL:
+   
+                    http://www.washington.edu/pine/faq/
+                                      
+   Some topics of current interest include:
+     * Mail Drops
+     * Information on Folder Locking
+     * Information on Missing mail and the mbox driver
+     * Information on Folder Namespaces
+            ____________________________________________________
+   
+Additional Information
+
+   General Pine configuration information can be found here.
+   
+   Pine is also available for Windows 32-bit environments. More
+   information on PC-Pine can be found here.
+   
+   Pine was developed by the Office of Computing & Communications at the
+   University of Washington in Seattle. A more complete list of principal
+   players and key contributors can be found on the credits Web page at
+   
+                   http://www.washington.edu/pine/credits
+                                      
+   Pine and Pico are trademarks of the University of Washington.
+   
+   Pine, Pico and Pilot Copyright 1989-2003 University of Washington
+   
+   Additional legal notices can be found here or at the web URL:
+   
+                    http://www.washington.edu/pine/legal
+                                      
+   <End of Release Notes>

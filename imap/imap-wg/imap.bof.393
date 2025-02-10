@@ -1,0 +1,73 @@
+From gray@cac.washington.edu Wed Jul  7 20:39:59 1993
+Date: Sun, 4 Apr 1993 22:30:55 -0700 (PDT)
+From: Terry Gray <gray@cac.washington.edu>
+To: imap@cac.washington.edu
+Cc: Megan Davies <mdavies@cnri.reston.va.us>
+Subject: Notes from IMAP BOF 3/31/93 (Columbus IETF)
+
+
+1. Attendance:  
+   16 people came (5 others expressed regret that they couldn't make it.)
+   13 asked to be added to the IMAP email list.
+    7 planned to attend the Amsterdam IETF.
+
+2. Agenda:
+   -Introductions
+   -Draft WG Charter
+   -Discussion
+
+3. Results:
+
+There was general agreement that the focus of the proposed working group 
+should be to refine and extend the existing IMAP2/IMAP2bis protocol, 
+hopefully without breaking the installed base of IMAP2-capable software.
+
+The wording of the proposed WG charter was deemed generally acceptable.
+
+A list of desired IMAP extensions was made.  Many of the proposed features
+appear to be within the scope of the CMU IMSP (Interactive Mail Support
+Protocol) project, rather than IMAP.  Also, some are likely to be
+incompatible with current software. 
+
+It was clear that disconnected operation, ala DMSP/PC-Mail, was a very 
+high priority.
+
+4. Wish list:
+
+-Support for disconnected operation
+-Offline sorting of mailbox
+-Background server searching and sorting
+-Shared mailbox per-user state (like a .newsrc, but for mailboxes)
+-Function to determine where to submit messages
+-Storage/retrieval of MUA configuration data
+-Minimal non-plaintext authentication
+-Minimal confidentiality (XOR with shared secret)
+-Test assertion that PEM does not affect IMAP
+-Remote printing (from IMAP server's copy of msg)
+-Improved searching
+
+5. Next steps:
+
+The proposed WG charter, with minor modifications, will soon be submitted
+to the IETF application area directors for endorsement and forwarding to
+IESG for approval of the WG. 
+
+The wish list will be combined with other input and categorized according 
+to scope, compatibility, etc.
+
+6. References
+
+Mailing list:  imap@cac.washington.edu
+To subscribe:  imap-request@cac.washington.edu
+
+IMAP2: RFC-1176
+IMAP2bis extensions: /imap/imap2bis.txt on ftp.cac.washington.edu
+
+
+-teg
+
+
+
+
+
+

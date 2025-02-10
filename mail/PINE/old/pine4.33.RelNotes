@@ -1,0 +1,202 @@
+
+                             Pine Release Notes
+                                       
+                              Version 4.33
+                          University of Washington
+                                      
+   Pine(R) is the University of Washington's "Program for Internet News and
+   Email". It is intended to be an easy-to-use program for sending,
+   receiving, and filing Internet electronic mail messages and bulletin
+   board (Netnews) messages. There are versions that will run on many
+   different flavors of the Unix(R) operating system, as well as a version
+   with GUI amenities for 32-bit flavors of Microsoft Windows (95, 98,
+   NT, 2000, and Millennium).
+   
+NEW IN PINE 4.33
+
+   Version 4.33 is a bug-fix release that addresses a few bugs found in
+   earlier releases. Bugs that have been addressed in this release
+   include:
+   
+     * NNTP authentication causes crash
+     * Attachment viewing broken
+     * Display-Filters and Url-Viewers with quoted arguments in config
+       broken
+     * Reverse sorting doesn't work correctly with filters
+     * Some combinations of non-ascii characters in subject cause crash
+     * Add version information to PC-Pine
+     * Top line in news index was painted incorrectly at times
+     * Crash caused by debugging when > 1K config lines are present
+     * PC-Pine LDAP crash caused by using incorrect memory free routine
+     * Save size check was disabled in multi append
+       
+   Version 4.32 was also a bug-fix release that addressed bugs found in
+   earlier releases. Bugs that were addressed in Version 4.32 included:
+   
+     * File attaching broken (double filename) in PC-Pine
+     * Postponing loses second reply-to address
+     * Obscure crash when sorting by Threads
+     * Temporary file vulnerabilities
+     * Crash when NNTP authentication aborted
+     * Make /secure work again (broken in 4.30)
+     * Setup printer list problems with $PRINTER
+     * Recognize Re[arbitrary stuff]: reply syntax
+     * Allow for attaching files on a Windows network drive
+       
+   Version 4.31 was also a bug-fix release. Bugs that were addressed in
+   Version 4.31 included:
+   
+     * Crashes when sorting by Threads
+     * Text of last message could be invisible with header larger than
+       4096 bytes
+     * Fixed a few buffer overflow possibilities
+     * Many problems if compiled without -DDEBUG
+     * Eliminated length restriction on address book comments
+     * Couldn't expand collections when selecting if
+       combined-folder-display set
+     * List options set only in fixed config didn't work
+     * Filtering based solely on scores didn't work
+     * Filtering to non-existent folder didn't ask to create the folder
+     * Save to default folder didn't work if the folder didn't already
+       exist
+     * Crash when using WhereIs in Setup/Kolor with color turned off
+     * News collections would sometimes show up doubled until restarting
+     * Crash when accepting default in shuffle folder list command
+     * PC-Pine didn't always save window position
+     * Last-folder-used rule didn't always save the name of first saved
+       folder
+     * Rule editor address selector should allow multiple addresses
+     * Added Replicate command for Rules
+     * News validation doesn't validate against multiple news servers
+     * Reply to some text/html messages with attachments incorrectly set
+       content-type to text/html
+     * mail-directory setting in pine.conf doesn't work
+       
+   Version 4.30 was an evolutionary release that introduced new
+   functionality.
+   
+   Major new additions included:
+   
+     * Configuration flexibility
+          + pine configurations can now be stored remotely on an imap
+            server for access from different locations without the need
+            to configure for each location.
+          + configuration may be split into two parts: generic
+            configuration and exceptional, per-platform configuration.
+          + signatures can now be stored remotely or as part of the
+            pinerc file
+          + for configuration options which are lists, inheritance is
+            supported
+     * New security features
+          + SSL support for Unix Pine (source code only)
+          + SSL enhancements for PC-Pine
+     * Minor rule enhancements
+          + status of a message (New, Deleted, etc.) can now be used as
+            criteria for pattern matching.
+          + "move-only-if-not-deleted" option in filtering to lessen the
+            chance of messages being filtered more than once when running
+            multiple pine sessions.
+          + ability to set arbitrary headers in roles.
+          + news filtering made more efficient.
+     * Basic threaded sorting (Expanded functionality to be added in a
+       future version).
+     * Enhanced MAPI support for PC-Pine
+     * Various other new features and configuration options
+          + alternate-compose-menu
+          + by-replyto for saved-msg-name-rule
+          + check-newmail-when-quitting
+          + continue-tab-without-confirm
+          + expose-hidden-config
+          + expunge-only-manually
+          + incoming-startup-rule additions
+          + literal-signature
+          + mark-for-cc
+          + prefer-plain-text
+          + pruning-rule, for monthly sent-mail renaming and deleting
+          + quell-extra-post-prompt
+          + hidden feature allow-changing-from defaults to on
+     * New command line options:
+          + -p <pinerc>, pinerc can now refer to a remote mailbox which
+            contains the configuration file
+          + -x <exception_config>, is how you override your default
+            pinerc settings with exceptions for a particular platform,
+            may be local or remote
+          + -aux <local_auxiliary_files_directory>, allows you to tell
+            Pine the local directory to use for auxiliary files when
+            pinerc is remote (PC-Pine only)
+          + -copy_pinerc and -copy_abook options
+          + -v option
+       
+   Bugs addressed in the 4.30 release included:
+   
+     * Incoming mail with an extremely long From address can cause a
+       buffer overflow on the stack (security)
+     * X-Keywords crash for unix formatted mailboxes
+     * Composer word wrapping needlessly wraps words
+     * New messages appear in zoomed view
+     * "Bad msgno 0" filtering crash
+     * "+" during login doesn't always mean that SSL is being used
+     * news filtering refilters messages that had already been filtered
+     * Goto and Save can't access folders that are readable but not
+       listable
+     * Goto doesn't allow access of folders outside of a Collection List
+     * PC-Pine SSL functionality broken in Windows 2000/Millennium
+     * FromOrTo and To in index-format don't work for newsgroups
+     * Sorting by score doesn't always work
+     * Viewing of very large messages uses more memory than is need
+     * Loss of body for reply to multipart/signed mime messages
+     * Pine crashes when replying to or forwarding messages with certain
+       types of attachments
+     * Brackets are falsely recognized as url characters
+     * Crash when enclosing options in quotes for PC-Pine
+     * Newsgroup posting doesn't allow posting to additional news servers
+       
+   Additional details on changes in this (and previous) versions of Pine
+   may be found at the following URL:
+   
+                http://www.washington.edu/pine/changes.html
+            ____________________________________________________
+   
+GETTING HELP
+
+   Online Help
+          Every Pine screen and command has associated help text
+          accessible via the "?" key (or Ctrl-G in text-input contexts).
+          
+   Web Help
+          The most current source of information about Pine, including
+          new version availability, is the web page at
+          
+                      http://www.washington.edu/pine/
+                                      
+   Frequently Asked Questions (and answers) may be found at the following
+   URL:
+   
+                    http://www.washington.edu/pine/faq/
+                                      
+   Some topics of current interest include:
+     * Information on Folder Locking
+     * Information on Missing mail and the mbox driver
+     * Information on Folder Namespaces
+            ____________________________________________________
+   
+ADDITIONAL HELP
+
+   General Pine configuration information can be found here.
+   
+   Pine is also available for Windows 32-bit environments. More
+   information on PC-Pine can be found here.
+   
+   Pine was developed by the Office of Computing & Communications at the
+   University of Washington in Seattle. A more complete list of principal
+   players and key contributors can be found on the credits Web page at
+   
+                   http://www.washington.edu/pine/credits
+                                      
+   Pine and Pico are trademarks of the University of Washington.
+   
+   Pine, Pico and Pilot Copyright 1989-2001 University of Washington
+   
+   Additional legal notices can be found here or at the web URL:
+   
+                    http://www.washington.edu/pine/legal

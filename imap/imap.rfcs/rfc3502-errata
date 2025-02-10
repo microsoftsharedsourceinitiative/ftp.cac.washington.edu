@@ -1,0 +1,5 @@
+Informative References, page 6:
+	old:
+   [UIDPLUS]  Myers, J., "IMAP4 UIDPLUS extension", RFC 2359, June 1988.
+	new:
+   [UIDPLUS]  Myers, J., "IMAP4 UIDPLUS extension", RFC 2359, June 1998.

@@ -1,0 +1,1189 @@
+   Note: this document was written for Pine 3.94.  Currently, no updated
+   edition for later versions of Pine is planned, since the document 
+   "Getting Started..." (also available from the URL 
+   ftp://ftp.cac.washington.edu/pine/docs/) largely fulfills the same role:
+   Introducing new users to Pine.
+
+                                  ===
+
+
+                               Pine User's Guide
+                                       
+   This User's Guide is designed to help you understand what Pine can do
+   for you.
+   
+Pine Screens/Modes
+
+     * Message Text (Viewing a Message)
+     * Compose Message
+     * Folder Index
+     * Folder List
+     * Address Book
+     * Setup and Configuration
+       
+     _________________________________________________________________
+                                      
+Pine Commands
+
+     * Commands for Message Handling
+          + Export and Save
+          + Take Address
+          + Reply and Forward
+          + Bounce (Remail)
+          + View/Save Attachment
+          + Flag as Important
+          + Select Message
+          + Apply and Zoom
+     * Commands for Message Composition
+          + Justify
+          + Cut and Paste
+          + Read-in File
+          + Attach File
+          + Postponing a Message
+          + Spelling
+          + Rich Headers
+     * Other Commands
+          + Whereis
+          + Full Headers
+          + Sorting a Folder
+          + Expunge/Exclude
+          + Next Interesting Message
+          + Jump to a Message
+          + Goto Folder
+       
+     _________________________________________________________________
+                                      
+Information Pages
+
+     * Pine and Alternate Character Sets
+     * Syntax for IMAP Folders and Collections
+       
+    
+
+                              Message Text Screen
+                                       
+---------------------------------------------------------------------------
+|   PINE 3.94   MESSAGE TEXT       Folder: INBOX  Message  15 of 20  ALL  |
+|                                                                         |
+| Date: Tue, 19 Dec 1995 10:03:26 -0800                                   |
+| From: Ross Armstrong <ross@elsewhere.edu>                               |
+| To: Jasjit Singh <jsingh@edutech.nowhere.edu>                           |
+| Cc: isabelle@elsewhere.edu                                              |
+| Subject: Scanning pencil drawings                                       |
+|                                                                         |
+| Hello, Jasjit,                                                          |
+| Next quarter, I'm planning on having students in my drawing class       |
+| scan their work and email the graphics files as MIME-attachments to my  |
+| TA Isabelle, who will then make them available through our department's |
+| WWW server.  Do you have any tips for scanning pencil drawings?         |
+| Thanks in advance!                                                      |
+|                                                                         |
+|                                                                         |
+|   -Ross                                                                 |
+|                                                                         |
+|? Help       M Main Menu   P PrevMsg    - PrevPage  D Delete   R Reply   |
+|O OTHER CMDS V ViewAttch   N NextMsg  Spc NextPage  U Undelete F Forward |
+---------------------------------------------------------------------------
+
+   The message text screen shows you the text of the message along with
+   its header. If a message has attachments, those will be listed (but
+   not displayed) also.
+   
+   The top bar displays information about the currently open message,
+   folder and collection. You see the name of the collection (if there is
+   one) in angle brackets, then the name of the folder, then the message
+   number and finally the position within the current message (in
+   percent). If the message is marked for deletion "DEL" will appear in
+   the upper right as well.
+   
+   As with every Pine screen, the bottom two lines show you the commands
+   available.
+   
+Message Text Commands
+
+   Navigating the List of Messages:
+     * Previous Message: P
+     * Next Message: N
+     * Jump to Specific Message: J
+     * Next New Message: TAB
+       
+   Operations on the Current Message:
+     * Print: Y
+     * Reply: R
+     * Forward: F
+     * Bounce: B
+     * Mark for Deletion: D
+     * Undelete: U
+     * Take into Address Book: T
+     * Save into an Email Folder: S
+     * Export as a Plain Text File: E
+     * Flag: *
+     * Pipe to UNIX Command (not available in PC-Pine): | (vertical bar)
+       
+   Navigating Within the Current Message:
+     * Previous screen: -
+     * Next Screen: SPACE
+     * Where Is (Search for Word in Message or go to first/last line): W
+     * View Attachment: V
+       
+   Global Pine Commands: These commands are active in this and most other
+   Pine screens (except while composing a message); they are therefore
+   only listed here:
+     * Main Menu: M
+     * Show Other Commands: O
+     * Compose a New (or Continue a Postponed) Message: C
+     * Show Folder Index: I
+     * Show Folder List: L
+     * Goto Folder: G
+     * Help: ?
+     * Quit Pine: Q
+       
+    
+
+                            Compose Message Screen
+                                       
+--------------------------------------------------------------------------
+| PINE 3.94   COMPOSE MESSAGE                 Folder: INBOX  20 Messages |
+|                                                                        |
+| To      : Ross Armstrong <ross@elsewhere.edu>                          |
+| Cc      : isabelle@elsewhere.edu                                       |
+| Attchmnt: 1. /usr/users/jsingh/article.ps (843 KB) "My article"        |
+| Subject : Re: Scanning pencil drawings                                 |
+| ----- Message Text -----                                               |
+| Hi Ross,                                                               |
+| I'm actually in the middle of writing an article on that very subject  |
+| for a magazine.  I am sending you a PostScript file of a draft,        |
+| attached to this email message as an attachment.  Let me know if you   |
+| have any questions about it!                                           |
+|                                                                        |
+|     Jasjit Singh, Ph.D. - Dept. of Educational Technology              |
+|     Nowhere College, Notown, USA     Tel.: (123) 669-4373              |
+|     Internet Email: jsingh@edutech.nowhere.edu                         |
+|     WWW homepage: http://www.edutech.nowhere.edu/~jsingh/              |
+|                                                                        |
+|                                                                        |
+|^G Get Help ^X Send    ^R Read File ^Y Prev Pg ^K Cut Text   ^O Postpone|
+|^C Cancel   ^J Justify ^_ Alt Edit  ^V Next Pg ^U UnCut Text ^T To Spell|
+--------------------------------------------------------------------------
+
+Compose Message Commands
+
+   Moving the Cursor: On most systems your arrows keys will move the
+   cursor around the screen as expected. In addition, these movement keys
+   are always available in the composer:
+     * Back Single Character: Ctrl-B
+     * Forward Single Character: Ctrl-F
+     * Up Single Line: Ctrl-P
+     * Down Single Line: Ctrl-N
+     * Beginning of Current Line: Ctrl-A
+     * End of Current Line: Ctrl-E
+     * Up One Screen: Ctrl-Y
+     * Down One Screen: Ctrl-V
+     * Next Word: Ctrl-SPACE
+       
+   Editing the Text:
+     * Delete Current Character: Ctrl-D
+     * Delete Previous Character: Ctrl-H
+     * Set a Mark: Ctrl-^
+     * Cut Current Block or Line: Ctrl-K
+     * Justify Paragraph: Ctrl-J
+     * Paste Deleted Lines or Unjustify paragraph: Ctrl-U
+          + The Ctrl-U key sequence is used for two different things in
+            the midst of composing a message. Its normal meaning is
+            "Paste". That is, it will paste in the line or lines that you
+            last cut with the Ctrl-K. However, immediately following a
+            paragraph justification (Ctrl-J), the Ctrl-U key temporarilly
+            changes into "Unjustify". If the paragraph justification went
+            bad (changed some tabs, justified many paragraphs into one,
+            etc.) you'll see it right away and be able to unjustify.
+            After a few keystrokes, Ctrl-U reverts back to "Paste". It
+            sounds confusing, but you probably won't have a problem with
+            it once you try it.
+       
+   General Commands:
+     * Where Is (Search for Word in Message or go to first/last line):
+       Ctrl-W
+     * Help: Ctrl-G
+     * Use Alternate Editor (can be enabled/disabled in
+       Setup/Configuration; not available in PC-Pine): Ctrl-_
+     * Suspend (can be enabled/disabled in Setup/Configuration; not
+       available in PC-Pine): Ctrl-Z
+     * Redraw Screen: Ctrl-L
+     * Read File: Ctrl-R
+     * Spell Check (not available in PC-Pine): Ctrl-T
+       
+   Message Action Commands:
+     * Send: Ctrl-X
+     * Postpone: Ctrl-O
+     * Cancel: Ctrl-C.
+       
+   Note: even though Pine does not use Ctrl-S or Ctrl-Q (sometimes known
+   as XOFF and XON), the system you are using may intercept those
+   characters. If you accidentally hit a Ctrl-S and your keyboard
+   mysteriously freezes up, try typing a Ctrl-Q and see if that puts
+   things right.
+   
+Control Keys in the Header
+
+   When the cursor is in the header part of the message, some of the
+   control commands have special meaning. You will see this difference
+   reflected in the menu displayed at the bottom of your Pine compose
+   screen.
+   
+   When in the header, the following keys have these meanings:
+     * Ctrl-J: Attach file
+     * Ctrl-R: Rich Header
+     * Ctrl-T: To Address Book or Files
+       
+   The following commands are not active in the header: Whereis: Ctrl-W,
+   Alternate Editor: Ctrl-_, and Set Mark: Ctrl-^.
+   
+    
+
+                              Folder Index Screen
+                                       
+---------------------------------------------------------------------------
+|  PINE 3.94   FOLDER INDEX          Folder: RossAm  Msg 2 of 2      NEW  |
+|                                                                         |
+|+   1   Dec 19 Ross Armstrong      (4,053)  Scanning pencil drawings     |
+|+ N 2   Dec 20 To: Ross Armstrong (1.163K)  Re: Scanning pencil drawings |
+|                                                                         |
+| ? Help       M Main Menu  P PrevMsg    - PrevPage  D Delete    R Reply  |
+| O OTHER CMDS V [ViewMsg]  N NextMsg  Spc NextPage  U Undelete  F Forward|
+---------------------------------------------------------------------------
+
+   The folder index screen shows you an index of all the messages in the
+   folder. The very top bar shows information about the folder: what the
+   name of the folder is and how many messages it has. The example above
+   shows a folder set up for correspondence with one specific person, to
+   which received as well as sent messages are saved; you can set up your
+   folders however they make it easier for you to organize your messages.
+   By default, Pine puts messages you save from your INBOX into a folder
+   called saved-messages, and saves a copy of messages you send into a
+   folder called sent-mail.
+   
+   Each message gets one line on the index screen. That line contains:
+     * Message Status: The following codes give you information about the
+       current status of the message.
+       
+     + - The message was sent directly to you (not a cc: or email list).
+     
+     A - The message has been answered.
+     
+     D - The message is marked for deletion.
+     
+     N - The message is new and unread.
+     
+     X - The message is selected (for aggregate operations).
+     
+     * - The message has been flagged as important.
+     
+     * Message Number.
+     * Date Received or Sent.
+     * Sender (for received messages) or Recipient (for sent messages).
+     * Message Size: The number in parentheses is the size of the
+       message, plus any attachments, in bytes (characters).
+     * Subject: As much of the subject as will fit on the screen.
+       
+   As with every Pine screen, the bottom two lines show you the commands
+   available.
+   
+Folder Index Commands
+
+   Navigating the List of Messages:
+     * Previous Message: P
+     * Next Message: N
+     * Previous Screen: -
+     * Next Screen: SPACE
+     * Jump directly to Message Number: J
+     * Where Is [Search for Word in Index or go to first/last message]: W
+     * Next Message: N
+     * Next New Message: TAB
+       
+   Operations on the Current Message:
+     * View message: V
+     * Print: Y
+     * Reply: R
+     * Forward: F
+     * Bounce [can be enabled/disabled in Setup/Configuration]: B
+     * Mark for Deletion: D
+     * Undelete: U
+     * Take into Address Book: T
+     * Save into an Email Folder: S
+     * Export as a Plain Text File: E
+     * Flag [can be enabled/disabled in Setup/Configuration]: *
+     * Pipe to UNIX Command [can be enabled/disabled in
+       Setup/Configuration; not available in PC-Pine]: | (vertical bar)
+       
+   Other Folder Index Commands:
+     * Sort the Index [by Subject, Date, Sender/Recipient, etc. ]: $
+     * Expunge the Folder [Remove Messages Marked for Deletion]: X
+     * Toggle Headers Mode [can be enabled/disabled in
+       Setup/Configuration]: H
+     * Working with subset of messages in current folder [these commands
+       can be enabled/disabled in Setup/Configuration]:
+          + Select [Current Message, All Messages, or by criteria: Text,
+            Date, Status, Message number(s)]: ;
+          + Apply [Command to Selected Messages]: A
+          + Zoom [View only Selected Messages]: Z
+       
+    
+
+                              Folder List Screen
+                                       
+   Pine's Folder List screen is designed to give you easy access to all
+   your email folders. When you first start Pine, you will only have a
+   few folders, all on the same host. In that case, your folder list
+   screen looks something like this:
+
+---------------------------------------------------------------------------
+| PINE 3.94   FOLDER LIST                       Folder: INBOX  0 Messages |
+|                                                                         |
+| INBOX                   sent-mail               saved-messages          |
+|                                                                         |
+|                                                                         |
+|                                                                         |
+|                                                                         |
+|                                                                         |
+|                                                                         |
+| ? Help       M Main Menu  P PrevFldr    - PrevPage   D Delete  R Rename |
+| O OTHER CMDS V [ViewFldr] N NextFldr  Spc NextPage   A Add              |
+---------------------------------------------------------------------------
+
+   Eventually, that folder list may grow to the point where is makes
+   sense to arrange folders into collections. For people who use multiple
+   folders on multiple hosts for multiple purposes, the folder list might
+   look a lot more complicated. For example, this is the folder list
+   screen for a user who has multiple inboxes (through filtering by an
+   external system; Pine itself does not perform any mail filtering), a
+   local collection of folders to save messages from those inboxes into
+   after reading, another local collection for mail to/from specific
+   correspondents, and also a news collection on another host than the
+   one Pine is running on.
+
+---------------------------------------------------------------------------
+| PINE 3.94   FOLDER LIST                    Folder: IN.RossA  2 Messages |
+|                                                                         |
+|-------------------------------------------------------------------------|
+|                        Incoming Message Folders                         |
+|-------------------------------------------------------------------------|
+|                                                                         |
+| INBOX               IN.RossA        BATECH-L        FWD-from-old-acct   |
+|                                                                         |
+|-------------------------------------------------------------------------|
+|Folder-collection <Saved-Email>  ** Default for Saves **          (Local)|
+|-------------------------------------------------------------------------|
+|                                                                         |
+|                     [ Select Here to See Expanded List ]                |
+|                                                                         |
+|-------------------------------------------------------------------------|
+|Folder-collection  <Correspondents>                               (Local)|
+|-------------------------------------------------------------------------|
+|                                                                         |
+|                     [ Select Here to See Expanded List ]                |
+|                                                                         |
+|                                                                         |
+|-------------------------------------------------------------------------|
+|News-collection  <Subscribed-Groups on monet.art.nowhere.edu>    (Remote)|
+|-------------------------------------------------------------------------|
+|                                                                         |
+|                     [ Select Here to See Expanded List ]                |
+|                                                                         |
+| ? Help       M Main Menu  P PrevFldr    - PrevPage   D Delete  R Rename |
+| O OTHER CMDS V [ViewFldr] N NextFldr  Spc NextPage   A Add              |
+---------------------------------------------------------------------------
+
+   The top line offers information about the currently selected
+   collection and folder. The bottom lines display commands available.
+   
+Folder List Commands
+
+   Navigating the Folder List Screen:
+     * Previous Folder: P
+     * Next Folder: N
+     * Previous Screen: -
+     * Next Screen: SPACE
+     * Where Is [Search for folder name or go to first/last folder across
+       all collections]: W
+       
+   Operations on the Newly Selected Folder:
+     * View: V
+     * Delete: D
+     * Rename: R
+       
+   Folder List Commands:
+     * Show Index of the Currently Active Folder: I
+     * Print Folder Listing: Y
+     * Add New Folder: A
+       
+   Newsgroup-collection Specific Commands:
+     * Subscribe: A
+     * Unsubscribe: D
+       
+Search for a Word in a Folder Name
+
+   The WhereIs command searches through the folder names in the currently
+   active collection and all other collections which are expanded.
+   
+View Folder and Folder Index
+
+   If you got to the Folder List screen by using the "L" command, then
+   you have a few different options for manipulating your folders and
+   selecting a folder. The two options "View Folder" and "Folder Index"
+   are similar in function (they both get you to a FOLDER INDEX screen)
+   but operate on different folders.
+   
+   "Folder Index" is something of an escape option -- Pine keeps the same
+   current folder as it had before you saw this folder list and simply
+   displays that current folder. "View Folder" is more of an "open and
+   view" function -- it makes the currently highlighted folder to the
+   current folder, closes the previous folder and then displays the index
+   of the new current folder.
+   
+Folder List: Three Modes
+
+   There are three different ways in which you can get to the folder
+   list. The standard method is to just press L -- the Folder List
+   command. You can also arrive at your folder listing when going to a
+   folder: G, Ctrl-T, or when saving a message to a folder: S, Ctrl-T.
+   When you get to folder list in one of these alternate ways, all the
+   folder manipulation commands are inoperative -- all you can do is
+   navigate to a folder and select it for the task at hand. The "Save"
+   and "Goto" functions both provide a means to exit this screen: press
+   E.
+   
+    
+
+                              Address Book Screen
+                                       
+---------------------------------------------------------------------------
+| PINE 3.94   ADDRESS BOOK            Folder: INBOX  Message 5 of 20 NEW  |
+|                                                                         |
+| Ross       Armstrong, Ross                   ross@elsewhere.edu         |
+| help-desk  Nowhere U. Help Desk              help@nowhere.edu           |
+|                                                                         |
+| Panel      1996 Conference Panel             DISTRIBUTION LIST:         |
+|                                              abc@somewhere.edu          |
+|                                              Ross                       |
+|                                              niako@xyz.co.jp            |
+|                                              heinz@math.uni-irgendwo.de |
+|                                                                         |
+|                                                                         |
+| ? Help       E Exit        P PrevEntry   - PrevPage D Delete C ComposeTo|
+| O OTHER CMDS V [View/Edit] N NextEntry Spc NextPage A AddNew W WhereIst |
+---------------------------------------------------------------------------
+
+   The addressbook screen shows you all the currently existing
+   addressbook entries -- both simple entries and list entries. If your
+   system has a global address book, then you will be able to see it, but
+   you won't be able to change its entries.
+   
+   The address book screen columns reflect the three parts of an address
+   book entry -- a short nickname (the part you type in), a real name
+   (the part Pine shows on the message), and address. A simple entry has
+   only one address. A distribution list has two or more entries and is
+   always marked "DISTRIBUTION LIST" on the screen.
+   
+Address Book Commands
+
+   Navigating the Address Book:
+     * Previous Entry: P
+     * Next Entry: N
+     * Previous Screen: -
+     * Next Page: SPACE
+     * Where Is [Search for word in address book, or go to first/last
+       address]: W
+       
+   Address Book Operations:
+     * View/Edit Entry: V
+          + Shows two additional fields not visible when all addresses in
+            address book are displayed: Fcc, for designating a folder to
+            which messages sent to that entry will be saved; and Comment,
+            for annotating the entry.
+     * Delete Entry: D
+     * Add new Entry: A
+       
+Compose From Address Book
+
+   When you are looking at the address book and press C to compose a
+   message, Pine not only brings up the composer, but also inserts the
+   current address book entry as the recipient of the message.
+   
+Address Book from Compose
+
+   The normal way to get to the address book is to press A for address
+   book from Pine's main menu. You may, however, browse the address book
+   by pressing the to-addressbook (Ctrl-T) combination with the cursor in
+   the To:, Cc: or Bcc: fields of a message you are composing. In this
+   situation, the only commands available are those which help you select
+   an entry for the particular message. You cannot add to or modify the
+   address book in this mode.
+   
+Deleting and distribution lists
+
+   When the cursor is positioned on the name of a distribution list,
+   pressing D tells Pine to remove the entire list. If the cursor is
+   positioned ona single address within the list, then D only removes
+   that address from the list.
+   
+Lists in the Address Book
+
+   Pine allows you to create distribution list entries in the address
+   book. These list entries usually contain two or more addresses, which
+   can be either complete email addresses, or nicknames defined elsewhere
+   in the Address Book. In the example at the top of this page, the
+   distribution list named 1996 Conference Panel contains - in addition
+   to three "fully qualified" email addresses -- the nickname Ross, which
+   is defined in the first entry of that Address Book. You can use an
+   address book list entry to manage a small distribution list. When
+   sending out a message, you just enter the nickname of the list in the
+   To:, Cc: or Bcc: fields, and Pine fills in all the addresses on the
+   list.
+   
+    
+
+                        Setup and Configuration Screens
+                                       
+   Pine's Setup and Configuration Screens, accessed via SETUP from the
+   main menu, allow you to customize the behavior of Pine.
+   
+Setup Tasks
+
+     * Newpassword: N
+       lets Unix Pine users change their password on the system. You will
+       have to type in the old password and confirm the new one. Note
+       that this is actually a Unix-account management (rather than a
+       Pine-specific) function, which means you are changing the password
+       you will have to use from now on to log into your Unix account
+       here.
+     * Signature: S
+       calls up Pine's built-in Signature Editor, which allows you to
+       create or change the text that will appear as your "signature" at
+       the end of each message you compose. Typical email "signatures"
+       are no more than three to five lines long and contain contact
+       information for the message's writer - such as full name, email
+       address, telephone, fax, URL of personal or organization's World
+       Wide Web page, mailing address, and so on.
+     * Update: U
+       is a feature designed for PC-Pine users; however, it is also
+       functional in the Unix version of Pine. It connects you to the
+       PC-Pine update server which holds a copy of the current version of
+       PC-Pine. With the update feature, you can check to make sure your
+       version of PC-Pine is the most current and (if it is not) download
+       the new version.
+     * Printer: P
+       Here, Unix Pine users can select how Pine will try to print any
+       screens you select for printing, such as an email message, a
+       folder index, or your address book. Note that "successful"
+       printing from Pine may depend not only on Pine itself, but also on
+       whatever network or communications software you use to access the
+       account on which you are running Pine, and of course the printer
+       and its physical connection.
+     * Config: C
+       The SETUP CONFIGURATION menu allows you to set a wide range of
+       options of how you want Pine to "behave"; it also lets you set up
+       folder collections, and identify the host computers from which
+       Pine should retrieve email messages and news articles. Change the
+       options that require a value after the = sign only if you are sure
+       that you understand what they do (check the context-sensitive
+       help). Wrong specification of smtp-server (needed only for
+       PC-Pine) and nntp-server may render Pine unable to access your
+       messages/newsgroup articles, and a misconfigured user-domain value
+       may result in your messages being sent out with an invalid return
+       address, so that your correspondents will not be able to reply to
+       your messages and get their response sent back to you. If you have
+       any doubts about what specifications should be entered here,
+       contact your local computing support group; on Unix accounts, the
+       crucial configuration options have almost certainly already been
+       set up for you the way they need to be.
+       The top of the menu, which is several screens long, looks
+       something like this:
+
+---------------------------------------------------------------------------
+|  PINE 3.94   SETUP CONFIGURATION            Folder: INBOX  20 Messages  |
+|                                                                         |
+| personal-name              = Jasjit Singh                               |
+| user-domain                = edutech.nowhere.edu                        |
+| smtp-server                = <No Value Set>                             |
+| nntp-server                = news.nowhere.edu                           |
+| inbox-path                 = <No Value Set: using "{mailman}inbox">     |
+| folder-collections         = Saved-Email mail/[]                        |
+|                              Correspondents corresp/[]                  |
+| news-collections           = <No Value Set>                             |
+| incoming-archive-folders   = <No Value Set>                             |
+| pruned-folders             = <No Value Set>                             |
+| default-fcc                = <No Value Set: using "sent-mail">          |
+| default-saved-msg-folder   = <No Value Set: using "saved-messages">     |
+| postponed-folder           = <No Value Set: using "postponed-msgs">     |
+| read-message-folder        = <No Value Set>                             |
+| signature-file             = <No Value Set: using ".signature">         |
+| global-address-book        = <No Value Set>                             |
+| address-book               = <No Value Set: using .addressbook>         |
+| feature-list               =                                            |
+|            Set        Feature Name                                      |
+|            ---   ----------------------                                 |
+|            [ ]  allow-talk                                              |
+|            [X]  assume-slow-link                                        |
+|            [ ]  auto-move-read-msgs                                     |
+|                                                                         |
+| ? Help   E Exit Config  P Prev    - PrevPage    A Add Value   Y prYnt   |
+|          C [Change Val] N Next  Spc NextPage    D Delete Val  W WhereIs |
+---------------------------------------------------------------------------
+   Some changes made in the SETUP CONFIGURATION menu will only take
+       effect after closing and then restarting Pine. For the options
+       that are followed by an = sign, you use the functions Change Val,
+       Add Value and Delete Value to enter a specification; for the
+       options preceded by angular brackets, you use the X key to toggle
+       them on or off [Set/Unset]; and for the options that let you
+       choose one out of two or more settings, you use the * key to
+       select a setting.
+       For any of the configuration options, context-sensitive help is
+       always accessible through the ? key. Please note: Some of the
+       setup/configuration functions may be disabled on your system by
+       its administrator(s).
+       
+    
+
+                         Commands for Message Handling
+                                       
+   Most message handling (as opposed to composing) is performed in the
+   MESSAGE TEXT and FOLDER INDEX screens, so that is where most of the
+   following commands are active.
+   
+Export and Save Commands
+
+   Export: E and Save: S are the two alternatives Pine gives you to keep
+   a copy of the message you are reading. If you want to keep the message
+   within Pine's folder collection(s), use "save"; if you want to use the
+   message in another program, use "export". Pine uses a special format
+   for its mail folders -- never edit a Pine folder by hand or with any
+   program other than Pine, unless you know exactly what you are doing;
+   it is also advisable to make a "backup copy" of any Pine folder you
+   manipulate outside of Pine first.
+   
+   When you save a message, it is put into an existing folder or into a
+   new folder in one of your existing folder collections. The message
+   stays in email format and can be read by Pine again. The exact
+   behavior of the save command can be configured with the
+   save-will-quote-leading-froms, save-will-not-delete, and
+   save-will-advance feature settings.
+   
+   When you use export, the file is placed in your home directory or
+   current working directory (see the use-current-dir configuration
+   setting).
+   
+   The Export command reacts to the full header mode toggle. If the full
+   header mode is on, then all the header and delivery lines are included
+   with the text of the message in your exported copy of the message.
+   
+Take Address Command
+
+   With the Take Address: T command, you can extract email addresses from
+   an incoming message and save them in your address book. This is an
+   easy wayto keep up an address book and avoid having to remember the
+   email addresses of the people who write to you.
+   
+   If the message is just to you individually, then you will only need to
+   provide a nickname. If the message is more complicated (with more than
+   one recipient or an email list involved), then you will see an address
+   selection screen which lets you choose the address you want to save
+   into your address book, or add several of them to a personal address
+   list.
+   
+Reply and Forward Commands
+
+   Replying: R and Forwarding: F are your two options for following up on
+   the message you are reading. You would use reply if you want to get
+   email back to the author of the message and/or the other people who
+   have already seen it. You use forward if you want somebody new to see
+   the message.
+   
+   In the normal case, the only thing that you must supply when
+   forwarding a message is the name/email address of the new recipient.
+   Pine will include the text of the forwarded message. Pine will also
+   include any attachments to the message if you have requested them.
+   There is space above the forwarded text for you to include any
+   comments.
+   
+   When replying, you usually have to answer some questions. If the
+   message is to multiple people and/or specified with a Reply-to:
+   header, then you will have to decide who should get the reply. You
+   also need to decide whether or not to include the previous message in
+   your reply. Some of this is configurable. Specifically, see the
+   include-header-in-reply and include-text-in-reply configuration
+   features.
+   
+   Both the Reply and Forward commands react to the full header mode
+   toggle. If the full header mode is on, then all the header and
+   delivery lines are included with the text of the message in your
+   reply/forward.
+   
+Bounce Command
+
+   The bounce: B command allows you to re-send a message, as if you were
+   never in the loop. It is analogous to crossing out your address on a
+   postal letter, writing a different address on the envelope, and
+   putting it into the mailbox. Bounce is used primarily to redirect
+   email which was sent to you in error. Also, some owners of email lists
+   use the bounce command to handle list traffic.
+   
+   The presence or absence of the Bounce command is determined by the
+   "enable-bounce-cmd" feature-list option in your Pine configuration.
+   Note that Bounce may be administratively disabled by your system
+   manager; if it doesn't work, please check with your local help desk
+   before reporting a bug.
+   
+View/Save Attachment Command
+
+   The View/Save Attachment: V command allows you to handle MIME
+   attachments on a message you have received. Pine shows you a list of
+   the message attachments--you just choose the attachment you want. You
+   may either view or save the selected attachment.
+   
+   Because many attachments require external programs for display, there
+   is some system configuration that has to happen before you can
+   actually display attachments from "within" Pine, meaning without
+   saving the attachment to a file and loading that file into the
+   appropriate software. Hopefully much of that will have been done
+   already by your system administrator. MIME configuration is handled
+   with the "mailcap" configuration file. (See the section MIME: Reading
+   a Message in the Technical Notes for more information.)
+   
+Flag Command
+
+   Flag: * is the command which allows users to manipulate the status
+   flags which appear on the left side of the FOLDER INDEX screen. The
+   most common use of this is to mark a message as important. This is
+   something of a note to yourself to get back to that message--it has no
+   effect on the way in which Pine will treat the message.
+   
+   You can also use the flag command to set (or unset) the flags which
+   indicate that a message is new, deleted, or answered.
+   
+Selecting Messages for Aggregate Operations
+
+   Aggregate operations give you the ability to process a group of
+   messages at once. Acting on multiple messages requires two steps:
+    1. selecting a set of messages and then
+    2. applying a command to that set.
+       
+   The first part is handled by the select: ; command. Select allows you
+   to select messages based on their status (read, answered, etc.),
+   contents (including fielded selections on header lines) or date. You
+   also get certain quick options to select a specific message or range
+   of messages, to select the current message or to select all messages.
+   
+   After you have an initial selection, the select command changes. It
+   gives you selection "alteration" options: unselect all, unselect
+   current, broaden (implements a logical OR), and narrow (implements a
+   logical AND). You are allowed to use select as many times as you need
+   to get the selected set right.
+   
+   Also, the WhereIs: W command has a feature (Ctrl-X) to select all the
+   messages which match the WhereIs search. WhereIs searches through just
+   the text which appears on the FOLDER INDEX.
+   
+   The availability of the aggregate operations commands is determined by
+   the "enable-aggregate-command-set" feature-list option in your Pine
+   configuration. Note that aggregate commands may be administratively
+   disabled by your system manager; if they don't work, please check with
+   your local help desk before reporting a bug.
+   
+Apply and Zoom Commands
+
+   Apply: A is the second step of most aggregate operations. Apply
+   becomes active any time there is a defined set of selected messages.
+   When you select the Apply command, Pine displays the set of commands,
+   such as Print, Forward, Save, and others.
+   
+   Pine never conducts an implicit apply operation. The only way to have
+   a command operate on the selected set is to use the apply command
+   first. Otherwise, commands operate on the current message even if you
+   have just selected a message set.
+   
+   Another action you might want to take on a set of selected messages is
+   to zoom in on them. Like Apply, Zoom only becomes active when messages
+   have been selected. Zoom: Z is a toggle command which allows you to
+   zoom-in (and only to see the selected messages) and zoom-out (to see
+   all messages in the folder. The setting for auto-zoom-after-select and
+   auto-unzoom-after-apply in the Pine configuration allow you to modify
+   Pine's behavior when messages are selected.
+   
+   Neither apply nor zoom modify the definition of the selected set; in
+   other words, after you Apply a command to or Zoom your selected
+   messages, the selection still remains in effect .
+   
+    
+
+                         Message Composition Commands
+                                       
+   These commands are active in and/or releated to Pine's COMPOSE MESSAGE
+   screen.
+   
+Justify Command
+
+   Pressing Ctrl-J forces Pine to reformat the text in the paragraph the
+   cursor is on. A paragraph is separated by one blank line. This is
+   useful when you have been editing a paragraph and the lines become
+   greatly uneven in length. Justifying when your cursor is on a
+   formatted table or listing can have unwanted results -- if that
+   happens, just press Ctrl-U immediately to unjustify the text you just
+   justified.
+   
+Mark, Cut and Paste Commands
+
+   The mark feature (Ctrl-^) allows you to mark any segment of text, cut
+   it out (Ctrl-K), move the cursor, and paste it (Ctrl-U) in the new
+   location. You can paste the previously cut text more than once,
+   allowing you to use this feature to copy a block of text into several
+   locations of your message; however, you cannot cut text out of one
+   message your are composing and then paste it into the next one with
+   these commands.
+   
+   If you press Ctrl-K without having marked anything, Pine will delete a
+   single line. If you delete a group of lines together, Pine keeps them
+   in the same buffer, so Ctrl-U will restore them as a block.
+   
+   In Pine's internal help, the "set mark" key is shown as ^^ (two
+   carets). The first "^" means you should hold down the "Control" key on
+   your keyboard. The second "^" means "type the character ^".
+   
+Read File Command
+
+   With Read File: ^R, Pine allows you to insert text files prepared
+   previously outside of Pine into a message you are composing. This
+   allows you, for example, to create a long message you are planning to
+   send with Pine in your favorite word processor, save/export it as a
+   "plain text" or "ASCII text " file and then retrieve that file into
+   Pine's message composer. Note: the file you retrieve into Pine must be
+   in plain text format, not in the native format of your word processor.
+   If you want to send someone else a file that is not plain text, attach
+   it to your message rather than reading it into the message text area.
+   You will be prompted for the name of a file to be inserted into the
+   message. The file name is relative to your home directory or must be a
+   full path name on your system. The file will be inserted where the
+   cursor is located.
+   
+   The file to be read must be on the same system as Pine. If you use
+   Pine on a Unix machine but have files on a PC or Macintosh, the files
+   must be transferred to the Unix system running Pine before they can be
+   read. Please ask your local consultants about the correct way to
+   transfer a file to your Pine system as the method will vary from site
+   to site.
+   
+   You cannot use any wildcards in specifying the file to be included. At
+   the File to insert from home directory: prompt, you can type in the
+   filename directly or use Pine's file browser: ^T to select one from
+   the listing of files in your directory.
+   
+Attach File Command
+
+   The attach file command: Ctrl-J (with the cursor located in the header
+   area of the message composition screen) is the primary means of
+   attaching an external file as a MIME attachment. The attachment will
+   be encoded to ensure safe delivery at the receiving end, which means
+   that you can attach any type of file: spreadsheet, CAD drawing,
+   desktop-published document, clipart graphic, and so on. However, the
+   recipient of your message needs to have email software capable (more
+   and more are) of handling MIME attachments.
+   
+   The file to be attached must be on the same system as Pine. If you use
+   Pine on a Unix machine but have files on a PC or Macintosh, the files
+   must be transferred to the Unix system running Pine before they can be
+   attached to the message being composed. Please ask your local
+   consultants about the correct way to transfer a file to your Pine
+   system as the method will vary from site to site.
+   
+   You cannot use any wildcards in specifying the file to be included.
+   You can type in the filename directly or use Pine's file browser to
+   select one from the listing of files in your directory.
+   
+Postpone Message Command
+
+   Pine's postpone feature allows you to postpone your composition of a
+   message, so that you can resume working on it at a later time. Pine
+   confirms the postponement with:
+
+      [Composition postponed. Select Compose to resume.]
+
+   Pine will postpone a message for the duration of the current session
+   and even throughout subsequent Pine sessions. You may postpone as many
+   messages as you like. (Pine stores all the messages you postpone in a
+   folder called "postponed-msgs.")
+   
+Spell Check Command
+
+   (Note: there is no spell checker for the 32-bit version of PC-Pine as
+   of 27 Sep. 1996. For the 16-bit version, see the section on
+   spell-checking in Customization and Configuration in the Pine
+   Questions and Answers.)
+   
+   Pressing Ctrl-T calls up the standard spell checker, or an alternate
+   program you specified in the speller variable in your configuration.
+   The standard Unix spell checker reads in all the new lines of text
+   (those which do not begin with the ">") and passes them through the
+   spell checker. The spell checker does not provide alternative
+   spellings nor does it remember correct words from session to session.
+   
+   When you first use the standard Unix spell checker, it may appear that
+   it is randomly jumping all around your message - actually, the spell
+   checker processes your message one word at a time, in alphabetical
+   order. Other spell checkers such as ispell for Unix operate
+   differently and offer more features, such as creating a personal
+   "dictionary" of words.
+   
+Rich Headers Command
+
+   Normally, Pine just shows you four header fields to fill out -- To:,
+   Cc:, Attchmnt:, and Subject:. There are others -- Bcc:, Fcc:, Lcc:,
+   Newsgroups: and possibly custom headers you have defined in your
+   personal configuration -- which are also available but not usually
+   shown. When you press Ctrl-R in the message header, you can see and
+   edit these hidden fields.
+   
+   Bcc stands for blind carbon copy. Addresses listed in this field
+   receive a copy of the message, but are not visible to any of its
+   recipients, including even those who received the blind carbon copy.
+   (If you enter addresses both in the To: and the Bcc: fields, this can
+   cause confusion among the Bcc recipients, who may think they
+   accidentally received a message intended for someone else -- the
+   addresses they see in the To: field -- and then forward it to them, so
+   use this feature with discretion.)
+   
+   New in Pine version 3.92 is the Lcc (List Carbon Copy) field, which
+   combines the functions of the To: and Bcc: fields. It allows you to
+   select a list of addresses from your addressbook and shows the name of
+   the list -- but not the individual addresses in the list -- in the
+   message's To: field, while delivering a copy of the message to each
+   address on the list.
+   
+   Fcc stands for folder carbon copy. This is the field to specify the
+   name of the folder which should hold a copy of the outgoing message.
+   The default-fcc field in Pine's configuration specifies the default
+   folder to save outgoing messages into, but you can override that
+   default on for any message you compose by changing the Fcc field in
+   its header. In addition, Pine gives you the ability to specify an Fcc:
+   appropriate for each entry in your addressbook -- a very useful
+   feature if you organize your folder by correspondents.
+   
+   The Newsgrps field allows you to select one or more Usenet newsgroups
+   to which you want to post your message. For this to work, you have to
+   have access to a news server, which can be specified in the
+   nntp-server field of Pine's configuration screen; most institutions or
+   Internet Service Providers operate their own news server and will have
+   preconfigured Pine to access it, so you usually won't have to change
+   this entry -- ask your local systems support staff if in doubt.
+   
+    
+
+                                Other Commands
+                                       
+     _________________________________________________________________
+                                      
+Whereis Command
+
+   The WhereIs command: W is available in many of Pine's screens. It
+   searches through the contents of whatever is on (but not "behind") the
+   screen you are looking at -- the current message, the current folder
+   index, the address book, etc.
+   
+   WhereIs also lets you quickly jump to the first (Ctrl-Y) or last
+   (Ctrl-V) of the items on the screen you are searching -- the
+   first/last message in the FOLDER INDEX, the first/last address in your
+   ADDRESS BOOK, the first/last line in your COMPOSE MESSAGE screen, and
+   so on.
+   
+Full Headers Toggle Command
+
+   Every email message comes with some header lines that you normally
+   don't see. These include lines added by the Internet mail transport
+   system to record the route your message took, for diagnostic purposes.
+   These are normally of no import and simply add clutter, so Pine
+   suppresses them from MESSAGE TEXT display.
+   
+   There is, however, a way to reveal them. The Header Mode: H command is
+   a toggle which controls Pine's handling of these header lines.
+   Normally, full headers is "off" and you only see a few lines about
+   recipient(s) and sender(s) of a message. When you press H to turn full
+   headers on, Pine will show you the normal header lines as well as
+   delivery headers, comment headers and MIME headers.
+   
+   Several different Pine commands honor the header mode -- it affects
+   how messages are displayed, how they appear in forward and reply
+   email, how they are saved and how they are exported.
+   
+   The presence or absence of the Header Mode command is determined by
+   the "enable-full-header-cmd" option in your Pine configuration. Also,
+   it may be administratively disabled by your system manager; if it
+   doesn't work, please check with your local help desk before reporting
+   a bug.
+   
+Sort Command
+
+   In Pine's generic configuration, messages are presented in the order
+   in which they arrive. This default can be changed your Pine
+   configuration in the sort-key section. You can also re-sort the folder
+   on demand with the sort: $ command. Sorting a folder does not actually
+   rearrange the sequence of message in the folder they are saved in --
+   it just re-arranges how the messages are presented to you. This means
+   that Pine has to do the work of sorting every time you change sort
+   order. Sometimes, especially with PC-Pine or with large folders, this
+   could take a while.
+   
+Expunge/Exclude Command
+
+   Expunge/Exclude: X is the command Pine uses to actually remove all
+   messages marked for deletion (marked with a "D" in the left margin of
+   the folder index. With your email messages, expunge literally deletes
+   the messages. With newsgroups or shared mailboxes, where you don't
+   have permission to actually remove the messages, Pine only removes the
+   messages from your view of the folder, but they are not erased.
+   
+   Pine asks you whether you want to expunge messages marked deleted when
+   you leave a folder or exit Pine. The expunge-without-confirm option in
+   your Pine configuration allows you to choose whether or not this takes
+   place with prompting you for confirmation.
+   
+Next Interesting Message Command
+
+   When you press the TAB key, Pine advances to the next "interesting"
+   message. When you are using Pine to read email, that message is the
+   next new or important message in the folder (a new message is one you
+   have not read before; an important message is one you have flagged as
+   important).
+   
+   When reading news folders, Pine cannot tell which messages you have
+   read and which you have not, so the next "interesting" message is the
+   next one which you have not yet deleted.
+   
+Jump to Message Command
+
+   This is Pine's way of allowing you to go straight to a specific
+   message. Just press J and then enter the message number. Pine can also
+   be configured such that typing in any number automatically jumps you
+   to that message (see enable-jump-shortcut in your Pine configuration).
+   
+Goto Folder Command
+
+   Goto: G lets you bypass Pine's folder selection screens and go
+   directly to another folder. You can select any folder: one in your
+   current collection, one in a different collection or one in a
+   collection you've never even used before.
+   
+   Pine will help you as much as it can to narrow in on the folder you
+   want. However, if the folder is outside of your defined collections,
+   you are going to have to key in the exact folder location with the
+   right syntax. See the later section on IMAP folder syntax for more
+   details on this.
+   
+    
+
+                       Pine and Alternate Character Sets
+                                       
+   Pine attempts to stay out of the way so that it won't prevent you from
+   viewing mail in any character set. It will simply send the message to
+   your display device. If the device is capable of displaying the
+   message as it was written it will do so. If not, the display may be
+   partially or totally incorrect. If the message is marked as being in a
+   character set other than "US-ASCII" and it is a character set that is
+   different from the set you have indicated with the "character-set"
+   variable in your Pine configuration, a warning message will be printed
+   to your screen at the beginning of the message display.
+   
+   In all cases Pine requires that the display device can handle the
+   character set. For example, most X-terminals will display the
+   ISO-8859-1 character set if the right font is selected. VT220's and
+   higher also display ISO-8859-1. Displays for other characters sets are
+   less common.
+   
+    
+
+                    Syntax for IMAP Folders and Collections
+                                       
+   Pine users have the option of using folders which are stored on a
+   computer other than the one on which Pine is running. Pine accesses
+   remote folders via IMAP (the Internet Message Access Protocol), or in
+   the case of news, via NNTP (the Network News Transport Protocol).
+   
+Syntax for Folders
+
+   To be able to access remote folders in Pine, the remote host must be
+   running the appropriate server software (imapd or nntpd) and you must
+   correctly specify the name of the folder to Pine, including the domain
+   name of the remote machine. For example,
+   "{monet.art.nowhere.edu}INBOX" is a remote folder specification, as is
+   "{monet.art}~/mail/september-1994". As you can tell, the name of the
+   computer is in {} brackets followed immediately by the name of the
+   folder. If, as in these examples, there is no remote access protocol
+   specified, then IMAP is assumed.
+   
+   There are certain symbols which have special meanings in folder names:
+     * A "*" in front of the folder specification means that the folder
+       is a bulletin board -- shared access and no write privileges.
+       Examples:
+
+           *comp.mail.pine, *{wharhol.art.nowhere.edu}job-board
+     * A folder name beginning with "#mh/" is an mh format folder.
+       Examples:
+
+           #mh/mail/sep-1994, {wharhol.art.nowhere.edu}#mh/mail/sep-1994
+
+   There are certain flags within remote folder names:
+     * An "/anonymous" flag means anonymous IMAP access. Example:
+
+          {wharhol.art.nowhere.edu/anonymous}job-board
+     * A "/user=" flag permits you to specify the username for the
+       desired account on the mail server. Example:
+
+          {mailhost.myISP.com/user=jsingh}INBOX
+   will cause Pine to attempt a login as user "jsingh" on server
+       "mailhost.myISP.com" when this entry is used. The user will be
+       prompted for a password.
+     * A "/nntp" flag means NNTP protocol access. It cannot be used with
+       the /anonymous flag. Example:
+
+           *{news.nowhere.edu/nntp}comp.mail.pine
+
+   Note that "INBOX" has special meaning in both local and remote folder
+   specifications. The name INBOX refers to your "principal incoming
+   message folder" and will be mapped to the actual file name used for
+   your INBOX on any given host. Therefore, a name like
+   "{xxx.art.nowhere.edu}INBOX" refers to whatever file is used to store
+   incoming mail for you on that particular host.
+   
+Syntax for Collections
+
+   Folder collections are "places" to store folders. They roughly
+   correspond to a filesystem "directory". Collections may be local or
+   remote, but they must correspond to a pre-existing filesystem
+   directory, i.e. Pine will not create any directory other than the
+   original default.
+   
+   A valid local collection is just the specification of a directory on
+   the local system followed by square brackets. For example,
+   "ART-101\[]" may be valid on a PC and "exhibit/[]" may be valid on
+   Unix.
+   
+   Pine also allows you to access a collection on a remote computer
+   (provided it supports IMAP and you have the right to store folders on
+   it.) To specify a remote folder collection, you need to give the name
+   of the IMAP mail server, the name of the collection on that server,
+   and the square brackets. For instance,
+   "{wharhol.art.nowhere.edu}art-101/[]" is a remote collection. As you
+   can tell, the name of the computer is in {} brackets followed
+   immediately by the name of the collection.
+   
+   Collection syntax:
+ {optional-imap-hostname}optional-directory-path[]
+
+   For more information (not Pine-specific) on IMAP, visit The IMAP
+   Connection at the URL:
+   http://www.imap.org/
+   
+     _________________________________________________________________
+                                      
+  End of Pine User's Guide
+  
+     _________________________________________________________________
+                                      
+   

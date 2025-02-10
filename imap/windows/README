@@ -1,0 +1,19 @@
+Revised 2007-11-13
+
+What you'll find in this directory:
+
+README              - This file.
+setup_pine_4.64.exe - Latest version (4.62) for PC-Pine for Windows
+                      (Win 95/98, NT, 2000, Me, XP).  Setup program
+		      for easy install (Includes pmapi32).
+pm464w32.zip        - Same as setup_pine_4.64.exe above, but as zip
+		      distribution (and without pmapi32).
+install.txt         - README file for PC-Pine
+pmapi32v464.zip     - Simple MAPI distribution for PC-Pine
+rputils464.zip      - Utilities to help with managing remote configs and remote
+		      address books. Most users do not need this.
+mailutil464.zip     - Utility to manipulate mailboxes
+
+kerberos            - Subdirectory containing versions of PC-Pine for use
+		      with Kerberos. (Most users will not need to look in
+		      the kerberos subdirectory.)

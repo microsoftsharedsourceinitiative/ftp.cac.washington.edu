@@ -1,0 +1,99 @@
+Note as of 94.02.09: With the release of the imap4 draft, most of the 
+following issues are resolved.  A new "open issues" list will be 
+forthcoming.  -teg
+
+
+93.11.24 
+
+Note:  a new draft spec is due out very soon, with quite
+a few of these issues resolved, as a result of the IETF28 working
+group meeting.  This document will be updated as soon as the new
+draft is out.
+
+-teg
+
+------------------------------------------------------------------------------
+    Working Group Action Notes for the IMAP2bis Draft Specification
+
+     In general, only matters that are believed to be uncontroversial,
+or issues that are believed to be resolved, appear as part of the
+current IMAP2bis draft specification.  The idea is that ``you can't go
+(badly) wrong if you implement based what's in the draft'' but it does
+mean that the draft is still incomplete.
+
+     If you feel that anything that is in the IMAP2bis draft
+specification is incorrect, poorly worded, or has not been properly
+resolved, or for any other reason should be removed from the draft or
+modified, please call the matter to the attention of the IMAP working
+group by sending e-mail to imap@cac.washington.edu.
+
+     Some known unresolved issues, that need to be decided before the
+IMAP2bis specification is submitted as a proposed specification, are:
+
+1) How to support possible mailbox hierarchy on the server.
+
+   There are two general proposals of how to handle this.  One
+   proposal involves the explicit support of a heirarchical name
+   structure on the server, with the necessary set of commands to
+   accomplish this.  The other retains the flat namespace of IMAP
+   mailbox names, but provides a minimum set of tools to enable a
+   user interface to offer a heirarchical view.  Although the latter
+   viewpoint is supported by most IMAP protocol implementors, there
+   is some concern whether it will be rich enough to accomodate
+   user perceptions of heirarchy and the need for a common interface.
+   The former viewpoint deals with these concerns, but at a very
+   large cost in terms of protocol complexity; there is also a worry
+   about over-engineering too much towards UNIX/DOS/Mac syntax.
+
+   Either the flat model has to demonstrate that it is rich enough,
+   or the explicit support model has to demonstrate that it does not
+   add unacceptable complexity.
+
+2) RFC-1522 search strings.
+
+   It is not clear whether or not this is useful enough to solve the
+   problem of multi-national string searching, or will ever be widely
+   implemented.  If the answer to either of these questions is NO,
+   perhaps it would be better to remove this functionality and wait
+   until the IETF community in general has had a chance to address the
+   multi-national characters issue.  [This may imply ``wait until
+   ISO-10646 solves all the world's problems.]
+
+3) Extended search
+
+   Everyone likes the idea of providing a richer search than presently
+   exists in RFC-1176, but there are serious concerns having to do
+   with tampering with the current SEARCH and its semantics.  It is
+   not believed that SEARCH can be incrementally extended because of
+   the compatibility issue with old servers, and that it would be
+   better to create a new searching verb with the new functionalities
+   that everyone desires and retain the current SEARCH as a
+   compatibility form with old servers.
+
+   The question comes in whether or not it is desirable to attempt to
+   define this now, or wait until after IMAP2bis is in the standards
+   track and then start work of the new search.  There is a worry that
+   it may be necessary to spend some time developing the new search
+   (as well as some experimentation time) in order to get something
+   that will serve present and forseeable future needs; and that that
+   may excessively delay IMAP2bis.  [``If we have NSEARCH, we don't
+   want to have to come back again and have NNSEARCH.'']  An extension
+   mechanism would be desirable here too.
+
+4) Definition of additional special information tokens for error and
+   other conditions.
+
+   The present draft itemizes certain currently defined special
+   information tokens (such as TRYCREATE), and provides an extension
+   mechanism through the X prefix and future revisions of the
+   protocol.  It isn't clear if any additional special information
+   tokens need to be pre-defined at the present time.  Also, should
+   this be left strictly to protocol revisions, or can they be
+   registered with IANA?
+
+5) mstring grammar
+
+   This is an unfortunate side-effort of the reference IMAP
+   implementation.  Although it makes great sense for IMAP, it can
+   have a limiting effect on IMSP.  The outcome of the naming
+   heirarchy issue will influence the resolution of this question.

@@ -1,0 +1,15 @@
+written 2.24.00
+
+The files in this directory are sequential archives (where 
+c-client_archive1.gz contains the oldest messages) from the 
+c-client mailing list.  The files have been gzipped.
+
+For information about subscribing to the list, see: 
+  http://www.washington.edu/imap/c-client-list.html
+The complete c-client mailing list archive is accessible 
+(method depends on client software) via anonymous IMAP 
+or anonymous FTP in the folder /imap/c-client__archive on the 
+host ftp.cac.washington.edu.
+
+
+

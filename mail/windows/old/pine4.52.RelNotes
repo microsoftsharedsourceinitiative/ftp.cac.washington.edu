@@ -1,0 +1,258 @@
+
+                            Pine Release Notes
+                                       
+                               Version 4.52
+                          University of Washington
+                                      
+   Pine(R) is the University of Washington's "Program for Internet News
+   and Email". It is intended to be an easy-to-use program for sending,
+   receiving, and filing Internet electronic mail messages and bulletin
+   board (Netnews) messages. There are versions that will run on many
+   different flavors of the Unix(R) operating system, as well as a
+   version with GUI amenities for 32-bit flavors of Microsoft Windows
+   (95, 98, NT, 2000, Me, and XP).
+   
+New in Pine 4.52
+
+   Version 4.52 is a bug-fix release which addresses bugs found in
+   previous releases.
+   
+   Additions include:
+   
+     * Experimental method to reopen a newsgroup or POP folder to check
+       for new messages with < command followed by > command. See the
+       help text for "Mail-Check-Interval" for a short explanation.
+       
+   Bugs that have been addressed in this release include:
+   
+     * Delete, Rename, and Shuffle broken in Incoming Folders
+     * Role-based SMTP Server should not override administratively fixed
+       SMTP Server
+     * Html typed file with garbage contents can cause crash
+     * Scramble-Message-Id drops first character of hostname
+     * When alternate-editor is used to compose, assume charset should be
+       that of user
+     * Rare crash when new mail arrives with threading enabled
+     * Threaded index lines displayed incorrectly with IMAP servers that
+       do not support threading
+     * View attachment command should not be available if Full Header
+       mode is turned on
+     * In PC-Pine, pine.conf registry setting was always used even if
+       overridden in the command-line
+     * Duplicate printing of To and Cc lines when using "all-except" in
+       viewer-hdrs
+     * Justification of quoted paragraphs is not possible when forwarding
+       a non-us-ascii message
+       
+   Version 4.51 was also a bug-fix release.
+   
+   Additions included:
+   
+     * New feature "Disable-Sender"
+     * New feature "Scramble-Message-Id"
+     * New feature "Spell-Check-Before-Sending"
+     * New pico option -Q <quotestr>
+       
+   Bugs addressed in the 4.51 release included:
+   
+     * Malformed Date in first message of mailbox causes threading crash
+     * Fetching POP3 message when /tmp and/or /var/tmp is full causes
+       crash
+     * In Rules, Current Folder Type of Any should match even if no
+       current folder
+     * Get rid of extra screen redrawing when collapsed thread is changed
+     * Allow setting Index Line Color to Default explicitly
+     * Fix LDAP URL parsing
+     * When Zoomed, Unselect current message advances past next message
+     * Malformed From address shown incorrectly in THREAD INDEX
+     * Missing Date in message causes truncated THREAD INDEX display
+     * Tab should skip over messages inside collapsed thread
+     * Hangs when sending base64 encoded text
+     * Current message number not correctly updated when viewing a
+       message with reverse sorting
+     * Interoperability problems between pre-4.50 and 4.50 remote address
+       books
+     * Role SMTP server not saved when postponing
+     * Fix delays and multiple warning messages when unexpected text
+       appears after a BASE64 part
+     * Fixed session-wide underlining or bolding caused by malformed
+       enriched or richtext messages
+       
+   Version 4.50 was an evolutionary release which introduced some new
+   functionality.
+   
+   Additions included:
+   
+     * Threading support
+          + Threading display styles configurable
+            (Threading-Display-Style)
+          + Threading index styles configurable (Threading-Index-Style)
+          + Options to affect threading display,
+            "Threading-Indicator-Character",
+            "Threading-Expanded-Character", and
+            "Threading-Lastreply-Character"
+          + Feature to color thread index lines the same color as the
+            Important symbol "thread-index-shows-important-color"
+          + Feature to make slash command collapse whole thread instead
+            of just the subthread at current line
+            "slash-collapses-entire-thread"
+          + Feature to keep Pine from asking you about Next and Prev
+            commands when they move you to another thread
+            ("next-thread-without-confirm"
+     * Rule Pattern enhancements
+          + Non-terminating Filter Rules
+          + New option in Rule Patterns to match message body text but
+            not headers
+          + "Not" ("!") operator in Header patterns, AllText patterns,
+            and BodyText patterns
+          + New option in Rule Patterns to match messages of a certain
+            age
+          + New option in Rule Patterns to match messages with raw 8-bit
+            characters in the Subject (Raw 8-bit in Subject)
+          + New option in Rule Patterns to match messages which have a
+            From or Reply-To address which is in your address book (more)
+          + New option in Rule Patterns to match messages which are
+            Recent
+          + If Patterns contain elements that are unrecognized, most
+            likely because they are from a version of Pine which is newer
+            than the Pine that is running, Pine will not act on them.
+            _WARNING_: If you are using a version of Pine which is 4.50
+            or newer and also using a version which is older than 4.50
+            you should probably read this additional information.
+     * New option to use a role-based SMTP server
+     * Rudimentary support for converting a message in a character set
+       different from yours to your character set when displaying the
+       message (more). The old, broken ISO_TO_CP and CP_TO_ISO hooks have
+       been removed.
+     * Rudimentary support for ISO-2022-JP. Uses EUC for UNIX Pine with
+       terminals that understand how to display EUC, and uses Shift-JIS
+       for PC-Pine (more).
+     * Fcc copies of sent mail may be automatically marked Seen
+     * Select text body (excluding header) option
+     * New feature "enable-full-header-and-text"
+     * New feature "quell-attachment-extra-prompt"
+     * New color feature "Titlebar-Color-Style"
+     * More new index format tokens
+     * "Pass-control-characters-as-is". feature is always turned on in
+       PC-Pine now
+     * Now possible to search LDAP from bounce command with ^T
+     * Attachment viewing now offers option to view by file extension if
+       mime type is unknown
+     * New PC-Pine feature "store-window-position-in-config"
+     * New PC-Pine command line flag "-nosplash" to disable splash screen
+     * New feature "quell-timezone-comment-when-sending" for working
+       around paranoid SMTP servers
+     * Hidden feature "quell-maildomain-warning"
+     * Add References header to all replies, whether it be in newsgroups
+       or email
+     * More efficient use of IMAP connections when viewing and managing
+       folders
+     * New PC-Pine registry setting for the pine.conf file
+     * Pico only preserves the start-stop characters (^Q/^S) if given the
+       -p option
+     * If a filter sets status bits and then the user uses D, U, or *
+       command on a message, don't refilter that message when expunging.
+       _WARNING_: it will still be refiltered next time the folder is
+       opened.
+     * Trivial change so that cursor advances when unselecting the
+       current message and a new feature to restore the old behavior
+       "unselect-will-not-advance"
+       
+   Bugs addressed in the 4.50 release included:
+   
+     * Potential security problem with remote data folders
+     * Potential denial of service with maliciously-crafted From: header
+     * Bug in HTML parser that left underline character turned on
+     * Bug in HTML parser that swallowed last character when there was a
+       wrap
+     * Crash in HTML parser when encountering many links on one line
+     * Recognize HTML <SCRIPT> and <STYLE> elements so at least we don't
+       spew them onto the display
+     * Strip directories from suggested filenames when saving attachments
+     * Fixed bug that adds extra line for each postpone
+     * Get rid of duplicate "sent-mail" display after monthly pruning
+     * Bug using Netscape IMAP server and remote Pine config
+     * Bug displaying multipart/alternative if text alternative has a
+       name
+     * Clean control characters out of status messages unless
+       pass-control-characters-as-is
+     * Preserve character set labeling of Subject when forwarding if it
+       is unchanged
+     * In PC-Pine, remember script the user sets the font to
+     * In PC-Pine, turn off scroll bar updating while formatting a large
+       message for viewing, which is particularly helpful for Windows XP.
+     * In PC-Pine, rename of folder which was only a case change didn't
+       work
+     * Make PC-Pine stop complaining about spaces in filenames for
+       attachments
+     * Always write CRLF and not LF newlines when writing out PC-Pine
+       pinerc
+     * Fix to handle IMAP referral URL with auth=anonymous properly
+     * When replying or forwarding something with a charset that is
+       different from ours, label with that charset if user has not
+       entered any new characters with high bit set
+     * With one message selected and it wasn't the currently highlighted
+       message, Apply Save would get confused
+     * Crash when adding filter that filters to incoming folder that does
+       not exist and is first incoming folder other than INBOX
+     * Out of memory crash with some filters that set status bits
+     * INBOX didn't work as an Fcc target
+     * Thread and Score sorts were missing from Sort dialog
+     * In PC-Pine, don't write screen position to registry if minimized
+     * Accept nulls in files when reading them into composer
+     * Justify crashes and bugs with non-whitespace-terminated indent
+       strings and with long words
+     * PC-Pine select and copy crash
+     * Fix quoting for PC-Pine command line arguments
+       
+   Additional details on changes in this (and previous) versions of Pine
+   may be found at the following URL:
+   
+                http://www.washington.edu/pine/changes.html
+            ____________________________________________________
+   
+Getting Help
+
+   Online Help
+          Every Pine screen and command has associated help text
+          accessible via the "?" key (or Ctrl-G in text-input contexts).
+          
+   Web Help
+          The most current source of information about Pine, including
+          new version availability, is the web page at
+          
+                      http://www.washington.edu/pine/
+                                      
+   Frequently Asked Questions (and answers) may be found at the following
+   URL:
+   
+                    http://www.washington.edu/pine/faq/
+                                      
+   Some topics of current interest include:
+     * Information on Folder Locking
+     * Information on Missing mail and the mbox driver
+     * Information on Folder Namespaces
+            ____________________________________________________
+   
+Additional Information
+
+   General Pine configuration information can be found here.
+   
+   Pine is also available for Windows 32-bit environments. More
+   information on PC-Pine can be found here.
+   
+   Pine was developed by the Office of Computing & Communications at the
+   University of Washington in Seattle. A more complete list of principal
+   players and key contributors can be found on the credits Web page at
+   
+                   http://www.washington.edu/pine/credits
+                                      
+   Pine and Pico are trademarks of the University of Washington.
+   
+   Pine, Pico and Pilot Copyright 1989-2003 University of Washington
+   
+   Additional legal notices can be found here or at the web URL:
+   
+                    http://www.washington.edu/pine/legal
+                                      
+   <End of Release Notes>
